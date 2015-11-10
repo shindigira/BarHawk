@@ -122,7 +122,7 @@ Your project readme is the very first thing that users will see when they view y
 
 ### Continuous Deployment
 You must have a deployed website setup.
-- [ ] Configure automatic deployment of your master branch using Azure
+- [ ] Configure automatic deployment of your master branch using Heroku/AWS/etc.
 
 ### Team Communication
 
