@@ -78,14 +78,10 @@ Be sure keep your project backlog (using github issues) up to date. There should
 documentation of tasks completed (github provides this functionality automatically) and
 next steps/features in your project backlog so that your collaborators can just dive right in.
 
-You should use github issues to track both your project's backlog of tasks and
-fixes and to provide a way to track future goals. You can use labels to
-organize issues and milestones to group issues together and to visualize your
+You should use github issues to track both your project's backlog of tasks and fixes and to provide a way to track future goals. You can use labels to organize issues and milestones to group issues together and to visualize your
 progress.
 
-You may want to take advantage of a tool like [waffle.io](waffle.io) to manage github
-issues with a more powerful interface and can provide a kanban-board-like place to manage your
-project and workflow.
+You may want to take advantage of a tool like [waffle.io](waffle.io) to manage github issues with a more powerful interface and can provide a kanban-board-like place to manage your project and workflow.
 
 #### Contribution Guide
 
@@ -107,7 +103,7 @@ way that git cannot resolve. You should _never_ rebase or push with force to
 the `master` branch of your repository, as that will invalidate everyone elses
 clones and checkouts of the repository.
 
-Though it advocates for a slightly different version of the rebase workflow, the article, [A romance of a single dimension: linear git history in practice](http://www.thumbtack.com/engineering/linear-git-history/) does an excelent job of justifying the practice. I strongly recomend reading it, even if you choose a different option.
+Though it advocates for a slightly different version of the rebase workflow, the article, [A romance of a single dimension: linear git history in practice](http://www.thumbtack.com/engineering/linear-git-history/) does an excellent job of justifying the practice. I strongly recommend reading it, even if you choose a different option.
 
 ##### `CONTRIBUTING.md` Workflow Diagram
 
@@ -188,61 +184,52 @@ You must implement 2-3 of the following:
 
 ### Group Presentations
 
-An important part of your thesis project is its presentation. You'll be debuting it at hiring day, and you'll speak eloquently about it in your interviews thereafter. AT several points throughout the thesis project, you'll present your project to your cohort and recieve specific feedback about how you can refine your delivery (see sylabus for specific dates).
-
-Your group presentations must be (at most) 3min long. Each group will have 3min to present to the class, then there'll be a 3-5min of Q&A and feedback from the fascilitator.
+An important part of your thesis project is its presentation. We'll hold several practice sessions in the lecture hall, culminating in the creation of a video that can be shared with prospective employes, on your online resume and/or your portfolio page. Theis practice will help prepare you to speak eloquently about your project in your interviews thereafter. Practice sessions will be held with your entire cohort present, providing a range of perspectives to help refine your delivery (keep an eye on your calendar for specific dates). Your group presentations must be (at most) 3min long.
 
 In preparing for your presentations please make sure that you address the following specific issues/areas:
-  - Be sure to introduce yourselves as a first order of business
-  - As a second order of business, explain the project to the audience at a high level before jumping into details
-  - Try to coordinate tightly between the person speaking, at any time, and the person driving tech, at any time, who should ideally not be the same person, at any time
-  - Do not start your presentation until technology is ready
-  - Make sure all text on the screen that you require the audience to read is large enough to be read
+  - Be sure to introduce your team at some point during the video; typically this occurs at the beginning or the end of the presentation.
+  - Explain the project to the audience at a high level before jumping into details. Think about framing your presentation as a story.
+  - Try to coordinate tightly between the person speaking, at any time, and the person driving tech. The person speaking and the person driving should not be the same person at any time.
   - Do not require the audience to read too much text on the screen
-  - If you are pointing at the screen to make a point, ensure you point at the big screen not the small screen
-  - Make sure you look towards the audience while speaking. Don't throw your voice at the screen.
   - Do not have off-mic conversations with your team while you are presenting.
   - Everything that you put into your presentation should make the case for why you or one of your teammates should be hired as a software engineer. If you have a lot of time left, there are a lot of things you could be saying about why you are awesome.
   - Speaking of time management, your presentation must run precisely 3 minutes long.
 
-### Code Reviews
-- __Start in late week 10__
-- Who gets one?: Student projects receive code reviews from MakerSquare mentors. Hosted projects receive them from mentor engineers at the host company.
-- Format: Code reviews are 1-hour and have a dedicated Mentor and room. All team members are expected to join and are expected to provide the mentor with a focused set of questions or features/classess to examine and take feedback on in that time. Please do not expect to review 100% of your codebase.
 
 ### Thesis Project Groups
 - Group 1
-  - Alex
-  - Aaron
-  - Ting
-  - Chris
-  - Dylan
+  - Bobby
+  - Kevin
+  - Jordan
+  - Arthur
+  - Faisal
 
 - Group 2
-  - Uche
-  - Ryan
-  - Joel
-  - OJ
-  - Jackson
+  - Chris N
+  - Jake
+  - Yusuf
+  - Renan
+  - Royce
 
 - Group 3
-  - Armin
-  - Tatsumi
-  - Shreeya
-  - Darrin
+  - Chris P
+  - Cyrus
+  - Rachel
+  - Alex
+  - Sonny
 
 - Group 4
-  - Tito
-  - GT
-  - Max
+  - Michael
+  - Melody
+  - Sujay
   - Andrew
-  - Anthony
+  - Ryan
 
 - Group 5
-  - Cindy
-  - Thomas
-  - Zhao
-  - Jim
+  - Aaron
+  - Molly
+  - Stephen
+  - Jia
 
 <!--
 ### Project Summaries
