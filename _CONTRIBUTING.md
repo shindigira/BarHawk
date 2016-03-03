@@ -9,7 +9,7 @@ When you want to make a change, these are the general guidelines you must follow
   1. git pull --rebase upstream development
     - get your code up to speed with our latest version
 
-  2. git checkout -b *yourFeatureBranch*
+  2. git checkout -b *feat/yourFeatureBranch*
     - make sure your branch name clearly reflects what feature you're working on while remaining concise
 
   3. describe each commit in messages with fewer than 60 characters
