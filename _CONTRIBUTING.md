@@ -1,9 +1,37 @@
 # Contributing
 
-## General Workflow
+## General MKSBest Workflow
 BEFORE ANYTHING ELSE, ensure that you have forked the organization repo.
 
 BEFORE ANY COMMIT, make sure to prettify your code.
+
+When you want to make a change, these are the general guidelines you must follow:
+  1. git pull --rebase upstream development
+    - get your code up to speed with our latest version
+
+  2. git checkout -b *feat/yourFeatureBranch*
+    - make sure your branch name clearly reflects what feature you're working on while remaining concise
+
+  3. describe each commit in messages with fewer than 60 characters
+    - convention is as follows:
+      - (feat) Add a new feature
+      - (fix) Fix inconsistent tests [Fixes #0]
+      - (refactor) ...
+      - (cleanup) ...
+      - (test) ...
+      - (doc) ...
+
+  4. git pull --rebase upstream development
+    - this is to make sure you avoid conflicts with any updates made while you were working on your feature.
+
+  5. git push origin *yourFeatureBranch*
+    - push to your fork's featureBranch
+
+  6. Head on over to git to make a pull request
+    - ENSURE THAT YOU'RE SUBMITTING A PULL REQUEST FROM THE CORRECT BRANCH ON YOUR FORK TO THE DEVELOPMENT BRANCH
+
+
+## Detailed Workflow
 
 1. Cut a new branch (git checkout -b yourfeaturebranch) that clearly indicates your feature
   - bug/...
@@ -13,8 +41,8 @@ BEFORE ANY COMMIT, make sure to prettify your code.
   - refactor/...
 2. Make commits to your feature branch.
   a. Prefix each commit like so:
-  - (feat) Added a new feature
-  - (fix) Fixed inconsistent tests [Fixes #0]
+  - (feat) Add a new feature
+  - (fix) Fix inconsistent tests [Fixes #0]
   - (refactor) ...
   - (cleanup) ...
   - (test) ...
@@ -66,8 +94,8 @@ git checkout -b `your-branch-name`
 ### Make commits to your feature branch.
 
 Prefix each commit like so
-  - (feat) Added a new feature
-  - (fix) Fixed inconsistent tests [Fixes #0]
+  - (feat) Add a new feature
+  - (fix) Fix inconsistent tests [Fixes #0]
   - (refactor) ...
   - (cleanup) ...
   - (test) ...
