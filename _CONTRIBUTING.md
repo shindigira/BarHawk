@@ -1,30 +1,40 @@
 # Contributing
 
 ## General Workflow
+BEFORE ANYTHING ELSE, ensure that you have forked the organization repo.
 
-1. Fork the repo
-1. Cut a namespaced feature branch from master
+BEFORE ANY COMMIT, make sure to prettify your code.
+
+1. Cut a new branch (git checkout -b yourfeaturebranch) that clearly indicates your feature
   - bug/...
   - feat/...
   - test/...
   - doc/...
   - refactor/...
-1. Make commits to your feature branch. Prefix each commit like so:
+2. Make commits to your feature branch.
+  a. Prefix each commit like so:
   - (feat) Added a new feature
   - (fix) Fixed inconsistent tests [Fixes #0]
   - (refactor) ...
   - (cleanup) ...
   - (test) ...
   - (doc) ...
-1. When you've finished with your fix or feature, Rebase upstream changes into your branch. submit a [pull request][]
+  b. Keep commit messages fewer than 60 characters
+
+3. When you've finished with your fix or feature, Rebase upstream changes into your branch (git pull --rebase upstream development)
+
+4. Submit a [pull request][]
    directly to master. Include a description of your changes.
-1. Your pull request will be reviewed by another maintainer. The point of code
+
+5. Your pull request will be reviewed by another maintainer. The point of code
    reviews is to help keep the codebase clean and of high quality and, equally
    as important, to help you grow as a programmer. If your code reviewer
    requests you make a change you don't understand, ask them why.
-1. Fix any issues raised by your code reviwer, and push your fixes as a single
+
+6. Fix any issues raised by your code reviwer, and push your fixes as a single
    new commit.
-1. Once the pull request has been reviewed, it will be merged by another member of the team. Do not merge your own commits.
+7. Once the pull request has been reviewed, it will be merged by another member of the team. Do not merge your own
+   commits.
 
 ## Detailed Workflow
 
@@ -53,7 +63,7 @@ These commands will help you do this:
 git checkout -b `your-branch-name`
 ```
 
-### Make commits to your feature branch. 
+### Make commits to your feature branch.
 
 Prefix each commit like so
   - (feat) Added a new feature
@@ -87,7 +97,7 @@ changes to the master branch into yours by running this command
 from your branch:
 
 ```bash
-git pull --rebase upstream master
+git pull --rebase upstream development
 ```
 
 This will start the rebase process. You must commit all of your changes
