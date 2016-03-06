@@ -88,7 +88,7 @@ These commands will help you do this:
 ``` bash
 
 # Creates your branch and brings you there
-git checkout -b `your-branch-name`
+git checkout -b yourcategory/yourFeatureBranch
 ```
 
 ### Make commits to your feature branch.
@@ -191,7 +191,7 @@ Thanks for contributing!
 
 This is just to help you organize your process
 
-- [ ] Did I cut my work branch off of master (don't cut new branches from existing feature brances)?
+- [ ] Did I cut my work branch off of development (don't cut new branches from existing feature brances)?
 - [ ] Did I follow the correct naming convention for my branch?
 - [ ] Is my branch focused on a single main change?
  - [ ] Do all of my changes directly relate to this change?
