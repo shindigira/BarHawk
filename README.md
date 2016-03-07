@@ -30,10 +30,62 @@ Testing
 Tech Stack
 ==========
 !!!!!!! change this later --> insert log pictures of Angular, Node, Express, Karma, Jasmine, Grunt
+- Angular
+- Express
+- Node.js
+- PostgreSQL
+- Sequelize
+- Karma
+- Jasmine
+- Grunt
+
+File Structure
+==========
+
+Client: holds all files associated with the View, Controllers, and Factories. The client directory also contains the styling and assets.
+
+!!!!! Change this in future--> Server: contains the server, middleware, express routing, and helper functions.
+
+!!!!!! Change this in future--> Specs: contains all Jasmine/Karma tests.
+
+!!!!! Change this in the future--v
+
+```
+AsyncDrink
+  |-client
+  |---app             # Views / Controllers / Factories
+  |---assets          # Logos and images
+  |---styles          # Stylesheets and fonts
+  |---build           # Compiled / minified assets, JavaScripts, and modules
+  |-server            # Server files
+  |-spec              # Jasmine / Karma testing files
+
+```
+
+# Features
+Customers:
+!!!! Change this in future -->
+
+Bartenders:
+!!!! Change this in future -->
+
+
+# Future Features
+!!!! Change this in future -->
+- ...
+- ...
+- ...
+
+# Tests
+Testing done in Jasmine/Karma. 
+!!!!! Change this in future --> Coverage [80%]
+
+# Style Guide
+All code adheres to the [style guide](https://github.com/MKSBest/AsyncDrink/blob/master/_STYLE-GUIDE.md) which is based on the airbnb style guide.
 
 Contributing
 =========
-Thank you for taking interest in contributing! Please read our [CONTRIBUTING.md](https://github.com/MKSBest/AsyncDrink/blob/master/CONTRIBUTING.md) and check out our current [issues](https://github.com/MKSBest/AsyncDrink/issues).
+Thank you for taking interest in contributing! Please read our [CONTRIBUTING.md](https://github.com/MKSBest/AsyncDrink/blob/master/_CONTRIBUTING.md) and check out our current [issues](https://github.com/MKSBest/AsyncDrink/issues).
 
 Engineers
 ==========
