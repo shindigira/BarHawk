@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/mksbest/asyncdrink#readme",
   "dependencies": {
+    "angular": "^1.5.0",
     "express": "^4.13.4"
   }
 }
