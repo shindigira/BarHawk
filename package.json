@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/mksbest/asyncdrink/issues"
   },
-  "homepage": "https://github.com/mksbest/asyncdrink#readme"
+  "homepage": "https://github.com/mksbest/asyncdrink#readme",
+  "dependencies": {
+    "express": "^4.13.4"
+  }
 }
