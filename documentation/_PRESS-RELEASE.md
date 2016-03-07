@@ -17,28 +17,29 @@ Once the project moves into development, the press release can be used as a touc
  -->
  
 ## Heading ##
-  > Name the product in a way the reader (i.e. your target customers) will understand.
+  > Bar-Hawk
 
 ## Sub-Heading ##
-  > Describe who the market for the product is and what benefit they get. One sentence only underneath the title.
+  >Order drinks, close tab, and check your BAC 
 
 ## Summary ##
-  > Give a summary of the product and the benefit. Assume the reader will not read anything else so make this paragraph good.
+  > Socially responsible order, fulfillment system, and BAC checker for bars.
 
 ## Problem ##
-  > Describe the problem your product solves.
+  > Getting a drink a your local bar during peak hours can sometimes
+  be a pain because of the elbowing and pushing that takes place while getting the bartenders attention. Furthermore, after getting a drink multiple drinks throughout the night you are unsure of your BAC.
 
 ## Solution ##
-  > Describe how your product elegantly solves the problem.
+  > Instead of waiting in line, you can simply place your order and check your BAC throughout the night. 
 
 ## Quote from You ##
-  > A quote from a spokesperson in your company.
+  > "Being able to conveniently order a drink with a touch of a button while knowing your BAC will make for a better and more responsible bar experience for everyone"
 
 ## How to Get Started ##
-  > Describe how easy it is to get started.
+  > Simply order a drink through the app, and the bartender will be notified.
 
 ## Customer Quote ##
-  > Provide a quote from a hypothetical customer that describes how they experienced the benefit.
+  > "Thanks to Bar-Hawk,  I can start the night without waiting in a crowded line that seems to favor more aggressive people. And at the end of the night, I have a better sense of what my BAC and I can act accordingly. 
 
 ## Closing and Call to Action ##
-  > Wrap it up and give pointers where the reader should go next.
+  > Checkout the app and let us know how Bar-Hawk has changed your bar experience.
