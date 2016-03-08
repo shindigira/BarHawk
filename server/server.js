@@ -16,22 +16,33 @@ app.listen(port, function() {
   console.log('Server now listening on port ' + port);
 });
 
-var users = {
-  Michael: {
-    password: "password",
-    age: '25',
-    weight: 160,
-    gender: "Male"
-  }
-};
+// var users = {
+//   Michael: {
+//     password: "password",
+//     age: '25',
+//     weight: 160,
+//     gender: "Male"
+//   }
+// };
+var users = [{
+  username: "Michael",
+  password: "password",
+  age: '25',
+  weight: 160,
+  gender: "Male"
+}];
 
 app.post('/api/users/signup', function(req, res) {
   console.log("user info", req.body);
   var data = req.body;
-  if (data.username in users) {
-    res.sendStatus(302);
-  } else {
-    console.log('user already exists or not authorized')
-    res.sendStatus(401);
-  }
+  for (var i = 0; i < users.length; i++) {
+    if (users[i].username === data.username) {
+      res.send('user already exists')
+
+      res.sendStatus(302);
+    } else {
+      users.push(data);
+      res.sendStatus(401);
+    }
+}
 });
