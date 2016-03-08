@@ -7,6 +7,21 @@ app.use(express.static(__dirname + '/../client'));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
+var storedBarLogin = {
+  username: 'admin',
+  password: 'fancypants'
+};
+
+app.post('/api/barUsers/barSignin', function(req, res) {
+  var attemptedBarUsername = req.body.username;
+  var attemptedBarPassword = req.body.password;
+  if (attemptedBarUsername === storedBarLogin.username && attemptedBarPassword === storedBarLogin.password) {
+    res.json({ 'great job' });
+  } else {
+    return next(new Error('Incorrect username or password.'));
+  }
+});
+
 app.listen(port, function() {
   console.log('Server now listening on port ' + port);
 });
