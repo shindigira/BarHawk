@@ -1,6 +1,7 @@
 angular.module('asyncdrink', [
   'ui.router',
-  'asyncdrink.customerAuth'
+  'asyncdrink.customerAuth',
+  'asyncdrink.options'
 ])
 
 .config(function($stateProvider, $urlRouterProvider) {
@@ -10,5 +11,10 @@ angular.module('asyncdrink', [
       url: "/signup",
       templateUrl: "/app/auth/patron/patronSignup.html",
       controller: 'customerController'
+    })
+    .state('options', {
+      url: "/options",
+      templateUrl: "app/customer/options.html",
+      controller: 'optionsController'
     });
 });
