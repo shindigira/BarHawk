@@ -14,7 +14,7 @@ angular.module('asyncdrink', [
     })
     .state('options', {
       url: "/options",
-      templateUrl: "app/customer/options.html",
+      templateUrl: "/app/customer/options.html",
       controller: 'optionsController'
     });
 });

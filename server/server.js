@@ -21,7 +21,9 @@ var users = {
     password: "password",
     age: '25',
     weight: 160,
-    gender: "Male"
+    gender: "Male",
+    drinkCount: 0,
+    totalPrice: 0
   }
 };
 
@@ -36,4 +38,33 @@ app.post('/api/users/signup', function(req, res) {
     res.sendStatus(200);
   }
 
+});
+
+var ordersArray = [{
+  username: 'zeebow',
+  drinkType: 'beer',
+  time: '9:00pm',
+  closeout: false,
+  currentPrice: 5,
+  totalPrice: 60
+}];
+app.post('/api/customer/order', function(req, res) {
+  var ord = req.body;
+  if (ord.username === undefined || ord.drinkType === undefined) {
+    res.sendStatus(400);
+  } else {
+    users[ord.username].drinkCount++;
+    users[ord.username].totalPrice += ord.currentPrice;
+    var newOrder = {
+      username: ord.username,
+      drinkType: ord.drinkType,
+      time: ord.time,
+      closeout: ord.closeout,
+      currentPrice: ord.currentPrice,
+      totalPrice: users[ord.username].totalPrice,
+      drinkCount: users[ord.username].drinkCount
+    };
+    ordersArray.push(newOrder);
+    res.sendStatus(200);
+  }
 });

@@ -7,12 +7,16 @@
 <div id="options">
   <h2>Hi, {{currentUser}}!</h2>
   <h4>Please choose a drink:</h4>
-  <select>
+  <select ng-model='order.drinkType'>
     <option value="beer">beer</option>
     <option value="wine">wine</option>
     <option value="liquor">liquor</option>
   </select>
   <h4>Your Drink Count: {{currentUser.drinkCount}}</h4>
-<button>Submit Order</button>
-<button>Submit and Close Tab</button>
+  <button ng-click='orderOnly()'>Submit Order</button>
+  <button>Submit and Close Tab</button>
+  <div id='results'>
+    <p ng-show='orderSuccess'>Thank you! Your {{order.drinkType}} has been placed.</p>
+    <p ng-show='orderFail'>Sorry! There was an error, please fill out all fields.</p>
+  </div>
 </div>
