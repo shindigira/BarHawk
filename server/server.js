@@ -12,11 +12,11 @@ var storedBarLogin = {
   password: 'fancypants'
 };
 
-app.post('/api/barUsers/barSignin', function(req, res) {
+app.post('/api/barUsers/barSignin', function(req, res, next) {
   var attemptedBarUsername = req.body.username;
   var attemptedBarPassword = req.body.password;
   if (attemptedBarUsername === storedBarLogin.username && attemptedBarPassword === storedBarLogin.password) {
-    res.json({ 'great job' });
+    res.json({});
   } else {
     return next(new Error('Incorrect username or password.'));
   }
