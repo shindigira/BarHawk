@@ -1,7 +1,8 @@
 angular.module('asyncdrink', [
   'ui.router',
   'asyncdrink.customerAuth',
-  'asyncdrink.options'
+  'asyncdrink.options',
+  'asyncdrink.barAuth'
 ])
 
 .config(function($stateProvider, $urlRouterProvider) {
