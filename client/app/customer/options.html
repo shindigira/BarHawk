@@ -1,0 +1,18 @@
+<div id="topbar">
+  <ul>
+    <li><a>logout</a></li>
+    <li><a>close tab</a></li>
+  </ul>
+</div>
+<div id="options">
+  <h2>Hi, {{currentUser}}!</h2>
+  <h4>Please choose a drink:</h4>
+  <select>
+    <option value="beer"></option>
+    <option value="wine"></option>
+    <option value="liquor"></option>
+  </select>
+  <h4>Your Drink Count: {{currentUser.drinkCount}}</h4>
+<button>Submit Order</button>
+<button>Submit and Close Tab</button>
+</div>
