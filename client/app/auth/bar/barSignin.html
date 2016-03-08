@@ -7,9 +7,9 @@
   <script src="library/angular.js"></script>
 </head>
 
-<body>
+<body ng-controller="BarAuthController">
   <h1>Welcome bartender, please enter your information</h1>
-  <form name="barSignin" ng-submit='barSignin()'>
+  <form name="barSignin" ng-submit="barSignin()">
     <input type="text" ng-model="barUser.barUsername">
     <input type="password" ng-model="barUser.barPassword">
     <button>Signin</button>

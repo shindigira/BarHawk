@@ -18,4 +18,9 @@ angular.module('asyncdrink', [
       templateUrl: "/app/customer/options.html",
       controller: 'optionsController'
     });
+    .state('barSignin', {
+      url: '/barSignin',
+      templateUrl: 'barSignin.html',
+      controller:'BarAuthController'
+    })
 });
