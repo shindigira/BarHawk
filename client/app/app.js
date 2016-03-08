@@ -11,7 +11,4 @@ angular.module('asyncdrink', [
       templateUrl: "/app/auth/patron/patronSignup.html",
       controller: 'customerController'
     });
-
-
-
 });

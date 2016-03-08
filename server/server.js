@@ -6,7 +6,7 @@ var app = express();
 var port = process.env.PORT || 3000;
 
 app.use(express.static(__dirname + '/../client'));
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
 //simple check to see if deployed successfully
@@ -19,20 +19,21 @@ app.listen(port, function() {
 });
 
 var users = {
-  michael: {
+  Michael: {
     password: "password",
     age: '25',
     weight: 160,
     gender: "Male"
   }
-}
-app.post('/api/users/signup', function(req, res) {
-  console.log("user info", req.body)
-  var data = req.body
-  if (data.username in users) {
-    res.sendStatus(400);
-  } else {
-    res.sendStatus(302);
-  }
+};
 
+app.post('/api/users/signup', function(req, res) {
+  console.log("user info", req.body);
+  var data = req.body;
+  if (data.username in users) {
+    res.sendStatus(302);
+  } else {
+    console.log('user already exists or not authorized')
+    res.sendStatus(401);
+  }
 });
