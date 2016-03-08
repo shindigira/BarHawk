@@ -18,7 +18,7 @@
         <th>Total Price </th>
         <th>Drink Count </th>
       </tr>
-      <tr ng-repeat="order in data.orders">
+      <tr ng-repeat="order in data.orders | orderBy: 'time'">
         <td>{{order.username}}</td>
         <td>{{order.drinkType}}</td>
         <td>{{order.time}}</td>
