@@ -29,9 +29,11 @@ app.post('/api/users/signup', function(req, res) {
   console.log("user info", req.body);
   var data = req.body;
   if (data.username in users) {
-    res.sendStatus(302);
-  } else {
-    console.log('user already exists or not authorized')
     res.sendStatus(401);
+  } else {
+    users[data.username] = data;
+    console.log("all users", users);
+    res.sendStatus(200);
   }
+
 });

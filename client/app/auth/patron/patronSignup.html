@@ -23,5 +23,6 @@
       </label><br/>
       <strong>Gender = {{newUser.gender | json}}</strong><br/>
 <input type="submit" value = 'Submit' ng-click ='signUp()'>
+<p ng-show='invalidSignup'>User already signed up</p>
   </form>
 </div>
