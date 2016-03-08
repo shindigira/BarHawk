@@ -22,6 +22,33 @@ app.post('/api/barUsers/barSignin', function(req, res, next) {
   }
 });
 
+var order1 = {
+  username: "Collin",
+  drinkType: "wine",
+  time: "10:11pm",
+  closeout: false,
+  currentPrice: 5,
+  totalPrice: 15,
+  drinkCount: 8
+};
+
+var order2 = {
+  username: "Nadine",
+  drinkType: "beer",
+  time: "10:14pm",
+  closeout: false,
+  currentPrice: 5,
+  totalPrice: 100,
+  drinkCount: 4
+};
+
+var ordersArray = [order1, order2];
+
+app.get('/api/barUsers/barQueue', function(req, res) {
+  res.status = 200;
+  res.send(ordersArray);
+});
+
 app.listen(port, function() {
   console.log('Server now listening on port ' + port);
 });
