@@ -29,6 +29,9 @@
     "karma-chrome-launcher": "^0.2.2",
     "karma-jasmine": "^0.3.7",
     "karma-requirejs": "^0.2.5",
-    "requirejs": "^2.1.22"
+    "requirejs": "^2.1.22",
+    "body-parser": "^1.15.0",
+    "express": "^4.13.4",
+    "grunt": "0.4.5",
   }
 }
