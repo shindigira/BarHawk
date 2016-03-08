@@ -160,6 +160,10 @@ you get here again and nothing is broken and all the tests pass.
 
 ### Make a pull request
 
+Pull Request Title: This should describe the overarching scope of the changes you are submitting. Use same tense as commit messages, but leave out the parentheses.
+
+Pull Request Body: Thoroughly describe your changes with proper grammar and complete sentences. Be sure to describe what you did in this pull request to give the reviewer a great idea of what you did.
+
 Make a clear pull request from your fork and branch to the upstream master
 branch, detailing exactly what changes you made and what feature this
 should add. The clearer your pull request is the faster you can get
