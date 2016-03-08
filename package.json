@@ -21,7 +21,6 @@
     "express": "^4.13.4",
     "grunt-contrib-uglify": "^1.0.0",
     "grunt-contrib-watch": "^0.6.1",
-    "grunt": "0.4.5"
   },
   "devDependencies": {
     "jasmine-core": "^2.4.1",
