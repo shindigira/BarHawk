@@ -51,9 +51,10 @@ angular.module('asyncdrink.options', [])
         //display tab information from server
         $scope.userTab = response.data;
         //navigate back to login
-        setTimeout(function(){
-          optionsFactory.currentUser = undefined;
-          $state.go('customerLogin')},
+        setTimeout(function () {
+            optionsFactory.currentUser = undefined;
+            $state.go('customerLogin')
+          },
           5000);
       }).catch(function (err) {
         $scope.tabFail = true;
@@ -71,9 +72,10 @@ angular.module('asyncdrink.options', [])
         $scope.tabSuccessIncludingOrder = true;
         $scope.userTab = response.data;
         //navigate back to login
-        setTimeout(function(){
-          optionsFactory.currentUser = undefined;
-          $state.go('customerLogin')},
+        setTimeout(function () {
+            optionsFactory.currentUser = undefined;
+            $state.go('customerLogin')
+          },
           5000);
       }).catch(function (err) {
         $scope.tabSuccessIncludingOrder = false;
@@ -114,7 +116,6 @@ angular.module('asyncdrink.options', [])
   return {
     currentUser: currentUser,
     orderOnly: orderOnly,
-    logOut: logOut,
     closeTabOnly: closeTabOnly,
     orderAndCloseTab: orderAndCloseTab
   };

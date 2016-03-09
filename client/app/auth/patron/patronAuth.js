@@ -14,6 +14,12 @@ angular.module('asyncdrink.customerAuth', [])
 
   $scope.loginAttempt = {};
 
+  $scope.invalidLogIn = false;
+
+  $scope.clear = function () {
+    $scope.invalidLogIn = false;
+  };
+
   $scope.signUp = function () {
     customerFactory.signUp($scope.newUser)
       .then(function (response) {
