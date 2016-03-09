@@ -33,20 +33,27 @@ angular.module('asyncdrink.barQueue', [])
 
 .factory('OrdersFactory', function ($http) {
 
-      << << << < HEAD
-      var getAll = function () { === === =
-        //factory function to send http GET request to server for all orders
-        var getAll = function () { >>> >>> > (feat) Add pseudocode to barQueue view and prettify server.js
-          return $http({
-              method: 'GET',
-              url: '/api/barUsers/barQueue'
-            })
-            .then(function (resp) {
-              console.log(resp);
-              return resp.data;
-            });
-        };
+      //factory function to send http GET request to server for all orders
+      var getAll = function () {
+        return $http({
+            method: 'GET',
+            url: '/api/barUsers/barQueue'
+          })
+          .then(function (resp) {
+            console.log(resp);
+            return resp.data;
+          });
+      };
 
+      var removeOrder = function () {
+        return $http({
+            method: 'POST',
+            url: '/api/barUsers/barQueue/dequeue',
+            data: { orderToBeDequeued: 0 }
+          })
+          .then(function (resp) {
+            return resp.data;
+          });
         var removeOrder = function () {
           //sending post request with data object populated with index to be removed from queue
           return $http({
