@@ -44,7 +44,6 @@ angular.module('asyncdrink.options', [])
     $scope.order.time = new Date();
     $scope.order.closeout = true;
     $scope.order.currentPrice = 0;
-
     optionsFactory.closeTabOnly($scope.order)
       .then(function (response) {
         $scope.tabSuccess = true;
