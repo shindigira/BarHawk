@@ -22,6 +22,7 @@ app.post('/api/barUsers/barSignin', function (req, res, next) {
   }
 });
 
+//send the list of all orders to client
 app.get('/api/barUsers/barQueue', function (req, res) {
   res.status = 200;
   res.send(ordersArray);
@@ -101,7 +102,7 @@ app.post('/api/customer/order', function (req, res) {
   //assigning drink order to varible
   var ord = req.body;
   //if no username or drink was not specified, throw err
-  if(ord.username === undefined || ord.drinkType === undefined) {
+  if (ord.username === undefined || ord.drinkType === undefined) {
     res.sendStatus(400);
   } else {
     //increment user's drinkCount
