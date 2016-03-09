@@ -77,14 +77,14 @@ app.post('/api/users/login', function(req, res) {
 var ordersArray = [{
   username: 'zeebow',
   drinkType: 'beer',
-  time: 'Tue Mar 08 2016 17:24:37 GMT-0800 (PST)',
+  time: 'Tue Mar 08 2016 16:24:37 GMT-0800 (PST)',
   closeout: false,
   currentPrice: 5,
   totalPrice: 60
 }, {
   username: "Nadine",
   drinkType: "beer",
-  time: 'Tue Mar 08 2016 16:24:37 GMT-0800 (PST)',
+  time: 'Tue Mar 08 2016 17:24:37 GMT-0800 (PST)',
   closeout: false,
   currentPrice: 5,
   totalPrice: 100,
@@ -126,3 +126,10 @@ app.post('/api/customer/order', function(req, res) {
     res.sendStatus(200);
   }
 });
+
+  app.post('/api/barUsers/barQueue/dequeue', function(req, res) {
+    console.log("req.body.orderToBeDequeued ", req.body.orderToBeDequeued);
+    ordersArray.splice(req.body.orderToBeDequeued, 1);
+    res.sendStatus(200);
+  });
+
