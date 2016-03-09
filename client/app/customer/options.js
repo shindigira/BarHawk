@@ -18,13 +18,38 @@ angular.module('asyncdrink.options', [])
 
         //set drinkType to empty string after successfully placing order
         $scope.order.drinkType = "";
-        console.log($scope.order)
+        console.log($scope.order);
       }).catch(function(err) {
         $scope.orderFail = true;
       });
   };
 
+  $scope.logOut = function() {
+    optionsFactory.logOut()
+      .then(function(response) {
+        //state.go('login')
+      }).catch(function(err) {
+        throw err;
+      });
+  };
 
+  $scope.closeTabOnly = function() {
+    optionsFactory.closeTabOnly()
+      .then(function(response) {
+        //state.go('tab')
+      }).catch(function(err) {
+        throw err;
+      });
+  };
+
+  $scope.orderAndCloseTab = function() {
+    optionsFactory.orderAndCloseTab()
+      .then(function(resp) {
+        //state.go('tab')
+      }).catch(function(err) {
+        throw err;
+      });
+  };
 })
 
 .factory('optionsFactory', function($http) {
@@ -38,17 +63,33 @@ angular.module('asyncdrink.options', [])
       data: order
     });
   };
+  var logOut = function() {
+    return $http({
+      method: "POST",
+      url: "",
+    });
+  };
 
-  // var closeTab = function (order) {
-  //   return $http ({
-  //     method: "POST",
-  //     url: '/api/customer/order',
-  //     data: order
-  //   });
-  // };
+  var closeTabOnly = function() {
+    return $http({
+      method: "Post"
+    });
+  };
+
+  var orderAndCloseTab = function() {
+    return $http({
+      method: 'POST',
+      url: '',
+      data: order
+    });
+  };
+
 
   return {
     currentUser: currentUser,
     orderOnly: orderOnly,
+    logOut: logOut,
+    closeTab: closeTab,
+    orderAndCloseTab: orderAndCloseTab
   };
 });
