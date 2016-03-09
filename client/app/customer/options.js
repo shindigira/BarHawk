@@ -1,25 +1,30 @@
 angular.module('asyncdrink.options', [])
 
 .controller('optionsController', function ($scope, $state, customerFactory, optionsFactory) {
+  //set current user
   $scope.currentUser = optionsFactory.currentUser;
+  //prepare order object before submit to server
   $scope.order = {};
   $scope.order.username = optionsFactory.currentUser;
-  $scope.order.time = new Date();
   $scope.order.currentPrice = 5;
+
+  //success/fail messages
   $scope.orderSuccess = false;
   $scope.orderFail = false;
+  $scope.tabFail = false;
   $scope.tabSuccess = false;
   $scope.tabSuccessIncludingOrder = false;
   $scope.clear = function () {
     $scope.orderSuccess = false;
   };
-  //$scope.order.userTab
+
+  //Order only process
   $scope.orderOnly = function () {
+    $scope.order.time = new Date();
     $scope.order.closeout = false;
     optionsFactory.orderOnly($scope.order)
       .then(function (response) {
         $scope.orderSuccess = true;
-
         //set drinkType to empty string after successfully placing order
         $scope.order.savedDrinkType = $scope.order.drinkType;
         $scope.order.drinkType = "";
@@ -28,42 +33,50 @@ angular.module('asyncdrink.options', [])
       });
   };
 
+  //log out
   $scope.logOut = function () {
-    optionsFactory.logOut();
-    $scope.currentUser = null;
+    optionsFactory.currentUser = undefined;
     $state.go('customerLogin');
   };
 
+  //Close only process
   $scope.closeTabOnly = function () {
+    $scope.order.time = new Date();
     $scope.order.closeout = true;
+    $scope.order.currentPrice = 0;
+
     optionsFactory.closeTabOnly($scope.order)
       .then(function (response) {
-        //state.go('tab')
         $scope.tabSuccess = true;
-
-        var userTab;
-        for (var i = 0; i < response.data.length; i++) {
-          if (response.data[i].username === $scope.order.username) {
-            $scope.order.userTab = response.data[i];
-          }
-        }
+        //display tab information from server
+        $scope.userTab = response.data;
+        //navigate back to login
+        setTimeout(function () {
+            optionsFactory.currentUser = undefined;
+            $state.go('customerLogin')
+          },
+          5000);
       }).catch(function (err) {
-        $scope.tabSuccess = false;
-        throw err;
+        $scope.tabFail = true;
+        console.log(err);
       });
   };
 
+  //Order and close process
   $scope.orderAndCloseTab = function () {
+    $scope.order.time = new Date();
     $scope.order.closeout = true;
+
     optionsFactory.orderAndCloseTab($scope.order)
       .then(function (response) {
         $scope.tabSuccessIncludingOrder = true;
-        var userTab;
-        for (var i = 0; i < response.data.length; i++) {
-          if (response.data[i].username === $scope.order.username) {
-            $scope.order.userTab = response.data[i];
-          }
-        }
+        $scope.userTab = response.data;
+        //navigate back to login
+        setTimeout(function () {
+            optionsFactory.currentUser = undefined;
+            $state.go('customerLogin')
+          },
+          5000);
       }).catch(function (err) {
         $scope.tabSuccessIncludingOrder = false;
         throw err;
@@ -82,9 +95,6 @@ angular.module('asyncdrink.options', [])
       data: order
     });
   };
-  var logOut = function () {
-
-  };
 
   var closeTabOnly = function (order) {
     return $http({
@@ -97,7 +107,7 @@ angular.module('asyncdrink.options', [])
   var orderAndCloseTab = function (order) {
     return $http({
       method: 'POST',
-      url: '/api/customer/closetab',
+      url: '/api/customer/order/close',
       data: order
     });
   };
@@ -106,7 +116,6 @@ angular.module('asyncdrink.options', [])
   return {
     currentUser: currentUser,
     orderOnly: orderOnly,
-    logOut: logOut,
     closeTabOnly: closeTabOnly,
     orderAndCloseTab: orderAndCloseTab
   };

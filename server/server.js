@@ -129,7 +129,7 @@ app.post('/api/barUsers/barQueue/dequeue', function (req, res) {
   res.sendStatus(200);
 });
 
-app.post('/api/customer/closetab', function (req, res) {
+app.post('/api/customer/order/close', function (req, res) {
   //assigning drink order to varible
   var ord = req.body;
   //if no username or drink was not specified, throw err
@@ -152,7 +152,45 @@ app.post('/api/customer/closetab', function (req, res) {
     };
     //push order to bar queue
     ordersArray.push(newOrder);
-    res.send(ordersArray);
+    //prepare user's final tab
+    var userTab = {
+      drinkCount: users[ord.username].drinkCount,
+      tabTotal: users[ord.username].totalPrice
+    }
+    res.json(userTab);
     //res.sendStatus(200);
+  }
+});
+
+app.post('/api/customer/closetab', function (req, res) {
+  var ord = req.body;
+
+  //if not logged in
+  if (ord.username === undefined) {
+    res.sendStatus(401);
+  }
+  //if hasn't ordered a drink yet
+  else if(users[ord.username].drinkCount === 0) {
+    res.sendStatus(400);
+  }
+   else {
+    //prepare order
+    var newOrder = {
+      username: ord.username,
+      drinkType: ord.drinkType,
+      time: ord.time,
+      closeout: ord.closeout,
+      currentPrice: ord.currentPrice,
+      totalPrice: users[ord.username].totalPrice,
+      drinkCount: users[ord.username].drinkCount
+    };
+    //push to bar queue
+    ordersArray.push(newOrder);
+    //prepare user's final tab
+    var userTab = {
+      drinkCount: users[ord.username].drinkCount,
+      tabTotal: users[ord.username].totalPrice
+    }
+    res.json(userTab);
   }
 });
