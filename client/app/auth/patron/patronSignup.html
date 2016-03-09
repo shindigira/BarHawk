@@ -1,26 +1,25 @@
-<div ng-controller="customerController">
-  <h3>Sign Up!</h3>
-  <form name="userForm">
-    <label>Username</label>
-    <input type="text" ng-model="newUser.username">
-    <br>
-    <label>Password</label>
-    <input type="text" ng-model="newUser.password">
-    <br>
-    <label>Age</label>
-    <input type="text" ng-model="newUser.age">
-    <br>
-    <label>Weight</label>
-    <input type="text" ng-model="newUser.weight">
-    <br>
-    <label>
-      <input type="radio" ng-model="newUser.gender" value='Male'> Male
-    </label>
-    <label>
-      <input type="radio" ng-model="newUser.gender" value="Female"> Female
-    </label>
-    <br/>
-    <input type="submit" value='Submit' ng-click='signUp()'>
-    <p ng-show='invalidSignup'>User already signed up</p>
-  </form>
+<h3>Sign Up!</h3>
+<form name="userForm">
+  <label>Username</label>
+  <input type="text" ng-model="newUser.username">
+  <br>
+  <label>Password</label>
+  <input type="text" ng-model="newUser.password">
+  <br>
+  <label>Age</label>
+  <input type="text" ng-model="newUser.age">
+  <br>
+  <label>Weight</label>
+  <input type="text" ng-model="newUser.weight">
+  <br>
+  <label>
+    <input type="radio" ng-model="newUser.gender" value='Male'> Male
+  </label>
+  <label>
+    <input type="radio" ng-model="newUser.gender" value="Female"> Female
+  </label>
+  <br/>
+  <input type="submit" value='Submit' ng-click='signUp()'>
+  <p ng-show='invalidSignup'>User already signed up</p>
+</form>
 </div>
