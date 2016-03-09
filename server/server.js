@@ -22,6 +22,7 @@ app.post('/api/barUsers/barSignin', function (req, res, next) {
   }
 });
 
+//send the list of all orders to client
 app.get('/api/barUsers/barQueue', function (req, res) {
   res.status = 200;
   res.send(ordersArray);

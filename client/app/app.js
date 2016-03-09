@@ -6,7 +6,7 @@ angular.module('asyncdrink', [
   'asyncdrink.barQueue'
 ])
 
-.config(function($stateProvider, $urlRouterProvider) {
+.config(function ($stateProvider, $urlRouterProvider) {
   $urlRouterProvider.otherwise('/login');
   $stateProvider
     .state('customerSignup', {

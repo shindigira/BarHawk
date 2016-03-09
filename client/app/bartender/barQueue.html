@@ -18,6 +18,7 @@
       <th>Total Price </th>
       <th>Drink Count </th>
     </tr>
+    <!-- create a table row for each order in list of orders retrieved from server-->
     <tr ng-repeat="order in data.orders | orderBy: 'time'">
       <td>{{order.username}}</td>
       <td>{{order.drinkType}}</td>

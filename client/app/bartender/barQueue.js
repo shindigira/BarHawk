@@ -4,8 +4,11 @@ angular.module('asyncdrink.barQueue', [])
   function ($scope, OrdersFactory) {
     $scope.data = {};
 
+
+    //scope function to retrieve all the orders from the server
     $scope.getOrders = function () {
       OrdersFactory.getAll()
+        //after all orders retrieved from server, add them to scope
         .then(function (orders) {
           $scope.data.orders = orders;
         })
@@ -30,13 +33,13 @@ angular.module('asyncdrink.barQueue', [])
 
 .factory('OrdersFactory', function ($http) {
 
+  //factory function to send http GET request to server for all orders
   var getAll = function () {
     return $http({
         method: 'GET',
         url: '/api/barUsers/barQueue'
       })
       .then(function (resp) {
-        console.log(resp);
         return resp.data;
       });
   };
