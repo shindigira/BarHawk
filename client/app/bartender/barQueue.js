@@ -49,11 +49,11 @@ angular.module('asyncdrink.barQueue', [])
     return $http({
         method: 'POST',
         url: '/api/barUsers/barQueue/dequeue',
-        data: { orderToBeDequeued: 0 }
-      })
-      .then(function (resp) {
-        return resp.data;
-      });
+        data: {orderToBeDequeued: 0}
+    })
+    .then(function(resp) {
+      return resp.data;
+    });
 
   };
 
