@@ -7,15 +7,11 @@ app.use(express.static(__dirname + '/../client'));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
-//simple check to see if deployed successfully
-/*app.get('/', function(req, res) {
-  res.send('Hello world!');
-});*/
-
 app.listen(port, function() {
   console.log('Server now listening on port ' + port);
 });
 
+//userbase dummy data
 var users = {
   Michael: {
     password: "password",
@@ -40,6 +36,7 @@ app.post('/api/users/signup', function(req, res) {
 
 });
 
+//barQueue dummy data
 var ordersArray = [{
   username: 'zeebow',
   drinkType: 'beer',
@@ -48,13 +45,19 @@ var ordersArray = [{
   currentPrice: 5,
   totalPrice: 60
 }];
+
 app.post('/api/customer/order', function(req, res) {
+  //assigning drink order to varible
   var ord = req.body;
+  //if no username or drink was not specified, throw err
   if (ord.username === undefined || ord.drinkType === undefined) {
     res.sendStatus(400);
   } else {
+    //increment user's drinkCount
     users[ord.username].drinkCount++;
+    //recalculate user's tab
     users[ord.username].totalPrice += ord.currentPrice;
+    //prepare order with pertinent user information for bar queue
     var newOrder = {
       username: ord.username,
       drinkType: ord.drinkType,
@@ -64,6 +67,7 @@ app.post('/api/customer/order', function(req, res) {
       totalPrice: users[ord.username].totalPrice,
       drinkCount: users[ord.username].drinkCount
     };
+    //push order to bar queue
     ordersArray.push(newOrder);
     res.sendStatus(200);
   }
