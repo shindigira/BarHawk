@@ -8,7 +8,8 @@ angular.module('asyncdrink.options', [])
   $scope.order.currentPrice = 5;
   $scope.orderSuccess = false;
   $scope.orderFail = false;
-
+  $scope.tabSuccess = false;
+  //$scope.order.userTab
 
   $scope.orderOnly = function() {
     $scope.order.closeout = false;
@@ -27,17 +28,31 @@ angular.module('asyncdrink.options', [])
   $scope.logOut = function() {
     optionsFactory.logOut()
       .then(function(response) {
-        //state.go('login')
+        state.go('login');
       }).catch(function(err) {
         throw err;
       });
   };
 
   $scope.closeTabOnly = function() {
-    optionsFactory.closeTabOnly()
+    optionsFactory.closeTabOnly($scope.order)
       .then(function(response) {
         //state.go('tab')
+        $scope.tabSuccess = true;
+        $scope.order.closeout = true;
+
+        var userTab;
+        for(var i = 0; i<response.data.length; i++){
+          if(response.data[i].username === $scope.order.username){
+            console.log('response',response.data[i]);
+            $scope.order.userTab = response.data[i];
+          }
+        }
+
+        console.log('user tab', $scope.order);
+        console.log('current user', $scope.currentUser);
       }).catch(function(err) {
+        $scope.tabSuccess = true;
         throw err;
       });
   };
@@ -70,9 +85,11 @@ angular.module('asyncdrink.options', [])
     });
   };
 
-  var closeTabOnly = function() {
+  var closeTabOnly = function(order) {
     return $http({
-      method: "Post"
+      method: "POST",
+      url: '/api/customer/closetab',
+      data: order
     });
   };
 
@@ -89,7 +106,7 @@ angular.module('asyncdrink.options', [])
     currentUser: currentUser,
     orderOnly: orderOnly,
     logOut: logOut,
-    closeTab: closeTab,
+    closeTabOnly: closeTabOnly,
     orderAndCloseTab: orderAndCloseTab
   };
 });

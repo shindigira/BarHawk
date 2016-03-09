@@ -89,6 +89,7 @@ var ordersArray = [{
   totalPrice: 100,
   drinkCount: 4
 }, {
+
   username: "Collin",
   drinkType: "wine",
   time: 'Tue Mar 08 2016 18:24:37 GMT-0800 (PST)',
@@ -125,7 +126,13 @@ app.post('/api/customer/order', function (req, res) {
   }
 });
 
+
 app.post('/api/barUsers/barQueue/dequeue', function (req, res) {
   ordersArray.splice(req.body.orderToBeDequeued, 1);
   res.sendStatus(200);
+});
+
+app.post('/api/customer/closetab', function (req, res){
+  res.send(ordersArray);
+  //res.sendStatus(200);
 });
