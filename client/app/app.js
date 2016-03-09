@@ -29,4 +29,9 @@ angular.module('asyncdrink', [
       templateUrl: '/app/bartender/barQueue.html',
       controller: 'BarQueueController'
     })
+    .state('customerLogin', {
+      url: "/login",
+      templateUrl: "/app/auth/patron/patronSignin.html",
+      controller: 'customerController'
+    });
 });

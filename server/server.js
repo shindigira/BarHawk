@@ -56,6 +56,23 @@ app.post('/api/users/signup', function(req, res) {
 
 });
 
+app.post('/api/users/login', function(req, res) {
+    //set username/password request to attempt variable
+    var attempt = req.body;
+    console.log(attempt);
+    if (attempt.username in users) {
+      if (users[attempt.username].password === attempt.password) {
+        res.sendStatus(200);
+      }
+      else {
+        res.sendStatus(401);
+      }
+    }
+    else {
+      res.sendStatus(401);
+    }
+});
+
 //barQueue dummy data
 var ordersArray = [{
   username: 'zeebow',
