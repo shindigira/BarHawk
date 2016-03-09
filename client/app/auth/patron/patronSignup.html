@@ -3,19 +3,15 @@
   <form name="userForm">
     <label>Username</label>
     <input type="text" ng-model="newUser.username">
-    <strong>{{newUser.username}}</strong>
     <br>
     <label>Password</label>
     <input type="text" ng-model="newUser.password">
-    <strong>{{newUser.password}}</strong>
     <br>
     <label>Age</label>
     <input type="text" ng-model="newUser.age">
-    <strong>{{newUser.age}}</strong>
     <br>
     <label>Weight</label>
     <input type="text" ng-model="newUser.weight">
-    <strong>{{newUser.weight}}</strong>
     <br>
     <label>
       <input type="radio" ng-model="newUser.gender" value='Male'> Male
@@ -23,8 +19,6 @@
     <label>
       <input type="radio" ng-model="newUser.gender" value="Female"> Female
     </label>
-    <br/>
-    <strong>Gender = {{newUser.gender | json}}</strong>
     <br/>
     <input type="submit" value='Submit' ng-click='signUp()'>
     <p ng-show='invalidSignup'>User already signed up</p>

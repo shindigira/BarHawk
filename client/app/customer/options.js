@@ -14,7 +14,6 @@ angular.module('asyncdrink.options', [])
     $scope.orderSuccess = false;
   };
   //$scope.order.userTab
-
   $scope.orderOnly = function () {
     $scope.order.closeout = false;
     optionsFactory.orderOnly($scope.order)
@@ -36,11 +35,11 @@ angular.module('asyncdrink.options', [])
   };
 
   $scope.closeTabOnly = function () {
+    $scope.order.closeout = true;
     optionsFactory.closeTabOnly($scope.order)
       .then(function (response) {
         //state.go('tab')
         $scope.tabSuccess = true;
-        $scope.order.closeout = true;
 
         var userTab;
         for (var i = 0; i < response.data.length; i++) {
@@ -55,11 +54,10 @@ angular.module('asyncdrink.options', [])
   };
 
   $scope.orderAndCloseTab = function () {
+    $scope.order.closeout = true;
     optionsFactory.orderAndCloseTab($scope.order)
       .then(function (response) {
         $scope.tabSuccessIncludingOrder = true;
-        $scope.order.closeout = true;
-
         var userTab;
         for (var i = 0; i < response.data.length; i++) {
           if (response.data[i].username === $scope.order.username) {
