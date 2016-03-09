@@ -1,8 +1,9 @@
 <div id="topbar">
-  <button ng-click='closeTabOnly()' >Close Tab</button>
-  <div ng-show='tabSuccess'>You've successfully closed your tab.<br>
-  Drinks: {{order.userTab.drinkCount}} <br>
-  Total: {{order.userTab.totalPrice}} <br>
+  <button ng-click='closeTabOnly()'>Close Tab</button>
+  <div ng-show='tabSuccess'>You've successfully closed your tab.
+    <br> Drinks: {{order.userTab.drinkCount}}
+    <br> Total: {{order.userTab.totalPrice}}
+    <br>
   </div>
   <button ng-click='logOut()'>Logout</button>
   </ul>
@@ -10,7 +11,7 @@
 <div id="options">
   <h2>Hi, {{currentUser}}!</h2>
   <h4>Please choose a drink:</h4>
-  <select ng-model='order.drinkType'>
+  <select ng-model='order.drinkType' ng-change='clear()'>
     <option value="beer">beer</option>
     <option value="wine">wine</option>
     <option value="liquor">liquor</option>
@@ -18,8 +19,13 @@
   <h4>Your Drink Count: {{currentUser.drinkCount}}</h4>
   <button ng-click='orderOnly()'>Submit Order</button>
   <button ng-click='orderAndCloseTab()'>Submit and Close Tab</button>
+  <div ng-show='tabSuccessIncludingOrder'>You've successfully placed an order for {{order.userTab.drinkType}} and closed your tab.
+    <br> Drinks: {{order.userTab.drinkCount}}
+    <br> Total: {{order.userTab.totalPrice}}
+    <br>
+  </div>
   <div id='results'>
-    <p ng-show='orderSuccess'>Thank you! Your {{order.drinkType}} has been placed.</p>
+    <p ng-show='orderSuccess'>Thank you! Your {{ order.savedDrinkType }} has been placed.</p>
     <p ng-show='orderFail'>Sorry! There was an error, please fill out all fields.</p>
   </div>
 </div>

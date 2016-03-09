@@ -23,6 +23,7 @@ app.post('/api/barUsers/barSignin', function (req, res, next) {
 });
 
 //send the list of all orders to client
+
 app.get('/api/barUsers/barQueue', function (req, res) {
   res.status = 200;
   res.send(ordersArray);
@@ -90,6 +91,7 @@ var ordersArray = [{
   drinkCount: 4
 }, {
 
+
   username: "Collin",
   drinkType: "wine",
   time: 'Tue Mar 08 2016 18:24:37 GMT-0800 (PST)',
@@ -132,7 +134,30 @@ app.post('/api/barUsers/barQueue/dequeue', function (req, res) {
   res.sendStatus(200);
 });
 
-app.post('/api/customer/closetab', function (req, res){
-  res.send(ordersArray);
-  //res.sendStatus(200);
+app.post('/api/customer/closetab', function (req, res) {
+  //assigning drink order to varible
+  var ord = req.body;
+  //if no username or drink was not specified, throw err
+  if (ord.username === undefined || ord.drinkType === undefined) {
+    res.sendStatus(400);
+  } else {
+    //increment user's drinkCount
+    users[ord.username].drinkCount++;
+    //recalculate user's tab
+    users[ord.username].totalPrice += ord.currentPrice;
+    //prepare order with pertinent user information for bar queue
+    var newOrder = {
+      username: ord.username,
+      drinkType: ord.drinkType,
+      time: ord.time,
+      closeout: ord.closeout,
+      currentPrice: ord.currentPrice,
+      totalPrice: users[ord.username].totalPrice,
+      drinkCount: users[ord.username].drinkCount
+    };
+    //push order to bar queue
+    ordersArray.push(newOrder);
+    res.send(ordersArray);
+    //res.sendStatus(200);
+  }
 });
