@@ -7,6 +7,26 @@ app.use(express.static(__dirname + '/../client'));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
+var storedBarLogin = {
+  username: 'admin',
+  password: 'fancypants'
+};
+
+app.post('/api/barUsers/barSignin', function(req, res, next) {
+  var attemptedBarUsername = req.body.username;
+  var attemptedBarPassword = req.body.password;
+  if(attemptedBarUsername === storedBarLogin.username && attemptedBarPassword === storedBarLogin.password) {
+    res.json({});
+  } else {
+    return next(new Error('Incorrect username or password.'));
+  }
+});
+
+app.get('/api/barUsers/barQueue', function(req, res) {
+  res.status = 200;
+  res.send(ordersArray);
+});
+
 app.listen(port, function() {
   console.log('Server now listening on port ' + port);
 });
@@ -26,7 +46,7 @@ var users = {
 app.post('/api/users/signup', function(req, res) {
   console.log("user info", req.body);
   var data = req.body;
-  if (data.username in users) {
+  if(data.username in users) {
     res.sendStatus(401);
   } else {
     users[data.username] = data;
@@ -40,10 +60,27 @@ app.post('/api/users/signup', function(req, res) {
 var ordersArray = [{
   username: 'zeebow',
   drinkType: 'beer',
-  time: '9:00pm',
+  time: 'Tue Mar 08 2016 17:24:37 GMT-0800 (PST)',
   closeout: false,
   currentPrice: 5,
   totalPrice: 60
+}, {
+  username: "Nadine",
+  drinkType: "beer",
+  time: 'Tue Mar 08 2016 16:24:37 GMT-0800 (PST)',
+  closeout: false,
+  currentPrice: 5,
+  totalPrice: 100,
+  drinkCount: 4
+}, 
+{
+  username: "Collin",
+  drinkType: "wine",
+  time: 'Tue Mar 08 2016 18:24:37 GMT-0800 (PST)',
+  closeout: false,
+  currentPrice: 5,
+  totalPrice: 15,
+  drinkCount: 8
 }];
 
 app.post('/api/customer/order', function(req, res) {

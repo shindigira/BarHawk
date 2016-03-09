@@ -1,7 +1,9 @@
 angular.module('asyncdrink', [
   'ui.router',
   'asyncdrink.customerAuth',
-  'asyncdrink.options'
+  'asyncdrink.options',
+  'asyncdrink.barAuth',
+  'asyncdrink.barQueue'
 ])
 
 .config(function($stateProvider, $urlRouterProvider) {
@@ -16,5 +18,15 @@ angular.module('asyncdrink', [
       url: "/options",
       templateUrl: "/app/customer/options.html",
       controller: 'optionsController'
-    });
+    })
+    .state('barSignin', {
+      url: '/barsignin',
+      templateUrl: '/app/auth/bar/barSignin.html',
+      controller: 'BarAuthController'
+    })
+    .state('barQueue', {
+      url: '/barqueue',
+      templateUrl: '/app/bartender/barQueue.html',
+      controller: 'BarQueueController'
+    })
 });
