@@ -1,29 +1,25 @@
 angular.module('asyncdrink.barAuth', [])
 
-.controller('BarAuthController', function($scope, BarAuthFactory) {
+.controller('BarAuthController', function ($scope, $location, BarAuthFactory) {
     $scope.barUser = {};
-    $scope.barSignin = function() {
-      console.log('xxxxxxx inside barSignin on scope');
+    $scope.invalidLogIn = false;
+    $scope.barLogin = function () {
       BarAuthFactory.signin($scope.barUser)
-        .then(function() {
+        .then(function () {
           $location.path('/barqueue');
         })
-        .catch(function(error) {
-          console.error(error);
+        .catch(function (error) {
+          $scope.invalidLogIn = true;
         });
     };
   })
-  .factory('BarAuthFactory', function($location, $http) {
-    var signin = function(barUser) {
-      console.log('xxxxxxxx running signin', barUser);
+  .factory('BarAuthFactory', function ($location, $http) {
+    var signin = function (barUser) {
       return $http({
-          method: 'POST',
-          url: '/api/barUsers/barSignin',
-          data: barUser
-        })
-        .then(function(resp) {
-          return resp;
-        })
+        method: 'POST',
+        url: '/api/barUsers/barSignin',
+        data: barUser
+      });
     };
 
     return {
