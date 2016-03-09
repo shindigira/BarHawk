@@ -46,13 +46,11 @@ var users = {
 };
 
 app.post('/api/users/signup', function (req, res) {
-  console.log("user info", req.body);
   var data = req.body;
   if (data.username in users) {
     res.sendStatus(401);
   } else {
     users[data.username] = data;
-    console.log("all users", users);
     res.sendStatus(200);
   }
 
@@ -61,7 +59,6 @@ app.post('/api/users/signup', function (req, res) {
 app.post('/api/users/login', function (req, res) {
   //set username/password request to attempt variable
   var attempt = req.body;
-  console.log(attempt);
   if (attempt.username in users) {
     if (users[attempt.username].password === attempt.password) {
       res.sendStatus(200);
@@ -90,8 +87,6 @@ var ordersArray = [{
   totalPrice: 100,
   drinkCount: 4
 }, {
-
-
   username: "Collin",
   drinkType: "wine",
   time: 'Tue Mar 08 2016 18:24:37 GMT-0800 (PST)',
