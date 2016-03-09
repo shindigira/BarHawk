@@ -13,12 +13,12 @@ var storedBarLogin = {
 };
 
 app.post('/api/barUsers/barSignin', function (req, res, next) {
-  var attemptedBarUsername = req.body.username;
-  var attemptedBarPassword = req.body.password;
+  var attemptedBarUsername = req.body.barUsername;
+  var attemptedBarPassword = req.body.barPassword;
   if (attemptedBarUsername === storedBarLogin.username && attemptedBarPassword === storedBarLogin.password) {
-    res.json({});
+    res.sendStatus(200);
   } else {
-    return next(new Error('Incorrect username or password.'));
+    res.sendStatus(401);
   }
 });
 
@@ -125,9 +125,7 @@ app.post('/api/customer/order', function (req, res) {
   }
 });
 
-//splice ordersArray at index passed in and success status is sent
 app.post('/api/barUsers/barQueue/dequeue', function (req, res) {
-  console.log("req.body.orderToBeDequeued ", req.body.orderToBeDequeued);
   ordersArray.splice(req.body.orderToBeDequeued, 1);
   res.sendStatus(200);
 });

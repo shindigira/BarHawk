@@ -1,19 +1,8 @@
-<!DOCTYPE html>
-<html>
-
-<head>
-  <title>Bar Hawk Bar Signin</title>
-  <link rel="stylesheet" type="text/css" href="styles/style.css">
-  <script src="library/angular.js"></script>
-</head>
-
 <body ng-controller="BarAuthController">
   <h1>Welcome bartender, please enter your information</h1>
-  <form name="barSignin" ng-submit="barSignin()">
+  <form name="barSignin" ng-submit="barLogin()">
     <input type="text" ng-model="barUser.barUsername">
     <input type="password" ng-model="barUser.barPassword">
     <button>Signin</button>
   </form>
-</body>
-
-</html>
+  <p ng-show="invalidLogIn">Incorrect username/password combination</p>
