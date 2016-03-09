@@ -101,7 +101,7 @@ app.post('/api/customer/order', function (req, res) {
   //assigning drink order to varible
   var ord = req.body;
   //if no username or drink was not specified, throw err
-  if (ord.username === undefined || ord.drinkType === undefined) {
+  if(ord.username === undefined || ord.drinkType === undefined) {
     res.sendStatus(400);
   } else {
     //increment user's drinkCount
