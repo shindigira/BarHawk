@@ -1,25 +1,26 @@
 angular.module('asyncdrink.barQueue', [])
 
 .controller('BarQueueController',
-  function($scope, OrdersFactory) {
+  function ($scope, OrdersFactory) {
     $scope.data = {};
 
-    $scope.getOrders = function() {
+    $scope.getOrders = function () {
       OrdersFactory.getAll()
-        .then(function(orders) {
+        .then(function (orders) {
           $scope.data.orders = orders;
         })
-        .catch(function(error) {
+        .catch(function (error) {
           console.error(error);
         });
     };
 
-    $scope.dequeue = function(){
+    $scope.dequeue = function () {
       OrdersFactory.removeOrder()
-        .then(function(){
+        //on success of removeOrder (server.js), getOrders is called to submit get request for updated queue
+        .then(function () {
           $scope.getOrders();
         })
-        .catch(function(error){
+        .catch(function (error) {
           console.error(error);
         });
     };
@@ -27,29 +28,30 @@ angular.module('asyncdrink.barQueue', [])
     $scope.getOrders();
   })
 
-.factory('OrdersFactory', function($http) {
-  
-  var getAll = function() {
+.factory('OrdersFactory', function ($http) {
+
+  var getAll = function () {
     return $http({
         method: 'GET',
         url: '/api/barUsers/barQueue'
       })
-      .then(function(resp) {
+      .then(function (resp) {
         console.log(resp);
         return resp.data;
       });
   };
 
-  var removeOrder = function(){
+  var removeOrder = function () {
+    //sending post request with data object populated with index to be removed from queue
     return $http({
         method: 'POST',
         url: '/api/barUsers/barQueue/dequeue',
-        data: {orderToBeDequeued: 0}
-    })
-    .then(function(resp) {
-      return resp.data;
-    });
-    
+        data: { orderToBeDequeued: 0 }
+      })
+      .then(function (resp) {
+        return resp.data;
+      });
+
   };
 
   return {

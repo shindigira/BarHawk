@@ -12,22 +12,22 @@ var storedBarLogin = {
   password: 'fancypants'
 };
 
-app.post('/api/barUsers/barSignin', function(req, res, next) {
+app.post('/api/barUsers/barSignin', function (req, res, next) {
   var attemptedBarUsername = req.body.username;
   var attemptedBarPassword = req.body.password;
-  if(attemptedBarUsername === storedBarLogin.username && attemptedBarPassword === storedBarLogin.password) {
+  if (attemptedBarUsername === storedBarLogin.username && attemptedBarPassword === storedBarLogin.password) {
     res.json({});
   } else {
     return next(new Error('Incorrect username or password.'));
   }
 });
 
-app.get('/api/barUsers/barQueue', function(req, res) {
+app.get('/api/barUsers/barQueue', function (req, res) {
   res.status = 200;
   res.send(ordersArray);
 });
 
-app.listen(port, function() {
+app.listen(port, function () {
   console.log('Server now listening on port ' + port);
 });
 
@@ -43,10 +43,10 @@ var users = {
   }
 };
 
-app.post('/api/users/signup', function(req, res) {
+app.post('/api/users/signup', function (req, res) {
   console.log("user info", req.body);
   var data = req.body;
-  if(data.username in users) {
+  if (data.username in users) {
     res.sendStatus(401);
   } else {
     users[data.username] = data;
@@ -56,21 +56,19 @@ app.post('/api/users/signup', function(req, res) {
 
 });
 
-app.post('/api/users/login', function(req, res) {
-    //set username/password request to attempt variable
-    var attempt = req.body;
-    console.log(attempt);
-    if (attempt.username in users) {
-      if (users[attempt.username].password === attempt.password) {
-        res.sendStatus(200);
-      }
-      else {
-        res.sendStatus(401);
-      }
-    }
-    else {
+app.post('/api/users/login', function (req, res) {
+  //set username/password request to attempt variable
+  var attempt = req.body;
+  console.log(attempt);
+  if (attempt.username in users) {
+    if (users[attempt.username].password === attempt.password) {
+      res.sendStatus(200);
+    } else {
       res.sendStatus(401);
     }
+  } else {
+    res.sendStatus(401);
+  }
 });
 
 //barQueue dummy data
@@ -89,8 +87,7 @@ var ordersArray = [{
   currentPrice: 5,
   totalPrice: 100,
   drinkCount: 4
-}, 
-{
+}, {
   username: "Collin",
   drinkType: "wine",
   time: 'Tue Mar 08 2016 18:24:37 GMT-0800 (PST)',
@@ -100,7 +97,7 @@ var ordersArray = [{
   drinkCount: 8
 }];
 
-app.post('/api/customer/order', function(req, res) {
+app.post('/api/customer/order', function (req, res) {
   //assigning drink order to varible
   var ord = req.body;
   //if no username or drink was not specified, throw err
@@ -127,9 +124,9 @@ app.post('/api/customer/order', function(req, res) {
   }
 });
 
-  app.post('/api/barUsers/barQueue/dequeue', function(req, res) {
-    console.log("req.body.orderToBeDequeued ", req.body.orderToBeDequeued);
-    ordersArray.splice(req.body.orderToBeDequeued, 1);
-    res.sendStatus(200);
-  });
-
+//splice ordersArray at index passed in and success status is sent
+app.post('/api/barUsers/barQueue/dequeue', function (req, res) {
+  console.log("req.body.orderToBeDequeued ", req.body.orderToBeDequeued);
+  ordersArray.splice(req.body.orderToBeDequeued, 1);
+  res.sendStatus(200);
+});
