@@ -1,7 +1,7 @@
 <h3>Welcome to the bar!</h3>
 <form name="signinForm">
   <input type="text" ng-model="loginAttempt.username" placeholder="username">
-  <input type="text" ng-model="loginAttempt.password" placeholder="password">
+  <input type="password" ng-model="loginAttempt.password" placeholder="password">
   <input type="submit" value="Order a drink!" ng-click='logIn()'>
 </form>
 <p ng-show='invalidLogIn'>Incorrect username/password combination</p>
