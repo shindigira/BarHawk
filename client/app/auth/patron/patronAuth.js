@@ -2,23 +2,21 @@ angular.module('asyncdrink.customerAuth', [])
 
 .controller('customerController', function($scope, $state, customerFactory, optionsFactory) {
     //newUser obj will hold all sign up inputs and set drinkCount to 0
-    $scope.newUser = {};
+    $scope.newUser = {
+      drinkCount: 0,
+      totalPrice: 0
+    };
 
-    $scope.newUser.username = 'Michael';
-    $scope.newUser.password = "pass";
-    $scope.newUser.age = "25";
-    $scope.newUser.weight = '160';
-    $scope.newUser.drinkCount = 0;
-    $scope.newUser.totalPrice = 0;
+    $scope.loginAttempt = {};
 
     $scope.signUp = function() {
       customerFactory.signUp($scope.newUser)
         .then(function(response) {
-          //go to options page if successfully signed up
+          //hide error message, if displayed
           $scope.invalidSignup = false;
           //giving optionsFactory access to newUser.username
           optionsFactory.currentUser = $scope.newUser.username;
-          //change state to options, which is configured on app.js
+          //navigate to options page
           $state.go('options');
         })
         .catch(function(error) {
@@ -26,10 +24,32 @@ angular.module('asyncdrink.customerAuth', [])
           $scope.invalidSignup = true;
         });
     };
-  })
-  .factory('customerFactory', function($http) {
 
-    var invalidSignup = false;
+    $scope.logIn = function() {
+      customerFactory.signIn($scope.loginAttempt)
+      .then(function(response) {
+        //hide error message, if displayed
+        $scope.invalidLogIn = false;
+        //persist logged in user
+        optionsFactory.currentUser = $scope.loginAttempt.username;
+        //navigate to options page
+        $state.go('options');
+      })
+      .catch(function(error) {
+        //display invalid login message
+        $scope.invalidLogIn = true;
+      })
+    }
+  })
+
+  .factory('customerFactory', function($http) {
+    var signIn = function(loginInfo) {
+      return $http({
+        method: "POST",
+        url: '/api/users/login',
+        data: loginInfo
+      });
+    };
 
     var signUp = function(userInfo) {
       return $http({
@@ -38,8 +58,10 @@ angular.module('asyncdrink.customerAuth', [])
         data: userInfo
       });
     };
+
     return {
       signUp: signUp,
-      invalidSignup: invalidSignup
+      signIn: signIn
     };
+
   });
