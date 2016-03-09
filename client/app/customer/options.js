@@ -15,14 +15,20 @@ angular.module('asyncdrink.options', [])
     optionsFactory.orderOnly($scope.order)
       .then(function(response) {
         $scope.orderSuccess = true;
+
+        //set drinkType to empty string after successfully placing order
+        $scope.order.drinkType = "";
+        console.log($scope.order)
       }).catch(function(err) {
         $scope.orderFail = true;
       });
-
   };
+
+
 })
 
 .factory('optionsFactory', function($http) {
+  //current user is set by 'optionsFactory.currentUser = $scope.newUser.username' on patronAuth.js
   var currentUser;
 
   var orderOnly = function(order) {
@@ -32,6 +38,14 @@ angular.module('asyncdrink.options', [])
       data: order
     });
   };
+
+  // var closeTab = function (order) {
+  //   return $http ({
+  //     method: "POST",
+  //     url: '/api/customer/order',
+  //     data: order
+  //   });
+  // };
 
   return {
     currentUser: currentUser,
