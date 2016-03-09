@@ -1,0 +1,25 @@
+  <h1>Here is the Bar Queue</h1>
+  <button ng-click="dequeue()">Dequeue</button>
+  <table>
+    <tr>
+      <th>Username </th>
+      <th>Drink Type </th>
+      <th>Time </th>
+      <th>Close out </th>
+      <th>Order Price </th>
+      <th>Total Price </th>
+      <th>Drink Count </th>
+    </tr>
+    <!-- create a table row for each order in list of orders retrieved from server-->
+    <tr ng-repeat="order in data.orders | orderBy: 'time'">
+      <td>{{order.username}}</td>
+      <td>{{order.drinkType}}</td>
+      <td>{{order.time}}</td>
+      <td>{{order.closeout}}</td>
+      <td>{{order.currentPrice}}</td>
+      <td>{{order.totalPrice}}</td>
+      <td>{{order.drinkCount}}</td>
+    </tr>
+  </table>
+  <br>
+

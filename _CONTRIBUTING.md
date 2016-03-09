@@ -1,30 +1,68 @@
 # Contributing
 
-## General Workflow
+## General MKSBest Workflow
+BEFORE ANYTHING ELSE, ensure that you have forked the organization repo.
 
-1. Fork the repo
-1. Cut a namespaced feature branch from master
+BEFORE ANY COMMIT, make sure to prettify your code.
+
+When you want to make a change, these are the general guidelines you must follow:
+  1. git pull --rebase upstream development
+    - get your code up to speed with our latest version
+
+  2. git checkout -b *feat/yourFeatureBranch*
+    - make sure your branch name clearly reflects what feature you're working on while remaining concise
+
+  3. describe each commit in messages with fewer than 60 characters
+    - convention is as follows:
+      - (feat) Add a new feature
+      - (fix) Fix inconsistent tests [Fixes #0]
+      - (refactor) ...
+      - (cleanup) ...
+      - (test) ...
+      - (doc) ...
+
+  4. git pull --rebase upstream development
+    - this is to make sure you avoid conflicts with any updates made while you were working on your feature.
+
+  5. git push origin *yourFeatureBranch*
+    - push to your fork's featureBranch
+
+  6. Head on over to git to make a pull request
+    - ENSURE THAT YOU'RE SUBMITTING A PULL REQUEST FROM THE CORRECT BRANCH ON YOUR FORK TO THE DEVELOPMENT BRANCH
+
+
+## Detailed Workflow
+
+1. Cut a new branch (git checkout -b yourfeaturebranch) that clearly indicates your feature
   - bug/...
   - feat/...
   - test/...
   - doc/...
   - refactor/...
-1. Make commits to your feature branch. Prefix each commit like so:
-  - (feat) Added a new feature
-  - (fix) Fixed inconsistent tests [Fixes #0]
+2. Make commits to your feature branch.
+  a. Prefix each commit like so:
+  - (feat) Add a new feature
+  - (fix) Fix inconsistent tests [Fixes #0]
   - (refactor) ...
   - (cleanup) ...
   - (test) ...
   - (doc) ...
-1. When you've finished with your fix or feature, Rebase upstream changes into your branch. submit a [pull request][]
+  b. Keep commit messages fewer than 60 characters
+
+3. When you've finished with your fix or feature, Rebase upstream changes into your branch (git pull --rebase upstream development)
+
+4. Submit a [pull request][]
    directly to master. Include a description of your changes.
-1. Your pull request will be reviewed by another maintainer. The point of code
+
+5. Your pull request will be reviewed by another maintainer. The point of code
    reviews is to help keep the codebase clean and of high quality and, equally
    as important, to help you grow as a programmer. If your code reviewer
    requests you make a change you don't understand, ask them why.
-1. Fix any issues raised by your code reviwer, and push your fixes as a single
+
+6. Fix any issues raised by your code reviwer, and push your fixes as a single
    new commit.
-1. Once the pull request has been reviewed, it will be merged by another member of the team. Do not merge your own commits.
+7. Once the pull request has been reviewed, it will be merged by another member of the team. Do not merge your own
+   commits.
 
 ## Detailed Workflow
 
@@ -50,14 +88,14 @@ These commands will help you do this:
 ``` bash
 
 # Creates your branch and brings you there
-git checkout -b `your-branch-name`
+git checkout -b yourcategory/yourFeatureBranch
 ```
 
-### Make commits to your feature branch. 
+### Make commits to your feature branch.
 
 Prefix each commit like so
-  - (feat) Added a new feature
-  - (fix) Fixed inconsistent tests [Fixes #0]
+  - (feat) Add a new feature
+  - (fix) Fix inconsistent tests [Fixes #0]
   - (refactor) ...
   - (cleanup) ...
   - (test) ...
@@ -87,7 +125,7 @@ changes to the master branch into yours by running this command
 from your branch:
 
 ```bash
-git pull --rebase upstream master
+git pull --rebase upstream development
 ```
 
 This will start the rebase process. You must commit all of your changes
@@ -122,6 +160,10 @@ you get here again and nothing is broken and all the tests pass.
 
 ### Make a pull request
 
+Pull Request Title: This should describe the overarching scope of the changes you are submitting. Use same tense as commit messages, but leave out the parentheses.
+
+Pull Request Body: Thoroughly describe your changes with proper grammar and complete sentences. Be sure to describe what you did in this pull request to give the reviewer a great idea of what you did.
+
 Make a clear pull request from your fork and branch to the upstream master
 branch, detailing exactly what changes you made and what feature this
 should add. The clearer your pull request is the faster you can get
@@ -153,7 +195,7 @@ Thanks for contributing!
 
 This is just to help you organize your process
 
-- [ ] Did I cut my work branch off of master (don't cut new branches from existing feature brances)?
+- [ ] Did I cut my work branch off of development (don't cut new branches from existing feature brances)?
 - [ ] Did I follow the correct naming convention for my branch?
 - [ ] Is my branch focused on a single main change?
  - [ ] Do all of my changes directly relate to this change?

@@ -1,0 +1,36 @@
+{
+  "name": "asyncdrink",
+  "version": "1.0.0",
+  "description": "Socially responsible order and fulfillment system for bars.",
+  "main": "server.js",
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mksbest/asyncdrink.git"
+  },
+  "author": "MKSBest",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mksbest/asyncdrink/issues"
+  },
+  "homepage": "https://github.com/mksbest/asyncdrink#readme",
+  "dependencies": {
+    "angular": "^1.5.0",
+    "express": "^4.13.4",
+    "body-parser": "^1.15.0"
+  },
+  "devDependencies": {
+    "jasmine-core": "^2.4.1",
+    "karma": "^0.13.21",
+    "karma-chrome-launcher": "^0.2.2",
+    "karma-jasmine": "^0.3.7",
+    "karma-requirejs": "^0.2.5",
+    "requirejs": "^2.1.22",
+    "grunt": "0.4.5",
+    "grunt-contrib-uglify": "^1.0.0",
+    "grunt-contrib-watch": "^0.6.1"
+  }
+
+}
