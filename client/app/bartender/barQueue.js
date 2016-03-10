@@ -10,6 +10,7 @@ angular.module('asyncdrink.barQueue', [])
       OrdersFactory.getAll()
         //after all orders retrieved from server, add them to scope
         .then(function (orders) {
+          console.log(orders);
           $scope.data.orders = orders;
         })
         .catch(function (error) {
@@ -44,16 +45,16 @@ angular.module('asyncdrink.barQueue', [])
       });
   };
 
-  var removeOrder = function () {
+  var removeOrder = function (completedOrder) {
     //sending post request with data object populated with index to be removed from queue
     return $http({
         method: 'POST',
         url: '/api/barUsers/barQueue/dequeue',
-        data: {orderToBeDequeued: 0}
-    })
-    .then(function(resp) {
-      return resp.data;
-    });
+        data: completedOrder
+      })
+      .then(function (resp) {
+        return resp.data;
+      });
 
   };
 
