@@ -160,11 +160,13 @@ app.post('/api/customer/order', function (req, res) {
 
 app.post('/api/barUsers/barQueue/dequeue', function (req, res) {
   console.log(req.body);
-  //set showInQueue property to false for the completedOrder
+  //Search ordersArray for order object that matches time and username properties of completedOrder object in req.body.
+  //This protects against edge case of modifying more than one order object in ordersArray.
   ordersArray
     .filter(function (order) {
       return (req.body.time === order.time && req.body.username === order.username);
     })
+    //Set showInQueue property to false for the completedOrder
     .map(function (completedOrder) {
       completedOrder.showInQueue = false;
     });

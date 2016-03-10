@@ -19,6 +19,7 @@ angular.module('asyncdrink.barQueue', [])
     };
 
     $scope.dequeue = function (completedOrder) {
+      //completedOrder passed in on the view as ng-repeat order in orders in html 
       OrdersFactory.removeOrder(completedOrder)
         //on success of removeOrder (server.js), getOrders is called to submit get request for updated queue
         .then(function () {
@@ -46,7 +47,7 @@ angular.module('asyncdrink.barQueue', [])
   };
 
   var removeOrder = function (completedOrder) {
-    //sending post request with data object populated with index to be removed from queue
+    //sending post request with the specific drink order object whose button was clicked to be removed
     return $http({
         method: 'POST',
         url: '/api/barUsers/barQueue/dequeue',
