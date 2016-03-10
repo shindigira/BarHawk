@@ -26,7 +26,11 @@ app.post('/api/barUsers/barSignin', function (req, res, next) {
 
 app.get('/api/barUsers/barQueue', function (req, res) {
   res.status = 200;
-  res.send(ordersArray);
+  //only send back to bar queue those orders which have not yet been completed
+  var pendingOrders = ordersArray.filter(function (order) {
+    return order.showInQueue;
+  });
+  res.send(pendingOrders);
 });
 
 app.listen(port, function () {
@@ -77,7 +81,9 @@ var ordersArray = [{
   time: 'Tue Mar 08 2016 16:24:37 GMT-0800 (PST)',
   closeout: false,
   currentPrice: 5,
-  totalPrice: 60
+  totalPrice: 60,
+  drinkCount: 1,
+  showInQueue: true
 }, {
   username: "Nadine",
   drinkType: "beer",
@@ -85,7 +91,8 @@ var ordersArray = [{
   closeout: false,
   currentPrice: 5,
   totalPrice: 100,
-  drinkCount: 4
+  drinkCount: 4,
+  showInQueue: true
 }, {
   username: "Collin",
   drinkType: "wine",
@@ -93,7 +100,8 @@ var ordersArray = [{
   closeout: false,
   currentPrice: 5,
   totalPrice: 15,
-  drinkCount: 8
+  drinkCount: 8,
+  showInQueue: true
 }];
 
 //drink info dummy data
@@ -140,7 +148,8 @@ app.post('/api/customer/order', function (req, res) {
       //pull price of current drink from dummy data in drinkPrices
       currentPrice: drinkPrices[ord.drinkType],
       totalPrice: users[ord.username].totalPrice,
-      drinkCount: users[ord.username].drinkCount
+      drinkCount: users[ord.username].drinkCount,
+      showInQueue: true
     };
     //push order to bar queue
     ordersArray.push(newOrder);
@@ -196,10 +205,9 @@ app.post('/api/customer/closetab', function (req, res) {
     res.sendStatus(401);
   }
   //if hasn't ordered a drink yet
-  else if(users[ord.username].drinkCount === 0) {
+  else if (users[ord.username].drinkCount === 0) {
     res.sendStatus(400);
-  }
-   else {
+  } else {
     //prepare order
     var newOrder = {
       username: ord.username,

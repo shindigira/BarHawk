@@ -10,6 +10,7 @@ angular.module('asyncdrink.barQueue', [])
       OrdersFactory.getAll()
         //after all orders retrieved from server, add them to scope
         .then(function (orders) {
+          console.log(orders);
           $scope.data.orders = orders;
         })
         .catch(function (error) {
@@ -49,11 +50,11 @@ angular.module('asyncdrink.barQueue', [])
     return $http({
         method: 'POST',
         url: '/api/barUsers/barQueue/dequeue',
-        data: {orderToBeDequeued: 0}
-    })
-    .then(function(resp) {
-      return resp.data;
-    });
+        data: { orderToBeDequeued: 0 }
+      })
+      .then(function (resp) {
+        return resp.data;
+      });
 
   };
 
