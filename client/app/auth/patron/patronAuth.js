@@ -56,7 +56,7 @@ angular.module('asyncdrink.customerAuth', [])
   };
 })
 
-.factory('customerFactory', function ($http) {
+.factory('customerFactory', function ($http, $window) {
   var signIn = function (loginInfo) {
     return $http({
       method: "POST",
@@ -77,9 +77,14 @@ angular.module('asyncdrink.customerAuth', [])
     });
   };
 
+  var isAuth = function(){
+    return !!$window.localStorage.getItem('com.barhawk');
+  };
+
   return {
     signUp: signUp,
-    signIn: signIn
+    signIn: signIn,
+    isAuth: isAuth
   };
 
 });
