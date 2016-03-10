@@ -4,7 +4,7 @@
   "description": "Socially responsible order and fulfillment system for bars.",
   "main": "server.js",
   "scripts": {
-    "test": "test"
+    "test": "karma start"
   },
   "repository": {
     "type": "git",
