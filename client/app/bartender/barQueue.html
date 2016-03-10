@@ -1,5 +1,4 @@
   <h1>Here is the Bar Queue</h1>
-  <button ng-click="dequeue()">Dequeue</button>
   <table>
     <tr>
       <th>Username </th>
@@ -9,6 +8,7 @@
       <th>Order Price </th>
       <th>Total Price </th>
       <th>Drink Count </th>
+      <th>Complete Order</th>
     </tr>
     <!-- create a table row for each order in list of orders retrieved from server-->
     <tr ng-repeat="order in data.orders | orderBy: 'time'">
@@ -19,6 +19,7 @@
       <td>{{order.currentPrice}}</td>
       <td>{{order.totalPrice}}</td>
       <td>{{order.drinkCount}}</td>
+      <td><button ng-click="dequeue()">Complete!</button></td>
     </tr>
   </table>
   <br>
