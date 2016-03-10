@@ -159,13 +159,16 @@ app.post('/api/customer/order', function (req, res) {
 
 
 app.post('/api/barUsers/barQueue/dequeue', function (req, res) {
-  //set showInQueue property to false for the first non-completed order in ordersArray
-  for (var i = 0; i < ordersArray.length; i++) {
-    if(ordersArray[i].showInQueue){
-      ordersArray[i].showInQueue = false;
-      break;
-    }
-  }
+  console.log(req.body);
+  //set showInQueue property to false for the completedOrder
+  ordersArray
+  .filter(function(order){
+    return (req.body.time === order.time && req.body.username === order.username);
+  })
+  .map(function(completedOrder){
+    completedOrder.showInQueue = false;
+  });
+
   res.sendStatus(200);
 });
 
