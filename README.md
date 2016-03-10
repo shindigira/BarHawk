@@ -1,7 +1,7 @@
 # AsyncDrink
 ==========
 
-<!-- TODO: Insert build status from travis -->
+!!!!!!! change this later --> Insert build status from travis
 
 Asynchronous drink ordering for bars.
 
@@ -11,26 +11,25 @@ AsyncDrink is an app designed to take drink orders from bar customers in an orde
 
 Installation
 =============
-<!-- TODO: -->
 ```
 $ git clone https://github.com/MKSBest/AsynkDrink.git
 $cd AsyncDrink
 $npm install
-$npm start
+!!! change this later --> $npm start
 ```
 
-<!-- TODO: For an in depth guide, please refer to our [Getting Started] (insert url here) page. -->
+!!!!!! change this later --> For an in depth guide, please refer to our [Getting Started] (insert url here) page.
 
 Testing
 =============
-<!-- TODO: -server side unit tests: `grunt test` -->
-<!-- TODO: -client side unit tests: `grunt karma` -->
+!!!!!!!!!! change this later --> -server side unit tests: `grunt test`
+!!!!!!!! change this later --> -client side unit tests: `grunt karma`
 
-<!-- TODO: For an in depth guide, please refer to our [Testing](insert url) page. -->
+!!!!! change this later --> For an in depth guide, please refer to our [Testing](insert url) page.
 
 Tech Stack
 ==========
-<!-- TODO: insert log pictures of Angular, Node, Express, Karma, Jasmine, Grunt -->
+!!!!!!! change this later --> insert log pictures of Angular, Node, Express, Karma, Jasmine, Grunt
 - Angular
 - Express
 - Node.js
@@ -45,11 +44,11 @@ File Structure
 
 Client: holds all files associated with the View, Controllers, and Factories. The client directory also contains the styling and assets.
 
-<!-- TODO: Server: contains the server, middleware, express routing, and helper functions. -->
+!!!!! Change this in future--> Server: contains the server, middleware, express routing, and helper functions.
 
-<!-- TODO: Specs: contains all Jasmine/Karma tests. -->
+!!!!!! Change this in future--> Specs: contains all Jasmine/Karma tests.
 
-<!-- TODO: -->
+!!!!! Change this in the future--v
 
 ```
 AsyncDrink
@@ -64,21 +63,22 @@ AsyncDrink
 ```
 
 # Features
-<!-- TODO: Customers: -->
-
+Customers:
+!!!! Change this in future -->
 
 Bartenders:
-<!-- TODO: -->
+!!!! Change this in future -->
 
 
-<!-- TODO: # Future Features -->
+# Future Features
+!!!! Change this in future -->
 - ...
 - ...
 - ...
 
 # Tests
 Testing done in Jasmine/Karma. 
-<!-- TODO: Coverage [80%] -->
+!!!!! Change this in future --> Coverage [80%]
 
 # Style Guide
 All code adheres to the [style guide](https://github.com/MKSBest/AsyncDrink/blob/master/_STYLE-GUIDE.md) which is based on the airbnb style guide.

@@ -1,6 +1,5 @@
 var express = require('express');
 var bodyParser = require('body-parser');
-var jwt = require('jwt-simple');
 var app = express();
 var port = process.env.PORT || 3000;
 
@@ -51,20 +50,14 @@ var users = {
 };
 
 app.post('/api/users/signup', function (req, res) {
-  var newUser = req.body;
-  var username = req.body.username;
-  var password = req.body.password;
-
-  //check to see if user already exists
-  if (username in users) {
+  var data = req.body;
+  if (data.username in users) {
     res.sendStatus(401);
   } else {
-    //add newUser to users object, refactor later to insert into db with promise insert
-    users[username] = newUser;
-    //create a token to send back to client for authentication
-    var token = jwt.encode(newUser, 'barHawksecret444');
-    res.json({token: token});
+    users[data.username] = data;
+    res.sendStatus(200);
   }
+
 });
 
 app.post('/api/users/login', function (req, res) {
