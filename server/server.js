@@ -159,7 +159,13 @@ app.post('/api/customer/order', function (req, res) {
 
 
 app.post('/api/barUsers/barQueue/dequeue', function (req, res) {
-  ordersArray.splice(req.body.orderToBeDequeued, 1);
+  //set showInQueue property to false for the first non-completed order in ordersArray
+  for (var i = 0; i < ordersArray.length; i++) {
+    if(ordersArray[i].showInQueue){
+      ordersArray[i].showInQueue = false;
+      break;
+    }
+  }
   res.sendStatus(200);
 });
 

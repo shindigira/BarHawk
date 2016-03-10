@@ -45,12 +45,12 @@ angular.module('asyncdrink.barQueue', [])
       });
   };
 
-  var removeOrder = function () {
+  var removeOrder = function (completedOrder) {
     //sending post request with data object populated with index to be removed from queue
     return $http({
         method: 'POST',
         url: '/api/barUsers/barQueue/dequeue',
-        data: { orderToBeDequeued: 0 }
+        data: completedOrder
       })
       .then(function (resp) {
         return resp.data;
