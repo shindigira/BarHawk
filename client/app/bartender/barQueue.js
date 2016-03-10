@@ -18,8 +18,8 @@ angular.module('asyncdrink.barQueue', [])
         });
     };
 
-    $scope.dequeue = function () {
-      OrdersFactory.removeOrder()
+    $scope.dequeue = function (completedOrder) {
+      OrdersFactory.removeOrder(completedOrder)
         //on success of removeOrder (server.js), getOrders is called to submit get request for updated queue
         .then(function () {
           $scope.getOrders();

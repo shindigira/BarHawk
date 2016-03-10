@@ -1,25 +1,27 @@
-  <h1>Here is the Bar Queue</h1>
-  <button ng-click="dequeue()">Dequeue</button>
-  <table>
-    <tr>
-      <th>Username </th>
-      <th>Drink Type </th>
-      <th>Time </th>
-      <th>Close out </th>
-      <th>Order Price </th>
-      <th>Total Price </th>
-      <th>Drink Count </th>
-    </tr>
-    <!-- create a table row for each order in list of orders retrieved from server-->
-    <tr ng-repeat="order in data.orders | orderBy: 'time'">
-      <td>{{order.username}}</td>
-      <td>{{order.drinkType}}</td>
-      <td>{{order.time}}</td>
-      <td>{{order.closeout}}</td>
-      <td>{{order.currentPrice}}</td>
-      <td>{{order.totalPrice}}</td>
-      <td>{{order.drinkCount}}</td>
-    </tr>
-  </table>
-  <br>
-
+<h1>Here is the Bar Queue</h1>
+<table>
+  <tr>
+    <th>Username </th>
+    <th>Drink Type </th>
+    <th>Time </th>
+    <th>Close out </th>
+    <th>Order Price </th>
+    <th>Total Price </th>
+    <th>Drink Count </th>
+    <th>Complete Order</th>
+  </tr>
+  <!-- create a table row for each order in list of orders retrieved from server-->
+  <tr ng-repeat="order in data.orders | orderBy: 'time'">
+    <td>{{order.username}}</td>
+    <td>{{order.drinkType}}</td>
+    <td>{{order.time}}</td>
+    <td>{{order.closeout}}</td>
+    <td>{{order.currentPrice}}</td>
+    <td>{{order.totalPrice}}</td>
+    <td>{{order.drinkCount}}</td>
+    <td>
+      <button ng-click="dequeue(order)">Complete!</button>
+    </td>
+  </tr>
+</table>
+<br>
