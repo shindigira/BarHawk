@@ -71,7 +71,8 @@ angular.module('asyncdrink.customerAuth', [])
       url: '/api/users/signup',
       data: userInfo
     })
-    .then(function(response){
+    .then(function(resp){
+      console.log('xxxxxxxx this is response from signup server', resp.data);
       return resp.data.token;
     });
   };
