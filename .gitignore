@@ -3,5 +3,6 @@ node_modules/
 bower_components/
 *.log
 
+client/library/angular.js
 build/
 dist/
