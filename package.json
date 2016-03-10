@@ -4,7 +4,7 @@
   "description": "Socially responsible order and fulfillment system for bars.",
   "main": "server.js",
   "scripts": {
-    "test": "test"
+    "test": "karma start"
   },
   "repository": {
     "type": "git",
@@ -27,10 +27,7 @@
     "karma-chrome-launcher": "^0.2.2",
     "karma-jasmine": "^0.3.7",
     "karma-requirejs": "^0.2.5",
-    "requirejs": "^2.1.22",
-    "grunt": "0.4.5",
-    "grunt-contrib-uglify": "^1.0.0",
-    "grunt-contrib-watch": "^0.6.1"
+    "requirejs": "^2.1.22"
   }
 
 }
