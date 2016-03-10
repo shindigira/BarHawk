@@ -96,6 +96,30 @@ var ordersArray = [{
   drinkCount: 8
 }];
 
+//drink info dummy data
+var drinkPrices = {
+  AnchorSteam: 5,
+  Heineken: 7,
+  SamAdams: 7,
+  CoronaExtra: 7,
+  CoronaLight: 7,
+  MillerLight: 7,
+  Budweiser: 4,
+  BudLight: 4,
+  Guiness: 8,
+  Merlot: 10,
+  Chardonnay: 9,
+  Champagne: 8,
+  LongIslandIcedTea: 10,
+  GinTonic: 10,
+  Mojito: 14,
+  RedBullVodka: 12,
+  Cosmo: 11,
+  Whiskey: 9,
+  VodkaSoda: 13,
+  WhiteRussian: 15
+};
+
 app.post('/api/customer/order', function (req, res) {
   //assigning drink order to varible
   var ord = req.body;
@@ -106,14 +130,15 @@ app.post('/api/customer/order', function (req, res) {
     //increment user's drinkCount
     users[ord.username].drinkCount++;
     //recalculate user's tab
-    users[ord.username].totalPrice += ord.currentPrice;
+    users[ord.username].totalPrice = users[ord.username].totalPrice + drinkPrices[ord.drinkType];
     //prepare order with pertinent user information for bar queue
     var newOrder = {
       username: ord.username,
       drinkType: ord.drinkType,
       time: ord.time,
       closeout: ord.closeout,
-      currentPrice: ord.currentPrice,
+      //pull price of current drink from dummy data in drinkPrices
+      currentPrice: drinkPrices[ord.drinkType],
       totalPrice: users[ord.username].totalPrice,
       drinkCount: users[ord.username].drinkCount
     };
@@ -139,14 +164,15 @@ app.post('/api/customer/order/close', function (req, res) {
     //increment user's drinkCount
     users[ord.username].drinkCount++;
     //recalculate user's tab
-    users[ord.username].totalPrice += ord.currentPrice;
+    users[ord.username].totalPrice = users[ord.username].totalPrice + drinkPrices[ord.drinkType];
+
     //prepare order with pertinent user information for bar queue
     var newOrder = {
       username: ord.username,
       drinkType: ord.drinkType,
       time: ord.time,
       closeout: ord.closeout,
-      currentPrice: ord.currentPrice,
+      currentPrice: drinkPrices[ord.drinkType],
       totalPrice: users[ord.username].totalPrice,
       drinkCount: users[ord.username].drinkCount
     };

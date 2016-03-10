@@ -14,9 +14,30 @@
   <h2>Hi, {{currentUser}}!</h2>
   <h4>Please choose a drink:</h4>
   <select ng-model='order.drinkType' ng-change='clear()'>
-    <option value="beer">beer</option>
-    <option value="wine">wine</option>
-    <option value="liquor">liquor</option>
+    <!--     OLD VALUES
+    <option value="Beer">Beer</option>
+    <option value="Wine">Wine</option>
+    <option value="Liquor">Liquor</option> -->
+    <option value="AnchorSteam">Anchor Steam ($5)</option>
+    <option value="Heineken">Heineken ($7)</option>
+    <option value="SamAdams">Sam Adams ($7)</option>
+    <option value="CoronaExtra">Corona Extra ($7)</option>
+    <option value="CoronaLight">Corona Light ($7)</option>
+    <option value="MillerLight">Miller Light ($7)</option>
+    <option value="Budweiser">Budweiser ($4)</option>
+    <option value="BudLight">Bud Light ($4)</option>
+    <option value="Guiness">Guiness ($8)</option>
+    <option value="Merlot">Merlot ($10)</option>
+    <option value="Chardonnay">Chardonnay ($9)</option>
+    <option value="Champagne">Champagne ($8)</option>
+    <option value="LongIslandIcedTea">Long Island Iced Tea ($10)</option>
+    <option value="GinTonic">Gin + Tonic ($10)</option>
+    <option value="Mojito">Mojito ($14)</option>
+    <option value="RedBullVodka">Red Bull + Vodka ($12)</option>
+    <option value="Cosmo">Cosmo ($11)</option>
+    <option value="Whiskey">Whiskey ($9)</option>
+    <option value="VodkaSoda">Vodka Soda ($13)</option>
+    <option value="WhiteRussian">White Russian ($15)</option>
   </select>
   <h4>Your Drink Count: {{currentUser.drinkCount}}</h4>
   <button ng-click='orderOnly()'>Submit Order</button>
