@@ -5,4 +5,7 @@ describe("this testing suite", function() {
  it ("should show that false is not true", function() {
    expect(false).not.toBe(true);
  })
+ it ("should show that false fails true", function() {
+  expect(false).toEqual(true);
+ })
 });
