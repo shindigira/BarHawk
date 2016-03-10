@@ -162,12 +162,12 @@ app.post('/api/barUsers/barQueue/dequeue', function (req, res) {
   console.log(req.body);
   //set showInQueue property to false for the completedOrder
   ordersArray
-  .filter(function(order){
-    return (req.body.time === order.time && req.body.username === order.username);
-  })
-  .map(function(completedOrder){
-    completedOrder.showInQueue = false;
-  });
+    .filter(function (order) {
+      return (req.body.time === order.time && req.body.username === order.username);
+    })
+    .map(function (completedOrder) {
+      completedOrder.showInQueue = false;
+    });
 
   res.sendStatus(200);
 });
