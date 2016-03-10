@@ -1,6 +1,6 @@
 angular.module('asyncdrink.customerAuth', [])
 
-.controller('customerController', function ($scope, $state, $window, customerFactory, optionsFactory) {
+.controller('customerController', function ($scope, $state, customerFactory, optionsFactory) {
   //newUser obj will hold all sign up inputs and set drinkCount to 0
   $scope.newUser = {
     drinkCount: 0,
@@ -22,12 +22,9 @@ angular.module('asyncdrink.customerAuth', [])
 
   $scope.signUp = function () {
     customerFactory.signUp($scope.newUser)
-      .then(function (token) {
+      .then(function (response) {
         //hide error message, if displayed
         $scope.invalidSignup = false;
-
-        $window.localStorage.setItem('com.barhawk', token);
-
         //giving optionsFactory access to newUser.username
         optionsFactory.currentUser = $scope.newUser.username;
         //navigate to options page
@@ -56,7 +53,7 @@ angular.module('asyncdrink.customerAuth', [])
   };
 })
 
-.factory('customerFactory', function ($http, $window) {
+.factory('customerFactory', function ($http) {
   var signIn = function (loginInfo) {
     return $http({
       method: "POST",
@@ -70,21 +67,12 @@ angular.module('asyncdrink.customerAuth', [])
       method: "POST",
       url: '/api/users/signup',
       data: userInfo
-    })
-    .then(function(resp){
-      console.log('xxxxxxxx this is response from signup server', resp.data);
-      return resp.data.token;
     });
-  };
-
-  var isAuth = function(){
-    return !!$window.localStorage.getItem('com.barhawk');
   };
 
   return {
     signUp: signUp,
-    signIn: signIn,
-    isAuth: isAuth
+    signIn: signIn
   };
 
 });
