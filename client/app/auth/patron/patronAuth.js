@@ -7,7 +7,7 @@ angular.module('asyncdrink.customerAuth', [])
     totalPrice: 0
   };
   //dummy data for easy submit
-  $scope.newUser.username = 'Beyonce';
+  $scope.newUser.username= 'Beyonce';
   $scope.newUser.password = "pass";
   $scope.newUser.age = "25";
   $scope.newUser.weight = '160';
@@ -21,6 +21,14 @@ angular.module('asyncdrink.customerAuth', [])
   };
 
   $scope.signUp = function () {
+    // var reader = new FileReader();
+            
+    //         reader.onload = function (e) {
+    //             $('#blah').attr('src', e.target.result);
+    //         }
+            
+    //         reader.readAsDataURL(input.files[0]);
+    //     }
     customerFactory.signUp($scope.newUser)
       .then(function (response) {
         //hide error message, if displayed
