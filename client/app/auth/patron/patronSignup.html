@@ -10,7 +10,12 @@
     <input type="password" ng-model="newUser.password">
     <br>
     <label>Age</label>
-    <input type="number" ng-model="newUser.age">
+    <input name='age' type="number" ng-model="newUser.age" placeholder="Enter your age" required ng-class="{'error': userForm.$invalid && userForm.$dirty}" />
+    <div ng-if='userForm.age.$error.required && userForm.$dirty' class="message">
+     <h2> age required </h2>
+    <div ng-show='userForm.age.$error.number && userForm.$dirty' class="message">
+     <h2>Not a valid number</h2>
+    </div>  
     <br>
     <label>Weight</label>
     <input type="number" ng-model="newUser.weight">
