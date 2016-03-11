@@ -1,6 +1,6 @@
 angular.module('asyncdrink.options', [])
 
-.controller('optionsController', function ($scope, $state, customerFactory, optionsFactory) {
+.controller('optionsController', function ($scope, $state, $window, customerFactory, optionsFactory) {
   //set current user
   $scope.currentUser = optionsFactory.currentUser;
   //prepare order object before submit to server
@@ -36,6 +36,7 @@ angular.module('asyncdrink.options', [])
   //log out
   $scope.logOut = function () {
     optionsFactory.currentUser = undefined;
+    $window.localStorage.removeItem('com.barhawk');
     $state.go('customerLogin');
   };
 
@@ -50,11 +51,11 @@ angular.module('asyncdrink.options', [])
         //display tab information from server
         $scope.userTab = response.data;
         //navigate back to login
-        setTimeout(function () {
-            optionsFactory.currentUser = undefined;
-            $state.go('customerLogin')
-          },
-          5000);
+        // setTimeout(function () {
+        //     optionsFactory.currentUser = undefined;
+        //     $state.go('customerLogin')
+        //   },
+        //   5000);
       }).catch(function (err) {
         $scope.tabFail = true;
         console.log(err);
@@ -71,11 +72,11 @@ angular.module('asyncdrink.options', [])
         $scope.tabSuccessIncludingOrder = true;
         $scope.userTab = response.data;
         //navigate back to login
-        setTimeout(function () {
-            optionsFactory.currentUser = undefined;
-            $state.go('customerLogin')
-          },
-          5000);
+        // setTimeout(function () {
+        //     optionsFactory.currentUser = undefined;
+        //     $state.go('customerLogin')
+        //   },
+        //   5000);
       }).catch(function (err) {
         $scope.tabSuccessIncludingOrder = false;
         throw err;

@@ -53,15 +53,17 @@ angular.module('asyncdrink', [
       }
       object.headers['Allow-Control-Allow-Origin'] = '*';
       return object;
+    }
   };
 
   return attach;
 })
 
 //Listener for changing routes, check user's token, if user does not have a valid token then redirect to customer login
-.run(function($rootScope, customerFactory){
+.run(function($rootScope, $state, customerFactory){
   $rootScope.$on('$stateChangeStart', function(evt, next, current){
-    if(next.$$route && next.$$route.authenticate && !customerFactory.isAuth()){
+
+    if(next.url && next.authenticate && !customerFactory.isAuth()){
       $state.go('customerLogin');
     }
   });
