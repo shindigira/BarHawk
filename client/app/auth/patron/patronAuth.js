@@ -1,6 +1,6 @@
 angular.module('asyncdrink.customerAuth', [])
 
-.controller('customerController', function ($scope, $state, customerFactory, optionsFactory) {
+.controller('customerController', function ($scope, $state, $window, customerFactory, optionsFactory) {
   //newUser obj will hold all sign up inputs and set drinkCount to 0
   $scope.newUser = {
     drinkCount: 0,
@@ -25,8 +25,11 @@ angular.module('asyncdrink.customerAuth', [])
       .then(function (response) {
         //hide error message, if displayed
         $scope.invalidSignup = false;
-        //giving optionsFactory access to newUser.username
-        optionsFactory.currentUser = $scope.newUser.username;
+
+        optionsFactory.currentUser = response.currentUser;
+
+        $window.localStorage.setItem('com.barhawk', response.token);
+        
         //navigate to options page
         $state.go('options');
       })
@@ -42,7 +45,6 @@ angular.module('asyncdrink.customerAuth', [])
         //hide error message, if displayed
         $scope.invalidLogIn = false;
         //persist logged in user
-        console.log('xxxx inside $scope.login, response.currentUser = ', response);
         optionsFactory.currentUser = response.currentUser;
 
         $window.localStorage.setItem('com.barhawk', response.token);
@@ -64,7 +66,6 @@ angular.module('asyncdrink.customerAuth', [])
       data: loginAttempt
     })
     .then(function(resp){
-      console.log(resp.data);
       return resp.data;
     })
   };
@@ -76,7 +77,7 @@ angular.module('asyncdrink.customerAuth', [])
       data: userInfo
     })
     .then(function(resp){
-      return resp.data.token;
+      return resp.data;
     });
   };
 

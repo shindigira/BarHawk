@@ -1,5 +1,6 @@
 var express = require('express');
 var bodyParser = require('body-parser');
+var jwt = require('jwt-simple');
 var app = express();
 var port = process.env.PORT || 3000;
 
@@ -55,9 +56,12 @@ app.post('/api/users/signup', function (req, res) {
     res.sendStatus(401);
   } else {
     users[data.username] = data;
-    res.sendStatus(200);
+    var token = jwt.encode(users[data.username], 'barHawksecret444');
+    res.json({
+      currentUser: data,
+      token: token
+    });
   }
-
 });
 
 app.get('/api/users/signedin', function(req, res){
