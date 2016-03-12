@@ -3,6 +3,9 @@ var bodyParser = require('body-parser');
 var jwt = require('jwt-simple');
 var app = express();
 var port = process.env.PORT || 3000;
+var models = require('./models');
+var db = require('./models/index.js');
+//var router = express.Router();
 
 app.use(express.static(__dirname + '/../client'));
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -64,15 +67,15 @@ app.post('/api/users/signup', function (req, res) {
   }
 });
 
-app.get('/api/users/signedin', function(req, res){
+app.get('/api/users/signedin', function (req, res) {
   var token = req.headers['x-access-token'];
-  if(!token){
+  if (!token) {
     res.status(401).send();
-  }else{
+  } else {
     var user = jwt.decode(token, 'barHawksecret444');
-    if(user.username in users){
+    if (user.username in users) {
       res.status(200).send;
-    }else{
+    } else {
       res.status(401).send;
     }
   }
@@ -126,59 +129,32 @@ var ordersArray = [{
   showInQueue: true
 }];
 
-//drink info dummy data
-var drinkPrices = {
-  AnchorSteam: 5,
-  Heineken: 7,
-  SamAdams: 7,
-  CoronaExtra: 7,
-  CoronaLight: 7,
-  MillerLight: 7,
-  Budweiser: 4,
-  BudLight: 4,
-  Guiness: 8,
-  Merlot: 10,
-  Chardonnay: 9,
-  Champagne: 8,
-  LongIslandIcedTea: 10,
-  GinTonic: 10,
-  Mojito: 14,
-  RedBullVodka: 12,
-  Cosmo: 11,
-  Whiskey: 9,
-  VodkaSoda: 13,
-  WhiteRussian: 15
-};
-
-app.post('/api/customer/order', function (req, res) {
-  //assigning drink order to varible
-  var ord = req.body;
-  //if no username or drink was not specified, throw err
-  if (ord.username === undefined || ord.drinkType === undefined) {
-    res.sendStatus(400);
-  } else {
-    //increment user's drinkCount
-    users[ord.username].drinkCount++;
-    //recalculate user's tab
-    users[ord.username].totalPrice = users[ord.username].totalPrice + drinkPrices[ord.drinkType];
-    //prepare order with pertinent user information for bar queue
-    var newOrder = {
-      username: ord.username,
-      drinkType: ord.drinkType,
-      time: ord.time,
-      closeout: ord.closeout,
-      //pull price of current drink from dummy data in drinkPrices
-      currentPrice: drinkPrices[ord.drinkType],
-      totalPrice: users[ord.username].totalPrice,
-      drinkCount: users[ord.username].drinkCount,
-      showInQueue: true
-    };
-    //push order to bar queue
-    ordersArray.push(newOrder);
-    res.sendStatus(200);
-  }
-});
-
+// app.post('/api/customer/order', function (req, res) {
+//   //assigning drink order to varible
+//   var ord = req.body;
+//   //if no username or drink was not specified, throw err
+//   if (ord.username === undefined || ord.drinkType === undefined) {
+//     res.sendStatus(400);
+//   } else {
+//     //increment user's drinkCount
+//     users[ord.username].drinkCount++;
+//     //recalculate user's tab
+//     users[ord.username].totalPrice += ord.currentPrice;
+//     //prepare order with pertinent user information for bar queue
+//     var newOrder = {
+//       username: ord.username,
+//       drinkType: ord.drinkType,
+//       time: ord.time,
+//       closeout: ord.closeout,
+//       currentPrice: ord.currentPrice,
+//       totalPrice: users[ord.username].totalPrice,
+//       drinkCount: users[ord.username].drinkCount
+//     };
+//     //push order to bar queue
+//     ordersArray.push(newOrder);
+//     res.sendStatus(200);
+//   }
+// });
 
 app.post('/api/barUsers/barQueue/dequeue', function (req, res) {
   //Search ordersArray for order object that matches time and username properties of completedOrder object in req.body.
@@ -229,34 +205,72 @@ app.post('/api/customer/order/close', function (req, res) {
   }
 });
 
-app.post('/api/customer/closetab', function (req, res) {
+app.post('/api/customer/order', function (req, res) {
+  //assigning drink order to variable
   var ord = req.body;
-
-  //if not logged in
-  if (ord.username === undefined) {
-    res.sendStatus(401);
-  }
-  //if hasn't ordered a drink yet
-  else if (users[ord.username].drinkCount === 0) {
+  console.log(ord.drinktype);
+  if (!ord.drinktype) {
     res.sendStatus(400);
   } else {
-    //prepare order
-    var newOrder = {
-      username: ord.username,
-      drinkType: ord.drinkType,
-      time: ord.time,
-      closeout: ord.closeout,
-      currentPrice: ord.currentPrice,
-      totalPrice: users[ord.username].totalPrice,
-      drinkCount: users[ord.username].drinkCount
-    };
-    //push to bar queue
-    ordersArray.push(newOrder);
-    //prepare user's final tab
-    var userTab = {
-      drinkCount: users[ord.username].drinkCount,
-      tabTotal: users[ord.username].totalPrice
-    }
-    res.json(userTab);
+    console.log("NEW ORDER", ord);
+    var DK;
+    models.orders.count({
+      where: ["username = ?", ord.username]
+    }).then(function (drinkcount) {
+      DK = drinkcount;
+      //
+      models.orders.create({
+        username: ord.username,
+        drinktype: ord.drinktype,
+        closeout: ord.closeout,
+        currentprice: ord.currentprice,
+        totalprice: 5,
+        drinkcount: DK
+      }).then(function (userorder) {
+        console.dir(userorder.get());
+        res.json(userorder);
+      });
+      //
+    });
+    //console.log(result.rows);
+    //attributes: [[db.Sequelize.fn('COUNT', db.Sequelize.col('username'))]],
   }
+
+});
+
+app.post('/api/users/signup', function (req, res) {
+  //assigning drink order to variable
+  var ord = req.body;
+  console.log('ord info', ord)
+
+
+  models.users.findOrCreate({
+    where: { username: ord.username },
+    defaults: {
+      password: ord.password,
+      weight: ord.weight,
+      gender: ord.gender,
+      photo: ord.photo
+    }
+  }).spread(function (user, created) {
+    console.log("able to create new user " + ord.username + "?", created);
+    // //returns preexisting user
+    var userObj = user.get({
+      plain: false
+    });
+    if (created) {
+      res.send(userObj);
+    } else {
+      res.sendStatus(401);
+    }
+  });
+
+});
+
+app.get('/api/customer/drink', function (req, res) {
+  //assigning drink order to varible
+  models.drinks.findAll()
+    .then(function (drinks) {
+      res.json(drinks);
+    });
 });

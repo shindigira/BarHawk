@@ -18,8 +18,14 @@
   "homepage": "https://github.com/mksbest/asyncdrink#readme",
   "dependencies": {
     "angular": "^1.5.0",
+    "body-parser": "^1.15.0",
     "express": "^4.13.4",
-    "body-parser": "^1.15.0"
+    "jwt-simple": "^0.5.0",
+    "pg": "^4.4.3",
+    "pg-hstore": "^2.3.2",
+    "semver": "^5.1.0",
+    "sequelize": "^3.12.2",
+    "sequelize-cli": "^2.3.1"
   },
   "devDependencies": {
     "gulp": "^3.9.1",
