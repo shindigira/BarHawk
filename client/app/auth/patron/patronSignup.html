@@ -1,5 +1,4 @@
 <h3>Sign Up!</h3>
-<h2> test</h2>
 <form name="userForm" novalidate>
     <label> Username </label>
     <input name='username' type="text" ng-model="newUser.username" placeholder="Enter your name here" required ng-class="{'error': userForm.$invalid && userForm.$dirty}" />
@@ -34,7 +33,7 @@
 
     <input name="gender" type="radio" ng-model="newUser.gender" value="male"/> Male
     <input name="gender" type="radio" ng-model="newUser.gender" value="female"/> Female
-    <input type="submit" ng-click="validate()" value="submit">
+    <input type="submit" ng-click="validateSignUp()" value="submit">
 
 </form>
 <p ng-show='invalidSignup'>User already signed up</p>

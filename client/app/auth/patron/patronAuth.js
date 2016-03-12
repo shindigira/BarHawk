@@ -1,6 +1,7 @@
 angular.module('asyncdrink.customerAuth', [])
 
 .controller('customerController', function ($scope, $state, $window, customerFactory, optionsFactory) {
+
   //newUser obj will hold all sign up inputs and set drinkCount to 0
   $scope.newUser = {
     drinkCount: 0,
@@ -16,44 +17,56 @@ angular.module('asyncdrink.customerAuth', [])
 
   $scope.invalidLogIn = false;
 
-  $scope.clear = function () {
+  $scope.clear = function() {
     $scope.invalidLogIn = false;
   };
 
-  $scope.genderValidate = function() {
-    console.log($scope.newUser);
-    if (!$scope.newUser.gender) {
-        alert('invalid');
+  $scope.validateSignIn = function(){
+    if(!$scope.loginAttempt.username){
+      alert('you forgot to enter your username');
+      return;
     }
+    if(!$scope.loginAttempt.password){
+      alert('you forgot to enter your password');
+      return;
+    }
+    console.log('validateSignIn passed both if statements');
+    $scope.logIn();
+    
   }
-    
-    
-    // $scope.choices = [{"id":1, "value":"1", "label":"Good"}, {"id":2, "value":"2","label":"Ok"},{"id":3, "value":"3","label":"Bad"}];
-    // $scope.value = [];
-    // $scope.updateQuestionValue = function(choice){
-    //   console.log('john is here')
-    //     $scope.value = $scope.value || [];
-    //     if(choice.checked){
-    //         $scope.value.push(choice.value);
-    //         $scope.value = _.uniq($scope.value);
-    //     }else{
-    //         $scope.value = _.without($scope.value, choice.value);
-    //     }
-    // };
 
+  $scope.validateSignUp = function() {
+    console.log($scope.newUser);
 
-  $scope.signUp = function () {
-    console.log('anything here????')
-    // var reader = new FileReader();
-            
-    //         reader.onload = function (e) {
-    //             $('#blah').attr('src', e.target.result);
-    //         }
-            
-    //         reader.readAsDataURL(input.files[0]);
-    //     }
+    if (!$scope.newUser.username) {
+      alert('you forgot to setup your username');
+      return;
+    }
+    if (!$scope.newUser.password) {
+      alert('you forgot to setup your password');
+      return;
+    }
+    if (!$scope.newUser.age) {
+      alert('you forgot to enter your age');
+      return;
+    }
+    if (!$scope.newUser.weight) {
+      alert('you forgot to enter your weight');
+      return;
+    }
+    if (!$scope.newUser.gender) {
+      alert('you forgot to select your gender');
+      return;
+    } 
+    console.log('else happen')
+    $scope.signUp();
+    
+  };
+
+  $scope.signUp = function() {
+   
     customerFactory.signUp($scope.newUser)
-      .then(function (response) {
+      .then(function(response) {
         //hide error message, if displayed
         $scope.invalidSignup = false;
 
@@ -64,15 +77,16 @@ angular.module('asyncdrink.customerAuth', [])
         //navigate to options page
         $state.go('options');
       })
-      .catch(function (error) {
+      .catch(function(error) {
         //show user that they failed to signup successfully
         $scope.invalidSignup = true;
       });
   };
 
-  $scope.logIn = function () {
+  $scope.logIn = function() {
+    
     customerFactory.signIn($scope.loginAttempt)
-      .then(function (response) {
+      .then(function(response) {
         //hide error message, if displayed
         $scope.invalidLogIn = false;
         //persist logged in user
@@ -82,7 +96,7 @@ angular.module('asyncdrink.customerAuth', [])
         //navigate to options page
         $state.go('options');
       })
-      .catch(function (error) {
+      .catch(function(error) {
         //display invalid login message
         $scope.invalidLogIn = true;
       });
@@ -101,7 +115,8 @@ angular.module('asyncdrink.customerAuth', [])
     })
   };
 
-  var signUp = function (userInfo) {
+  var signUp = function(userInfo) {
+    console.log('we are inside signUP HTTP');
     return $http({
       method: "POST",
       url: '/api/users/signup',
