@@ -1,17 +1,12 @@
-angular.module('asyncdrink', [
-  'ui.router',
-  'asyncdrink.customerAuth',
-  'asyncdrink.options',
-  'asyncdrink.barAuth',
-  'asyncdrink.barQueue'
-])
+angular.module('asyncdrink', [   'ui.router',   'asyncdrink.customerAuth',
+'asyncdrink.options',   'asyncdrink.barAuth',   'asyncdrink.barQueue' ])
 
 .config(function ($stateProvider, $urlRouterProvider, $httpProvider) {
   $urlRouterProvider.otherwise('/login');
   $stateProvider
     .state('customerSignup', {
       url: "/signup",
-      templateUrl: "/app/auth/patron/patronSignup.html",
+      templateUrl: "/app/auth/customer/customerSignup.html",
       controller: 'customerController'
     })
     .state('options', {
@@ -33,7 +28,7 @@ angular.module('asyncdrink', [
     })
     .state('customerLogin', {
       url: "/login",
-      templateUrl: "/app/auth/patron/patronSignin.html",
+      templateUrl: "/app/auth/customer/customerSignin.html",
       controller: 'customerController'
     });
 
