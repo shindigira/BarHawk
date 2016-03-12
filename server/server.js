@@ -1,5 +1,6 @@
 var express = require('express');
 var bodyParser = require('body-parser');
+var jwt = require('jwt-simple');
 var app = express();
 var port = process.env.PORT || 3000;
 
@@ -55,17 +56,38 @@ app.post('/api/users/signup', function (req, res) {
     res.sendStatus(401);
   } else {
     users[data.username] = data;
-    res.sendStatus(200);
+    var token = jwt.encode(users[data.username], 'barHawksecret444');
+    res.json({
+      currentUser: data,
+      token: token
+    });
   }
-
 });
+
+app.get('/api/users/signedin', function(req, res){
+  var token = req.headers['x-access-token'];
+  if(!token){
+    res.status(401).send();
+  }else{
+    var user = jwt.decode(token, 'barHawksecret444');
+    if(user.username in users){
+      res.status(200).send;
+    }else{
+      res.status(401).send;
+    }
+  }
+})
 
 app.post('/api/users/login', function (req, res) {
   //set username/password request to attempt variable
   var attempt = req.body;
   if (attempt.username in users) {
     if (users[attempt.username].password === attempt.password) {
-      res.sendStatus(200);
+      var token = jwt.encode(users[attempt.username], 'barHawksecret444');
+      res.json({
+        currentUser: users[attempt.username],
+        token: token
+      });
     } else {
       res.sendStatus(401);
     }
@@ -159,7 +181,6 @@ app.post('/api/customer/order', function (req, res) {
 
 
 app.post('/api/barUsers/barQueue/dequeue', function (req, res) {
-  console.log(req.body);
   //Search ordersArray for order object that matches time and username properties of completedOrder object in req.body.
   //This protects against edge case of modifying more than one order object in ordersArray.
   ordersArray

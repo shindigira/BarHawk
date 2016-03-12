@@ -1,6 +1,6 @@
 angular.module('asyncdrink.customerAuth', [])
 
-.controller('customerController', function ($scope, $state, customerFactory, optionsFactory) {
+.controller('customerController', function ($scope, $state, $window, customerFactory, optionsFactory) {
   //newUser obj will hold all sign up inputs and set drinkCount to 0
   $scope.newUser = {
     drinkCount: 0,
@@ -25,8 +25,11 @@ angular.module('asyncdrink.customerAuth', [])
       .then(function (response) {
         //hide error message, if displayed
         $scope.invalidSignup = false;
-        //giving optionsFactory access to newUser.username
-        optionsFactory.currentUser = $scope.newUser.username;
+
+        optionsFactory.currentUser = response.currentUser;
+
+        $window.localStorage.setItem('com.barhawk', response.token);
+        
         //navigate to options page
         $state.go('options');
       })
@@ -42,7 +45,9 @@ angular.module('asyncdrink.customerAuth', [])
         //hide error message, if displayed
         $scope.invalidLogIn = false;
         //persist logged in user
-        optionsFactory.currentUser = $scope.loginAttempt.username;
+        optionsFactory.currentUser = response.currentUser;
+
+        $window.localStorage.setItem('com.barhawk', response.token);
         //navigate to options page
         $state.go('options');
       })
@@ -53,13 +58,16 @@ angular.module('asyncdrink.customerAuth', [])
   };
 })
 
-.factory('customerFactory', function ($http) {
-  var signIn = function (loginInfo) {
+.factory('customerFactory', function ($http, $window) {
+  var signIn = function (loginAttempt) {
     return $http({
       method: "POST",
       url: '/api/users/login',
-      data: loginInfo
-    });
+      data: loginAttempt
+    })
+    .then(function(resp){
+      return resp.data;
+    })
   };
 
   var signUp = function (userInfo) {
@@ -67,12 +75,33 @@ angular.module('asyncdrink.customerAuth', [])
       method: "POST",
       url: '/api/users/signup',
       data: userInfo
+    })
+    .then(function(resp){
+      return resp.data;
     });
   };
 
+  var isAuth = function(){
+    return !!$window.localStorage.getItem('com.barhawk');
+
+    //the below is a way to check if token exists and is correct for that particular user 
+
+    // return $http({
+    //   method: "GET",
+    //   url: 'api/users/signedin'
+    // })
+    // .then(function(resp){
+    //   return resp.status;
+    // })
+    // .catch(function(resp){
+    //   return resp.status;
+    // })
+  }
+
   return {
     signUp: signUp,
-    signIn: signIn
+    signIn: signIn,
+    isAuth: isAuth
   };
 
 });
