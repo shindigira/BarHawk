@@ -12,8 +12,8 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
 var storedBarLogin = {
-  username: 'admin',
-  password: 'fancypants'
+  username: 'baradmin',
+  password: 'barpassword'
 };
 
 app.post('/api/barUsers/barSignin', function (req, res, next) {
@@ -38,7 +38,7 @@ app.post('/api/barUsers/barSignin', function (req, res, next) {
 
 app.post('/api/barUsers/barQueue', function (req, res) {
   console.log(req.body);
-  if (req.body.username === 'admin' && req.body.password === 'fancypants') {
+  if (req.body.username === 'baradmin' && req.body.password === 'barpassword') {
     console.log('xxxx inside barqueue as bartender');
     //only send back to bar queue those orders which have not yet been completed
     var pendingOrders = ordersArray.filter(function (order) {
