@@ -208,27 +208,33 @@ app.post('/api/customer/order/close', function (req, res) {
 app.post('/api/customer/order', function (req, res) {
   //assigning drink order to variable
   var ord = req.body;
-  console.log("NEW ORDER", ord);
-  var DK;
-  models.orders.count({
-    where: ["username = ?", ord.username]
-  }).then(function (c) {
-    DK = c + 1;
-    models.orders.create({
-      username: ord.username,
-      drinktype: ord.drinktype,
-      closeout: ord.closeout,
-      currentprice: ord.currentprice,
-      totalprice: 5,
-      drinkcount: DK
-    }).then(function (userorder) {
-      console.dir(userorder.get());
-      res.json(userorder);
+  console.log(ord.drinktype);
+  if (!ord.drinktype) {
+    res.sendStatus(400);
+  } else {
+    console.log("NEW ORDER", ord);
+    var DK;
+    models.orders.count({
+      where: ["username = ?", ord.username]
+    }).then(function (drinkcount) {
+      DK = drinkcount;
+      //
+      models.orders.create({
+        username: ord.username,
+        drinktype: ord.drinktype,
+        closeout: ord.closeout,
+        currentprice: ord.currentprice,
+        totalprice: 5,
+        drinkcount: DK
+      }).then(function (userorder) {
+        console.dir(userorder.get());
+        res.json(userorder);
+      });
+      //
     });
-  });
-  //console.log(result.rows);
-  //attributes: [[db.Sequelize.fn('COUNT', db.Sequelize.col('username'))]],
-  console.log("DRINK COUNT QUERY:", DK);
+    //console.log(result.rows);
+    //attributes: [[db.Sequelize.fn('COUNT', db.Sequelize.col('username'))]],
+  }
 
 });
 
