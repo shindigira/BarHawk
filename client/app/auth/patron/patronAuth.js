@@ -20,7 +20,30 @@ angular.module('asyncdrink.customerAuth', [])
     $scope.invalidLogIn = false;
   };
 
+  $scope.genderValidate = function() {
+    console.log($scope.newUser);
+    if (!$scope.newUser.gender) {
+        alert('invalid');
+    }
+  }
+    
+    
+    // $scope.choices = [{"id":1, "value":"1", "label":"Good"}, {"id":2, "value":"2","label":"Ok"},{"id":3, "value":"3","label":"Bad"}];
+    // $scope.value = [];
+    // $scope.updateQuestionValue = function(choice){
+    //   console.log('john is here')
+    //     $scope.value = $scope.value || [];
+    //     if(choice.checked){
+    //         $scope.value.push(choice.value);
+    //         $scope.value = _.uniq($scope.value);
+    //     }else{
+    //         $scope.value = _.without($scope.value, choice.value);
+    //     }
+    // };
+
+
   $scope.signUp = function () {
+    console.log('anything here????')
     // var reader = new FileReader();
             
     //         reader.onload = function (e) {
