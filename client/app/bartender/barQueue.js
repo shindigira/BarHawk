@@ -1,19 +1,25 @@
 angular.module('asyncdrink.barQueue', [])
 
 .controller('BarQueueController',
-  function ($scope, OrdersFactory) {
+  function ($scope, OrdersFactory, $window, $state, optionsFactory) {
     $scope.data = {};
 
-
+    $scope.bartenderLogout = function () {
+      console.log('xxxx inside bartenderLogout')
+      optionsFactory.currentUser = undefined;
+      $window.localStorage.removeItem('com.barhawk');
+      $state.go('barSignin');
+    };
     //scope function to retrieve all the orders from the server
     $scope.getOrders = function () {
       OrdersFactory.getAll()
         //after all orders retrieved from server, add them to scope
         .then(function (orders) {
-          console.log(orders);
+          console.log('xxxx inside getOrders success', orders);
           $scope.data.orders = orders;
         })
         .catch(function (error) {
+          console.log('xxxx inside getOrders fail', error);
           console.error(error);
         });
     };
@@ -33,13 +39,14 @@ angular.module('asyncdrink.barQueue', [])
     $scope.getOrders();
   })
 
-.factory('OrdersFactory', function ($http) {
+.factory('OrdersFactory', function ($http, optionsFactory) {
 
   //factory function to send http GET request to server for all orders
   var getAll = function () {
     return $http({
-        method: 'GET',
-        url: '/api/barUsers/barQueue'
+        method: 'POST',
+        url: '/api/barUsers/barQueue',
+        data: optionsFactory.currentUser
       })
       .then(function (resp) {
         return resp.data;

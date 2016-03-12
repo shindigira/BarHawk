@@ -1,4 +1,6 @@
-<h3>Welcome to the bar!</h3>
+<h5>Are you a bartender? <a ui-sref="barSignin">Click here</a> to login as a bartender</h5>
+<br></br>
+<h1>Customer Login</h1>
 <form name="signinForm">
   <input type="text" ng-model="loginAttempt.username" ng-change="clear()" placeholder="username">
   <input type="password" ng-model="loginAttempt.password" ng-change="clear()" placeholder="password">
@@ -7,4 +9,3 @@
 <p ng-show="invalidLogIn">Invalid username/password combination</p>
 <p>New here?
   <a ui-sref='customerSignup'>Click here</a> to sign up</p>
-</div>

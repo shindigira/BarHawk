@@ -12,15 +12,23 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
 var storedBarLogin = {
-  username: 'admin',
-  password: 'fancypants'
+  username: 'baradmin',
+  password: 'barpassword'
 };
 
 app.post('/api/barUsers/barSignin', function (req, res, next) {
   var attemptedBarUsername = req.body.barUsername;
   var attemptedBarPassword = req.body.barPassword;
+  var attemptedBarUser = {
+    username: attemptedBarUsername,
+    password: attemptedBarPassword
+  };
   if (attemptedBarUsername === storedBarLogin.username && attemptedBarPassword === storedBarLogin.password) {
-    res.sendStatus(200);
+    var token = jwt.encode(attemptedBarUser, 'barHawksecret444');
+    res.json({
+      currentUser: storedBarLogin,
+      token: token
+    });
   } else {
     res.sendStatus(401);
   }
@@ -28,13 +36,20 @@ app.post('/api/barUsers/barSignin', function (req, res, next) {
 
 //send the list of all orders to client
 
-app.get('/api/barUsers/barQueue', function (req, res) {
-  res.status = 200;
-  //only send back to bar queue those orders which have not yet been completed
-  var pendingOrders = ordersArray.filter(function (order) {
-    return order.showInQueue;
-  });
-  res.send(pendingOrders);
+app.post('/api/barUsers/barQueue', function (req, res) {
+  console.log(req.body);
+  if (req.body.username === 'baradmin' && req.body.password === 'barpassword') {
+    console.log('xxxx inside barqueue as bartender');
+    //only send back to bar queue those orders which have not yet been completed
+    var pendingOrders = ordersArray.filter(function (order) {
+      return order.showInQueue;
+    });
+    res.status(200);
+    res.send(pendingOrders);
+  } else {
+    console.log('xxxx inside barqueue as customer');
+    res.status(401).send();
+  }
 });
 
 app.listen(port, function () {
