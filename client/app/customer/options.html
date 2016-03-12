@@ -13,6 +13,7 @@
 <div id="options">
   <h2>Hi, {{currentUser.username}}!</h2>
   <h4>Please choose a drink:</h4>
+<<<<<<< HEAD
   <select ng-model='order.drinkType' ng-change='clear()'>
     <!--     OLD VALUES
     <option value="Beer">Beer</option>
@@ -38,6 +39,12 @@
     <option value="Whiskey">Whiskey ($9)</option>
     <option value="VodkaSoda">Vodka Soda ($13)</option>
     <option value="WhiteRussian">White Russian ($15)</option>
+=======
+  <select ng-model='order.drinktype' ng-change='clear()'>
+    <option value="beer">beer</option>
+    <option value="wine">wine</option>
+    <option value="liquor">liquor</option>
+>>>>>>> (feat) implement working database with 3 tables - users, orders, drinks'
   </select>
   <h4>Your Drink Count: {{currentUser.drinkCount}}</h4>
   <button ng-click='orderOnly()'>Submit Order</button>

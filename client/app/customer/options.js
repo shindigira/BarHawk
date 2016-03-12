@@ -14,6 +14,8 @@ angular.module('asyncdrink.options', [])
   $scope.tabFail = false;
   $scope.tabSuccess = false;
   $scope.tabSuccessIncludingOrder = false;
+
+
   $scope.clear = function () {
     $scope.orderSuccess = false;
   };
@@ -26,8 +28,10 @@ angular.module('asyncdrink.options', [])
       .then(function (response) {
         $scope.orderSuccess = true;
         //set drinkType to empty string after successfully placing order
-        $scope.order.savedDrinkType = $scope.order.drinkType;
-        $scope.order.drinkType = "";
+        $scope.order.savedDrinkType = $scope.order.drinktype;
+        console.log("savedDrinkType ", $scope.order.savedDrinkType);
+        $scope.order.drinktype = "";
+
       }).catch(function (err) {
         $scope.orderFail = true;
       });
@@ -87,6 +91,7 @@ angular.module('asyncdrink.options', [])
 .factory('optionsFactory', function ($http) {
   //current user is set by 'optionsFactory.currentUser = $scope.newUser.username' on patronAuth.js
   var currentUser;
+  var userid;
 
   var orderOnly = function (order) {
     return $http({
