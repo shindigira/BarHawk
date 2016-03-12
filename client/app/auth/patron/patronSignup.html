@@ -1,25 +1,42 @@
 <h3>Sign Up!</h3>
-<form name="userForm">
-  <label>Username</label>
-  <input type="text" ng-model="newUser.username">
-  <br>
-  <label>Password</label>
-  <input type="password" ng-model="newUser.password">
-  <br>
-  <label>Age</label>
-  <input type="text" ng-model="newUser.age">
-  <br>
-  <label>Weight</label>
-  <input type="text" ng-model="newUser.weight">
-  <br>
-  <label>
-    <input type="radio" ng-model="newUser.gender" value='Male'> Male
-  </label>
-  <label>
-    <input type="radio" ng-model="newUser.gender" value="Female"> Female
-  </label>
-  <br/>
-  <input type="submit" value='Submit' ng-click='signUp()'>
-  <p ng-show='invalidSignup'>User already signed up</p>
+<form name="userForm" novalidate>
+    <label> Username </label>
+    <input name='username' type="text" ng-model="newUser.username" placeholder="Enter your name here" required ng-class="{'error': userForm.$invalid && userForm.$dirty}" />
+    <div ng-if='userForm.username.$error.required && userForm.$dirty' class="message">
+        <h2>username required</h2>
+    </div>
+    <br>
+    <label>Password</label>
+    <input name='password' type="password" ng-model="newUser.password" placeholder="Enter your PASSWORD" required ng-class="{'error': userForm.$invalid && userForm.$dirty}" />
+    <div ng-if='userForm.password.$error.required && userForm.$dirty' class="message">
+        <h2>PASSWORD required</h2>
+    </div>
+    <br>
+    <label>Age</label>
+    <input name='age' type="number" ng-model="newUser.age" placeholder="Enter your age" required ng-class="{'error': userForm.$invalid && userForm.$dirty}" />
+    <div ng-if='userForm.age.$error.required && userForm.$dirty' class="message">
+        <h2> Please enter valid NUMBER </h2>
+    </div>
+    <div ng-show='userForm.age.$error.number && userForm.$dirty' class="message">
+        <h2>Not a valid number</h2>
+    </div>
+    <br>
+    <label>Weight</label>
+    <input name='weight' type="number" ng-model="newUser.weight" placeholder="Enter your weight" required ng-class="{'error': userForm.$invalid && userForm.$dirty}" />
+    <div ng-if='userForm.weight.$error.required && userForm.$dirty' class="message">
+        <h2> Please enter valid NUMBER </h2>
+    </div>
+    <div ng-show='userForm.age.$error.number && userForm.$dirty' class="message">
+        <h2>Not a valid number</h2>
+    </div>
+    <br>
+
+    <input name="gender" type="radio" ng-model="newUser.gender" value="male"/> Male
+    <input name="gender" type="radio" ng-model="newUser.gender" value="female"/> Female
+    <input type="submit" ng-click="validateSignUp()" value="submit">
+
 </form>
-</div>
+<p ng-show='invalidSignup'>User already signed up</p>
+
+
+

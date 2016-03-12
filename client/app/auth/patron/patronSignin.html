@@ -2,7 +2,7 @@
 <form name="signinForm">
   <input type="text" ng-model="loginAttempt.username" ng-change="clear()" placeholder="username">
   <input type="password" ng-model="loginAttempt.password" ng-change="clear()" placeholder="password">
-  <input type="submit" value="Order a drink!" ng-click='logIn()'>
+  <input type="submit" value="Order a drink!" ng-click='validateSignIn()'>
 </form>
 <p ng-show="invalidLogIn">Invalid username/password combination</p>
 <p>New here?
