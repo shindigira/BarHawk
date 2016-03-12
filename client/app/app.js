@@ -61,6 +61,7 @@ angular.module('asyncdrink', [   'ui.router',   'asyncdrink.customerAuth',
   $rootScope.$on('$stateChangeStart', function(evt, next, current){
 
     if(next.url && next.authenticate && !customerFactory.isAuth()){
+      evt.preventDefault();
       $state.go('customerLogin');
     }
   });
