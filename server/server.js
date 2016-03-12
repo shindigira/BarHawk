@@ -21,7 +21,7 @@ app.post('/api/barUsers/barSignin', function (req, res, next) {
   var attemptedBarPassword = req.body.barPassword;
   var attemptedBarUser = {
     username: attemptedBarUsername,
-    password: attemptedBarPassword 
+    password: attemptedBarPassword
   };
   if (attemptedBarUsername === storedBarLogin.username && attemptedBarPassword === storedBarLogin.password) {
     var token = jwt.encode(attemptedBarUser, 'barHawksecret444');
@@ -38,7 +38,7 @@ app.post('/api/barUsers/barSignin', function (req, res, next) {
 
 app.post('/api/barUsers/barQueue', function (req, res) {
   console.log(req.body);
-  if(req.body.username === 'admin' && req.body.password === 'fancypants'){
+  if (req.body.username === 'admin' && req.body.password === 'fancypants') {
     console.log('xxxx inside barqueue as bartender');
     //only send back to bar queue those orders which have not yet been completed
     var pendingOrders = ordersArray.filter(function (order) {
@@ -46,7 +46,7 @@ app.post('/api/barUsers/barQueue', function (req, res) {
     });
     res.status(200);
     res.send(pendingOrders);
-  }else{
+  } else {
     console.log('xxxx inside barqueue as customer');
     res.status(401).send();
   }
