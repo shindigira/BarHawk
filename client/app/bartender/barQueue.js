@@ -5,7 +5,6 @@ angular.module('asyncdrink.barQueue', [])
     $scope.data = {};
 
     $scope.bartenderLogout = function() {
-      console.log('xxxx inside bartenderLogout')
       optionsFactory.currentUser = undefined;
       $window.localStorage.removeItem('com.barhawk');
       $state.go('barSignin');
