@@ -40,7 +40,35 @@ module.exports = {
         allowNull: false,
         type: Sequelize.DATE
       }
-    });
+    })
+    .then(function() {
+          queryInterface.bulkInsert('drinks', [
+          {
+          name: 'AnchorSteam',
+          type: 'beer',
+          price: 5,
+          alcohol: 13,
+          sugar: 0,
+          calories: 153,
+          carbs: 16,
+          volume: 12,
+          createdAt: new Date(),
+          updatedAt: new Date()
+        },
+        {
+          name: 'Heineken',
+          type: 'beer',
+          price: 7,
+          alcohol: 14,
+          sugar: 0,
+          calories: 150,
+          carbs: 12,
+          volume: 12,
+          createdAt: new Date(),
+          updatedAt: new Date()
+        },
+        ])
+      });
   },
   down: function(queryInterface, Sequelize) {
     return queryInterface.dropTable('orders');
