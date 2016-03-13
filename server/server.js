@@ -38,10 +38,10 @@ app.post('/api/barUsers/barSignin', function(req, res, next) {
 
 //send the list of all orders to client
 
-app.post('/api/barUsers/barQueue', function (req, res) {
+app.post('/api/barUsers/barQueue', function(req, res) {
   if (req.body.username === 'baradmin' && req.body.password === 'barpassword') {
     //only send back to bar queue those orders which have not yet been completed
-    var pendingOrders = ordersArray.filter(function (order) {
+    var pendingOrders = ordersArray.filter(function(order) {
       return order.showInQueue;
     });
     res.status(200);
@@ -295,11 +295,12 @@ app.post('/api/barUsers/orderCompleteText', function(req, res) {
   console.log('this is from serverJS file preText', req.body);
   var toPhoneNum = req.body.customerPhoneNum;
   var customerName = req.body.customerName;
+  var drinkType = req.body.customerDrinkType;
 
   client.messages.create({
     to: '+1' + toPhoneNum,
     from: '+15104557842',
-    body: 'hey ' + customerName +', your drink is ready.'
+    body: 'hey ' + customerName + ', your ' + drinkType + ' is ready.'
   }, function(err, message) {
     if (err) {
       console.log(err);
