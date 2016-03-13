@@ -6,7 +6,9 @@ var port = process.env.PORT || 3000;
 var models = require('./models');
 var db = require('./models/index.js');
 //var router = express.Router();
-
+var accountSid = 'AC6d9b063b61c76d9588fb5d9df7bb845a';
+var authToken = 'fa527f9341b3fef301c01b4db35ae87e';
+var client = require('twilio')(accountSid, authToken);
 app.use(express.static(__dirname + '/../client'));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
@@ -16,7 +18,7 @@ var storedBarLogin = {
   password: 'barpassword'
 };
 
-app.post('/api/barUsers/barSignin', function (req, res, next) {
+app.post('/api/barUsers/barSignin', function(req, res, next) {
   var attemptedBarUsername = req.body.barUsername;
   var attemptedBarPassword = req.body.barPassword;
   var attemptedBarUser = {
@@ -36,23 +38,20 @@ app.post('/api/barUsers/barSignin', function (req, res, next) {
 
 //send the list of all orders to client
 
-app.post('/api/barUsers/barQueue', function (req, res) {
-  console.log(req.body);
+app.post('/api/barUsers/barQueue', function(req, res) {
   if (req.body.username === 'baradmin' && req.body.password === 'barpassword') {
-    console.log('xxxx inside barqueue as bartender');
     //only send back to bar queue those orders which have not yet been completed
-    var pendingOrders = ordersArray.filter(function (order) {
+    var pendingOrders = ordersArray.filter(function(order) {
       return order.showInQueue;
     });
     res.status(200);
     res.send(pendingOrders);
   } else {
-    console.log('xxxx inside barqueue as customer');
     res.status(401).send();
   }
 });
 
-app.listen(port, function () {
+app.listen(port, function() {
   console.log('Server now listening on port ' + port);
 });
 
@@ -68,7 +67,7 @@ var users = {
   }
 };
 
-app.post('/api/users/signup', function (req, res) {
+app.post('/api/users/signup', function(req, res) {
   var data = req.body;
   if (data.username in users) {
     res.sendStatus(401);
@@ -82,7 +81,7 @@ app.post('/api/users/signup', function (req, res) {
   }
 });
 
-app.get('/api/users/signedin', function (req, res) {
+app.get('/api/users/signedin', function(req, res) {
   var token = req.headers['x-access-token'];
   if (!token) {
     res.status(401).send();
@@ -96,7 +95,7 @@ app.get('/api/users/signedin', function (req, res) {
   }
 })
 
-app.post('/api/users/login', function (req, res) {
+app.post('/api/users/login', function(req, res) {
   //set username/password request to attempt variable
   var attempt = req.body;
   if (attempt.username in users) {
@@ -171,22 +170,22 @@ var ordersArray = [{
 //   }
 // });
 
-app.post('/api/barUsers/barQueue/dequeue', function (req, res) {
+app.post('/api/barUsers/barQueue/dequeue', function(req, res) {
   //Search ordersArray for order object that matches time and username properties of completedOrder object in req.body.
   //This protects against edge case of modifying more than one order object in ordersArray.
   ordersArray
-    .filter(function (order) {
+    .filter(function(order) {
       return (req.body.time === order.time && req.body.username === order.username);
     })
     //Set showInQueue property to false for the completedOrder
-    .map(function (completedOrder) {
+    .map(function(completedOrder) {
       completedOrder.showInQueue = false;
     });
 
   res.sendStatus(200);
 });
 
-app.post('/api/customer/order/close', function (req, res) {
+app.post('/api/customer/order/close', function(req, res) {
   //assigning drink order to varible
   var ord = req.body;
   //if no username or drink was not specified, throw err
@@ -220,7 +219,7 @@ app.post('/api/customer/order/close', function (req, res) {
   }
 });
 
-app.post('/api/customer/order', function (req, res) {
+app.post('/api/customer/order', function(req, res) {
   //assigning drink order to variable
   var ord = req.body;
   console.log(ord.drinktype);
@@ -231,7 +230,7 @@ app.post('/api/customer/order', function (req, res) {
     var DK;
     models.orders.count({
       where: ["username = ?", ord.username]
-    }).then(function (drinkcount) {
+    }).then(function(drinkcount) {
       DK = drinkcount;
       //
       models.orders.create({
@@ -241,7 +240,7 @@ app.post('/api/customer/order', function (req, res) {
         currentprice: ord.currentprice,
         totalprice: 5,
         drinkcount: DK
-      }).then(function (userorder) {
+      }).then(function(userorder) {
         console.dir(userorder.get());
         res.json(userorder);
       });
@@ -253,7 +252,7 @@ app.post('/api/customer/order', function (req, res) {
 
 });
 
-app.post('/api/users/signup', function (req, res) {
+app.post('/api/users/signup', function(req, res) {
   //assigning drink order to variable
   var ord = req.body;
   console.log('ord info', ord)
@@ -267,7 +266,7 @@ app.post('/api/users/signup', function (req, res) {
       gender: ord.gender,
       photo: ord.photo
     }
-  }).spread(function (user, created) {
+  }).spread(function(user, created) {
     console.log("able to create new user " + ord.username + "?", created);
     // //returns preexisting user
     var userObj = user.get({
@@ -282,10 +281,32 @@ app.post('/api/users/signup', function (req, res) {
 
 });
 
-app.get('/api/customer/drink', function (req, res) {
+app.get('/api/customer/drink', function(req, res) {
   //assigning drink order to varible
   models.drinks.findAll()
-    .then(function (drinks) {
+    .then(function(drinks) {
       res.json(drinks);
     });
+});
+
+
+//Twilio API texting drink
+app.post('/api/barUsers/orderCompleteText', function(req, res) {
+  console.log('this is from serverJS file preText', req.body);
+  var toPhoneNum = req.body.customerPhoneNum;
+  var customerName = req.body.customerName;
+  var drinkType = req.body.customerDrinkType;
+
+  client.messages.create({
+    to: '+1' + toPhoneNum,
+    from: '+15104557842',
+    body: 'hey ' + customerName + ', your ' + drinkType + ' is ready.'
+  }, function(err, message) {
+    if (err) {
+      console.log(err);
+    } else {
+      console.log(message);
+      res.end();
+    }
+  });
 });
