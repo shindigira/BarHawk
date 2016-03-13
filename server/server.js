@@ -6,7 +6,9 @@ var port = process.env.PORT || 3000;
 var models = require('./models');
 var db = require('./models/index.js');
 //var router = express.Router();
-
+var accountSid = 'AC6d9b063b61c76d9588fb5d9df7bb845a';
+var authToken = 'fa527f9341b3fef301c01b4db35ae87e';
+var client = require('twilio')(accountSid, authToken);
 app.use(express.static(__dirname + '/../client'));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
@@ -288,4 +290,25 @@ app.get('/api/customer/drink', function (req, res) {
     .then(function (drinks) {
       res.json(drinks);
     });
+});
+
+
+//Twilio API texting drink
+app.post('/api/barUsers/orderCompleteText', function(req, res){
+  console.log('this is from serverJS file preText', req.body.phoneNumber);
+  var toPhoneNum = req.body.phoneNumber;
+  client.messages.create({
+    to: '+1'+toPhoneNum,
+    from:'+15104557842',
+    body:'hey John, your drink is ready.'
+  }, function(err, message){
+      if(err){
+        console.log(err);
+      } else{
+        console.log(message);
+        res.end();
+      }
+  });
+    console.log('this is from serverJS file postText');
+
 });

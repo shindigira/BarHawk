@@ -26,6 +26,8 @@ angular.module('asyncdrink.barQueue', [])
 
     $scope.dequeue = function (completedOrder) {
       //completedOrder passed in on the view as ng-repeat order in orders in html 
+      console.log('this is from dequeue function');
+      OrdersFactory.sendTextMessage({phoneNumber:5059342914});
       OrdersFactory.removeOrder(completedOrder)
         //on success of removeOrder (server.js), getOrders is called to submit get request for updated queue
         .then(function () {
@@ -53,6 +55,15 @@ angular.module('asyncdrink.barQueue', [])
       });
   };
 
+  var sendTextMessage = function(toPhoneNumberObj){
+    console.log("this is from sendTextMessage function http request");
+    return $http({
+      method: 'POST',
+      url: '/api/barUsers/orderCompleteText',
+      data: toPhoneNumberObj
+    })
+  };
+
   var removeOrder = function (completedOrder) {
     //sending post request with the specific drink order object whose button was clicked to be removed
     return $http({
@@ -67,6 +78,7 @@ angular.module('asyncdrink.barQueue', [])
   };
 
   return {
+    sendTextMessage: sendTextMessage,
     getAll: getAll,
     removeOrder: removeOrder
   }
