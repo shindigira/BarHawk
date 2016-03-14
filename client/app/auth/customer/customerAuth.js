@@ -4,8 +4,8 @@ angular.module('asyncdrink.customerAuth', [])
 
   //newUser obj will hold all sign up inputs and set drinkCount to 0
   $scope.newUser = {
-    // drinkCount: 0,
-    // totalPrice: 0
+    drinkCount: 0,
+    totalPrice: 0
   };
   //dummy data for easy submit
   // $scope.newUser.username= 'Beyonce';
@@ -16,7 +16,6 @@ angular.module('asyncdrink.customerAuth', [])
   $scope.loginAttempt = {};
 
   $scope.invalidLogIn = false;
-
 
 
   $scope.clear = function() {
@@ -44,7 +43,6 @@ angular.module('asyncdrink.customerAuth', [])
     if (isValid) {
       alert('our form is amazing');
     }
-
 
   };
 
@@ -80,7 +78,7 @@ angular.module('asyncdrink.customerAuth', [])
   $scope.signUp = function() {
 
     customerFactory.signUp($scope.newUser)
-      .then(function (response) {
+      .then(function(response) {
         //hide error message, if displayed
         $scope.invalidSignup = false;
 
@@ -91,7 +89,7 @@ angular.module('asyncdrink.customerAuth', [])
         //navigate to options page
         $state.go('options');
       })
-      .catch(function (error) {
+      .catch(function(error) {
         //show user that they failed to signup successfully
         $scope.invalidSignup = true;
       });
@@ -100,7 +98,7 @@ angular.module('asyncdrink.customerAuth', [])
   $scope.logIn = function() {
 
     customerFactory.signIn($scope.loginAttempt)
-      .then(function (response) {
+      .then(function(response) {
         //hide error message, if displayed
         $scope.invalidLogIn = false;
         //persist logged in user
@@ -110,7 +108,7 @@ angular.module('asyncdrink.customerAuth', [])
         //navigate to options page
         $state.go('options');
       })
-      .catch(function (error) {
+      .catch(function(error) {
         //display invalid login message
         $scope.invalidLogIn = true;
       });
@@ -119,30 +117,29 @@ angular.module('asyncdrink.customerAuth', [])
 
 .factory('customerFactory', function ($http, $window) {
   var signIn = function (loginAttempt) {
-
     return $http({
-        method: "POST",
-        url: '/api/users/login',
-        data: loginAttempt
-      })
-      .then(function (resp) {
-        return resp.data;
-      });
+      method: "POST",
+      url: '/api/users/login',
+      data: loginAttempt
+    })
+    .then(function(resp){
+      return resp.data;
+    })
   };
 
-  var signUp = function (userInfo) {
+  var signUp = function(userInfo) {
     console.log('we are inside signUP HTTP');
     return $http({
-        method: "POST",
-        url: '/api/users/signup',
-        data: userInfo
-      })
-      .then(function (resp) {
-        return resp.data;
-      });
+      method: "POST",
+      url: '/api/users/signup',
+      data: userInfo
+    })
+    .then(function(resp){
+      return resp.data;
+    });
   };
 
-  var isAuth = function () {
+  var isAuth = function(){
     return !!$window.localStorage.getItem('com.barhawk');
 
     //the below is a way to check if token exists and is correct for that particular user
