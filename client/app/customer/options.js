@@ -93,6 +93,13 @@ angular.module('asyncdrink.options', [])
   var currentUser;
   var userid;
 
+  var getDrinksList = function () {
+    return $http({
+      method: "GET",
+      url: '/api/customer/drink'
+    })
+  }
+
   var orderOnly = function (order) {
     return $http({
       method: "POST",
