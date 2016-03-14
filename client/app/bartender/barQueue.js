@@ -22,7 +22,7 @@ angular.module('asyncdrink.barQueue', [])
     };
 
     $scope.dequeue = function(completedOrder) {
-      //completedOrder passed in on the view as ng-repeat order in orders in html 
+      //completedOrder passed in on the view as ng-repeat order in orders in html
       var textMessDetails = {
         customerPhoneNum: 5059342914,
         customerName: completedOrder.username,
