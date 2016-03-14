@@ -67,19 +67,19 @@ var users = {
   }
 };
 
-app.post('/api/users/signup', function (req, res) {
-  var data = req.body;
-  if (data.username in users) {
-    res.sendStatus(401);
-  } else {
-    users[data.username] = data;
-    var token = jwt.encode(users[data.username], 'barHawksecret444');
-    res.json({
-      currentUser: data,
-      token: token
-    });
-  }
-});
+// app.post('/api/users/signup', function (req, res) {
+//   var data = req.body;
+//   if (data.username in users) {
+//     res.sendStatus(401);
+//   } else {
+//     users[data.username] = data;
+//     var token = jwt.encode(users[data.username], 'barHawksecret444');
+//     res.json({
+//       currentUser: data,
+//       token: token
+//     });
+//   }
+// });
 
 app.get('/api/users/signedin', function (req, res) {
   var token = req.headers['x-access-token'];
@@ -255,16 +255,21 @@ app.post('/api/customer/order', function (req, res) {
 app.post('/api/users/signup', function (req, res) {
   //assigning drink order to variable
   var ord = req.body;
+  console.log("hit route for signup successfully")
   console.log('ord info', ord)
 
 
   models.users.findOrCreate({
     where: { username: ord.username },
     defaults: {
+      firstname:ord.firstname,
+      lastname: ord.lastname,
       password: ord.password,
+      age: ord.age,
       weight: ord.weight,
       gender: ord.gender,
-      photo: ord.photo
+      photo: ord.photo,
+      phone: ord.phonenumber
     }
   }).spread(function (user, created) {
     console.log("able to create new user " + ord.username + "?", created);
@@ -273,7 +278,16 @@ app.post('/api/users/signup', function (req, res) {
       plain: false
     });
     if (created) {
-      res.send(userObj);
+
+      users[ord.username] = ord;
+    var token = jwt.encode(users[ord.username], 'barHawksecret444');
+    res.json({
+      currentUser: ord,
+      token: token
+    });
+
+
+      //res.send(userObj);
     } else {
       res.sendStatus(401);
     }
@@ -293,7 +307,7 @@ app.get('/api/customer/drink', function (req, res) {
 //Twilio API texting drink
 app.post('/api/barUsers/orderCompleteText', function (req, res) {
   console.log('this is from serverJS file preText', req.body);
-  var toPhoneNum = req.body.customerPhoneNum;
+  var toPhoneNum = req.body.customerPhone;
   var customerName = req.body.customerName;
   var drinkType = req.body.customerDrinkType;
 

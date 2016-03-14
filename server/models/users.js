@@ -9,7 +9,7 @@ module.exports = function (sequelize, DataTypes) {
     weight: DataTypes.INTEGER,
     gender: DataTypes.STRING,
     photo: DataTypes.STRING,
-    phone: DataTypes.INTEGER
+    phone: DataTypes.BIGINT
   }, {
     classMethods: {
       associate: function (models) {
