@@ -67,21 +67,6 @@ var users = {
   }
 };
 
-<<<<<<< HEAD
-// app.post('/api/users/signup', function (req, res) {
-//   var data = req.body;
-//   if (data.username in users) {
-//     res.sendStatus(401);
-//   } else {
-//     users[data.username] = data;
-//     var token = jwt.encode(users[data.username], 'barHawksecret444');
-//     res.json({
-//       currentUser: data,
-//       token: token
-//     });
-//   }
-// });
-=======
 app.post('/api/users/signup', function (req, res) {
   var data = req.body;
   if (data.username in users) {
@@ -95,7 +80,6 @@ app.post('/api/users/signup', function (req, res) {
     });
   }
 });
->>>>>>> (refactor) Refactor submit order path to put ordered drink in DB
 
 app.get('/api/users/signedin', function (req, res) {
   var token = req.headers['x-access-token'];
