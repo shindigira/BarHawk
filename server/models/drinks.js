@@ -1,7 +1,7 @@
 'use strict';
 var Sequelize = require("sequelize");
 
-module.exports = function(sequelize, DataTypes) {
+module.exports = function (sequelize, DataTypes) {
   var drinks = sequelize.define('drinks', {
     name: DataTypes.STRING,
     price: DataTypes.DECIMAL,
@@ -12,13 +12,14 @@ module.exports = function(sequelize, DataTypes) {
     volume: DataTypes.INTEGER
   }, {
     classMethods: {
-      associate: function(models) {
+      associate: function (models) {
         // associations can be defined here
       }
     }
   });
   return drinks;
 };
+
 
 // create table then create row in table with info in data object
 // drinks.sync({ force: true }).then(function () {
@@ -68,7 +69,3 @@ module.exports = function(sequelize, DataTypes) {
 
 
 //module.exports = drinks;
-
-
-
-

@@ -67,19 +67,19 @@ var users = {
   }
 };
 
-// app.post('/api/users/signup', function (req, res) {
-//   var data = req.body;
-//   if (data.username in users) {
-//     res.sendStatus(401);
-//   } else {
-//     users[data.username] = data;
-//     var token = jwt.encode(users[data.username], 'barHawksecret444');
-//     res.json({
-//       currentUser: data,
-//       token: token
-//     });
-//   }
-// });
+app.post('/api/users/signup', function (req, res) {
+  var data = req.body;
+  if (data.username in users) {
+    res.sendStatus(401);
+  } else {
+    users[data.username] = data;
+    var token = jwt.encode(users[data.username], 'barHawksecret444');
+    res.json({
+      currentUser: data,
+      token: token
+    });
+  }
+});
 
 app.get('/api/users/signedin', function (req, res) {
   var token = req.headers['x-access-token'];
@@ -114,34 +114,34 @@ app.post('/api/users/login', function (req, res) {
 });
 
 //barQueue dummy data
-var ordersArray = [{
-  username: 'zeebow',
-  drinkType: 'beer',
-  time: 'Tue Mar 08 2016 16:24:37 GMT-0800 (PST)',
-  closeout: false,
-  currentPrice: 5,
-  totalPrice: 60,
-  drinkCount: 1,
-  showInQueue: true
-}, {
-  username: "Nadine",
-  drinkType: "beer",
-  time: 'Tue Mar 08 2016 17:24:37 GMT-0800 (PST)',
-  closeout: false,
-  currentPrice: 5,
-  totalPrice: 100,
-  drinkCount: 4,
-  showInQueue: true
-}, {
-  username: "Collin",
-  drinkType: "wine",
-  time: 'Tue Mar 08 2016 18:24:37 GMT-0800 (PST)',
-  closeout: false,
-  currentPrice: 5,
-  totalPrice: 15,
-  drinkCount: 8,
-  showInQueue: true
-}];
+// var ordersArray = [{
+//   username: 'zeebow',
+//   drinkType: 'beer',
+//   time: 'Tue Mar 08 2016 16:24:37 GMT-0800 (PST)',
+//   closeout: false,
+//   currentPrice: 5,
+//   totalPrice: 60,
+//   drinkCount: 1,
+//   showInQueue: true
+// }, {
+//   username: "Nadine",
+//   drinkType: "beer",
+//   time: 'Tue Mar 08 2016 17:24:37 GMT-0800 (PST)',
+//   closeout: false,
+//   currentPrice: 5,
+//   totalPrice: 100,
+//   drinkCount: 4,
+//   showInQueue: true
+// }, {
+//   username: "Collin",
+//   drinkType: "wine",
+//   time: 'Tue Mar 08 2016 18:24:37 GMT-0800 (PST)',
+//   closeout: false,
+//   currentPrice: 5,
+//   totalPrice: 15,
+//   drinkCount: 8,
+//   showInQueue: true
+// }];
 
 // app.post('/api/customer/order', function (req, res) {
 //   //assigning drink order to varible
@@ -222,34 +222,36 @@ app.post('/api/customer/order/close', function (req, res) {
 app.post('/api/customer/order', function (req, res) {
   //assigning drink order to variable
   var ord = req.body;
-  console.log(ord.drinktype);
-  if (!ord.drinktype) {
+  var ordUser = ord.username;
+  if (!ord.drinkType) {
     res.sendStatus(400);
   } else {
-    console.log("NEW ORDER", ord);
+    //console.log("-----(server.js /api/customer.order) ord: ", ord);
+    var currentUsername = ord.username.username;
     var DK;
-    models.orders.count({
-      where: ["username = ?", ord.username]
-    }).then(function (drinkcount) {
-      DK = drinkcount;
-      //
-      models.orders.create({
-        username: ord.username,
-        drinktype: ord.drinktype,
-        closeout: ord.closeout,
-        currentprice: ord.currentprice,
-        totalprice: 5,
-        drinkcount: DK
-      }).then(function (userorder) {
-        console.dir(userorder.get());
-        res.json(userorder);
+    var drinkPriceFromDB;
+    //finding price associated with drink name in drinks table of DB
+    models.drinks.findOne({ where: { name: ord.drinkType } }).then(function (drink) {
+      drinkPriceFromDB = drink.dataValues.price;
+    }).then(function () {
+      models.orders.count({
+        where: ["username = ?", currentUsername]
+      }).then(function (drinkcount) {
+        DK = drinkcount;
+        models.orders.create({
+          username: currentUsername,
+          drinktype: ord.drinkType,
+          closeout: ord.closeout,
+          currentprice: drinkPriceFromDB,
+          totalprice: 5,
+          drinkcount: DK
+        }).then(function (userorder) {
+          console.dir(userorder.get());
+          res.json(userorder);
+        });
       });
-      //
-    });
-    //console.log(result.rows);
-    //attributes: [[db.Sequelize.fn('COUNT', db.Sequelize.col('username'))]],
+    })
   }
-
 });
 
 app.post('/api/users/signup', function (req, res) {
