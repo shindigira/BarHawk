@@ -1,3 +1,5 @@
+//var models = require('./../../../server/models');
+
 angular.module('asyncdrink.barQueue', [])
 
 .controller('BarQueueController',
@@ -23,8 +25,15 @@ angular.module('asyncdrink.barQueue', [])
 
     $scope.dequeue = function(completedOrder) {
       //completedOrder passed in on the view as ng-repeat order in orders in html
+
+      var currentUserOrder = models.users.findAll({
+        where:{
+          username: completedOrder.username
+        }
+      })
+
       var textMessDetails = {
-        customerPhoneNum: 5059342914,
+        customerPhone: currentUserOrder.phone,
         customerName: completedOrder.username,
         customerDrinkType: completedOrder.drinkType
       };
