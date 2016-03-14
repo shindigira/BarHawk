@@ -20,6 +20,7 @@ module.exports = function(sequelize, DataTypes) {
   return drinks;
 };
 
+
 // create table then create row in table with info in data object
 // drinks.sync({ force: true }).then(function () {
 //   var data = { 
