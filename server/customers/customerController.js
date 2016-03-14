@@ -17,19 +17,24 @@ module.exports = {
   login: function (req, res) {
     //set username/password request to attempt variable
     var attempt = req.body;
-    if (attempt.username in users) {
-      if (users[attempt.username].password === attempt.password) {
-        var token = jwt.encode(users[attempt.username], 'barHawksecret444');
-        res.json({
-          currentUser: users[attempt.username],
-          token: token
-        });
+
+    models.users.findOne({
+      where: { username: attempt.username }
+    }).then(function (result) {
+      if (result === null) {
+        res.sendStatus(401)
       } else {
-        res.sendStatus(401);
+        if (attempt.password === result.dataValues.password) {
+          var token = jwt.encode(attempt.username, 'barHawksecret444');
+          res.json({
+            currentUser: attempt.username,
+            token: token
+          });
+        } else {
+          res.sendStatus(401);
+        }
       }
-    } else {
-      res.sendStatus(401);
-    }
+    });
   },
 
   //the below is used with the PostgreSQL db

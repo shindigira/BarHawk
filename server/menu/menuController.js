@@ -77,32 +77,35 @@ module.exports = {
   order: function (req, res) {
     //assigning drink order to variable
     var ord = req.body;
-    console.log(ord.drinktype);
-    if (!ord.drinktype) {
+    var ordUser = ord.username;
+    if (!ord.drinkType) {
       res.sendStatus(400);
     } else {
-      console.log("NEW ORDER", ord);
+      //console.log("-----(server.js /api/customer.order) ord: ", ord);
+      var currentUsername = ord.username.username;
       var DK;
-      models.orders.count({
-        where: ["username = ?", ord.username]
-      }).then(function (drinkcount) {
-        DK = drinkcount;
-        //
-        models.orders.create({
-          username: ord.username,
-          drinktype: ord.drinktype,
-          closeout: ord.closeout,
-          currentprice: ord.currentprice,
-          totalprice: 5,
-          drinkcount: DK
-        }).then(function (userorder) {
-          console.dir(userorder.get());
-          res.json(userorder);
+      var drinkPriceFromDB;
+      //finding price associated with drink name in drinks table of DB
+      models.drinks.findOne({ where: { name: ord.drinkType } }).then(function (drink) {
+        drinkPriceFromDB = drink.dataValues.price;
+      }).then(function () {
+        models.orders.count({
+          where: ["username = ?", currentUsername]
+        }).then(function (drinkcount) {
+          DK = drinkcount;
+          models.orders.create({
+            username: currentUsername,
+            drinktype: ord.drinkType,
+            closeout: ord.closeout,
+            currentprice: drinkPriceFromDB,
+            totalprice: 5,
+            drinkcount: DK
+          }).then(function (userorder) {
+            console.dir(userorder.get());
+            res.json(userorder);
+          });
         });
-        //
-      });
-      //console.log(result.rows);
-      //attributes: [[db.Sequelize.fn('COUNT', db.Sequelize.col('username'))]],
+      })
     }
   },
 
