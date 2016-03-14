@@ -20,6 +20,9 @@ module.exports = {
       password: {
         type: Sequelize.STRING
       },
+      age: {
+        type: Sequelize.INTEGER
+      },
       weight: {
         type: Sequelize.INTEGER
       },
@@ -30,7 +33,7 @@ module.exports = {
          type: Sequelize.STRING
       },
       phone: {
-        type: Sequelize.STRING
+        type: Sequelize.INTEGER
       },
       createdAt: {
         allowNull: false,
