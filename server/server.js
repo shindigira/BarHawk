@@ -5,10 +5,6 @@ var port = process.env.PORT || 3000;
 
 require('./config/middleware.js')(app, express);
 
-app.listen(port, function () {
-  console.log('Server now listening on port ' + port);
-});
-
 app.get('/api/users/signedin', function (req, res) {
   var token = req.headers['x-access-token'];
   if (!token) {
