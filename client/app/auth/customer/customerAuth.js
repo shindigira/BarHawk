@@ -41,9 +41,11 @@ angular.module('asyncdrink.customerAuth', [])
 
     customerFactory.signIn($scope.loginAttempt)
       .then(function (response) {
+
         //hide error message, if displayed
         $scope.invalidLogIn = false;
         //persist logged in user
+
         optionsFactory.currentUser = response.currentUser;
 
         $window.localStorage.setItem('com.barhawk', response.token);

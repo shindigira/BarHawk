@@ -1,6 +1,4 @@
 var express = require('express');
-var bodyParser = require('body-parser');
-var jwt = require('jwt-simple');
 var app = express();
 var port = process.env.PORT || 3000;
 var models = require('./models');
@@ -9,9 +7,12 @@ var db = require('./models/index.js');
 var accountSid = 'AC6d9b063b61c76d9588fb5d9df7bb845a';
 var authToken = 'fa527f9341b3fef301c01b4db35ae87e';
 var client = require('twilio')(accountSid, authToken);
-app.use(express.static(__dirname + '/../client'));
-app.use(bodyParser.urlencoded({ extended: true }));
-app.use(bodyParser.json());
+
+require('./config/middleware.js')(app, express);
+
+app.listen(port, function () {
+  console.log('Server now listening on port ' + port);
+});
 
 var storedBarLogin = {
   username: 'baradmin',
@@ -51,10 +52,6 @@ app.post('/api/barUsers/barQueue', function (req, res) {
   }
 });
 
-app.listen(port, function () {
-  console.log('Server now listening on port ' + port);
-});
-
 //userbase dummy data
 var users = {
   Michael: {
@@ -67,20 +64,6 @@ var users = {
   }
 };
 
-app.post('/api/users/signup', function (req, res) {
-  var data = req.body;
-  if (data.username in users) {
-    res.sendStatus(401);
-  } else {
-    users[data.username] = data;
-    var token = jwt.encode(users[data.username], 'barHawksecret444');
-    res.json({
-      currentUser: data,
-      token: token
-    });
-  }
-});
-
 app.get('/api/users/signedin', function (req, res) {
   var token = req.headers['x-access-token'];
   if (!token) {
@@ -92,24 +75,6 @@ app.get('/api/users/signedin', function (req, res) {
     } else {
       res.status(401).send;
     }
-  }
-})
-
-app.post('/api/users/login', function (req, res) {
-  //set username/password request to attempt variable
-  var attempt = req.body;
-  if (attempt.username in users) {
-    if (users[attempt.username].password === attempt.password) {
-      var token = jwt.encode(users[attempt.username], 'barHawksecret444');
-      res.json({
-        currentUser: users[attempt.username],
-        token: token
-      });
-    } else {
-      res.sendStatus(401);
-    }
-  } else {
-    res.sendStatus(401);
   }
 });
 
@@ -252,49 +217,6 @@ app.post('/api/customer/order', function (req, res) {
       });
     })
   }
-});
-
-app.post('/api/users/signup', function (req, res) {
-  //assigning drink order to variable
-  var ord = req.body;
-  console.log("hit route for signup successfully")
-  console.log('ord info', ord)
-
-
-  models.users.findOrCreate({
-    where: { username: ord.username },
-    defaults: {
-      firstname: ord.firstname,
-      lastname: ord.lastname,
-      password: ord.password,
-      age: ord.age,
-      weight: ord.weight,
-      gender: ord.gender,
-      photo: ord.photo,
-      phone: ord.phonenumber
-    }
-  }).spread(function (user, created) {
-    console.log("able to create new user " + ord.username + "?", created);
-    // //returns preexisting user
-    var userObj = user.get({
-      plain: false
-    });
-    if (created) {
-
-      users[ord.username] = ord;
-      var token = jwt.encode(users[ord.username], 'barHawksecret444');
-      res.json({
-        currentUser: ord,
-        token: token
-      });
-
-
-      //res.send(userObj);
-    } else {
-      res.sendStatus(401);
-    }
-  });
-
 });
 
 app.get('/api/customer/drink', function (req, res) {
