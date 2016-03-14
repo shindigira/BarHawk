@@ -49,5 +49,3 @@ UserOrder.sync({ force: true }).then(function () {
 });
 
 module.exports = UserOrder;
-
-

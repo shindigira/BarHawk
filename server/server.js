@@ -67,6 +67,7 @@ var users = {
   }
 };
 
+<<<<<<< HEAD
 // app.post('/api/users/signup', function (req, res) {
 //   var data = req.body;
 //   if (data.username in users) {
@@ -80,6 +81,21 @@ var users = {
 //     });
 //   }
 // });
+=======
+app.post('/api/users/signup', function (req, res) {
+  var data = req.body;
+  if (data.username in users) {
+    res.sendStatus(401);
+  } else {
+    users[data.username] = data;
+    var token = jwt.encode(users[data.username], 'barHawksecret444');
+    res.json({
+      currentUser: data,
+      token: token
+    });
+  }
+});
+>>>>>>> (refactor) Refactor submit order path to put ordered drink in DB
 
 app.get('/api/users/signedin', function (req, res) {
   var token = req.headers['x-access-token'];
@@ -114,34 +130,34 @@ app.post('/api/users/login', function (req, res) {
 });
 
 //barQueue dummy data
-var ordersArray = [{
-  username: 'zeebow',
-  drinkType: 'beer',
-  time: 'Tue Mar 08 2016 16:24:37 GMT-0800 (PST)',
-  closeout: false,
-  currentPrice: 5,
-  totalPrice: 60,
-  drinkCount: 1,
-  showInQueue: true
-}, {
-  username: "Nadine",
-  drinkType: "beer",
-  time: 'Tue Mar 08 2016 17:24:37 GMT-0800 (PST)',
-  closeout: false,
-  currentPrice: 5,
-  totalPrice: 100,
-  drinkCount: 4,
-  showInQueue: true
-}, {
-  username: "Collin",
-  drinkType: "wine",
-  time: 'Tue Mar 08 2016 18:24:37 GMT-0800 (PST)',
-  closeout: false,
-  currentPrice: 5,
-  totalPrice: 15,
-  drinkCount: 8,
-  showInQueue: true
-}];
+// var ordersArray = [{
+//   username: 'zeebow',
+//   drinkType: 'beer',
+//   time: 'Tue Mar 08 2016 16:24:37 GMT-0800 (PST)',
+//   closeout: false,
+//   currentPrice: 5,
+//   totalPrice: 60,
+//   drinkCount: 1,
+//   showInQueue: true
+// }, {
+//   username: "Nadine",
+//   drinkType: "beer",
+//   time: 'Tue Mar 08 2016 17:24:37 GMT-0800 (PST)',
+//   closeout: false,
+//   currentPrice: 5,
+//   totalPrice: 100,
+//   drinkCount: 4,
+//   showInQueue: true
+// }, {
+//   username: "Collin",
+//   drinkType: "wine",
+//   time: 'Tue Mar 08 2016 18:24:37 GMT-0800 (PST)',
+//   closeout: false,
+//   currentPrice: 5,
+//   totalPrice: 15,
+//   drinkCount: 8,
+//   showInQueue: true
+// }];
 
 // app.post('/api/customer/order', function (req, res) {
 //   //assigning drink order to varible
@@ -222,20 +238,20 @@ app.post('/api/customer/order/close', function (req, res) {
 app.post('/api/customer/order', function (req, res) {
   //assigning drink order to variable
   var ord = req.body;
-  console.log(ord.drinktype);
-  if (!ord.drinktype) {
+  var ordUser = ord.username;
+  if (!ord.drinkType) {
     res.sendStatus(400);
   } else {
-    console.log("NEW ORDER", ord);
+    console.log("-----(server.js /api/customer.order) ord: ", ord);
+    var currentUsername = ord.username.username;
     var DK;
     models.orders.count({
-      where: ["username = ?", ord.username]
+      where: ["username = ?", currentUsername]
     }).then(function (drinkcount) {
       DK = drinkcount;
-      //
       models.orders.create({
-        username: ord.username,
-        drinktype: ord.drinktype,
+        username: currentUsername,
+        drinktype: ord.drinkType,
         closeout: ord.closeout,
         currentprice: ord.currentprice,
         totalprice: 5,

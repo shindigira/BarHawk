@@ -1,49 +1,48 @@
 'use strict';
 module.exports = {
-  up: function(queryInterface, Sequelize) {
+  up: function (queryInterface, Sequelize) {
     return queryInterface.createTable('orders', {
-      id: {
-        allowNull: false,
-        autoIncrement: true,
-        primaryKey: true,
-        type: Sequelize.INTEGER
-      },
-      username: {
-        type: Sequelize.STRING
-      },
-      drinktype: {
-        type: Sequelize.STRING
-      },
-      closeout: {
-        type: Sequelize.BOOLEAN
-      },
-      currentprice: {
-        type: Sequelize.DECIMAL
-      },
-      totalprice: {
-        type: Sequelize.DECIMAL
-      },
-      drinkcount: {
-        type: Sequelize.INTEGER
-      },
-      completed: {
-        type: Sequelize.BOOLEAN
-      },
-      notes: {
-        type: Sequelize.STRING
-      },
-      createdAt: {
-        allowNull: false,
-        type: Sequelize.DATE
-      },
-      updatedAt: {
-        allowNull: false,
-        type: Sequelize.DATE
-      }
-    })
-    .then(function() {
-          queryInterface.bulkInsert('drinks', [
-          {
+        id: {
+          allowNull: false,
+          autoIncrement: true,
+          primaryKey: true,
+          type: Sequelize.INTEGER
+        },
+        username: {
+          type: Sequelize.STRING
+        },
+        drinktype: {
+          type: Sequelize.STRING
+        },
+        closeout: {
+          type: Sequelize.BOOLEAN
+        },
+        currentprice: {
+          type: Sequelize.DECIMAL
+        },
+        totalprice: {
+          type: Sequelize.DECIMAL
+        },
+        drinkcount: {
+          type: Sequelize.INTEGER
+        },
+        completed: {
+          type: Sequelize.BOOLEAN
+        },
+        notes: {
+          type: Sequelize.STRING
+        },
+        createdAt: {
+          allowNull: false,
+          type: Sequelize.DATE
+        },
+        updatedAt: {
+          allowNull: false,
+          type: Sequelize.DATE
+        }
+      })
+      .then(function () {
+        queryInterface.bulkInsert('drinks', [{
           name: 'AnchorSteam',
           type: 'beer',
           price: 5,
@@ -54,8 +53,7 @@ module.exports = {
           volume: 12,
           createdAt: new Date(),
           updatedAt: new Date()
-        },
-        {
+        }, {
           name: 'Heineken',
           type: 'beer',
           price: 7,
@@ -66,8 +64,7 @@ module.exports = {
           volume: 12,
           createdAt: new Date(),
           updatedAt: new Date()
-        },
-        {
+        }, {
           name: 'SamAdams',
           type: 'beer',
           price: 7,
@@ -78,8 +75,7 @@ module.exports = {
           volume: 12,
           createdAt: new Date(),
           updatedAt: new Date()
-        },
-        {
+        }, {
           name: 'CoronaExtra',
           type: 'beer',
           price: 7,
@@ -90,8 +86,7 @@ module.exports = {
           volume: 12,
           createdAt: new Date(),
           updatedAt: new Date()
-        },
-        {
+        }, {
           name: 'CoronaLight',
           type: 'beer',
           price: 7,
@@ -102,8 +97,7 @@ module.exports = {
           volume: 12,
           createdAt: new Date(),
           updatedAt: new Date()
-        },
-                {
+        }, {
           name: 'MillerLight',
           type: 'beer',
           price: 7,
@@ -114,8 +108,7 @@ module.exports = {
           volume: 12,
           createdAt: new Date(),
           updatedAt: new Date()
-        },
-                {
+        }, {
           name: 'Budweiser',
           type: 'beer',
           price: 4,
@@ -126,8 +119,7 @@ module.exports = {
           volume: 12,
           createdAt: new Date(),
           updatedAt: new Date()
-        },
-                {
+        }, {
           name: 'BudLight',
           type: 'beer',
           price: 4,
@@ -138,8 +130,7 @@ module.exports = {
           volume: 12,
           createdAt: new Date(),
           updatedAt: new Date()
-        },
-                {
+        }, {
           name: 'Guiness',
           type: 'beer',
           price: 8,
@@ -150,8 +141,7 @@ module.exports = {
           volume: 16,
           createdAt: new Date(),
           updatedAt: new Date()
-        },
-                {
+        }, {
           name: 'Merlot',
           type: 'wine',
           price: 10,
@@ -162,8 +152,7 @@ module.exports = {
           volume: 5,
           createdAt: new Date(),
           updatedAt: new Date()
-        },
-                {
+        }, {
           name: 'Chardonnay',
           type: 'wine',
           price: 9,
@@ -174,8 +163,7 @@ module.exports = {
           volume: 5,
           createdAt: new Date(),
           updatedAt: new Date()
-        },
-                {
+        }, {
           name: 'Champagne',
           type: 'wine',
           price: 8,
@@ -186,8 +174,7 @@ module.exports = {
           volume: 5,
           createdAt: new Date(),
           updatedAt: new Date()
-        },
-                {
+        }, {
           name: 'LongIslandIcedTea',
           type: 'mixeddrink',
           price: 10,
@@ -198,8 +185,7 @@ module.exports = {
           volume: 8,
           createdAt: new Date(),
           updatedAt: new Date()
-        },
-                {
+        }, {
           name: 'GinTonic',
           type: 'mixeddrink',
           price: 10,
@@ -210,8 +196,7 @@ module.exports = {
           volume: 8,
           createdAt: new Date(),
           updatedAt: new Date()
-        },
-                {
+        }, {
           name: 'Mojito',
           type: 'mixeddrink',
           price: 14,
@@ -222,8 +207,7 @@ module.exports = {
           volume: 12,
           createdAt: new Date(),
           updatedAt: new Date()
-        },
-                {
+        }, {
           name: 'RedBullVodka',
           type: 'mixeddrink',
           price: 12,
@@ -234,8 +218,7 @@ module.exports = {
           volume: 12,
           createdAt: new Date(),
           updatedAt: new Date()
-        },
-                {
+        }, {
           name: 'Cosmo',
           type: 'mixeddrink',
           price: 11,
@@ -246,8 +229,7 @@ module.exports = {
           volume: 5,
           createdAt: new Date(),
           updatedAt: new Date()
-        },
-                {
+        }, {
           name: 'Whiskey',
           type: 'liquor',
           price: 7,
@@ -258,8 +240,7 @@ module.exports = {
           volume: 1.5,
           createdAt: new Date(),
           updatedAt: new Date()
-        },
-                {
+        }, {
           name: 'VodkaSoda',
           type: 'liquor',
           price: 7,
@@ -270,8 +251,7 @@ module.exports = {
           volume: 5,
           createdAt: new Date(),
           updatedAt: new Date()
-        },
-                {
+        }, {
           name: 'WhiteRussian',
           type: 'mixeddrink',
           price: 15,
@@ -282,11 +262,10 @@ module.exports = {
           volume: 8,
           createdAt: new Date(),
           updatedAt: new Date()
-        }
-        ])
+        }])
       });
   },
-  down: function(queryInterface, Sequelize) {
+  down: function (queryInterface, Sequelize) {
     return queryInterface.dropTable('orders');
   }
 };
