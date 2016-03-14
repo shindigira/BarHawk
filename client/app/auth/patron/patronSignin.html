@@ -1,16 +1,3 @@
-<<<<<<< HEAD:client/app/auth/customer/customerSignin.html
-<h5>Are you a bartender? <a ui-sref="barSignin">Click here</a> to login as a bartender</h5>
-<br></br>
-<h1>Customer Login</h1>
-<form name="signinForm">
-  <input type="text" ng-model="loginAttempt.username" ng-change="clear()" placeholder="username">
-  <input type="password" ng-model="loginAttempt.password" ng-change="clear()" placeholder="password">
-  <input type="submit" value="Order a drink!" ng-click='validateSignIn()'>
-</form>
-<p ng-show="invalidLogIn">Invalid username/password combination</p>
-<p>New here?
-  <a ui-sref='customerSignup'>Click here</a> to sign up</p>
-=======
 <h3>Welcome to the bar!</h3>
 
 <form name="signinForm" novalidate ng-submit='logIn(signinForm.$valid)'>
@@ -49,4 +36,3 @@
 
 <p>New here? <a ui-sref='customerSignup'>Click here</a> to sign up</p>
 
->>>>>>> (refactor) Implement new form validation  with new error messges:client/app/auth/patron/patronSignin.html

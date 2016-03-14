@@ -17,53 +17,67 @@ angular.module('asyncdrink.customerAuth', [])
 
   $scope.invalidLogIn = false;
 
-  $scope.clear = function () {
+
+
+  $scope.clear = function() {
     $scope.invalidLogIn = false;
   };
 
-  $scope.validateSignIn = function () {
-    if (!$scope.loginAttempt.username) {
-      alert('you forgot to enter your username');
-      return;
-    }
-    if (!$scope.loginAttempt.password) {
-      alert('you forgot to enter your password');
-      return;
-    }
-    console.log('validateSignIn passed both if statements');
-    $scope.logIn();
+  // $scope.validateSignIn = function(){
+  //   if(!$scope.loginAttempt.username){
+  //     alert('you forgot to enter your username');
+  //     return;
+  //   }
+  //   if(!$scope.loginAttempt.password){
+  //     alert('you forgot to enter your password');
+  //     return;
+  //   }
+  //   console.log('validateSignIn passed both if statements');
+  //   $scope.logIn();
 
-  }
+  // }
 
-  $scope.validateSignUp = function () {
-    console.log($scope.newUser);
 
-    if (!$scope.newUser.username) {
-      alert('you forgot to setup your username');
-      return;
+   $scope.submitForm = function(isValid) {
+
+    // check to make sure the form is completely valid
+    if (isValid) {
+      alert('our form is amazing');
     }
-    if (!$scope.newUser.password) {
-      alert('you forgot to setup your password');
-      return;
-    }
-    if (!$scope.newUser.age) {
-      alert('you forgot to enter your age');
-      return;
-    }
-    if (!$scope.newUser.weight) {
-      alert('you forgot to enter your weight');
-      return;
-    }
-    if (!$scope.newUser.gender) {
-      alert('you forgot to select your gender');
-      return;
-    }
-    console.log('else happen')
-    $scope.signUp();
+
 
   };
 
-  $scope.signUp = function () {
+
+  // $scope.validateSignUp = function() {
+  //   console.log($scope.newUser);
+
+  //   if (!$scope.newUser.username) {
+  //     alert('you forgot to setup your username');
+  //     return;
+  //   }
+  //   if (!$scope.newUser.password) {
+  //     alert('you forgot to setup your password');
+  //     return;
+  //   }
+  //   if (!$scope.newUser.age) {
+  //     alert('you forgot to enter your age');
+  //     return;
+  //   }
+  //   if (!$scope.newUser.weight) {
+  //     alert('you forgot to enter your weight');
+  //     return;
+  //   }
+  //   if (!$scope.newUser.gender) {
+  //     alert('you forgot to select your gender');
+  //     return;
+  //   }
+  //   console.log('else happen')
+  //   $scope.signUp();
+
+  // };
+
+  $scope.signUp = function() {
 
     customerFactory.signUp($scope.newUser)
       .then(function (response) {
@@ -83,7 +97,7 @@ angular.module('asyncdrink.customerAuth', [])
       });
   };
 
-  $scope.logIn = function () {
+  $scope.logIn = function() {
 
     customerFactory.signIn($scope.loginAttempt)
       .then(function (response) {

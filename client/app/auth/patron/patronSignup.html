@@ -1,0 +1,68 @@
+<h3>Sign Up!</h3>
+
+<form name="userForm" novalidate ng-submit='signUp(userForm.$valid)'>
+
+  <div class='form-group' ng-class="{ 'has-error' : userForm.username.$invalid && !userForm.username.$pristine &&  userForm.username.$touched}">
+    <label> Username </label>
+    <input name='username' type="text" class="form-control" ng-model="newUser.username" ng-minlength="4" ng-maxlength="16" ng-class="{'error': userForm.$invalid && userForm.$dirty}" required/>
+
+   <!--  <p ng-show="userForm.name.$invalid && !userForm.name.$pristine" class="help-block">You name is required.</p> -->
+
+  <p ng-show="userForm.username.$error.minlength" class="help-block">Username is too short.</p>
+  <p ng-show="userForm.username.$error.maxlength" class="help-block">Username is too long.</p>
+  </div>
+
+
+  <div class='form-group' ng-class="{ 'has-error' : userForm.password.$invalid && !userForm.password.$pristine && userForm.password.$touched}">
+    <label>Password</label>
+    <input name='password' type="password" class="form-control" ng-model="newUser.password" ng-minlength="3" ng-maxlength="8"  ng-class="{'error': userForm.$invalid && userForm.$dirty}" required/>
+
+     <p ng-show="userForm.password.$error.minlength" class="help-block">Password is too short.</p>
+  </div>
+
+
+
+
+
+  <div class='form-group' ng-class="{ 'has-error' : userForm.age.$invalid && !userForm.age.$pristine && userForm.age.$touched}">
+    <label>Age</label>
+    <input name='age' type="number" class="form-control" ng-model="newUser.age"  ng-minlength="2" ng-class="{'error': userForm.$invalid && userForm.$dirty}" required/>
+
+  <p ng-show="userForm.age < 21" class="help-block" ng-pattern="^(?:(?:\d{1,2}|1[0-8]\d)(?:\.\d+)?|120(?:\.0+)?)$">You're too young to use this application.</p>
+  </div>
+
+
+  <div class='form-group' ng-class="{ 'has-error' : userForm.weight.$invalid && !userForm.weight.$pristine && userForm.weight.$touched }">
+    <label>Weight</label>
+    <input name='weight' type="number" class="form-control" ng-model="newUser.weight" ng-class="{'error': userForm.$invalid && userForm.$dirty}" required/>
+
+     <p ng-show="userForm.weight.$invalid && !userForm.weight.$pristine" class="help-block">You weight is required.</p>
+  </div>
+
+
+  <div class='form-group'  class = 'form-control' ng-class="{ 'has-error' : userForm.gender.$invalid && !userForm.gender.$pristine && userForm.gender.$touched}">
+
+    <label >
+    <input name="gender"  type="radio"  ng-model="newUser.gender" value="male" > Male
+
+  </label>
+
+
+  <div >
+    <label >
+    <input name="gender"  type="radio" ng-model="newUser.gender" value="female"> Female
+
+    </label>
+
+  </div>
+<p ng-show="userForm.gender.$invalid && !userForm.gender.$pristine" class="help-block">You gender is required.</p>
+
+  </div>
+</div>
+
+  <div class='form-group' >
+    <button type="submit" class="btn btn-primary" ng-disabled="userForm.$invalid">Submit</button>
+  </div>
+
+</form>
+
