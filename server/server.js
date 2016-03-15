@@ -1,7 +1,7 @@
 var express = require('express');
 var app = express();
 var port = process.env.PORT || 3000;
-// var db = require('./models/index.js');
+var db = require('./models/index.js');
 
 require('./config/middleware.js')(app, express);
 
@@ -24,9 +24,10 @@ app.get('/api/users/signedin', function (req, res) {
 });
 
 app.get('/api/customer/drink', function (req, res) {
-  //assigning drink order to varible
-  models.drinks.findAll()
+  //get all drinks from drinks table
+  db.sequelize.query('Select name, type, price, volume from drinks;')
     .then(function (drinks) {
-      res.json(drinks);
-    });
+      //return
+      res.send(drinks[0]);
+    })
 });

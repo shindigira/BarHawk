@@ -1,72 +1,5 @@
 var models = require('../models');
-
-//dummy users table
-var users = {
-  Michael: {
-    username: 'Michael',
-    password: "password",
-    age: 25,
-    weight: 160,
-    gender: "Male",
-    drinkCount: 0,
-    totalPrice: 0
-  }
-};
-
-//dummy drinks table
-var drinkPrices = {
-  AnchorSteam: 5,
-  Heineken: 7,
-  SamAdams: 7,
-  CoronaExtra: 7,
-  CoronaLight: 7,
-  MillerLight: 7,
-  Budweiser: 4,
-  BudLight: 4,
-  Guiness: 8,
-  Merlot: 10,
-  Chardonnay: 9,
-  Champagne: 8,
-  LongIslandIcedTea: 10,
-  GinTonic: 10,
-  Mojito: 14,
-  RedBullVodka: 12,
-  Cosmo: 11,
-  Whiskey: 9,
-  VodkaSoda: 13,
-  WhiteRussian: 15
-};
-
-//dummy orders table
-var ordersArray = [{
-  username: 'zeebow',
-  drinkType: 'beer',
-  time: 'Tue Mar 08 2016 16:24:37 GMT-0800 (PST)',
-  closeout: false,
-  currentPrice: 5,
-  totalPrice: 60,
-  drinkCount: 1,
-  showInQueue: true
-}, {
-  username: "Nadine",
-  drinkType: "beer",
-  time: 'Tue Mar 08 2016 17:24:37 GMT-0800 (PST)',
-  closeout: false,
-  currentPrice: 5,
-  totalPrice: 100,
-  drinkCount: 4,
-  showInQueue: true
-}, {
-  username: "Collin",
-  drinkType: "wine",
-  time: 'Tue Mar 08 2016 18:24:37 GMT-0800 (PST)',
-  closeout: false,
-  currentPrice: 5,
-  totalPrice: 15,
-  drinkCount: 8,
-  showInQueue: true
-}];
-
+var db = require('../models/index.js');
 
 module.exports = {
 
@@ -77,32 +10,38 @@ module.exports = {
   order: function (req, res) {
     //assigning drink order to variable
     var ord = req.body;
-    console.log(ord.drinktype);
-    if (!ord.drinktype) {
+    if (!ord.drinkType) {
       res.sendStatus(400);
     } else {
-      console.log("NEW ORDER", ord);
       var DK;
-      models.orders.count({
-        where: ["username = ?", ord.username]
-      }).then(function (drinkcount) {
-        DK = drinkcount;
-        //
-        models.orders.create({
-          username: ord.username,
-          drinktype: ord.drinktype,
-          closeout: ord.closeout,
-          currentprice: ord.currentprice,
-          totalprice: 5,
-          drinkcount: DK
-        }).then(function (userorder) {
-          console.dir(userorder.get());
-          res.json(userorder);
+      var drinkPrice;
+      var currentTab;
+      //finding price associated with drink name in drinks table of DB
+      models.drinks.findOne({ where: { name: ord.drinkType } }).then(function (drink) {
+        drinkPrice = drink.dataValues.price;
+      }).then(function () {
+        models.orders.findAll({
+          where: ["username = ?", ord.username],
+          attributes: [
+            [db.sequelize.fn('COUNT', db.sequelize.col('username')), 'drinkCount'],
+            [db.sequelize.fn('SUM', db.sequelize.col('currentprice')), 'userTab']
+          ]
+        }).then(function (results) {
+          var userData = results[0].dataValues;
+
+          models.orders.create({
+            username: ord.username,
+            drinktype: ord.drinkType,
+            closeout: ord.closeout,
+            currentprice: drinkPrice,
+            totalprice: userData.userTab,
+            drinkcount: userData.drinkCount
+          }).then(function (userorder) {
+            console.dir("SOMETHING THIS DOES", userorder.get());
+            res.json(userorder);
+          });
         });
-        //
-      });
-      //console.log(result.rows);
-      //attributes: [[db.Sequelize.fn('COUNT', db.Sequelize.col('username'))]],
+      })
     }
   },
 
