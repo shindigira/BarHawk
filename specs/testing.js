@@ -1,15 +1,6 @@
-describe("this testing suite", function () {
-  it("should show that true is true", function () {
-    expect(true).toEqual(true);
-  })
-  it("should show that false is not true", function () {
-    expect(false).not.toBe(true);
-  })
-});
-
-
 describe('customerController', function () {
   var $scope;
+  var $rootScope;
   var $state;
   var $window;
   var customerFactory;
@@ -17,15 +8,15 @@ describe('customerController', function () {
   //line below is throwing error
   beforeEach(module('asyncdrink'));
 
-
   beforeEach(inject(function ($injector) {
-    //mock out dependencies
+    // mock out dependencies
+    $rootScope = $injector.get('$rootScope');
     $state = $injector.get('$state');
     $window = $injector.get('$window');
     customerFactory = $injector.get('customerFactory');
     optionsFactory = $injector.get('optionsFactory');
-    $scope = $rootScope.$new();
     var $controller = $injector.get('$controller');
+    $scope = $rootScope.$new();
 
     createController = function () {
       return $controller('customerController', {
@@ -40,15 +31,27 @@ describe('customerController', function () {
   }));
 
   it('should have a newUser property on the $scope', function () {
-    expect($scope.newUser).to.be.an('object');
+    expect($scope.newUser).toEqual(jasmine.any(Object));
   });
 
   it('should have a loginAttempt property on the $scope', function () {
-    expect($scope.loginAttempt).to.be.an('object');
+    expect($scope.loginAttempt).toEqual(jasmine.any(Object));
   });
 
   it('should have an invalidLogin property set to false', function () {
-    expect($scope.invalidLogin).to.be(false);
+    expect($scope.invalidLogIn).toEqual(false);
   });
+
+  it('should have a clear function', function () {
+    expect($scope.clear).toEqual(jasmine.any(Function));
+  })
+
+  it('should have a signUp function', function () {
+    expect($scope.signUp).toEqual(jasmine.any(Function));
+  })
+
+  it('should have a logIn function', function () {
+    expect($scope.logIn).toEqual(jasmine.any(Function));
+  })
 
 })

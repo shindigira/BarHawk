@@ -1,43 +1,38 @@
 // Karma configuration
-// Generated on Mon Mar 07 2016 17:07:58 GMT-0800 (PST)
+// Generated on Tue Mar 15 2016 15:26:03 GMT-0700 (PDT)
 
 module.exports = function (config) {
-  var configuration = {
+  config.set({
 
     // base path that will be used to resolve all patterns (eg. files, exclude)
     basePath: '',
 
+
     // frameworks to use
     // available frameworks: https://npmjs.org/browse/keyword/karma-adapter
-    frameworks: ['jasmine', 'browserify'],
+    frameworks: ['jasmine'],
+
 
     // list of files / patterns to load in the browser
     files: [
-      //2. Cannot set property 'mock' of undefined
-      'node_modules/angular/*.js',
-      //1. ReferenceError: module is not defined
+      'client/library/angular.js',
+      'client/library/angular-ui-router.js',
       'node_modules/angular-mocks/angular-mocks.js',
-      'specs/*.js'
-      // 3. Uncaught ReferenceError: require is not defined
-      //STUCK HERE 
-      //'node_modules/browserify/test/*.js'
 
-      // 'node_modules/requirejs/require.js'
+      'client/app/**/*.js',
+
+      'specs/**/*.js'
     ],
+
 
     // list of files to exclude
     exclude: [],
 
+
     // preprocess matching files before serving them to the browser
     // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
-    // preprocessors: {
-    //     'specs/*.js': ['browserify']
-    // },
+    preprocessors: {},
 
-    // browserify: {
-    //   debug: true,
-    //   transform: [ 'brfs' ]
-    // },
 
     // test results reporter to use
     // possible values: 'dots', 'progress'
@@ -59,28 +54,20 @@ module.exports = function (config) {
 
 
     // enable / disable watching file and executing tests whenever any file changes
-    autoWatch: true,
+    autoWatch: false,
 
 
     // start these browsers
     // available browser launchers: https://npmjs.org/browse/keyword/karma-launcher
     browsers: ['Chrome'],
 
-    customLaunchers: {
-      Chrome_travis_ci: {
-        base: 'Chrome',
-        flags: ['--no-sandbox']
-      }
-    },
+
     // Continuous Integration mode
     // if true, Karma captures browsers, runs the tests and exits
-    singleRun: false,
+    singleRun: true,
 
-  };
-
-  if (process.env.TRAVIS) {
-    configuration.browsers = ['Chrome_travis_ci'];
-  }
-
-  config.set(configuration);
-};
+    // Concurrency level
+    // how many browser should be started simultaneous
+    concurrency: Infinity
+  })
+}
