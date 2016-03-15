@@ -4,6 +4,7 @@ angular.module('asyncdrink.options', [])
   //set current user
   $scope.currentUser = optionsFactory.currentUser;
   //prepare order object before submit to server
+  $scope.drinks = {};
   $scope.order = {};
   $scope.order.username = optionsFactory.currentUser;
   $scope.order.currentPrice = 5;
@@ -14,11 +15,17 @@ angular.module('asyncdrink.options', [])
   $scope.tabFail = false;
   $scope.tabSuccess = false;
   $scope.tabSuccessIncludingOrder = false;
+  $scope.drinksList;
 
-
-  $scope.clear = function () {
-    $scope.orderSuccess = false;
+  //get all drinks from db
+  $scope.getDrinks = function() {
+    optionsFactory.getDrinksList()
+    .then(function(drinks) {
+      $scope.drinks.list = drinks;
+    });
   };
+
+  $scope.getDrinks();
 
   //Order only process
   $scope.orderOnly = function () {
@@ -36,7 +43,6 @@ angular.module('asyncdrink.options', [])
         $scope.orderFail = true;
       });
   };
-
   //log out
   $scope.logOut = function () {
     optionsFactory.currentUser = undefined;
@@ -97,8 +103,10 @@ angular.module('asyncdrink.options', [])
     return $http({
       method: "GET",
       url: '/api/customer/drink'
-    })
-  }
+    }).then(function (response) {
+      return response.data;
+    });
+  };
 
   var orderOnly = function (order) {
     return $http({
@@ -129,6 +137,7 @@ angular.module('asyncdrink.options', [])
     currentUser: currentUser,
     orderOnly: orderOnly,
     closeTabOnly: closeTabOnly,
-    orderAndCloseTab: orderAndCloseTab
+    orderAndCloseTab: orderAndCloseTab,
+    getDrinksList: getDrinksList
   };
 });
