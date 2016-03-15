@@ -57,7 +57,7 @@ angular.module('asyncdrink.barQueue', [])
   var getAll = function() {
     return $http({
         method: 'POST',
-        url: '/api/barUsers/barQueue',
+        url: '/api/barqueue/showPendingOrders',
         data: optionsFactory.currentUser
       })
       .then(function(resp) {
@@ -68,7 +68,7 @@ angular.module('asyncdrink.barQueue', [])
   var sendTextMessage = function(textMessInfo) {
     return $http({
       method: 'POST',
-      url: '/api/barUsers/orderCompleteText',
+      url: '/api/barqueue/orderCompleteTextMessage',
       data: textMessInfo
     })
   };
@@ -77,7 +77,7 @@ angular.module('asyncdrink.barQueue', [])
     //sending post request with the specific drink order object whose button was clicked to be removed
     return $http({
         method: 'POST',
-        url: '/api/barUsers/barQueue/dequeue',
+        url: '/api/barqueue/completeOrder',
         data: completedOrder
       })
       .then(function(resp) {

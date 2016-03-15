@@ -19,7 +19,7 @@ angular.module('asyncdrink.barAuth', [])
     var signin = function(barUser) {
       return $http({
           method: 'POST',
-          url: '/api/barUsers/barSignin',
+          url: '/api/bartenders/signin',
           data: barUser
         })
         .then(function(resp) {

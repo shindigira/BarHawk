@@ -1,5 +1,6 @@
 var jwt = require('jwt-simple');
 
+//dummy users table
 var users = {
   Michael: {
     username: 'Michael',

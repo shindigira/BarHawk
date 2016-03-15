@@ -63,7 +63,7 @@ angular.module('asyncdrink.customerAuth', [])
   var signIn = function (loginAttempt) {
     return $http({
         method: "POST",
-        url: '/api/users/login',
+        url: '/api/customers/login',
         data: loginAttempt
       })
       .then(function (resp) {
@@ -75,7 +75,7 @@ angular.module('asyncdrink.customerAuth', [])
     console.log('we are inside signUP HTTP');
     return $http({
         method: "POST",
-        url: '/api/users/signup',
+        url: '/api/customers/signup',
         data: userInfo
       })
       .then(function (resp) {

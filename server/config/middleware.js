@@ -1,17 +1,22 @@
 var bodyParser = require('body-parser');
 
 module.exports = function(app, express){
-  var userRouter = express.Router();
-  var barUserRouter = express.Router();
+  var customerRouter = express.Router();
+  var bartenderRouter = express.Router();
+  var menuRouter = express.Router();
+  var barqueueRouter = express.Router();
 
   app.use(bodyParser.urlencoded({ extended: true }));
   app.use(bodyParser.json());
   app.use(express.static(__dirname + '/../../client'));
 
-  app.use('/api/users', userRouter);
-  app.use('/api/barUsers', barUserRouter);
+  app.use('/api/customers', customerRouter);
+  app.use('/api/bartenders', bartenderRouter);
+  app.use('/api/menu', menuRouter);
+  app.use('/api/barqueue', barqueueRouter);
 
-  require('../users/userRoutes.js')(userRouter);
-  require('../barUsers/barUserRoutes')(barUserRouter);
-
+  require('../customers/customerRoutes.js')(customerRouter);
+  require('../bartenders/bartenderRoutes.js')(bartenderRouter);
+  require('../menu/menuRoutes.js')(menuRouter);
+  require('../barqueue/barqueueRoutes.js')(barqueueRouter);
 };
