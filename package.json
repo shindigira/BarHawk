@@ -29,6 +29,7 @@
     "sequelize": "^3.19.3"
   },
   "devDependencies": {
+    "browserify": "^13.0.0",
     "gulp": "^3.9.1",
     "gulp-clean-css": "^2.0.3",
     "gulp-concat": "^2.6.0",
@@ -42,9 +43,11 @@
     "jasmine-core": "^2.4.1",
     "jshint": "^2.9.1",
     "karma": "^0.13.21",
+    "karma-browserify": "^5.0.2",
     "karma-chrome-launcher": "^0.2.2",
     "karma-jasmine": "^0.3.7",
     "karma-requirejs": "^0.2.5",
-    "requirejs": "^2.1.22"
+    "requirejs": "^2.1.22",
+    "watchify": "^3.7.0"
   }
 }

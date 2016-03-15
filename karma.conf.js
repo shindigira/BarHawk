@@ -1,37 +1,43 @@
 // Karma configuration
 // Generated on Mon Mar 07 2016 17:07:58 GMT-0800 (PST)
 
-module.exports = function(config) {
+module.exports = function (config) {
   var configuration = {
 
     // base path that will be used to resolve all patterns (eg. files, exclude)
     basePath: '',
 
-
     // frameworks to use
     // available frameworks: https://npmjs.org/browse/keyword/karma-adapter
-    frameworks: ['jasmine'],
-
+    frameworks: ['jasmine', 'browserify'],
 
     // list of files / patterns to load in the browser
     files: [
-      'client/app/library/angular.js',
-      '/node_modules/angular-mocks/angular-mocks.js',
-      'specs/*.js',
-      '*.js',
-      '/node_modules/broserify/*.js',
-      '/node_modules/requirejs/*.js'
-    ],
-    // list of files to exclude
-    exclude: [
+      //2. Cannot set property 'mock' of undefined
+      'node_modules/angular/*.js',
+      //1. ReferenceError: module is not defined
+      'node_modules/angular-mocks/angular-mocks.js',
+      'specs/*.js'
+      // 3. Uncaught ReferenceError: require is not defined
+      //STUCK HERE 
+      //'node_modules/browserify/test/*.js'
+
+      // 'node_modules/requirejs/require.js'
     ],
 
+    // list of files to exclude
+    exclude: [],
 
     // preprocess matching files before serving them to the browser
     // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
-    preprocessors: {
-    },
+    // preprocessors: {
+    //     'specs/*.js': ['browserify']
+    // },
 
+    // browserify: {
+    //   debug: true,
+    //   transform: [ 'brfs' ]
+    // },
 
     // test results reporter to use
     // possible values: 'dots', 'progress'
@@ -72,7 +78,7 @@ module.exports = function(config) {
 
   };
 
-  if(process.env.TRAVIS){
+  if (process.env.TRAVIS) {
     configuration.browsers = ['Chrome_travis_ci'];
   }
 

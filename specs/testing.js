@@ -7,16 +7,17 @@ describe("this testing suite", function () {
   })
 });
 
+
 describe('customerController', function () {
   var $scope;
-  var $state; 
-  var $window; 
+  var $state;
+  var $window;
   var customerFactory;
   var optionsFactory;
-
+  //line below is throwing error
   beforeEach(module('asyncdrink'));
 
-  
+
   beforeEach(inject(function ($injector) {
     //mock out dependencies
     $state = $injector.get('$state');
