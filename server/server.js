@@ -264,7 +264,7 @@ app.post('/api/users/signup', function (req, res) {
   models.users.findOrCreate({
     where: { username: ord.username },
     defaults: {
-      firstname:ord.firstname,
+      firstname: ord.firstname,
       lastname: ord.lastname,
       password: ord.password,
       age: ord.age,
@@ -282,11 +282,11 @@ app.post('/api/users/signup', function (req, res) {
     if (created) {
 
       users[ord.username] = ord;
-    var token = jwt.encode(users[ord.username], 'barHawksecret444');
-    res.json({
-      currentUser: ord,
-      token: token
-    });
+      var token = jwt.encode(users[ord.username], 'barHawksecret444');
+      res.json({
+        currentUser: ord,
+        token: token
+      });
 
 
       //res.send(userObj);

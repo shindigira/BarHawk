@@ -1,7 +1,7 @@
 <h3>Sign Up!</h3>
 <form name="userForm" novalidate ng-submit='signUp(userForm.$valid)'>
 
-  <div class='form-group' ng-class="{ 'has-error' : userForm.firstname.$invalid && !userForm.firstname.$pristine &&  userForm.firstname.$touched}">
+  <div class='form-group'ng-class="{ 'has-error' : userForm.firstname.$invalid && !userForm.firstname.$pristine &&  userForm.firstname.$touched}">
     <label> First Name </label>
     <input name='firstname' type="text" class="form-control" ng-model="newUser.firstname"  ng-class="{'error': userForm.$invalid && userForm.$dirty}" required/>
     <!--  <p ng-show="userForm.name.$invalid && !userForm.name.$pristine" class="help-block">You name is required.</p> -->
