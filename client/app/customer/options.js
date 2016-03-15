@@ -96,7 +96,7 @@ angular.module('asyncdrink.options', [])
   var orderOnly = function (order) {
     return $http({
       method: "POST",
-      url: '/api/customer/order',
+      url: '/api/menu/order',
       data: order
     });
   };
@@ -104,7 +104,7 @@ angular.module('asyncdrink.options', [])
   var closeTabOnly = function (order) {
     return $http({
       method: "POST",
-      url: '/api/customer/closetab',
+      url: '/api/menu/closetab',
       data: order
     });
   };
@@ -112,7 +112,7 @@ angular.module('asyncdrink.options', [])
   var orderAndCloseTab = function (order) {
     return $http({
       method: 'POST',
-      url: '/api/customer/order/close',
+      url: '/api/menu/orderandclosetab',
       data: order
     });
   };

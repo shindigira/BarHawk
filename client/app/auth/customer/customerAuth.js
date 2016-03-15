@@ -41,9 +41,11 @@ angular.module('asyncdrink.customerAuth', [])
 
     customerFactory.signIn($scope.loginAttempt)
       .then(function (response) {
+
         //hide error message, if displayed
         $scope.invalidLogIn = false;
         //persist logged in user
+
         optionsFactory.currentUser = response.currentUser;
 
         $window.localStorage.setItem('com.barhawk', response.token);
@@ -61,7 +63,7 @@ angular.module('asyncdrink.customerAuth', [])
   var signIn = function (loginAttempt) {
     return $http({
         method: "POST",
-        url: '/api/users/login',
+        url: '/api/customers/login',
         data: loginAttempt
       })
       .then(function (resp) {
@@ -73,7 +75,7 @@ angular.module('asyncdrink.customerAuth', [])
     console.log('we are inside signUP HTTP');
     return $http({
         method: "POST",
-        url: '/api/users/signup',
+        url: '/api/customers/signup',
         data: userInfo
       })
       .then(function (resp) {
