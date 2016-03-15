@@ -52,7 +52,7 @@ module.exports = {
 
   completeOrder: function (req, res) {
 
-    db.sequelize.query("Update orders set completed = 't' where id = '"+ req.body.id + "';")
+    db.sequelize.query("Update orders set completed = 't' where id = '" + req.body.id + "';")
 
     .then(function (orderToBeCompleted) {
       res.sendStatus(200);
