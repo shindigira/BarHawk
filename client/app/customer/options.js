@@ -101,9 +101,7 @@ angular.module('asyncdrink.options', [])
     return $http({
       method: "GET",
       url: '/api/customer/drink'
-    }).then(function (response) {
-      return response.data;
-    });
+    })
   };
 
   var orderOnly = function (order) {
