@@ -25,7 +25,7 @@ angular.module('asyncdrink.customerAuth', [])
         $scope.invalidSignup = false;
 
         optionsFactory.currentUser = response.currentUser;
-        console.log("current user with new fields",optionsFactory.currentUser)
+        console.log("current user with new fields", optionsFactory.currentUser)
         $window.localStorage.setItem('com.barhawk', response.token);
 
         //navigate to options page
