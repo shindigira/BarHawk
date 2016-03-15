@@ -77,31 +77,34 @@ module.exports = {
   order: function (req, res) {
     //assigning drink order to variable
     var ord = req.body;
-    var ordUser = ord.username;
     if (!ord.drinkType) {
       res.sendStatus(400);
     } else {
-      //console.log("-----(server.js /api/customer.order) ord: ", ord);
-      var currentUsername = ord.username.username;
       var DK;
-      var drinkPriceFromDB;
+      var drinkPrice;
+      var currentTab;
       //finding price associated with drink name in drinks table of DB
       models.drinks.findOne({ where: { name: ord.drinkType } }).then(function (drink) {
-        drinkPriceFromDB = drink.dataValues.price;
+        drinkPrice = drink.dataValues.price;
       }).then(function () {
-        models.orders.count({
-          where: ["username = ?", currentUsername]
-        }).then(function (drinkcount) {
-          DK = drinkcount;
+        models.orders.findAll({
+          where: ["username = ?", ord.username],
+          attributes: [
+            [db.sequelize.fn('COUNT', db.sequelize.col('username')), 'drinkCount'],
+            [db.sequelize.fn('SUM', db.sequelize.col('currentprice')), 'userTab']
+          ]
+        }).then(function (results) {
+          var userData = results[0].dataValues;
+
           models.orders.create({
-            username: currentUsername,
+            username: ord.username,
             drinktype: ord.drinkType,
             closeout: ord.closeout,
-            currentprice: drinkPriceFromDB,
-            totalprice: 5,
-            drinkcount: DK
+            currentprice: drinkPrice,
+            totalprice: userData.userTab,
+            drinkcount: userData.drinkCount
           }).then(function (userorder) {
-            console.dir(userorder.get());
+            console.dir("SOMETHING THIS DOES", userorder.get());
             res.json(userorder);
           });
         });
