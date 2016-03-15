@@ -1,18 +1,5 @@
 var jwt = require('jwt-simple');
 
-//dummy users table
-var users = {
-  Michael: {
-    username: 'Michael',
-    password: "password",
-    age: 25,
-    weight: 160,
-    gender: "Male",
-    drinkCount: 0,
-    totalPrice: 0
-  }
-};
-
 module.exports = {
     login: function (req, res) {
       //set username/password request to attempt variable
@@ -100,5 +87,5 @@ module.exports = {
           res.sendStatus(401);
         }
       });
-
-    };
+    }
+  };
