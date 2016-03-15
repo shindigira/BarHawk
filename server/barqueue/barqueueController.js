@@ -1,6 +1,8 @@
 var accountSid = 'AC6d9b063b61c76d9588fb5d9df7bb845a';
 var authToken = 'fa527f9341b3fef301c01b4db35ae87e';
 var client = require('twilio')(accountSid, authToken);
+var models = require('../models')
+var db = require('../models/index.js')
 
 //dummy orders table
 var ordersArray = [{
@@ -37,11 +39,12 @@ module.exports = {
   showPendingOrders: function (req, res) {
     if (req.body.username === 'baradmin' && req.body.password === 'barpassword') {
       //only send back to bar queue those orders which have not yet been completed
-      var pendingOrders = ordersArray.filter(function (order) {
-        return order.showInQueue;
-      });
-      res.status(200);
-      res.send(pendingOrders);
+      db.sequelize.query("Select * from orders where completed = 'f';")
+      .then( function(pendingOrder){
+        res.status(200);
+        res.send(pendingOrder[0]);
+      })
+
     } else {
       res.status(401).send();
     }
