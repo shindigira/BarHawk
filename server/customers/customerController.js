@@ -61,21 +61,41 @@ module.exports = {
   //   })
   // },
 
-
-  //the below is used with dummy db
   signup: function (req, res) {
-    var data = req.body;
-    if (data.username in users) {
-      res.sendStatus(401);
-    } else {
-      users[data.username] = data;
-      var token = jwt.encode(users[data.username], 'barHawksecret444');
-      res.json({
-        currentUser: data,
-        token: token
+    var ord = req.body;
+    console.log("hit route for signup successfully");
+    console.log('ord info', ord);
+
+    models.users.findOrCreate({
+      where: { username: ord.username },
+      defaults: {
+        firstname: ord.firstname,
+        lastname: ord.lastname,
+        password: ord.password,
+        age: ord.age,
+        weight: ord.weight,
+        gender: ord.gender,
+        photo: ord.photo,
+        phone: ord.phonenumber
+      }
+    }).spread(function (user, created) {
+      console.log("able to create new user " + ord.username + "?", created);
+      // //returns preexisting user
+      var userObj = user.get({
+        plain: false
       });
-    }
-  },
+      if (created) {
 
+        users[ord.username] = ord;
+        var token = jwt.encode(users[ord.username], 'barHawksecret444');
+        res.json({
+          currentUser: ord,
+          token: token
+        });
+      } else {
+        res.sendStatus(401);
+      }
+    });
 
+  }
 };

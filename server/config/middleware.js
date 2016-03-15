@@ -1,6 +1,6 @@
 var bodyParser = require('body-parser');
 
-module.exports = function(app, express){
+module.exports = function (app, express) {
   var customerRouter = express.Router();
   var bartenderRouter = express.Router();
   var menuRouter = express.Router();
