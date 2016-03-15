@@ -13,17 +13,7 @@
 <div id="options">
   <h2>Hi, {{currentUser}}!</h2>
   <h4>Please choose a drink:</h4>
-  <select ng-model='order.drinkType' ng-change='clear()' value=''>
-    <option value="" disabled selected>Your options...</option>
-    <optgroup label="----Beer----">
-      <option ng-repeat="drink in drinks.list | filter: {'type' : 'beer'} | orderBy:'name'">{{drink.name}}, ${{drink.price}}</option>
-    </optgroup>
-    <optgroup label="----Liquor----">
-      <option ng-repeat="drink in drinks.list | filter : {'type' : 'liquor'} | orderBy:'name'">{{drink.name}}, ${{drink.price}}</option>
-    </optgroup>
-    <optgroup label="----Mixed Drinks----">
-      <option ng-repeat="drink in drinks.list | filter : {'type' : 'mixed'} | orderBy:'name'">{{drink.name}}, ${{drink.price}}</option>
-    </optgroup>
+  <select ng-model='order.drinkType' ng-options='drink.name as (drink.name + ", $" + drink.price) group by ("----"+drink.type+"----") for drink in drinks.list' ng-change='clear()' value=''>
   </select>
   <h4>Your Drink Count: {{currentUser.drinkCount}}</h4>
   <button ng-click='orderOnly()'>Submit Order</button>

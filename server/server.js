@@ -21,7 +21,8 @@ app.get('/api/users/signedin', function (req, res) {
 
 app.get('/api/customer/drink', function (req, res) {
   //get all drinks from drinks table
-  db.sequelize.query('Select name, type, price, volume from drinks;').then(function (drinks) {
+  db.sequelize.query('Select name, type, price, volume from drinks;')
+  .then(function (drinks) {
     //return
     res.send(drinks[0]);
   })
