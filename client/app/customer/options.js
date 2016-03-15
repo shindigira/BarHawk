@@ -30,13 +30,12 @@ angular.module('asyncdrink.options', [])
   $scope.orderOnly = function () {
     $scope.order.time = new Date();
     $scope.order.closeout = false;
+    $scope.savedDrinkType = $scope.order.drinkType;
     optionsFactory.orderOnly($scope.order)
       .then(function (response) {
         $scope.orderSuccess = true;
         //set drinkType to empty string after successfully placing order
-        $scope.order.savedDrinkType = $scope.order.drinktype;
-        console.log("savedDrinkType ", $scope.order.savedDrinkType);
-        $scope.order.drinktype = "";
+        $scope.drinkType = "";
 
       }).catch(function (err) {
         $scope.orderFail = true;
