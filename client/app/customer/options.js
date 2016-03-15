@@ -25,7 +25,7 @@ angular.module('asyncdrink.options', [])
   };
 
   $scope.getDrinks();
-
+  console.log($scope.drinks.list);
   //Order only process
   $scope.orderOnly = function () {
     $scope.order.time = new Date();

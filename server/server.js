@@ -1,11 +1,11 @@
 var express = require('express');
 var app = express();
 var port = process.env.PORT || 3000;
-// var db = require('./models/index.js');
+var db = require('./models/index.js');
 
 require('./config/middleware.js')(app, express);
 
-app.listen(port, function() {
+app.listen(port, function () {
   console.log('Server now listening on port ' + port);
 });
 
@@ -31,4 +31,3 @@ app.get('/api/customer/drink', function (req, res) {
       res.send(drinks[0]);
     })
 });
-
