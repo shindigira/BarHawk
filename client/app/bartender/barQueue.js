@@ -26,14 +26,15 @@ angular.module('asyncdrink.barQueue', [])
     $scope.dequeue = function(completedOrder) {
       //completedOrder passed in on the view as ng-repeat order in orders in html
 
-      var currentUserOrder = models.users.findAll({
-        where:{
-          username: completedOrder.username
-        }
-      })
+      // var currentUserOrder = models.users.findAll({
+      //   where:{
+      //     username: completedOrder.username
+      //   }
+      // })
 
       var textMessDetails = {
-        customerPhone: currentUserOrder.phone,
+        // customerPhone: currentUserOrder.phone,
+        customerPhoneNum: 5059342914,
         customerName: completedOrder.username,
         customerDrinkType: completedOrder.drinkType
       };

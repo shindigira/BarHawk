@@ -63,6 +63,7 @@ module.exports = {
   },
 
   orderCompleteTextMessage: function (req, res) {
+    console.log(req.body);
     var toPhoneNum = req.body.customerPhoneNum;
     var customerName = req.body.customerName;
     var drinkType = req.body.customerDrinkType;
