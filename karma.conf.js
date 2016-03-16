@@ -1,34 +1,34 @@
 // Karma configuration
-// Generated on Mon Mar 07 2016 17:07:58 GMT-0800 (PST)
+// Generated on Tue Mar 15 2016 15:26:03 GMT-0700 (PDT)
 
-module.exports = function(config) {
+module.exports = function (config) {
   var configuration = {
-
     // base path that will be used to resolve all patterns (eg. files, exclude)
     basePath: '',
 
-
     // frameworks to use
     // available frameworks: https://npmjs.org/browse/keyword/karma-adapter
-    frameworks: ['jasmine'],
-
+    frameworks: ['jasmine' /*, 'browserify'*/ ],
 
     // list of files / patterns to load in the browser
     files: [
-      'specs/*.js'
-    ],
+      'client/library/angular.js',
+      'client/library/angular-ui-router.js',
+      //'node_modules/angular-mocks/angular-mocks.js',
+      'client/library/angular-mocks.js',
 
+      'client/app/**/*.js',
+
+      'specs/**/*.js'
+    ],
 
     // list of files to exclude
-    exclude: [
-    ],
+    exclude: [],
 
 
     // preprocess matching files before serving them to the browser
     // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
-    preprocessors: {
-    },
-
+    preprocessors: {},
 
     // test results reporter to use
     // possible values: 'dots', 'progress'
@@ -50,7 +50,7 @@ module.exports = function(config) {
 
 
     // enable / disable watching file and executing tests whenever any file changes
-    autoWatch: true,
+    autoWatch: false,
 
 
     // start these browsers
@@ -58,19 +58,23 @@ module.exports = function(config) {
     browsers: ['Chrome'],
 
     customLaunchers: {
-      Chrome_travis_ci: {
+      ChromeTravisCi: {
         base: 'Chrome',
         flags: ['--no-sandbox']
       }
     },
+
     // Continuous Integration mode
     // if true, Karma captures browsers, runs the tests and exits
-    singleRun: false,
+    singleRun: true,
 
+    // Concurrency level
+    // how many browser should be started simultaneous
+    concurrency: Infinity
   };
 
-  if(process.env.TRAVIS){
-    configuration.browsers = ['Chrome_travis_ci'];
+  if (process.env.TRAVIS) {
+    configuration.browsers = ['ChromeTravisCi'];
   }
 
   config.set(configuration);

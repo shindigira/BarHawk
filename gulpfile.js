@@ -12,29 +12,29 @@ var cssmin = require('gulp-cssmin');
 var minify = require('gulp-minify');
 var nodemons = require('gulp-nodemon');
 //Lint Task
-gulp.task('lint', function() {
+gulp.task('lint', function () {
   return gulp.src('client/app/*.js')
-  .pipe(jshint())
-  .pipe(jshint.reporter('default'));
+    .pipe(jshint())
+    .pipe(jshint.reporter('default'));
 });
 
 //CSS minify
-gulp.task('minify-css', function() {
+gulp.task('minify-css', function () {
   return gulp.src('client/styles/*.css')
     .pipe(cssmin())
-    .pipe(rename({suffix: '.min'}))
+    .pipe(rename({ suffix: '.min' }))
     .pipe(gulp.dest('client/dist'));
 });
 
 //Concatenate and Minify JS
-gulp.task('scripts', function() {
+gulp.task('scripts', function () {
   return gulp.src('client/app/**/*.js')
-  .pipe(concat('all.js'))
-  .pipe(gulp.dest('client/dist'));
+    .pipe(concat('all.js'))
+    .pipe(gulp.dest('client/dist'));
 });
 
 //run nodemon
-gulp.task('server', function() {
+gulp.task('server', function () {
   nodemons({
     script: 'server/server.js',
     ext: 'js html',
@@ -50,7 +50,7 @@ gulp.task('test', function (done) {
 });
 
 //Watch files
-gulp.task('watch', function() {
+gulp.task('watch', function () {
   gulp.watch('js/*.js', ['lint', 'scripts'])
 });
 

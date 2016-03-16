@@ -45,6 +45,7 @@
     "karma-chrome-launcher": "^0.2.2",
     "karma-jasmine": "^0.3.7",
     "karma-requirejs": "^0.2.5",
-    "requirejs": "^2.1.22"
+    "requirejs": "^2.1.22",
+    "watchify": "^3.7.0"
   }
 }
