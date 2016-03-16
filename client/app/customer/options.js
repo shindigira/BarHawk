@@ -39,8 +39,8 @@ angular.module('asyncdrink.options', [])
 
   //Order only process
   $scope.orderOnly = function () {
-
     $scope.savedDrinkType = $scope.order.drinkType;
+
     optionsFactory.orderOnly($scope.order)
       .then(function (response) {
         //reset response messages
@@ -88,7 +88,7 @@ angular.module('asyncdrink.options', [])
 
   //Order and close process
   $scope.orderAndCloseTab = function () {
-    console.log($scope.order);
+
     optionsFactory.orderAndCloseTab($scope.order)
       .then(function (response) {
         //display stats and success msgs
@@ -117,7 +117,7 @@ angular.module('asyncdrink.options', [])
   var getDrinksList = function () {
     return $http({
       method: "GET",
-      url: '/api/customer/drink'
+      url: '/api/menu/drinks'
     }).then(function (response) {
       return response.data;
     });

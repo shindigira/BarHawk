@@ -3,8 +3,17 @@ var db = require('../models/index.js');
 
 module.exports = {
 
-  closeTab: function (req, res) {
+  getDrinks: function (req, res) {
+    db.sequelize.query('Select name, type, price, volume from drinks;')
+      .then(function (drinks) {
+        //return
+        res.send(drinks[0]);
+      })
+  },
+
+    closeTab: function (req, res) {
     var tab = req.body;
+    //query user's past drinks
     models.orders.findAll({
       where: {
         username: tab.username,
@@ -17,19 +26,19 @@ module.exports = {
       ]
     }).then(function (result) {
       //if user has not ordered
-      console.log("THIS IS THE QUERY FOR ALL PAST DRINKS", result[0].dataValues.drinkCount);
       if (result[0].dataValues.drinkCount == 0) {
         res.sendStatus(400);
       } else {
         tab.drinkCount = result[0].dataValues.drinkCount
-          //find user's last closeTab order
+        //find user's last closeTab order
         models.orders.max('id', {
           where: {
             username: tab.username,
             closeout: true
           }
         }).then(function (lastClosedTab) {
-          console.log("THIS IS THE QUERY FOR LAST CLOSED TAB", lastClosedTab);
+
+          //if no closed tabs
           if (!lastClosedTab) {
             lastClosedTab = 0
           }
@@ -68,7 +77,7 @@ module.exports = {
   order: function (req, res) {
     //assigning drink order to varible
     var ord = req.body;
-    console.log('orderinfo', ord);
+
     if (!ord.drinkType) {
       res.sendStatus(400);
     } else {

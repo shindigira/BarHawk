@@ -64,7 +64,6 @@ module.exports = {
   },
 
   drinkcount: function (req, res) {
-    console.log(req.body);
     models.orders.findAll({
       where: {
         username: req.body.username,
