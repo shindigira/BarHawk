@@ -52,33 +52,11 @@ module.exports = {
 
   completeOrder: function (req, res) {
 
+    db.sequelize.query("Update orders set completed = 't' where id = '"+ req.body.id + "';")
 
-  //db.sequelize.query("Select drinktype from orders where username = '" + req.body.username + "';")
-  //db.sequelize.query('Select drinktype from orders where username = "' + req.body.username + '";')
-    var create = req;
-    //console.log('create',create)
-    //db.sequelize.query('Select id from orders where username = champagnepapi2;')
-    //db.sequelize.query('Select * from orders where "createdAt" =' +req.createdAt+ ';')
-      db.sequelize.query("Select * from orders where "+"'createdAt'"+" = '2016-03-15 14:53:37.65-07' ;")
-    .then( function (orderToBeCompleted){
-      console.log(orderToBeCompleted)
-    })
-
-
-
-
-    //Search ordersArray for order object that matches time and username properties of completedOrder object in req.body.
-    //This protects against edge case of modifying more than one order object in ordersArray.
-    // ordersArray
-    //   .filter(function (order) {
-    //     return (req.body.time === order.time && req.body.username === order.username);
-    //   })
-    //   //Set showInQueue property to false for the completedOrder
-    //   .map(function (completedOrder) {
-    //     completedOrder.showInQueue = false;
-    //   });
-
-    //res.sendStatus(200);
+    .then(function (orderToBeCompleted) {
+      res.sendStatus(200);
+    });
   },
 
   orderCompleteTextMessage: function (req, res) {
