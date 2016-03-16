@@ -2,8 +2,8 @@
   <button ng-click='closeTabOnly()' ng-disabled="tabSuccessIncludingOrder || tabSuccess">Close Tab</button>
   <div ng-show='tabSuccess'>
     <p>You've successfully closed your tab.</p>
-    <p>Drinks: {{userTab.drinkCount}}</p>
-    <p>Total: ${{userTab.tabTotal}}</p>
+    <p>Drinks: {{userTab.drinkcount}}</p>
+    <p>Total: ${{userTab.totalprice}}</p>
     <p>Logging you out...</p>
   </div>
   <p ng-show='tabFail'>You've already closed your tab or have yet to order a drink!</p>
@@ -11,17 +11,19 @@
   </ul>
 </div>
 <div id="options">
-  <h2>Hi, {{currentUser}}!</h2>
+  <h2>Hi, {{currentUser.firstname}}!</h2>
+  <h4>Your Drink Count: {{currentUser.drinkCount}}</h4>
   <h4>Please choose a drink:</h4>
   <select ng-model='order.drinkType' ng-options='drink.name as (drink.name + ", $" + drink.price) group by ("----"+drink.type+"----") for drink in drinks.list | orderBy : "name"' ng-change='clear()' value=''>
   </select>
-  <h4>Your Drink Count: {{currentUser.drinkCount}}</h4>
+  <br>
+  <br>
   <button ng-click='orderOnly()'>Submit Order</button>
   <button ng-click='orderAndCloseTab()'>Submit and Close Tab</button>
   <div ng-show='tabSuccessIncludingOrder'>
-    <p>You've successfully placed an order for {{order.userTab.drinkType}} and closed your tab.</p>
-    <p>Drinks: {{userTab.drinkCount}}</p>
-    <p>Tab Total: ${{userTab.tabTotal}}</p>
+    <p>You've successfully placed an order for {{savedDrinkType}} and closed your tab.</p>
+    <p>Drinks: {{userTab.drinkcount}}</p>
+    <p>Tab Total: ${{userTab.totalprice}}</p>
     <p>Logging you out...</p>
     <br>
   </div>
