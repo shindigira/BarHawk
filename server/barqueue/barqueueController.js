@@ -3,6 +3,7 @@ var authToken = 'fa527f9341b3fef301c01b4db35ae87e';
 var client = require('twilio')(accountSid, authToken);
 var models = require('../models')
 var db = require('../models/index.js')
+var moment = require("moment")
 
 //dummy orders table
 var ordersArray = [{
@@ -57,6 +58,7 @@ module.exports = {
     .then(function (orderToBeCompleted) {
       res.sendStatus(200);
     });
+
   },
 
   orderCompleteTextMessage: function (req, res) {
