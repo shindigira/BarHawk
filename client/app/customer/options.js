@@ -50,12 +50,13 @@ angular.module('asyncdrink.options', [])
 
   //Close only process
   $scope.closeTabOnly = function () {
-    console.log($scope.order);
+
     optionsFactory.closeTabOnly($scope.order)
       .then(function (response) {
         $scope.tabSuccess = true;
         //display tab information from server
         $scope.userTab = response.data;
+        $scope.orderSuccess = false;
         //navigate back to login
         // setTimeout(function () {
         //     optionsFactory.currentUser = undefined;

@@ -2,8 +2,8 @@
   <button ng-click='closeTabOnly()' ng-disabled="tabSuccessIncludingOrder || tabSuccess">Close Tab</button>
   <div ng-show='tabSuccess'>
     <p>You've successfully closed your tab.</p>
-    <p>Drinks: {{userTab.drinkCount}}</p>
-    <p>Total: ${{userTab.tabTotal}}</p>
+    <p>Drinks: {{userTab.drinkcount}}</p>
+    <p>Total: ${{userTab.totalprice}}</p>
     <p>Logging you out...</p>
   </div>
   <p ng-show='tabFail'>You've already closed your tab or have yet to order a drink!</p>
