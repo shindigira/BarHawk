@@ -40,10 +40,10 @@ module.exports = {
     if (req.body.username === 'baradmin' && req.body.password === 'barpassword') {
       //only send back to bar queue those orders which have not yet been completed
       db.sequelize.query("Select * from orders where completed = 'f';")
-      .then( function(pendingOrder){
-        res.status(200);
-        res.send(pendingOrder[0]);
-      })
+        .then(function (pendingOrder) {
+          res.status(200);
+          res.send(pendingOrder[0]);
+        })
 
     } else {
       res.status(401).send();
@@ -51,6 +51,18 @@ module.exports = {
   },
 
   completeOrder: function (req, res) {
+
+
+  //db.sequelize.query("Select drinktype from orders where username = '" + req.body.username + "';")
+  //db.sequelize.query('Select drinktype from orders where username = "' + req.body.username + '";')
+    db.sequelize.query('Select id from orders where username = champagnepapi2;')
+    .then( function (orderToBeCompleted){
+      console.log(orderToBeCompleted)
+    })
+
+
+
+
     //Search ordersArray for order object that matches time and username properties of completedOrder object in req.body.
     //This protects against edge case of modifying more than one order object in ordersArray.
     ordersArray
@@ -66,22 +78,25 @@ module.exports = {
   },
 
   orderCompleteTextMessage: function (req, res) {
-    console.log(req.body);
-    var toPhoneNum = req.body.customerPhoneNum;
     var customerName = req.body.customerName;
     var drinkType = req.body.customerDrinkType;
+    var toPhoneNum;
 
-    client.messages.create({
-      to: '+1' + toPhoneNum,
-      from: '+15104557842',
-      body: 'hey ' + customerName + ', your ' + drinkType + ' is ready.'
-    }, function (err, message) {
-      if (err) {
-        console.log(err);
-      } else {
-        console.log(message);
-        res.end();
-      }
-    });
+
+    db.sequelize.query("Select phone from users where username = '" + customerName + "';")
+      .then(function (targetPhoneNum) {
+        client.messages.create({
+          to: '+1' + targetPhoneNum[0]['0'].phone,
+          from: '+15104557842',
+          body: 'hey ' + customerName + ', your ' + drinkType + ' is ready.'
+        }, function (err, message) {
+          if (err) {
+            console.log(err);
+          } else {
+            console.log(message);
+            res.end();
+          }
+        });
+      })
   }
 };

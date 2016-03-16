@@ -33,10 +33,8 @@ angular.module('asyncdrink.barQueue', [])
       // })
 
       var textMessDetails = {
-        // customerPhone: currentUserOrder.phone,
-        customerPhoneNum: 5059342914,
         customerName: completedOrder.username,
-        customerDrinkType: completedOrder.drinkType
+        customerDrinkType: completedOrder.drinktype
       };
       OrdersFactory.sendTextMessage(textMessDetails);
       OrdersFactory.removeOrder(completedOrder)
