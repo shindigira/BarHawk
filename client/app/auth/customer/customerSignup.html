@@ -1,3 +1,4 @@
+
 <h3>Sign Up!</h3>
 <form name="userForm" novalidate ng-submit='signUp(userForm.$valid)'>
 
@@ -47,7 +48,6 @@
 
 
 
-
   <div class='form-group' ng-class="{ 'has-error' : userForm.age.$invalid && !userForm.age.$pristine && userForm.age.$touched}">
     <label>Age</label>
     <input name='age' type="number" class="form-control" ng-model="newUser.age" ng-minlength="2" ng-class="{'error': userForm.$invalid && userForm.$dirty}" required/>
@@ -77,5 +77,6 @@
   </div>
 </form>
 <p ng-show='invalidSignup'>User already signed up</p>
+
 <p> Already a user?
   <a ui-sref='customerLogin'>Click here</a> to login</p>

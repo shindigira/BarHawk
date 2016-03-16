@@ -1,6 +1,8 @@
 var accountSid = 'AC6d9b063b61c76d9588fb5d9df7bb845a';
 var authToken = 'fa527f9341b3fef301c01b4db35ae87e';
 var client = require('twilio')(accountSid, authToken);
+var models = require('../models')
+var db = require('../models/index.js')
 
 //dummy orders table
 var ordersArray = [{
@@ -37,48 +39,46 @@ module.exports = {
   showPendingOrders: function (req, res) {
     if (req.body.username === 'baradmin' && req.body.password === 'barpassword') {
       //only send back to bar queue those orders which have not yet been completed
-      var pendingOrders = ordersArray.filter(function (order) {
-        return order.showInQueue;
-      });
-      res.status(200);
-      res.send(pendingOrders);
+      db.sequelize.query("Select * from orders where completed = 'f';")
+        .then(function (pendingOrder) {
+          res.status(200);
+          res.send(pendingOrder[0]);
+        })
+
     } else {
       res.status(401).send();
     }
   },
 
   completeOrder: function (req, res) {
-    //Search ordersArray for order object that matches time and username properties of completedOrder object in req.body.
-    //This protects against edge case of modifying more than one order object in ordersArray.
-    ordersArray
-      .filter(function (order) {
-        return (req.body.time === order.time && req.body.username === order.username);
-      })
-      //Set showInQueue property to false for the completedOrder
-      .map(function (completedOrder) {
-        completedOrder.showInQueue = false;
-      });
 
-    res.sendStatus(200);
+    db.sequelize.query("Update orders set completed = 't' where id = '"+ req.body.id + "';")
+
+    .then(function (orderToBeCompleted) {
+      res.sendStatus(200);
+    });
   },
 
   orderCompleteTextMessage: function (req, res) {
-    console.log(req.body);
-    var toPhoneNum = req.body.customerPhoneNum;
     var customerName = req.body.customerName;
     var drinkType = req.body.customerDrinkType;
+    var toPhoneNum;
 
-    client.messages.create({
-      to: '+1' + toPhoneNum,
-      from: '+15104557842',
-      body: 'hey ' + customerName + ', your ' + drinkType + ' is ready.'
-    }, function (err, message) {
-      if (err) {
-        console.log(err);
-      } else {
-        console.log(message);
-        res.end();
-      }
-    });
+
+    db.sequelize.query("Select phone from users where username = '" + customerName + "';")
+      .then(function (targetPhoneNum) {
+        client.messages.create({
+          to: '+1' + targetPhoneNum[0]['0'].phone,
+          from: '+15104557842',
+          body: 'hey ' + customerName + ', your ' + drinkType + ' is ready.'
+        }, function (err, message) {
+          if (err) {
+            console.log(err);
+          } else {
+            console.log(message);
+            res.end();
+          }
+        });
+      })
   }
 };
