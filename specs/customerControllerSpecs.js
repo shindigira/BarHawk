@@ -5,7 +5,7 @@ describe('customerController', function () {
   var $window;
   var customerFactory;
   var optionsFactory;
-  //line below is throwing error
+
   beforeEach(module('asyncdrink'));
 
   beforeEach(inject(function ($injector) {
@@ -54,4 +54,4 @@ describe('customerController', function () {
     expect($scope.logIn).toEqual(jasmine.any(Function));
   })
 
-})
+});
