@@ -28,12 +28,22 @@ angular.module('asyncdrink.options', [])
   };
   $scope.getDrinks();
 
+  //get user's drink count on load
+  $scope.getDK = function () {
+    optionsFactory.getDrinkCount($scope.currentUser)
+      .then(function (response) {
+        $scope.currentUser.drinkCount = response;
+      })
+  };
+  $scope.getDK();
+
   //Order only process
   $scope.orderOnly = function () {
 
     $scope.savedDrinkType = $scope.order.drinkType;
     optionsFactory.orderOnly($scope.order)
       .then(function (response) {
+        //reset response messages
         $scope.orderSuccess = true;
         $scope.orderFail = false;
         $scope.tabFail = false;
@@ -41,7 +51,6 @@ angular.module('asyncdrink.options', [])
         $scope.tabSuccessIncludingOrder = false;
         //set drinkType to empty string after successfully placing order
         $scope.drinkType = "";
-        console.log("RESPONSE", response);
         $scope.currentUser.drinkCount = response.data.drinkcount;
       }).catch(function (err) {
         $scope.orderFail = true;
@@ -82,7 +91,7 @@ angular.module('asyncdrink.options', [])
     console.log($scope.order);
     optionsFactory.orderAndCloseTab($scope.order)
       .then(function (response) {
-        console.log("THIS IS ORDERCLOSE RESPONSE", response);
+        //display stats and success msgs
         $scope.savedDrinkType = $scope.order.drinkType;
         $scope.currentUser.drinkCount = response.data.drinkcount;
         $scope.tabSuccessIncludingOrder = true;
@@ -114,6 +123,16 @@ angular.module('asyncdrink.options', [])
     });
   };
 
+  var getDrinkCount = function (currentUser) {
+    return $http({
+      method: "POST",
+      url: '/api/customers/drinkcount',
+      data: currentUser
+    }).then(function (response) {
+      return response.data
+    })
+  }
+
   var orderOnly = function (order) {
     return $http({
       method: "POST",
@@ -144,6 +163,7 @@ angular.module('asyncdrink.options', [])
     orderOnly: orderOnly,
     closeTabOnly: closeTabOnly,
     orderAndCloseTab: orderAndCloseTab,
-    getDrinksList: getDrinksList
+    getDrinksList: getDrinksList,
+    getDrinkCount: getDrinkCount
   };
 });

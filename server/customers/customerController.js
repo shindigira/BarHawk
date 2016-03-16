@@ -1,5 +1,6 @@
 var jwt = require('jwt-simple');
 var models = require('../models');
+var db = require('../models/index.js');
 
 module.exports = {
   login: function (req, res) {
@@ -60,5 +61,24 @@ module.exports = {
         res.sendStatus(401);
       }
     });
+  },
+
+  drinkcount: function (req, res) {
+    console.log(req.body);
+    models.orders.findAll({
+      where: {
+        username: req.body.username,
+        drinktype: {
+          $not: null
+        }
+      },
+      attributes: [
+        [db.sequelize.fn('COUNT', db.sequelize.col('username')), 'drinkCount']
+      ]
+    })
+    .then(function(userdrinks) {
+      res.send(userdrinks[0].dataValues.drinkCount)
+    })
   }
+
 };
