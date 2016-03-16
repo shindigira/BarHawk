@@ -13,7 +13,6 @@ angular.module('asyncdrink.barQueue', [])
     };
     //scope function to retrieve all the orders from the server
     $scope.getOrders = function () {
-      console.log('xxxx another getOrders call');
       OrdersFactory.getAll()
         //after all orders retrieved from server, add them to scope
         .then(function (orders) {
