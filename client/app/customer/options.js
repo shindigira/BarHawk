@@ -1,13 +1,16 @@
 angular.module('asyncdrink.options', [])
 
 .controller('optionsController', function ($scope, $state, $window, customerFactory, optionsFactory) {
+  //set up drinks
+  $scope.drinks = {};
+
   //set current user
   $scope.currentUser = optionsFactory.currentUser;
+
   //prepare order object before submit to server
-  $scope.drinks = {};
+
   $scope.order = {};
-  $scope.order.username = optionsFactory.currentUser;
-  $scope.order.currentPrice = 5;
+  $scope.order.username = optionsFactory.currentUser.username;
 
   //success/fail messages
   $scope.orderSuccess = false;
@@ -30,6 +33,7 @@ angular.module('asyncdrink.options', [])
   $scope.orderOnly = function () {
     $scope.order.time = new Date();
     $scope.order.closeout = false;
+    console.log($scope.order);
     $scope.savedDrinkType = $scope.order.drinkType;
     optionsFactory.orderOnly($scope.order)
       .then(function (response) {
