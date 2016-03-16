@@ -7,15 +7,19 @@ module.exports = {
     var tab = req.body;
     models.orders.findAll({
       where: {
-        username: tab.username
+        username: tab.username,
+        drinktype: {
+          $not: null
+        }
       },
       attributes: [
         [db.sequelize.fn('COUNT', db.sequelize.col('username')), 'drinkCount']
       ]
     }).then(function (result) {
       //if user has not ordered
-      if (result === null) {
-        res.sendStatus(400)
+      console.log("THIS IS THE QUERY FOR ALL PAST DRINKS", result[0].dataValues.drinkCount);
+      if (result[0].dataValues.drinkCount == 0) {
+        res.sendStatus(400);
       } else {
         tab.drinkCount = result[0].dataValues.drinkCount
           //find user's last closeTab order
@@ -25,7 +29,8 @@ module.exports = {
             closeout: true
           }
         }).then(function (lastClosedTab) {
-          if (lastClosedTab === null) {
+          console.log("THIS IS THE QUERY FOR LAST CLOSED TAB", lastClosedTab);
+          if (!lastClosedTab) {
             lastClosedTab = 0
           }
           models.orders.findAll({
@@ -39,19 +44,21 @@ module.exports = {
               [db.sequelize.fn('SUM', db.sequelize.col('currentprice')), 'tabTotal']
             ]
           }).then(function (userorders) {
-
             var receipt = userorders[0].dataValues
-
-            models.orders.create({
-              username: tab.username,
-              drinktype: null,
-              closeout: true,
-              currentprice: null,
-              totalprice: receipt.tabTotal,
-              drinkcount: tab.drinkCount
-            }).then(function (closed) {
-              res.json(closed);
-            })
+            if (!receipt.tabTotal) {
+              res.sendStatus(400);
+            } else {
+              models.orders.create({
+                username: tab.username,
+                drinktype: null,
+                closeout: true,
+                currentprice: null,
+                totalprice: receipt.tabTotal,
+                drinkcount: tab.drinkCount
+              }).then(function (closed) {
+                res.json(closed);
+              })
+            }
           })
         })
       }
@@ -96,7 +103,7 @@ module.exports = {
                   drinkcount: userData.drinkCount
                 })
                 .then(function (userorder) {
-                  console.dir("SOMETHING THIS DOES", userorder.get());
+
                   res.json(userorder);
                 });
             });
@@ -168,6 +175,8 @@ module.exports = {
                 currentprice: drinkPrice,
                 totalprice: finalTab + drinkPrice,
                 drinkcount: drinkCount
+              }).then(function (order) {
+                res.json(order);
               })
             })
           })

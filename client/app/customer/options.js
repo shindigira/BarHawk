@@ -4,12 +4,13 @@ angular.module('asyncdrink.options', [])
   //set up drinks
   $scope.drinks = {};
 
-  //set current user
+  //set current user (object with all user info)
   $scope.currentUser = optionsFactory.currentUser;
 
   //prepare order object before submit to server
-  $scope.order = {};
-  $scope.order.username = optionsFactory.currentUser.username;
+  $scope.order = {
+    username: $scope.currentUser.username
+  };
 
   //success/fail messages
   $scope.orderSuccess = false;
@@ -19,24 +20,29 @@ angular.module('asyncdrink.options', [])
   $scope.tabSuccessIncludingOrder = false;
 
   //get all drinks from db
-  $scope.getDrinks = function() {
+  $scope.getDrinks = function () {
     optionsFactory.getDrinksList()
-    .then(function(drinks) {
-      $scope.drinks.list = drinks;
-    });
+      .then(function (drinks) {
+        $scope.drinks.list = drinks;
+      });
   };
-
   $scope.getDrinks();
 
   //Order only process
   $scope.orderOnly = function () {
-    console.log($scope.order);
+
     $scope.savedDrinkType = $scope.order.drinkType;
     optionsFactory.orderOnly($scope.order)
       .then(function (response) {
         $scope.orderSuccess = true;
+        $scope.orderFail = false;
+        $scope.tabFail = false;
+        $scope.tabSuccess = false;
+        $scope.tabSuccessIncludingOrder = false;
         //set drinkType to empty string after successfully placing order
         $scope.drinkType = "";
+        console.log("RESPONSE", response);
+        $scope.currentUser.drinkCount = response.data.drinkcount;
       }).catch(function (err) {
         $scope.orderFail = true;
       });
@@ -57,6 +63,8 @@ angular.module('asyncdrink.options', [])
         //display tab information from server
         $scope.userTab = response.data;
         $scope.orderSuccess = false;
+        $scope.orderFail = false;
+        $scope.tabFail = false;
         //navigate back to login
         // setTimeout(function () {
         //     optionsFactory.currentUser = undefined;
@@ -71,11 +79,15 @@ angular.module('asyncdrink.options', [])
 
   //Order and close process
   $scope.orderAndCloseTab = function () {
-
+    console.log($scope.order);
     optionsFactory.orderAndCloseTab($scope.order)
       .then(function (response) {
+        console.log("THIS IS ORDERCLOSE RESPONSE", response);
+        $scope.savedDrinkType = $scope.order.drinkType;
+        $scope.currentUser.drinkCount = response.data.drinkcount;
         $scope.tabSuccessIncludingOrder = true;
         $scope.userTab = response.data;
+        $scope.orderSuccess = false;
         //navigate back to login
         // setTimeout(function () {
         //     optionsFactory.currentUser = undefined;
