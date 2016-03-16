@@ -8,7 +8,6 @@ angular.module('asyncdrink.options', [])
   $scope.currentUser = optionsFactory.currentUser;
 
   //prepare order object before submit to server
-
   $scope.order = {};
   $scope.order.username = optionsFactory.currentUser.username;
 
@@ -28,11 +27,9 @@ angular.module('asyncdrink.options', [])
   };
 
   $scope.getDrinks();
-  console.log($scope.drinks.list);
+
   //Order only process
   $scope.orderOnly = function () {
-    $scope.order.time = new Date();
-    $scope.order.closeout = false;
     console.log($scope.order);
     $scope.savedDrinkType = $scope.order.drinkType;
     optionsFactory.orderOnly($scope.order)
@@ -40,7 +37,6 @@ angular.module('asyncdrink.options', [])
         $scope.orderSuccess = true;
         //set drinkType to empty string after successfully placing order
         $scope.drinkType = "";
-
       }).catch(function (err) {
         $scope.orderFail = true;
       });
@@ -54,9 +50,7 @@ angular.module('asyncdrink.options', [])
 
   //Close only process
   $scope.closeTabOnly = function () {
-    $scope.order.time = new Date();
-    $scope.order.closeout = true;
-    $scope.order.currentPrice = 0;
+    console.log($scope.order);
     optionsFactory.closeTabOnly($scope.order)
       .then(function (response) {
         $scope.tabSuccess = true;
@@ -76,8 +70,6 @@ angular.module('asyncdrink.options', [])
 
   //Order and close process
   $scope.orderAndCloseTab = function () {
-    $scope.order.time = new Date();
-    $scope.order.closeout = true;
 
     optionsFactory.orderAndCloseTab($scope.order)
       .then(function (response) {
@@ -99,7 +91,6 @@ angular.module('asyncdrink.options', [])
 .factory('optionsFactory', function ($http) {
   //current user is set by 'optionsFactory.currentUser = $scope.newUser.username' on patronAuth.js
   var currentUser;
-  var userid;
 
   var getDrinksList = function () {
     return $http({

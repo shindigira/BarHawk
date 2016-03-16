@@ -1,5 +1,5 @@
 'use strict';
-module.exports = function(sequelize, DataTypes) {
+module.exports = function (sequelize, DataTypes) {
   var orders = sequelize.define('orders', {
     username: DataTypes.STRING,
     drinktype: DataTypes.STRING,
@@ -12,11 +12,10 @@ module.exports = function(sequelize, DataTypes) {
       defaultValue: false
     },
     notes: DataTypes.STRING
-   }, {
+  }, {
     classMethods: {
-      associate: function(models) {
+      associate: function (models) {
         // associations can be defined here
-        orders.belongsTo(models.users);
       }
     }
   });

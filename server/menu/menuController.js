@@ -4,7 +4,58 @@ var db = require('../models/index.js');
 module.exports = {
 
   closeTab: function (req, res) {
+    var tab = req.body;
+    models.orders.findAll({
+      where: {
+        username: tab.username
+      },
+      attributes: [
+        [db.sequelize.fn('COUNT', db.sequelize.col('username')), 'drinkCount']
+      ]
+    }).then(function (result) {
+      //if user has not ordered
+      if (result === null) {
+        res.sendStatus(400)
+      } else {
+        tab.drinkCount = result[0].dataValues.drinkCount
+          //find user's last closeTab order
+        models.orders.max('id', {
+          where: {
+            username: tab.username,
+            closeout: true
+          }
+        }).then(function (lastClosedTab) {
+          if (lastClosedTab === null) {
+            lastClosedTab = 0
+          }
+          models.orders.findAll({
+            where: {
+              username: tab.username,
+              id: {
+                $gt: lastClosedTab
+              }
+            },
+            attributes: [
+              [db.sequelize.fn('SUM', db.sequelize.col('currentprice')), 'tabTotal']
+            ]
+          }).then(function (userorders) {
 
+            var receipt = userorders[0].dataValues
+
+            models.orders.create({
+              username: tab.username,
+              drinktype: null,
+              closeout: true,
+              currentprice: null,
+              totalprice: receipt.tabTotal,
+              drinkcount: tab.drinkCount
+            }).then(function (closed) {
+              res.json(closed);
+            })
+          })
+        })
+      }
+    })
   },
 
   order: function (req, res) {
@@ -14,7 +65,7 @@ module.exports = {
     if (!ord.drinkType) {
       res.sendStatus(400);
     } else {
-      var DK;
+
       var drinkPrice;
       var currentTab;
       //finding price associated with drink name in drinks table of DB
@@ -87,17 +138,17 @@ module.exports = {
               username: ord.username,
               closeout: true
             }
-          }).then(function (max) {
+          }).then(function (lastClosedTab) {
 
-            if (!max) {
-              max = 0;
+            if (!lastClosedTab) {
+              lastClosedTab = 0;
             }
             //get current tab total
             models.orders.findAll({
               where: {
                 username: ord.username,
                 id: {
-                  $gt: max
+                  $gt: lastClosedTab
                 }
               },
               attributes: [
