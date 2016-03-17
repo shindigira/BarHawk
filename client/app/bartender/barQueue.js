@@ -21,6 +21,9 @@ angular.module('asyncdrink.barQueue', [])
         .catch(function (error) {
           console.error(error);
         });
+
+        setTimeout($scope.getOrders, 4000);
+
     };
 
     $scope.dequeue = function (completedOrder) {
