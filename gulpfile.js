@@ -14,56 +14,60 @@ var nodemons = require('gulp-nodemon');
 var bootlint  = require('gulp-bootlint');
 
 //Lint Task
-gulp.task('lint', function () {
+gulp.task('lint', function (cb) {
   return gulp.src('client/app/*.js')
     .pipe(jshint())
     .pipe(jshint.reporter('default'));
+    cb(err);
 });
 
 //Bootlint Task
-gulp.task('bootlint', function (){
+gulp.task('bootlint', ['lint'], function (cb){
   return gulp.src('client/app/index.html')
   .pipe(bootlint({
     stoponerror: true,
     stoponwarning: true,
     loglevel: 'debug'
-    }))
+    }));
+  cb(err)
   });
 
 //CSS minify
-gulp.task('minify-css', function () {
+gulp.task('minify-css', ['bootlint'], function (cb) {
   return gulp.src('client/styles/*.css')
     .pipe(cssmin())
     .pipe(rename({ suffix: '.min' }))
     .pipe(gulp.dest('client/dist'));
+    cb(err);
 });
 
 //Concatenate and Minify JS
-gulp.task('scripts', function () {
+gulp.task('scripts', ['minify-css'], function (cb) {
   return gulp.src('client/app/**/*.js')
     .pipe(concat('all.js'))
     .pipe(gulp.dest('client/dist'));
-});
-
-//run nodemon
-gulp.task('server', function () {
-  nodemons({
-    script: 'server/server.js',
-    ext: 'js html',
-  })
+    cb(err);
 });
 
 //testing
-gulp.task('test', function (done) {
+gulp.task('test', ['scripts'], function (done) {
   new Server({
     configFile: __dirname + '/karma.conf.js',
     singleRun: true
   }, done).start();
 });
 
+//run nodemon
+gulp.task('server', ['test'], function () {
+  nodemons({
+    script: 'server/server.js',
+    ext: 'js html',
+  });
+});
+
 //Watch files
-gulp.task('watch', function () {
-  gulp.watch('js/*.js', ['lint', 'scripts'])
+gulp.task('watch', ['server'], function () {
+  gulp.watch('js/*.js', ['lint', 'scripts']);
 });
 
 //default
