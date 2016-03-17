@@ -146,6 +146,7 @@ module.exports = {
             [db.sequelize.fn('COUNT', db.sequelize.col('username')), 'drinkCount']
           ]
         }).then(function (drinks) {
+          console.log(drinks);
           var drinkCount = drinks[0].dataValues.drinkCount;
 
           //get id of user's last closeout order
