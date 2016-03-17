@@ -32,7 +32,9 @@ angular.module('asyncdrink.options', [])
   $scope.getDK = function () {
     optionsFactory.getDrinkCount($scope.currentUser)
       .then(function (response) {
-        $scope.currentUser.drinkCount = response;
+        console.log(response);
+        $scope.currentUser.drinkCount = response.drinkcount;
+        $scope.currentUser.BAC = response.BAC;
       })
   };
   $scope.getDK();
@@ -51,7 +53,8 @@ angular.module('asyncdrink.options', [])
         $scope.tabSuccessIncludingOrder = false;
         //set drinkType to empty string after successfully placing order
         $scope.drinkType = "";
-        $scope.currentUser.drinkCount = response.data.drinkcount;
+        $scope.getDK();
+        // $scope.currentUser.drinkCount = response.data.drinkcount;
       }).catch(function (err) {
         $scope.orderFail = true;
       });
