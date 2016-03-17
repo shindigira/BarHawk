@@ -104,9 +104,7 @@ module.exports = {
               var argumentsObj = BACQuery[0][0];
 
               var elapsedTime = (now - argumentsObj.starttime) / 1000 / 60 / 60;
-              console.log("ELAPSE TIME", elapsedTime);
-              console.log("TIME", time);
-              console.log("TYPE OF STARTTIME", typeof argumentsObj.starttime);
+
               //gender constants
               var rObject = {
                   male: .68,
@@ -122,7 +120,7 @@ module.exports = {
               //round it
               var BAC = Math.round(unroundedBAC * 1000) / 1000;
 
-              console.log(BAC);
+
 
               res.json({
                 drinkcount: drinkCount,
