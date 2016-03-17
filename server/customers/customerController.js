@@ -7,27 +7,26 @@ module.exports = {
   login: function (req, res) {
     //set username/password request to attempt variable
     var attempt = req.body;
-    console.log("LOGIN ATTEMPT", attempt)
 
     models.users.findOne({
-        where: { username: attempt.username },
-      }).then(function (result) {
-          var hashedPassword = result.dataValues.password;
-          bcrypt.compare(attempt.password, hashedPassword, function(err, comparison) {
-            if (comparison) {
-              var token = jwt.encode(attempt.username, 'barHawksecret444');
-              res.json({
-                currentUser: result,
-                token: token
-              });
-            }
-            else {
-              res.sendStatus(401);
-            }
-          })
-        }).catch(function(err) {
+      where: { username: attempt.username },
+    }).then(function (result) {
+      var hashedPassword = result.dataValues.password;
+      //check attempted password with password saved in db
+      bcrypt.compare(attempt.password, hashedPassword, function (err, success) {
+        if (success) {
+          var token = jwt.encode(attempt.username, 'barHawksecret444');
+          res.json({
+            currentUser: result,
+            token: token
+          });
+        } else {
           res.sendStatus(401);
-        })
+        }
+      })
+    }).catch(function (err) {
+      res.sendStatus(401);
+    })
   },
 
   signup: function (req, res) {
@@ -38,7 +37,6 @@ module.exports = {
     bcrypt.hash(attempt.password, 10, function (err, hash) {
       hashedPW = hash;
 
-      console.log("ATTEMPTED PASSWORD", hashedPW);
       //find existing user (err) or create new (success)
       models.users.findOrCreate({
         where: { username: attempt.username },
@@ -60,7 +58,7 @@ module.exports = {
         });
         if (created) {
           var token = jwt.encode(user, 'barHawksecret444');
-          console.log(attempt);
+
           res.json({
             currentUser: attempt,
             token: token
@@ -130,8 +128,6 @@ module.exports = {
 
               //round it
               var BAC = Math.round(unroundedBAC * 1000) / 1000;
-
-
 
               res.json({
                 drinkcount: drinkCount,
