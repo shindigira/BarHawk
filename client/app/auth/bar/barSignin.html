@@ -1,8 +1,20 @@
-<body ng-controller="BarAuthController">
-  <h1>Welcome bartender, please enter your information</h1>
-  <form name="barSignin" ng-submit="barLogin()">
-    <input type="text" ng-model="barUser.barUsername">
-    <input type="password" ng-model="barUser.barPassword">
-    <button>Signin</button>
-  </form>
-  <p ng-show="invalidLogIn">Incorrect username/password combination</p>
+<h5>Are you a customer? <a ui-sref="customerLogin">Click here</a> to login as a customer</h5>
+<br></br>
+<h1>Welcome bartender, please enter your information</h1>
+<form name="barSignin" novalidate ng-submit='barLogin()'>
+  <div class="form-group " ng-class="{ 'has-error' : invalidLogIn}">
+    <label>Username</label>
+    <input type="text" name="username" class="form-control" ng-model="barUser.barUsername" required/>
+    <p ng-show="invalidLogIn" class='help-block'>Invalid username and/or password combination</p>
+    <!-- <p>{{invalidLogIn}}</p> -->
+  </div>
+  <div class="form-group " ng-class="{ 'has-error' : invalidLogIn && !barSignin.password.$pristine && barSignin.password.$touched }">
+    <label>Password</label>
+    <input type="password" name="password" class="form-control" ng-model="barUser.barPassword" required/>
+    <p ng-show="invalidLogIn" class='help-block'>Invalid username and/or password combination</p>
+    <!-- <p>{{invalidLogIn}}</p> -->
+  </div>
+  <div class="form-group">
+    <button type="submit" class="btn btn-primary" ng-disabled="barSignin.$invalid">Signin</button>
+  </div>
+</form>

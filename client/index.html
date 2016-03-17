@@ -1,21 +1,34 @@
 <!DOCTYPE html>
 <html ng-app="asyncdrink">
 
-<head>
+<head >
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Bar Hawk</title>
   <link rel="stylesheet" type="text/css" href="styles/style.css">
-  <script src="library/angular.js"></script>
+
+  <!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+  <script src="library/angular.min.js"></script>
   <script src="library/angular-ui-router.js"></script>
-  <script src="app/auth/patron/patronAuth.js"></script>
+  <script src="app/auth/customer/customerAuth.js"></script>
   <script src="app/customer/options.js"></script>
   <script src="app/auth/bar/barAuth.js"></script>
   <script src="app/bartender/barQueue.js"></script>
   <script src="app/app.js"></script>
+
+  <!-- <script src = "app/auth/customer/photo.js"></script> -->
+  <!-- <script src="dist/all.js"></script> -->
 </head>
 
 <body>
   <h1>Bar Hawk</h1>
   <div ui-view></div>
+<!-- <video id="video" width="640" height="480" autoplay></video>
+<button id="snap">Snap Photo</button>
+<canvas id="canvas" width="640" height="480"></canvas> -->
 </body>
 
 </html>

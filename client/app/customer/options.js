@@ -1,69 +1,108 @@
 angular.module('asyncdrink.options', [])
 
-.controller('optionsController', function ($scope, $state, customerFactory, optionsFactory) {
+.controller('optionsController', function ($scope, $state, $window, customerFactory, optionsFactory) {
+  //set up drinks
+  $scope.drinks = {};
+
+  //set current user (object with all user info)
   $scope.currentUser = optionsFactory.currentUser;
-  $scope.order = {};
-  $scope.order.username = optionsFactory.currentUser;
-  $scope.order.time = new Date();
-  $scope.order.currentPrice = 5;
+
+  //prepare order object before submit to server
+  $scope.order = {
+    username: $scope.currentUser.username
+  };
+
+  //success/fail messages
   $scope.orderSuccess = false;
   $scope.orderFail = false;
+  $scope.tabFail = false;
   $scope.tabSuccess = false;
   $scope.tabSuccessIncludingOrder = false;
-  $scope.clear = function () {
-    $scope.orderSuccess = false;
+
+  //get all drinks from db
+  $scope.getDrinks = function () {
+    optionsFactory.getDrinksList()
+      .then(function (drinks) {
+        $scope.drinks.list = drinks;
+      });
   };
-  //$scope.order.userTab
+  $scope.getDrinks();
+
+  //get user's drink count on load
+  $scope.getDK = function () {
+    optionsFactory.getDrinkCount($scope.currentUser)
+      .then(function (response) {
+        $scope.currentUser.drinkCount = response;
+      })
+  };
+  $scope.getDK();
+
+  //Order only process
   $scope.orderOnly = function () {
-    $scope.order.closeout = false;
+    $scope.savedDrinkType = $scope.order.drinkType;
+
     optionsFactory.orderOnly($scope.order)
       .then(function (response) {
+        //reset response messages
         $scope.orderSuccess = true;
-
+        $scope.orderFail = false;
+        $scope.tabFail = false;
+        $scope.tabSuccess = false;
+        $scope.tabSuccessIncludingOrder = false;
         //set drinkType to empty string after successfully placing order
-        $scope.order.savedDrinkType = $scope.order.drinkType;
-        $scope.order.drinkType = "";
+        $scope.drinkType = "";
+        $scope.currentUser.drinkCount = response.data.drinkcount;
       }).catch(function (err) {
         $scope.orderFail = true;
       });
   };
-
+  //log out
   $scope.logOut = function () {
-    optionsFactory.logOut();
-    $scope.currentUser = null;
+    optionsFactory.currentUser = undefined;
+    $window.localStorage.removeItem('com.barhawk');
     $state.go('customerLogin');
   };
 
+  //Close only process
   $scope.closeTabOnly = function () {
-    $scope.order.closeout = true;
+
     optionsFactory.closeTabOnly($scope.order)
       .then(function (response) {
-        //state.go('tab')
         $scope.tabSuccess = true;
-
-        var userTab;
-        for (var i = 0; i < response.data.length; i++) {
-          if (response.data[i].username === $scope.order.username) {
-            $scope.order.userTab = response.data[i];
-          }
-        }
+        //display tab information from server
+        $scope.userTab = response.data;
+        $scope.orderSuccess = false;
+        $scope.orderFail = false;
+        $scope.tabFail = false;
+        //navigate back to login
+        // setTimeout(function () {
+        //     optionsFactory.currentUser = undefined;
+        //     $state.go('customerLogin')
+        //   },
+        //   5000);
       }).catch(function (err) {
-        $scope.tabSuccess = false;
-        throw err;
+        $scope.tabFail = true;
+        console.log(err);
       });
   };
 
+  //Order and close process
   $scope.orderAndCloseTab = function () {
-    $scope.order.closeout = true;
+
     optionsFactory.orderAndCloseTab($scope.order)
       .then(function (response) {
+        //display stats and success msgs
+        $scope.savedDrinkType = $scope.order.drinkType;
+        $scope.currentUser.drinkCount = response.data.drinkcount;
         $scope.tabSuccessIncludingOrder = true;
-        var userTab;
-        for (var i = 0; i < response.data.length; i++) {
-          if (response.data[i].username === $scope.order.username) {
-            $scope.order.userTab = response.data[i];
-          }
-        }
+        $scope.userTab = response.data;
+        $scope.orderSuccess = false;
+        //navigate back to login
+        // setTimeout(function () {
+        //     optionsFactory.currentUser = undefined;
+        //     $state.go('customerLogin')
+        //   },
+        //   5000);
       }).catch(function (err) {
         $scope.tabSuccessIncludingOrder = false;
         throw err;
@@ -75,21 +114,37 @@ angular.module('asyncdrink.options', [])
   //current user is set by 'optionsFactory.currentUser = $scope.newUser.username' on patronAuth.js
   var currentUser;
 
+  var getDrinksList = function () {
+    return $http({
+      method: "GET",
+      url: '/api/menu/drinks'
+    }).then(function (response) {
+      return response.data;
+    });
+  };
+
+  var getDrinkCount = function (currentUser) {
+    return $http({
+      method: "POST",
+      url: '/api/customers/drinkcount',
+      data: currentUser
+    }).then(function (response) {
+      return response.data
+    })
+  }
+
   var orderOnly = function (order) {
     return $http({
       method: "POST",
-      url: '/api/customer/order',
+      url: '/api/menu/order',
       data: order
     });
-  };
-  var logOut = function () {
-
   };
 
   var closeTabOnly = function (order) {
     return $http({
       method: "POST",
-      url: '/api/customer/closetab',
+      url: '/api/menu/closetab',
       data: order
     });
   };
@@ -97,7 +152,7 @@ angular.module('asyncdrink.options', [])
   var orderAndCloseTab = function (order) {
     return $http({
       method: 'POST',
-      url: '/api/customer/closetab',
+      url: '/api/menu/orderandclosetab',
       data: order
     });
   };
@@ -106,8 +161,9 @@ angular.module('asyncdrink.options', [])
   return {
     currentUser: currentUser,
     orderOnly: orderOnly,
-    logOut: logOut,
     closeTabOnly: closeTabOnly,
-    orderAndCloseTab: orderAndCloseTab
+    orderAndCloseTab: orderAndCloseTab,
+    getDrinksList: getDrinksList,
+    getDrinkCount: getDrinkCount
   };
 });

@@ -1,25 +1,32 @@
-  <h1>Here is the Bar Queue</h1>
-  <button ng-click="dequeue()">Dequeue</button>
-  <table>
+<h1>Here is the Bar Queue</h1>
+<button type='button' ng-click="bartenderLogout()">Bar logout</button>
+<br></br>
+<table>
     <tr>
-      <th>Username </th>
-      <th>Drink Type </th>
-      <th>Time </th>
-      <th>Close out </th>
-      <th>Order Price </th>
-      <th>Total Price </th>
-      <th>Drink Count </th>
+        <th>Username </th>
+        <th>Drink Type </th>
+        <th>Time </th>
+        <th>Close out </th>
+        <th>Order Price </th>
+        <th>Total Price </th>
+        <th>Drink Count </th>
+        <th>Complete Order</th>
     </tr>
     <!-- create a table row for each order in list of orders retrieved from server-->
+    <!-- queue is ordered by time the drink order was submitted,  -->
+    <!-- potential future refactor if donating to MADD can move a customer's order up in queue -->
     <tr ng-repeat="order in data.orders | orderBy: 'time'">
-      <td>{{order.username}}</td>
-      <td>{{order.drinkType}}</td>
-      <td>{{order.time}}</td>
-      <td>{{order.closeout}}</td>
-      <td>{{order.currentPrice}}</td>
-      <td>{{order.totalPrice}}</td>
-      <td>{{order.drinkCount}}</td>
+        <td>{{order.username}}</td>
+        <td>{{order.drinktype}}</td>
+        <td>{{order.createdAt}}</td>
+        <td>{{order.closeout}}</td>
+        <td>{{order.currentprice}}</td>
+        <td>{{order.totalprice}}</td>
+        <td>{{order.drinkcount}}</td>
+        <td>
+            <!-- pass $scope.order in to every complete button so that when clicked will remove that specific order from queue -->
+            <button type="submit" ng-click="dequeue(order)">Complete!</button>
+        </td>
     </tr>
-  </table>
-  <br>
-
+</table>
+<br>
