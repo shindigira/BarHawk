@@ -18,6 +18,7 @@
   "homepage": "https://github.com/mksbest/asyncdrink#readme",
   "dependencies": {
     "angular": "^1.5.0",
+    "bcrypt": "^0.8.5",
     "body-parser": "^1.15.0",
     "bootstrap": "^3.3.6",
     "express": "^4.13.4",
@@ -47,7 +48,7 @@
     "karma-chrome-launcher": "^0.2.2",
     "karma-jasmine": "^0.3.7",
     "karma-requirejs": "^0.2.5",
-    "requirejs": "^2.1.22",
+    "requirejs": "~2.1.0",
     "watchify": "^3.7.0"
   }
 }
