@@ -1,5 +1,5 @@
-var accountSid = 'AC6d9b063b61c76d9588fb5d9df7bb845a';
-var authToken = 'fa527f9341b3fef301c01b4db35ae87e';
+var accountSid = 'AC68614f28addcc82ca25a94fa00c12e18';
+var authToken = '6eb7ad33bde4db24242e898205bc9a8a';
 var client = require('twilio')(accountSid, authToken);
 var models = require('../models')
 var db = require('../models/index.js')
@@ -71,7 +71,7 @@ module.exports = {
       .then(function (targetPhoneNum) {
         client.messages.create({
           to: '+1' + targetPhoneNum[0]['0'].phone,
-          from: '+15104557842',
+          from: '+15754485544',
           body: 'hey ' + customerName + ', your ' + drinkType + ' is ready.'
         }, function (err, message) {
           if (err) {
