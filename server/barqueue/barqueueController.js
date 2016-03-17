@@ -3,6 +3,7 @@ var authToken = 'fa527f9341b3fef301c01b4db35ae87e';
 var client = require('twilio')(accountSid, authToken);
 var models = require('../models')
 var db = require('../models/index.js')
+var moment = require("moment")
 
 //dummy orders table
 var ordersArray = [{
@@ -52,11 +53,12 @@ module.exports = {
 
   completeOrder: function (req, res) {
 
-    db.sequelize.query("Update orders set completed = 't' where id = '"+ req.body.id + "';")
+    db.sequelize.query("Update orders set completed = 't' where id = '" + req.body.id + "';")
 
     .then(function (orderToBeCompleted) {
       res.sendStatus(200);
     });
+
   },
 
   orderCompleteTextMessage: function (req, res) {

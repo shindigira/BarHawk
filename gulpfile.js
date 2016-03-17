@@ -11,12 +11,24 @@ var rename = require('gulp-rename');
 var cssmin = require('gulp-cssmin');
 var minify = require('gulp-minify');
 var nodemons = require('gulp-nodemon');
+var bootlint  = require('gulp-bootlint');
+
 //Lint Task
 gulp.task('lint', function () {
   return gulp.src('client/app/*.js')
     .pipe(jshint())
     .pipe(jshint.reporter('default'));
 });
+
+//Bootlint Task
+gulp.task('bootlint', function (){
+  return gulp.src('client/app/index.html')
+  .pipe(bootlint({
+    stoponerror: true,
+    stoponwarning: true,
+    loglevel: 'debug'
+    }))
+  });
 
 //CSS minify
 gulp.task('minify-css', function () {
@@ -55,4 +67,4 @@ gulp.task('watch', function () {
 });
 
 //default
-gulp.task('default', ['lint', 'minify-css', 'scripts', 'test', 'server', 'watch']);
+gulp.task('default', ['lint', 'bootlint', 'minify-css', 'scripts', 'test', 'server', 'watch']);
