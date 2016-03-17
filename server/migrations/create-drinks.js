@@ -32,6 +32,9 @@ module.exports = {
           volume: {
             type: Sequelize.INTEGER
           },
+          imageurl: {
+            type: Sequelize.STRING
+          },
           createdAt: {
             allowNull: false,
             type: Sequelize.DATE
