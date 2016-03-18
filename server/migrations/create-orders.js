@@ -26,6 +26,9 @@ module.exports = {
         drinkcount: {
           type: Sequelize.INTEGER
         },
+        bac: {
+          type: Sequelize.STRING
+        },
         completed: {
           type: Sequelize.BOOLEAN
         },

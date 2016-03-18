@@ -77,7 +77,7 @@ module.exports = {
   order: function (req, res) {
     //assigning drink order to varible
     var ord = req.body;
-
+    
     if (!ord.drinkType) {
       res.sendStatus(400);
     } else {
@@ -109,7 +109,8 @@ module.exports = {
                   closeout: false,
                   currentprice: drinkPrice,
                   totalprice: null,
-                  drinkcount: userData.drinkCount
+                  drinkcount: userData.drinkCount,
+                  bac: ord.BAC
                 })
                 .then(function (userorder) {
 
@@ -184,7 +185,8 @@ module.exports = {
                 closeout: true,
                 currentprice: drinkPrice,
                 totalprice: finalTab + drinkPrice,
-                drinkcount: drinkCount
+                drinkcount: drinkCount,
+                bac: ord.BAC
               }).then(function (order) {
                 res.json(order);
               })

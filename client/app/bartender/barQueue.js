@@ -3,7 +3,7 @@
 angular.module('asyncdrink.barQueue', [])
 
 .controller('BarQueueController',
-  function ($scope, OrdersFactory, $window, $state, optionsFactory) {
+  function ($scope, OrdersFactory, $window, $state, $interval, optionsFactory) {
     $scope.data = {};
 
     $scope.bartenderLogout = function () {
@@ -22,8 +22,7 @@ angular.module('asyncdrink.barQueue', [])
           console.error(error);
         });
 
-      setTimeout($scope.getOrders, 4000);
-
+      $interval($scope.getOrders, 4000);
     };
 
     $scope.dequeue = function (completedOrder) {
