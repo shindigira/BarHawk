@@ -1,7 +1,7 @@
 <h1>Here is the Bar Queue</h1>
 <button type='button' ng-click="bartenderLogout()">Bar logout</button>
 <br></br>
-<table>
+<table id="queue">
     <tr>
         <th>Username </th>
         <th>Drink Type </th>
@@ -20,7 +20,7 @@
         <td>{{order.drinktype}}</td>
         <td>{{order.createdAt}}</td>
         <td>{{order.closeout}}</td>
-        <td>{{order.currentprice}}</td>
+        <td>${{order.currentprice}}</td>
         <td>{{order.totalprice}}</td>
         <td>{{order.drinkcount}}</td>
         <td>{{order.bac}}%</td>
