@@ -106,12 +106,18 @@ ul li .drinkCell img {
     display: block;
     margin-left: auto;
     margin-right: auto;
+
 }
 
 button {
   display: inline-block;
   margin: auto auto;
+
+  width:100px;
   border-radius: 28px;
+  color: green;
+  font-size: 15px;
+
   background: white;
   padding: 5px 10px 5px 5px;
   text-decoration: none;
@@ -135,6 +141,9 @@ ul li .drinkCell button {
 
 button:hover {
   background: #f2f2f2;
+}
+button:hover {
+  background: #e6ffe6;
   text-decoration: none;
   border: 1;
   border-color: #009900;

@@ -15,7 +15,7 @@
   <h4>Please choose a drink:</h4>
   <select ng-model='order.drinkType' ng-options='drink.name as (drink.name + ", $" + drink.price) group by ("----"+drink.type+"----") for drink in drinks.list | orderBy : "name"' ng-change='clear()' value=''>
   </select>
-  <img src="http://res.cloudinary.com/df1u5o3g6/image/upload/r_0/v1458251342/mojito_ydbilh.jpg" alt="Mojito" width="80">
+
   <div ng-app="asyncdrink.options">
     <div ng-controller="optionsController">
       <li ng-repeat="drink in drinks.list">
@@ -23,6 +23,7 @@
       </li>
     </div>
   </div>
+
   <br>
   <br>
   <button ng-click='orderOnly()'>Submit Order</button>
