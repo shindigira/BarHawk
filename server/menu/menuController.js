@@ -77,7 +77,7 @@ module.exports = {
   order: function (req, res) {
     //assigning drink order to varible
     var ord = req.body;
-    console.log("THISISORDER", ord);
+    
     if (!ord.drinkType) {
       res.sendStatus(400);
     } else {
