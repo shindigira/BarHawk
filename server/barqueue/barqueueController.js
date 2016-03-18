@@ -67,18 +67,19 @@ module.exports = {
     var closeout = req.body.customerCloseout;
     var toPhoneNum;
 
-    var messageBody = 'Hey ' + customerName + ', ';
+    var messageBody;
 
-    if (!(drinkType)) {
-      messageBody += 'your check is ready to be picked up and paid at the bar. Thank you!'
-    } else if (closeout === true) {
-      messageBody += 'your ' + drinkType + ' and check are ready to be picked up at the bar. Thank you and enjoy!'
-    } else if (closeout === false) {
-      messageBody += 'your ' + drinkType + ' is ready to be picked up at the bar. Enjoy!'
-    }
-
-    db.sequelize.query("Select phone from users where username = '" + customerName + "';")
+    db.sequelize.query("Select firstname, phone from users where username = '" + customerName + "';")
       .then(function (targetPhoneNum) {
+        messageBody = 'Hey ' + targetPhoneNum[0]['0'].firstname + ', ';
+        if (!(drinkType)) {
+          messageBody += 'your check is ready to be picked up and paid at the bar. Thank you!'
+        } else if (closeout === true) {
+          messageBody += 'your ' + drinkType + ' and check are ready to be picked up at the bar. Thank you and enjoy!'
+        } else if (closeout === false) {
+          messageBody += 'your ' + drinkType + ' is ready to be picked up at the bar. Enjoy!'
+        }
+
         client.messages.create({
           to: '+1' + targetPhoneNum[0]['0'].phone,
           from: '+15754485544',
