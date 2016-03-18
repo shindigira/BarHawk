@@ -1,5 +1,6 @@
 var app = require('../../server/server.js');
 var barqueueController = require('../../server/barqueue/barqueueController.js');
+var Sequelize = require('sequelize'); 
 
 describe('Server', function(){
   beforeAll(function(done){
@@ -8,6 +9,11 @@ describe('Server', function(){
       done();
     });
   });
+
+  beforeEach(function(done){
+    db = new Sequelize('test', null, null);
+
+  })
 
   afterAll(function(done){
     this.server.close(function(){
