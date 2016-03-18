@@ -24,7 +24,7 @@ describe('Server', function(){
   });
 
   describe('barqueueController', function(){
-    
+
     describe('showPendingOrders', function(){
 
       it('should be a function', function(done){
