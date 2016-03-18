@@ -19,7 +19,7 @@ module.exports = function (config) {
 
       'client/app/**/*.js',
 
-      'specs/**/*.js'
+      'spec/client/*.js'
     ],
 
     // list of files to exclude
