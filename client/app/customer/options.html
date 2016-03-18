@@ -1,5 +1,5 @@
 <div id="topbar">
-  <button ng-click='closeTabOnly()' ng-disabled="tabSuccessIncludingOrder || tabSuccess">Close Tab</button>
+  <button ng-click='closeTabOnly()' ng-disabled="orderCloseSuccess || tabSuccess">Close Tab</button>
   <div ng-show='tabSuccess'>
     <p>You've successfully closed your tab.</p>
     <p>Total: ${{userTab.totalprice}}</p>
@@ -19,7 +19,7 @@
   <br>
   <button ng-click='orderOnly()'>Submit Order</button>
   <button ng-click='orderAndCloseTab()'>Submit and Close Tab</button>
-  <div ng-show='tabSuccessIncludingOrder'>
+  <div ng-show='orderCloseSuccess'>
     <p>You've successfully placed an order for {{savedDrinkType}} and closed your tab.</p>
     <p>Tab Total: ${{userTab.totalprice}}</p>
     <br>

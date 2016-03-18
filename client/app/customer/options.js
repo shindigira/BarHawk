@@ -17,7 +17,7 @@ angular.module('asyncdrink.options', [])
   $scope.orderFail = false;
   $scope.tabFail = false;
   $scope.tabSuccess = false;
-  $scope.tabSuccessIncludingOrder = false;
+  $scope.orderCloseSuccess = false;
 
   //get all drinks from db
   $scope.getDrinks = function () {
