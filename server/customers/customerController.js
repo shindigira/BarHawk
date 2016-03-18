@@ -74,6 +74,7 @@ module.exports = {
   drinkcount: function (req, res) {
     var user = req.body.username;
     var drinkCount;
+    var lastOrder;
     //set current time
     var time = new Date();
     var now = new Date();
@@ -93,12 +94,14 @@ module.exports = {
           }
         },
         attributes: [
-          [db.sequelize.fn('COUNT', db.sequelize.col('username')), 'drinkCount']
+          [db.sequelize.fn('COUNT', db.sequelize.col('username')), 'drinkCount'],
+          [db.sequelize.fn('MAX', db.sequelize.col('id')), 'latestOrder']
         ]
       })
       .then(function (userdrinks) {
         //set drink count
         drinkCount = userdrinks[0].dataValues.drinkCount;
+        lastOrder = userdrinks[0].dataValues.latestOrder;
 
         if (drinkCount === '0') {
           res.json({
@@ -129,6 +132,9 @@ module.exports = {
               //round it
               var BAC = Math.round(unroundedBAC * 1000) / 1000;
 
+              // if (drinkCount > 1) {
+              //   db.sequelize.query("update orders set bac='" + BAC + "' where id='" + lastOrder + "'");
+              // }
               res.json({
                 drinkcount: drinkCount,
                 BAC: BAC

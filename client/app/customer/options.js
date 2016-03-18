@@ -1,6 +1,6 @@
 angular.module('asyncdrink.options', [])
 
-.controller('optionsController', function ($scope, $state, $window, customerFactory, optionsFactory) {
+.controller('optionsController', function ($scope, $state, $window, $interval, customerFactory, optionsFactory) {
   //set up drinks
   $scope.drinks = {};
 
@@ -35,6 +35,7 @@ angular.module('asyncdrink.options', [])
         console.log(response);
         $scope.currentUser.drinkCount = response.drinkcount;
         $scope.currentUser.BAC = response.BAC;
+        $scope.order.BAC = response.BAC
       })
   };
   $scope.getDK();
@@ -111,6 +112,7 @@ angular.module('asyncdrink.options', [])
         throw err;
       });
   };
+  $interval($scope.getDK, 3600000);
 })
 
 .factory('optionsFactory', function ($http) {
