@@ -22,7 +22,7 @@ angular.module('asyncdrink.barQueue', [])
           console.error(error);
         });
 
-      // $interval($scope.getOrders, 30000);
+      $interval($scope.getOrders, 15000);
     };
 
     $scope.dequeue = function (completedOrder) {
