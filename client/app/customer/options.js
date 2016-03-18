@@ -24,6 +24,7 @@ angular.module('asyncdrink.options', [])
     optionsFactory.getDrinksList()
       .then(function (drinks) {
         $scope.drinks.list = drinks;
+        console.log('$scope.drinks.list[0].imageurl: ', $scope.drinks.list[0]);
       });
   };
   $scope.getDrinks();
@@ -32,6 +33,7 @@ angular.module('asyncdrink.options', [])
   $scope.getDK = function () {
     optionsFactory.getDrinkCount($scope.currentUser)
       .then(function (response) {
+ getDrinks query, and image display on options.html
         $scope.currentUser.drinkCount = response.drinkcount;
         $scope.currentUser.BAC = response.BAC;
         $scope.order.BAC = response.BAC
@@ -120,6 +122,7 @@ angular.module('asyncdrink.options', [])
       url: '/api/menu/drinks'
     }).then(function (response) {
       return response.data;
+
     });
   };
 

@@ -58,3 +58,92 @@ form {
   position: relative;
   left: 7px;
 }
+
+li {
+  list-style-type: none;
+  color: #243ac7;
+  font-size: 14px;
+}
+
+.selectionOptions {
+  text-align:center;
+}
+.selectionOptions ul {
+  display: inline-table;
+  white-space: nowrap;
+}
+
+.selectionOptions ul li{
+  color: #AAAAAA;
+  display: inline-block;
+  padding: 5%;
+}
+
+.selectionOptions ul li input[type=radio]{
+  position: absolute;
+  visibility: hidden;
+}
+
+.selectionOptions ul li label{
+  position: relative;
+  font-weight: 300;
+  font-size: 3em;
+  -webkit-transition: all 0.25s linear;
+}
+
+.selectionOptions input[type=radio]:checked ~ label{
+  color:  #33cc33;
+}
+
+ul li .drinkCell {
+  height: 10%;
+  overflow: hidden;
+  -webkit-column-break-inside: avoid;
+  text-align:center;
+}
+
+ul li .drinkCell img {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+button {
+  display: inline-block;
+  margin: auto auto;
+  border-radius: 28px;
+  background: white;
+  padding: 5px 10px 5px 5px;
+  text-decoration: none;
+  margin-top: 5px;
+  border: 1;
+  border-color: #009900;
+  outline: none;
+}
+
+#topbar button {
+    color: #009900;
+}
+
+#results button {
+    color: #009900;
+}
+
+ul li .drinkCell button {
+    color: #009900;
+}
+
+button:hover {
+  background: #f2f2f2;
+  text-decoration: none;
+  border: 1;
+  border-color: #009900;
+  outline: none;
+}
+
+ul {
+  columns: 3;
+  -webkit-columns: 3;
+  -moz-columns: 3;
+  list-style-type: none;
+}
