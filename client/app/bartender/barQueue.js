@@ -22,7 +22,7 @@ angular.module('asyncdrink.barQueue', [])
           console.error(error);
         });
 
-        setTimeout($scope.getOrders, 4000);
+      setTimeout($scope.getOrders, 4000);
 
     };
 
@@ -37,7 +37,8 @@ angular.module('asyncdrink.barQueue', [])
 
       var textMessDetails = {
         customerName: completedOrder.username,
-        customerDrinkType: completedOrder.drinktype
+        customerDrinkType: completedOrder.drinktype,
+        customerCloseout: completedOrder.closeout
       };
       OrdersFactory.sendTextMessage(textMessDetails);
       OrdersFactory.removeOrder(completedOrder)
