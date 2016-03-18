@@ -132,9 +132,6 @@ module.exports = {
               //round it
               var BAC = Math.round(unroundedBAC * 1000) / 1000;
 
-              // if (drinkCount > 1) {
-              //   db.sequelize.query("update orders set bac='" + BAC + "' where id='" + lastOrder + "'");
-              // }
               res.json({
                 drinkcount: drinkCount,
                 BAC: BAC

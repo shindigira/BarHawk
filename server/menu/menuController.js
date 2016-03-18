@@ -185,7 +185,8 @@ module.exports = {
                 closeout: true,
                 currentprice: drinkPrice,
                 totalprice: finalTab + drinkPrice,
-                drinkcount: drinkCount
+                drinkcount: drinkCount,
+                bac: ord.BAC
               }).then(function (order) {
                 res.json(order);
               })
