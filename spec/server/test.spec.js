@@ -14,12 +14,18 @@ var fakeOrder = {
   drinkcount: 1,
 };
 
+var fakeTextMessDetails = {
+  customerName: 'champagnepapi2',
+  customerDrinkType: 'Chardonnay',
+  customerCloseout: false
+};
+
 var fakeCustomerSignup = {
   drinkCount: 0,
   totalPrice: 0,
   firstname: 'test',
   lastname: 'test',
-  username: 'testtwentyeight',
+  username: 'testthirty',
   password: 'testpassword',
   phonenumber: 5059342914,
   photo: null,
@@ -39,7 +45,7 @@ var fakeBarLogin = {
 };
 
 describe('Testing Suite', function () {
-  
+
   it('Passes true tests', function (done) {
     expect(true).to.equal(true);
     done();
@@ -62,7 +68,7 @@ describe('Routes', function () {
           .post('/api/customers/signup')
           .send(fakeCustomerSignup)
           .expect(200)
-          .end(function(err, res){
+          .end(function (err, res) {
             expect(res.body).to.have.property('currentUser');
             expect(res.body).to.have.property('token');
             expect(res.body).to.not.have.property('notAProperty');
@@ -70,7 +76,7 @@ describe('Routes', function () {
           })
       });
 
-      it('should return 401 if user already signed up', function(done){
+      it('should return 401 if user already signed up', function (done) {
         request(app)
           .post('/api/customers/signup')
           .send(fakeCustomerSignup)
@@ -87,30 +93,30 @@ describe('Routes', function () {
           .expect(401, done)
       });
 
-      xit('should return 200 if user sent', function(done){
+      xit('should return 200 if user sent', function (done) {
         request(app)
           .post('/api/cusotmers/login')
           .send(fakeCustomerLogin)
-          .end(function(err, res){
+          .end(function (err, res) {
             console.log('xxxxx this is res.body: ', res.body);
             done();
           });
-        });
+      });
     });
   });
 
-  describe('Bar Queue Routes', function(){
+  describe('Bar Queue Routes', function () {
 
-    describe('Showing pending orders: POST to /api/barqueue/showPendingOrders', function(){
+    describe('Showing pending orders: POST to /api/barqueue/showPendingOrders', function () {
 
-      it('should return 200 to logged in bartender', function(done){
+      it('should return 200 to logged in bartender', function (done) {
         request(app)
           .post('/api/barqueue/showPendingOrders')
           .send(fakeBarLogin)
           .expect(200, done);
       });
 
-      it('should return 401 to non-bartenders', function(done){
+      it('should return 401 to non-bartenders', function (done) {
         request(app)
           .post('/api/barqueue/showPendingOrders')
           .send(fakeCustomerLogin)
@@ -118,22 +124,31 @@ describe('Routes', function () {
       });
     });
 
-    describe('Completing orders: POST to /api/barqueue/completeOrder', function(){
+    describe('Completing orders: POST to /api/barqueue/completeOrder', function () {
 
-      it('should return 200 when orders table updated', function(done){
+      it('should return 200 when orders table updated', function (done) {
         request(app)
           .post('/api/barqueue/completeOrder')
           .send(fakeOrder)
           .expect(200, done);
       });
 
-      it('should return 404 if orders table not updated', function(done){
+      it('should return 404 if orders table not updated', function (done) {
         request(app)
           .post('/api/barqueue/completeOrder')
           .send({})
           .expect(404, done);
       });
+    });
 
+    describe('Text messages when order ready: POST to /api/barqueue/orderCompleteTextMessage', function () {
+
+      it('should return 200 when order complete', function (done) {
+        request(app)
+          .post('/api/barqueue/orderCompleteTextMessage')
+          .send(fakeTextMessDetails)
+          .expect(200, done);
+      });
     });
 
   });
