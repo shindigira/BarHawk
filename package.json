@@ -31,7 +31,6 @@
     "twilio": "^2.9.0"
   },
   "devDependencies": {
-    "browserify": "^13.0.0",
     "chai": "^3.5.0",
     "gulp": "^3.9.1",
     "gulp-bootlint": "^0.7.1",
