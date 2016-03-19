@@ -36,7 +36,6 @@ angular.module('asyncdrink.customerAuth', [])
   };
 
   $scope.logIn = function () {
-
     customerFactory.signIn($scope.loginAttempt)
       .then(function (response) {
 
@@ -70,7 +69,6 @@ angular.module('asyncdrink.customerAuth', [])
   };
 
   var signUp = function (userInfo) {
-    console.log('we are inside signUP HTTP');
     return $http({
         method: "POST",
         url: '/api/customers/signup',

@@ -4,7 +4,8 @@
   "description": "Socially responsible order and fulfillment system for bars.",
   "main": "server.js",
   "scripts": {
-    "test": "./node_modules/mocha/bin/mocha ./spec/server/*.js"
+    "test": "karma start"
+    // if want back-end tests to run, change the above 'karma start to : '"./node_modules/mocha/bin/mocha ./spec/server/*.js"' and run npm test in terminal from root directory
   },
   "repository": {
     "type": "git",
@@ -31,6 +32,7 @@
     "twilio": "^2.9.0"
   },
   "devDependencies": {
+    "browserify": "^13.0.0",
     "chai": "^3.5.0",
     "gulp": "^3.9.1",
     "gulp-bootlint": "^0.7.1",
@@ -47,12 +49,15 @@
     "jasmine-core": "^2.4.1",
     "jshint": "^2.9.1",
     "karma": "^0.13.21",
+    "karma-browserify": "^5.0.2",
     "karma-chrome-launcher": "^0.2.2",
     "karma-jasmine": "^0.3.7",
+    "karma-mocha": "^0.2.2",
     "karma-requirejs": "^0.2.5",
     "mocha": "^2.4.5",
     "requirejs": "~2.1.0",
     "supertest": "^1.2.0",
-    "watchify": "^3.7.0"
+    "watchify": "^3.7.0",
+    "webpack": "^1.12.14"
   }
 }

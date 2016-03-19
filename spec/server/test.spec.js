@@ -3,12 +3,17 @@ var request = require('supertest');
 
 var app = require('../../server/server.js');
 
+var randomNum = Math.floor(Math.random() * 1001);
+var randomNumAsString = randomNum.toString();
+var testUser = 'testuser' + randomNumAsString;
+var testUser2 = testUser + '2';
+
 var fakeCustomerSignup = {
   drinkCount: 0,
   totalPrice: 0,
   firstname: 'test',
   lastname: 'test',
-  username: 'testthirtyfive',
+  username: testUser,
   password: 'testpassword',
   phonenumber: 5059342914,
   photo: null,
@@ -29,7 +34,7 @@ var fakeBarLogin = {
 
 var fakeOrderToBeRemoved = {
   id: 1,
-  username: 'champagnepapi2',
+  username: testUser,
   drinktype: 'Chardonnay',
   createdAt: '2016-03-17 14:36:51.958-07',
   closeout: 'f',
@@ -38,10 +43,22 @@ var fakeOrderToBeRemoved = {
   drinkcount: 1,
 };
 
-var fakeOrderToBeAdded = {
-  username: 'champagnepapi2',
-  drinktype: 'Chardonnay',
-  BAC: 0.16
+var fakeOrder = {
+  username: testUser,
+  BAC: 0.16,
+  drinkType: 'Merlot'
+};
+
+var fakeOrder2 = {
+  username: testUser2,
+  BAC: 0.16,
+  drinkType: 'Merlot'
+};
+
+var invalidCloseTab = {
+  username: testUser,
+  BAC: 0.16,
+  drinkType: null
 };
 
 var fakeTextMessDetails = {
@@ -64,12 +81,10 @@ describe('Testing Suite', function () {
   });
 
   it('Fails false tests', function (done) {
-    expect(2 + 2).to.equal(5);
+    expect(2 + 2).to.not.equal(5);
     done();
   });
 });
-
-describe('Routes', function () {
 
   describe('Customer Routes', function () {
 
@@ -105,7 +120,7 @@ describe('Routes', function () {
           .expect(401, done)
       });
 
-      xit('should return 200 if user sent', function (done) {
+      it('should return 200 if user sent', function (done) {
         request(app)
           .post('/api/cusotmers/login')
           .send(fakeCustomerLogin)
@@ -114,6 +129,97 @@ describe('Routes', function () {
           });
       });
     });
+  });
+
+  describe('Menu Routes', function () {
+
+    describe('Show Drinks: GET to /api/menu/drinks', function () {
+
+      it('should return 200 upon successful query of drinks table in db', function (done) {
+        request(app)
+          .get('/api/menu/drinks')
+          .expect(200, done);
+      });
+
+      it('should return an array of menu items', function (done) {
+        request(app)
+          .get('/api/menu/drinks')
+          .end(function (err, res) {
+            expect(res.body).to.have.length.above(0);
+            done();
+          });
+      });
+    });
+
+    describe('Ordering Drink Only: POST to /api/menu/order', function () {
+
+      it('should return 200 for successful order', function (done) {
+        request(app)
+          .post('/api/menu/order')
+          .send(fakeOrder)
+          .expect(200, done);
+      });
+
+      it('should return the user order with properties currentprice, totalprice, drinkcount, bac, and closeout', function (done) {
+        request(app)
+          .post('/api/menu/order')
+          .send(fakeOrder)
+          .end(function (err, res) {
+            expect(res.body).to.have.property('currentprice');
+            expect(res.body).to.have.property('totalprice');
+            expect(res.body).to.have.property('totalprice');
+            expect(res.body).to.have.property('drinkcount');
+            expect(res.body).to.have.property('bac');
+            expect(res.body).to.have.property('closeout');
+            done();
+          });
+      });
+
+      it('should return 400 if drinkType not specified', function(done){
+        request(app)
+          .post('/api/menu/order')
+          .send({})
+          .expect(400, done);
+      });
+    });
+    describe('Closing tab only: POST to /api/menu/closetab', function(){
+
+      it('should return receipt details', function(done){
+        request(app)
+          .post('/api/menu/closetab')
+          .send(fakeOrder)
+          .end(function(err, res){
+            expect(200);
+            expect(res.body.closeout).to.equal(true);
+            expect(res.body).to.have.property('totalprice');
+            expect(res.body).to.have.property('drinkcount');
+            done();
+          });
+      });    
+
+      it('should return 400 if customer didn\'t order a drink', function(done){
+        request(app)
+          .post('/api/menu/closetab')
+          .send(invalidCloseTab)
+          .expect(400, done);
+      });
+    });
+
+    describe('Ordering drink and closing tab: POST to /api/menu/orderandclosetab', function(){
+
+      it('should return 200 and receipt details', function(done){
+        request(app)
+          .post('/api/menu/orderandclosetab')
+          .send(fakeOrder)
+          .end(function(err, res){
+            expect(200);
+            expect(res.body.closeout).to.equal(true);
+            expect(res.body).to.have.property('totalprice');
+            expect(res.body).to.have.property('drinkcount');
+            done();
+          })
+      })
+    })
   });
 
   describe('Bar Queue Routes', function () {
@@ -161,69 +267,13 @@ describe('Routes', function () {
           .expect(200, done);
       });
 
-      it('should return 401 if text not sent', function(done){
+      it('should return 401 if text not sent', function (done) {
         request(app)
           .post('/api/barqueue/orderCompleteTextMessage')
           .send(faultyTextMessDetails)
           .expect(404, done);
       });
     });
-  });
-
-  describe('Menu Routes', function(){
-
-    describe('Show Drinks: GET to /api/menu/drinks', function(){
-
-      it('should return 200 upon successful query of drinks table in db', function(done){
-        request(app)
-          .get('/api/menu/drinks')
-          .expect(200, done);
-      });
-
-      it('should return an array of menu items', function(done){
-        request(app)
-          .get('/api/menu/drinks')
-          .end(function(err, res){
-            expect(res.body).to.have.length.above(0);
-            done();
-          });
-      });
-    });
-
-    describe('Ordering Drink Only: POST to /api/menu/order', function(){
-
-      it('should return 200 for successful order', function(done){
-        request(app)
-          .post('/api/menu/order')
-          .send(fakeOrderToBeAdded)
-          .expect(200, done);
-      });
-
-      it('should return the user order with properties currentprice, totalprice, drinkcount, bac, and closeout', function(done){
-        request(app)
-          .post('/api/menu/order')
-          .send(fakeOrderToBeAdded)
-          .end(function(err, res){
-            expect(res.body).to.have.property('currentprice');
-            expect(res.body).to.have.property('totalprice');
-            expect(res.body).to.have.property('totalprice');
-            expect(res.body).to.have.property('drinkcount');
-            expect(res.body).to.have.property('bac');
-            expect(res.body).to.have.property('closeout');
-            done();
-          });
-      })
-
-
-    })
 
 
   });
-
-});
-
-
-
-
-
-
