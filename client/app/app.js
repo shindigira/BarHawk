@@ -32,11 +32,6 @@ angular.module('asyncdrink', ['ui.router', 'asyncdrink.customerAuth',
       templateUrl: "/app/auth/customer/customerSignin.html",
       controller: 'customerController'
     })
-    .state('uberPage', {
-      url:"/uber",
-      templateUrl: "/app/customer/uber.html",
-      controller: "optionsController"
-    });
 
   //Inject the AttachTokens factory into $http's interceceptors array so
   //all outgoing requests are stopped and AttachTokens runs on every

@@ -178,6 +178,7 @@ angular.module('asyncdrink.options', [])
   };
 
 
+
   return {
     currentUser: currentUser,
     orderOnly: orderOnly,
@@ -185,5 +186,6 @@ angular.module('asyncdrink.options', [])
     orderAndCloseTab: orderAndCloseTab,
     getDrinksList: getDrinksList,
     getDrinkCount: getDrinkCount
+
   };
 });

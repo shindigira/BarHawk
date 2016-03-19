@@ -1,5 +1,6 @@
+<div class = 'signUp'>
 <h3>Sign Up!</h3>
-<form name="userForm" novalidate ng-submit='signUp(userForm.$valid)'>
+<form name="userForm" id='.form-inline'  novalidate ng-submit='signUp(userForm.$valid)'>
   <div class='form-group' ng-class="{ 'has-error' : userForm.firstname.$invalid && !userForm.firstname.$pristine &&  userForm.firstname.$touched}">
     <label> First Name </label>
     <input name='firstname' type="text" class="form-control" ng-model="newUser.firstname" ng-class="{'error': userForm.$invalid && userForm.$dirty}" required/>
@@ -31,12 +32,12 @@
     <input name='phonenumber' type="number" class="form-control" ng-model="newUser.phonenumber" ng-minlength="10" ng-maxlength="10" ng-class="{'error': userForm.$invalid && userForm.$dirty}" required/>
     <p ng-show="userForm.phonenumber.$invalid && !userForm.phonenumber.$pristine" class="help-block">We need your phone number to let you know when your drinks are ready!</p>
   </div>
-  <div class='form-group ng-class="{ 'has-error' : userForm.age.$invalid && !userForm.age.$pristine && userForm.age.$touched}">
+  <div class='form-group' col-md-4 col-md-offset-8 ng-class="{ 'has-error' : userForm.age.$invalid && !userForm.age.$pristine && userForm.age.$touched}">
     <label>Age</label>
     <input name='age' type="number" class="form-control" ng-model="newUser.age" min="21" ng-class="{'error': userForm.$invalid && userForm.$dirty}" required/>
     <p ng-show="userForm.age.$error.min" class="help-block">You're too young to use this application.</p>
   </div>
-  <div class='form-group'  ng-class="{ 'has-error' : userForm.weight.$invalid && !userForm.weight.$pristine && userForm.weight.$touched }">
+  <div class='form-group' col-md-4 col-md-offset-8 ng-class="{ 'has-error' : userForm.weight.$invalid && !userForm.weight.$pristine && userForm.weight.$touched }">
     <label>Weight</label>
     <input name='weight' type="number" class="form-control" ng-model="newUser.weight" ng-class="{'error': userForm.$invalid && userForm.$dirty}" required/>
     <p ng-show="userForm.weight.$invalid && !userForm.weight.$pristine" class="help-block">Your weight is required so we can calculate your BAC!</p>
@@ -62,3 +63,4 @@
 
 <p> Already a user?
   <a ui-sref='customerLogin'>Click here</a> to login</p>
+</div>
