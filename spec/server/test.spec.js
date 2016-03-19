@@ -3,29 +3,12 @@ var request = require('supertest');
 
 var app = require('../../server/server.js');
 
-var fakeOrder = {
-  id: 1,
-  username: 'champagnepapi2',
-  drinktype: 'Chardonnay',
-  createdAt: '2016-03-17 14:36:51.958-07',
-  closeout: 'f',
-  currentprice: 9,
-  totalprice: 30,
-  drinkcount: 1,
-};
-
-var fakeTextMessDetails = {
-  customerName: 'champagnepapi2',
-  customerDrinkType: 'Chardonnay',
-  customerCloseout: false
-};
-
 var fakeCustomerSignup = {
   drinkCount: 0,
   totalPrice: 0,
   firstname: 'test',
   lastname: 'test',
-  username: 'testthirty',
+  username: 'testthirtyone',
   password: 'testpassword',
   phonenumber: 5059342914,
   photo: null,
@@ -43,6 +26,29 @@ var fakeBarLogin = {
   username: 'baradmin',
   password: 'barpassword'
 };
+
+var fakeOrder = {
+  id: 1,
+  username: 'champagnepapi2',
+  drinktype: 'Chardonnay',
+  createdAt: '2016-03-17 14:36:51.958-07',
+  closeout: 'f',
+  currentprice: 9,
+  totalprice: 30,
+  drinkcount: 1,
+};
+
+var fakeTextMessDetails = {
+  customerName: 'champagnepapi2',
+  customerDrinkType: 'Chardonnay',
+  customerCloseout: false
+};
+
+var faultyTextMessDetails = {
+  customerName: 'nonExistentUser',
+  customerDrinkType: 'Chardonnay',
+  customerCloseour: false
+}
 
 describe('Testing Suite', function () {
 
@@ -143,11 +149,18 @@ describe('Routes', function () {
 
     describe('Text messages when order ready: POST to /api/barqueue/orderCompleteTextMessage', function () {
 
-      it('should return 200 when order complete', function (done) {
+      it('should return 200 after text sent', function (done) {
         request(app)
           .post('/api/barqueue/orderCompleteTextMessage')
           .send(fakeTextMessDetails)
           .expect(200, done);
+      });
+
+      it('should return 401 if text not sent', function(done){
+        request(app)
+          .post('/api/barqueue/orderCompleteTextMessage')
+          .send(faultyTextMessDetails)
+          .expect(404, done);
       });
     });
 

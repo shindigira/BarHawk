@@ -62,7 +62,7 @@ module.exports = {
       res.sendStatus(200);
     })
 
-    .catch(function(err){
+    .catch(function (err) {
       res.sendStatus(404);
     })
 
@@ -100,5 +100,8 @@ module.exports = {
           }
         });
       })
+      .catch(function (err) {
+        res.sendStatus(404);
+      });
   }
 };
