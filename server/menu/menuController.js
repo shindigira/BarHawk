@@ -9,6 +9,9 @@ module.exports = {
         //return
         res.send(drinks[0]);
       })
+      .catch(function(err){
+        res.sendStatus(404);
+      })
   },
 
     closeTab: function (req, res) {

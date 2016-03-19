@@ -43,7 +43,7 @@ angular.module('asyncdrink.options', [])
   //Order only process
   $scope.orderOnly = function () {
     $scope.savedDrinkType = $scope.order.drinkType;
-
+    console.log('xxxxx this is order', $scope.order);
     optionsFactory.orderOnly($scope.order)
       .then(function (response) {
         //reset response messages

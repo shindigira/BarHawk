@@ -8,7 +8,7 @@ var fakeCustomerSignup = {
   totalPrice: 0,
   firstname: 'test',
   lastname: 'test',
-  username: 'testthirtyone',
+  username: 'testthirtyfive',
   password: 'testpassword',
   phonenumber: 5059342914,
   photo: null,
@@ -27,7 +27,7 @@ var fakeBarLogin = {
   password: 'barpassword'
 };
 
-var fakeOrder = {
+var fakeOrderToBeRemoved = {
   id: 1,
   username: 'champagnepapi2',
   drinktype: 'Chardonnay',
@@ -36,6 +36,12 @@ var fakeOrder = {
   currentprice: 9,
   totalprice: 30,
   drinkcount: 1,
+};
+
+var fakeOrderToBeAdded = {
+  username: 'champagnepapi2',
+  drinktype: 'Chardonnay',
+  BAC: 0.16
 };
 
 var fakeTextMessDetails = {
@@ -104,7 +110,6 @@ describe('Routes', function () {
           .post('/api/cusotmers/login')
           .send(fakeCustomerLogin)
           .end(function (err, res) {
-            console.log('xxxxx this is res.body: ', res.body);
             done();
           });
       });
@@ -135,7 +140,7 @@ describe('Routes', function () {
       it('should return 200 when orders table updated', function (done) {
         request(app)
           .post('/api/barqueue/completeOrder')
-          .send(fakeOrder)
+          .send(fakeOrderToBeRemoved)
           .expect(200, done);
       });
 
@@ -163,6 +168,55 @@ describe('Routes', function () {
           .expect(404, done);
       });
     });
+  });
+
+  describe('Menu Routes', function(){
+
+    describe('Show Drinks: GET to /api/menu/drinks', function(){
+
+      it('should return 200 upon successful query of drinks table in db', function(done){
+        request(app)
+          .get('/api/menu/drinks')
+          .expect(200, done);
+      });
+
+      it('should return an array of menu items', function(done){
+        request(app)
+          .get('/api/menu/drinks')
+          .end(function(err, res){
+            expect(res.body).to.have.length.above(0);
+            done();
+          });
+      });
+    });
+
+    describe('Ordering Drink Only: POST to /api/menu/order', function(){
+
+      it('should return 200 for successful order', function(done){
+        request(app)
+          .post('/api/menu/order')
+          .send(fakeOrderToBeAdded)
+          .expect(200, done);
+      });
+
+      it('should return the user order with properties currentprice, totalprice, drinkcount, bac, and closeout', function(done){
+        request(app)
+          .post('/api/menu/order')
+          .send(fakeOrderToBeAdded)
+          .end(function(err, res){
+            expect(res.body).to.have.property('currentprice');
+            expect(res.body).to.have.property('totalprice');
+            expect(res.body).to.have.property('totalprice');
+            expect(res.body).to.have.property('drinkcount');
+            expect(res.body).to.have.property('bac');
+            expect(res.body).to.have.property('closeout');
+            done();
+          });
+      })
+
+
+    })
+
 
   });
 
@@ -172,39 +226,4 @@ describe('Routes', function () {
 
 
 
-// var app = require('../../server/server.js');
-// var barqueueController = require('../../server/barqueue/barqueueController.js');
-// var Sequelize = require('sequelize'); 
 
-// describe('Server', function(){
-//   beforeAll(function(done){
-//     this.server = app.listen(3001, function(){
-//       console.log('server now listening on 3001');
-//       done();
-//     });
-//   });
-
-//   beforeEach(function(done){
-//     db = new Sequelize('test', null, null);
-
-//   })
-
-//   afterAll(function(done){
-//     this.server.close(function(){
-//       console.log('the server is now closed');
-//       done();
-//     });
-
-//   });
-
-//   describe('barqueueController', function(){
-
-//     describe('showPendingOrders', function(){
-
-//       it('should be a function', function(done){
-//         expect(typeof barqueueController.showPendingOrders).toBe('function');
-//           done();
-//       });
-//     });
-//   });
-// });
