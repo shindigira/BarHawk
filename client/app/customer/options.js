@@ -99,12 +99,9 @@ angular.module('asyncdrink.options', [])
         $scope.tabSuccessIncludingOrder = true;
         $scope.userTab = response.data;
         $scope.orderSuccess = false;
-        //navigate back to login
-        // setTimeout(function () {
-        //     optionsFactory.currentUser = undefined;
-        //     $state.go('customerLogin')
-        //   },
-        //   5000);
+
+        $scope.getDK();
+
       }).catch(function (err) {
         $scope.tabSuccessIncludingOrder = false;
         throw err;
