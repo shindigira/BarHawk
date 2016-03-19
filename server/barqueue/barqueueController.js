@@ -60,7 +60,11 @@ module.exports = {
 
     .then(function (orderToBeCompleted) {
       res.sendStatus(200);
-    });
+    })
+
+    .catch(function(err){
+      res.sendStatus(404);
+    })
 
   },
 

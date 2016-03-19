@@ -8,6 +8,7 @@ module.exports = {
     //set username/password request to attempt variable
     var attempt = req.body;
 
+    console.log(attempt);
     models.users.findOne({
       where: { username: attempt.username },
     }).then(function (result) {
