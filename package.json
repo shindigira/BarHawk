@@ -5,7 +5,6 @@
   "main": "server.js",
   "scripts": {
     "test": "karma start"
-    // if want back-end tests to run, change the above 'karma start to : '"./node_modules/mocha/bin/mocha ./spec/server/*.js"' and run npm test in terminal from root directory
   },
   "repository": {
     "type": "git",
