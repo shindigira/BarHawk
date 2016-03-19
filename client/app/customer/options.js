@@ -24,7 +24,7 @@ angular.module('asyncdrink.options', [])
     optionsFactory.getDrinksList()
       .then(function (drinks) {
         $scope.drinks.list = drinks;
-        console.log('$scope.drinks.list[0].imageurl: ', $scope.drinks.list[0]);
+        //console.log('$scope.drinks.list[0]: ', $scope.drinks.list[0]);
       });
   };
   $scope.getDrinks();

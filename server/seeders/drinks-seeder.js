@@ -12,7 +12,7 @@ module.exports = {
       calories: 153,
       carbs: 16,
       volume: 12,
-      imageurl: 'http://res.cloudinary.com/hidgkk5lm/image/upload/v1458266893/anchorSteam_dmdegf.jpg',
+      imageurl: 'http://res.cloudinary.com/hidgkk5lm/image/upload/v1458340234/AnchorSteam_guuduk.png',
       createdAt: new Date(),
       updatedAt: new Date()
     }, {
@@ -24,7 +24,7 @@ module.exports = {
       calories: 148,
       carbs: 11,
       volume: 12,
-      imageurl: 'http://res.cloudinary.com/hidgkk5lm/image/upload/v1458266892/Heineken_agddom.jpg',
+      imageurl: 'http://res.cloudinary.com/hidgkk5lm/image/upload/v1458340235/Heineken_flwye6.png',
       createdAt: new Date(),
       updatedAt: new Date()
     }, {
@@ -36,7 +36,7 @@ module.exports = {
       calories: 150,
       carbs: 12,
       volume: 12,
-      imageurl: 'http://res.cloudinary.com/hidgkk5lm/image/upload/v1458266893/samAdams_rkj0vk.jpg',
+      imageurl: 'http://res.cloudinary.com/hidgkk5lm/image/upload/v1458340241/SamAdams_ccxrqz.png',
       createdAt: new Date(),
       updatedAt: new Date()
     }, {
@@ -48,7 +48,7 @@ module.exports = {
       calories: 148,
       carbs: 13,
       volume: 12,
-      imageurl: 'http://res.cloudinary.com/hidgkk5lm/image/upload/v1458266892/coronaExtra_q3jbyc.jpg',
+      imageurl: 'http://res.cloudinary.com/hidgkk5lm/image/upload/v1458340234/CoronaExtra_xjkylu.png',
       createdAt: new Date(),
       updatedAt: new Date()
     }, {
@@ -60,7 +60,7 @@ module.exports = {
       calories: 99,
       carbs: 5,
       volume: 12,
-      imageurl: 'http://res.cloudinary.com/hidgkk5lm/image/upload/v1458266892/coronaLight_kwrxms.jpg',
+      imageurl: 'http://res.cloudinary.com/hidgkk5lm/image/upload/v1458340234/CoronaLight_zjsopw.png',
       createdAt: new Date(),
       updatedAt: new Date()
     }, {
@@ -72,7 +72,7 @@ module.exports = {
       calories: 110,
       carbs: 7,
       volume: 12,
-      imageurl: 'http://res.cloudinary.com/hidgkk5lm/image/upload/v1458266893/millerLight_vfhlsf.jpg',
+      imageurl: 'http://res.cloudinary.com/hidgkk5lm/image/upload/v1458340237/MillerLight_j1ruh9.png',
       createdAt: new Date(),
       updatedAt: new Date()
     }, {
@@ -84,7 +84,7 @@ module.exports = {
       calories: 145,
       carbs: 11,
       volume: 12,
-      imageurl: 'http://res.cloudinary.com/hidgkk5lm/image/upload/v1458266893/Budweiser_v33ie5.jpg',
+      imageurl: 'http://res.cloudinary.com/hidgkk5lm/image/upload/v1458340233/Budweiser_zlogch.png',
       createdAt: new Date(),
       updatedAt: new Date()
     }, {
@@ -96,7 +96,7 @@ module.exports = {
       calories: 110,
       carbs: 7,
       volume: 12,
-      imageurl: 'http://res.cloudinary.com/hidgkk5lm/image/upload/v1458266891/budLight_swsvlk.jpg',
+      imageurl: 'http://res.cloudinary.com/hidgkk5lm/image/upload/v1458340233/BudLight_f6igfc.png',
       createdAt: new Date(),
       updatedAt: new Date()
     }, {
@@ -108,7 +108,7 @@ module.exports = {
       calories: 215,
       carbs: 18,
       volume: 16,
-      imageurl: 'http://res.cloudinary.com/hidgkk5lm/image/upload/v1458266891/guiness_d2xexd.jpg',
+      imageurl: 'http://res.cloudinary.com/hidgkk5lm/image/upload/v1458340235/Guiness_ar02xi.png',
       createdAt: new Date(),
       updatedAt: new Date()
     }, {
@@ -120,7 +120,67 @@ module.exports = {
       calories: 123,
       carbs: 4,
       volume: 5,
-      imageurl: 'http://res.cloudinary.com/hidgkk5lm/image/upload/v1458266892/merlot_uea1ap.jpg',
+      imageurl: 'http://res.cloudinary.com/hidgkk5lm/image/upload/v1458340237/Merlot_wovvwh.png',
+      createdAt: new Date(),
+      updatedAt: new Date()
+    }, {
+      name: 'Chardonnay',
+      type: 'wine',
+      price: 10,
+      alcohol: 13,
+      sugar: 1,
+      calories: 123,
+      carbs: 3,
+      volume: 5,
+      imageurl: 'http://res.cloudinary.com/hidgkk5lm/image/upload/v1458340234/Chardonnay_ggh31x.png',
+      createdAt: new Date(),
+      updatedAt: new Date()
+    }, {
+      name: 'Pinot Grigio',
+      type: 'wine',
+      price: 10,
+      alcohol: 14,
+      sugar: 1,
+      calories: 114,
+      carbs: 4,
+      volume: 5,
+      imageurl: 'http://res.cloudinary.com/hidgkk5lm/image/upload/v1458340239/PinotGrigio_cf5d98.png',
+      createdAt: new Date(),
+      updatedAt: new Date()
+    }, {
+      name: 'Pinot Noir',
+      type: 'wine',
+      price: 11,
+      alcohol: 14,
+      sugar: 1,
+      calories: 123,
+      carbs: 3,
+      volume: 5,
+      imageurl: 'http://res.cloudinary.com/hidgkk5lm/image/upload/v1458340239/PinotNoir_fkapmk.png',
+      createdAt: new Date(),
+      updatedAt: new Date()
+    }, {
+      name: 'Syrah',
+      type: 'wine',
+      price: 13,
+      alcohol: 13,
+      sugar: 1,
+      calories: 124,
+      carbs: 4,
+      volume: 5,
+      imageurl: 'http://res.cloudinary.com/hidgkk5lm/image/upload/v1458340240/Syrah_qxa8zv.png',
+      createdAt: new Date(),
+      updatedAt: new Date()
+    }, {
+      name: 'Cabernet Sauvignon',
+      type: 'wine',
+      price: 11,
+      alcohol: 14,
+      sugar: 1,
+      calories:  115,
+      carbs: 4,
+      volume: 5,
+      imageurl: 'http://res.cloudinary.com/hidgkk5lm/image/upload/v1458340233/Cabernet_gmkg0a.png',
       createdAt: new Date(),
       updatedAt: new Date()
     }, {
@@ -132,7 +192,7 @@ module.exports = {
       calories: 160,
       carbs: 5,
       volume: 5,
-      imageurl: 'http://res.cloudinary.com/hidgkk5lm/image/upload/v1458266892/zinfandel_casojm.jpg',
+      imageurl: 'http://res.cloudinary.com/hidgkk5lm/image/upload/v1458340240/Zinfandel_pvonrf.png',
       createdAt: new Date(),
       updatedAt: new Date()
     }, {
@@ -144,7 +204,7 @@ module.exports = {
       calories: 150,
       carbs: 12,
       volume: 5,
-      imageurl: 'http://res.cloudinary.com/hidgkk5lm/image/upload/v1458266891/prosecco_lpoef0.jpg',
+      imageurl: 'http://res.cloudinary.com/hidgkk5lm/image/upload/v1458340239/Prosecco_gsbdmg.png',
       createdAt: new Date(),
       updatedAt: new Date()
     }, {
@@ -156,7 +216,7 @@ module.exports = {
       calories: 87,
       carbs: 3,
       volume: 5,
-      imageurl: 'http://res.cloudinary.com/hidgkk5lm/image/upload/v1458266891/champagne_cmk3r3.jpg',
+      imageurl: 'http://res.cloudinary.com/hidgkk5lm/image/upload/v1458340234/Champagne_tahig2.png',
       createdAt: new Date(),
       updatedAt: new Date()
     }, {
@@ -168,7 +228,7 @@ module.exports = {
       calories: 180,
       carbs: 10,
       volume: 8,
-      imageurl: 'http://res.cloudinary.com/hidgkk5lm/image/upload/v1458266891/LIIT_wiexex.jpg',
+      imageurl: 'http://res.cloudinary.com/hidgkk5lm/image/upload/v1458340237/LIIT_cv6m9c.png',
       createdAt: new Date(),
       updatedAt: new Date()
     }, {
@@ -180,7 +240,7 @@ module.exports = {
       calories: 171,
       carbs: 16,
       volume: 8,
-      imageurl: 'http://res.cloudinary.com/hidgkk5lm/image/upload/v1458266891/ginAndTonic_tstnwl.jpg',
+      imageurl: 'http://res.cloudinary.com/hidgkk5lm/image/upload/v1458340236/GandT_wrn28m.png',
       createdAt: new Date(),
       updatedAt: new Date()
     }, {
@@ -192,7 +252,7 @@ module.exports = {
       calories: 217,
       carbs: 8,
       volume: 12,
-      imageurl: 'http://res.cloudinary.com/hidgkk5lm/image/upload/v1458266891/mojito_lfsd7a.jpg',
+      imageurl: 'http://res.cloudinary.com/hidgkk5lm/image/upload/v1458340241/mojito_a9i7d3.png',
       createdAt: new Date(),
       updatedAt: new Date()
     }, {
@@ -204,7 +264,7 @@ module.exports = {
       calories: 181,
       carbs: 27,
       volume: 12,
-      imageurl: 'http://res.cloudinary.com/hidgkk5lm/image/upload/v1458266890/redbullVodka_ns3xif.jpg',
+      imageurl: 'http://res.cloudinary.com/hidgkk5lm/image/upload/v1458340240/RBvodka_vavndw.png',
       createdAt: new Date(),
       updatedAt: new Date()
     }, {
@@ -216,7 +276,7 @@ module.exports = {
       calories: 213,
       carbs: 13,
       volume: 5,
-      imageurl: 'http://res.cloudinary.com/hidgkk5lm/image/upload/v1458266890/cosmo_v4oejd.jpg',
+      imageurl: 'http://res.cloudinary.com/hidgkk5lm/image/upload/v1458340235/cosmo_arv1eh.png',
       createdAt: new Date(),
       updatedAt: new Date()
     }, {
@@ -228,7 +288,7 @@ module.exports = {
       calories: 96,
       carbs: 0,
       volume: 5,
-      imageurl: 'http://res.cloudinary.com/hidgkk5lm/image/upload/v1458266891/vodkaSoda_zrved5.jpg',
+      imageurl: 'http://res.cloudinary.com/hidgkk5lm/image/upload/v1458340241/vodkaSoda_klhbpf.png',
       createdAt: new Date(),
       updatedAt: new Date()
     }, {
@@ -240,19 +300,43 @@ module.exports = {
       calories: 257,
       carbs: 16,
       volume: 8,
-      imageurl: 'http://res.cloudinary.com/hidgkk5lm/image/upload/v1458266890/whiteRussian_ykyauz.jpg',
+      imageurl: 'http://res.cloudinary.com/hidgkk5lm/image/upload/v1458340242/whiteRussian_xep5vd.png',
       createdAt: new Date(),
       updatedAt: new Date()
     }, {
-      name: 'Vodka',
+      name: 'Moscow Mule',
+      type: 'mixed',
+      price: 14,
+      alcohol: 12,
+      sugar: 21,
+      calories: 320,
+      carbs: 34,
+      volume: 10,
+      imageurl: 'http://res.cloudinary.com/hidgkk5lm/image/upload/v1458340240/moscowMule_oedpyy.png',
+      createdAt: new Date(),
+      updatedAt: new Date()
+    }, {
+      name: 'Jack and Coke',
+      type: 'mixed',
+      price: 15,
+      alcohol: 14,
+      sugar: 32,
+      calories: 255,
+      carbs: 32,
+      volume: 12,
+      imageurl: 'http://res.cloudinary.com/hidgkk5lm/image/upload/v1458340236/jackAndCoke_w8w9uj.png',
+      createdAt: new Date(),
+      updatedAt: new Date()
+    }, {
+      name: 'Crown Royal',
       type: 'liquor',
       price: 6,
       alcohol: 14,
       sugar: 0,
-      calories: 56,
+      calories: 96,
       carbs: 0,
       volume: 1.5,
-      imageurl: 'http://res.cloudinary.com/hidgkk5lm/image/upload/v1458266890/vodka_wujcr8.jpg',
+      imageurl: 'http://res.cloudinary.com/hidgkk5lm/image/upload/v1458340266/Crown_qmpagz.png',
       createdAt: new Date(),
       updatedAt: new Date()
     }, {
@@ -264,11 +348,11 @@ module.exports = {
       calories: 86,
       carbs: 0,
       volume: 1.5,
-      imageurl: 'http://res.cloudinary.com/hidgkk5lm/image/upload/v1458266890/captainmorgan_sbwrgz.jpg',
+      imageurl: 'http://res.cloudinary.com/hidgkk5lm/image/upload/v1458340234/captain_jzoin5.png',
       createdAt: new Date(),
       updatedAt: new Date()
     }, {
-      name: 'The Dan Special (Admiral Nelson)',
+      name: 'Admiral Nelson',
       type: 'liquor',
       price: 2,
       alcohol: 9,
@@ -276,7 +360,7 @@ module.exports = {
       calories: 69,
       carbs: 0,
       volume: 1.5,
-      imageurl: 'http://res.cloudinary.com/hidgkk5lm/image/upload/v1458266890/admiralNelson_o7scxp.jpg',
+      imageurl: 'http://res.cloudinary.com/hidgkk5lm/image/upload/v1458340234/admiralNelson_tqkzkd.png',
       createdAt: new Date(),
       updatedAt: new Date()
     }, {
@@ -288,7 +372,55 @@ module.exports = {
       calories: 103,
       carbs: 0,
       volume: 1.5,
-      imageurl: 'http://res.cloudinary.com/hidgkk5lm/image/upload/v1458266890/jager_hm7iii.jpg',
+      imageurl: 'http://res.cloudinary.com/hidgkk5lm/image/upload/v1458340235/jager_fpmsam.png',
+      createdAt: new Date(),
+      updatedAt: new Date()
+    }, {
+      name: 'Jose Cuervo',
+      type: 'liquor',
+      price: 8,
+      alcohol: 13,
+      sugar: 0,
+      calories: 96,
+      carbs: 0,
+      volume: 1.5,
+      imageurl: 'http://res.cloudinary.com/hidgkk5lm/image/upload/v1458340237/jose_rqawqi.png',
+      createdAt: new Date(),
+      updatedAt: new Date()
+    }, {
+      name: 'Jameson',
+      type: 'liquor',
+      price: 8,
+      alcohol: 14,
+      sugar: 0,
+      calories: 69,
+      carbs: 0,
+      volume: 1.5,
+      imageurl: 'http://res.cloudinary.com/hidgkk5lm/image/upload/v1458340236/jameson_eqndeh.png',
+      createdAt: new Date(),
+      updatedAt: new Date()
+    }, {
+      name: 'Makers Mark',
+      type: 'liquor',
+      price: 8,
+      alcohol: 14,
+      sugar: 0,
+      calories: 69,
+      carbs: 0,
+      volume: 1.5,
+      imageurl: 'http://res.cloudinary.com/hidgkk5lm/image/upload/v1458340237/makers_k5btno.png',
+      createdAt: new Date(),
+      updatedAt: new Date()
+    }, {
+      name: 'Grey Goose',
+      type: 'liquor',
+      price: 8,
+      alcohol: 13,
+      sugar: 0,
+      calories: 70,
+      carbs: 0,
+      volume: 1.5,
+      imageurl: 'http://res.cloudinary.com/hidgkk5lm/image/upload/v1458340235/greygoose_xgqpre.png',
       createdAt: new Date(),
       updatedAt: new Date()
     }, {
@@ -300,7 +432,7 @@ module.exports = {
       calories: 100,
       carbs: 0,
       volume: 1.5,
-      imageurl: 'http://res.cloudinary.com/hidgkk5lm/image/upload/v1458266891/jackDaniels_kvhcqa.jpg',
+      imageurl: 'http://res.cloudinary.com/hidgkk5lm/image/upload/v1458340237/jackD_i8oysl.png',
       createdAt: new Date(),
       updatedAt: new Date()
     }]);
