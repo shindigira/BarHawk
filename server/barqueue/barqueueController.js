@@ -1,9 +1,9 @@
 var accountSid = 'AC68614f28addcc82ca25a94fa00c12e18';
 var authToken = '6eb7ad33bde4db24242e898205bc9a8a';
 var client = require('twilio')(accountSid, authToken);
-var models = require('../models')
-var db = require('../models/index.js')
-var moment = require("moment")
+var models = require('../models');
+var db = require('../models/index.js');
+var moment = require("moment");
 
 //dummy orders table
 var ordersArray = [{
@@ -42,6 +42,9 @@ module.exports = {
       //only send back to bar queue those orders which have not yet been completed
       db.sequelize.query("Select * from orders where completed = 'f';")
         .then(function (pendingOrder) {
+          for (var i = 0; i < pendingOrder[0].length; i++) {
+            pendingOrder[0][i].createdAt = moment(pendingOrder[0][i].createdAt).fromNow();
+          }
           res.status(200);
           res.send(pendingOrder[0]);
         })

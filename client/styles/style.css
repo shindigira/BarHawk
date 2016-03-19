@@ -1,9 +1,16 @@
-table,th,td {
+table,
+th,
+td {
   text-align: center!important;
-
 }
-td, th {
 
+#queue {
+  width: 100%;
+}
+
+td {
+  border-right: 1px dotted gray;
+  background: rgba(220, 220, 220, 0.4);
 }
 
 body {
@@ -30,7 +37,7 @@ form {
   /*border: solid 1px rgb(25, 72, 0);*/
   background: rgb(79, 195, 18);
   text-align: center;
-  padding: 10px 20px;
+  padding: 5%;
   -webkit-transition: all 0.1s;
   -moz-transition: all 0.1s;
   transition: all 0.1s;
