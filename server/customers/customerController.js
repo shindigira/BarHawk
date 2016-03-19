@@ -3,6 +3,7 @@ var models = require('../models');
 var db = require('../models/index.js');
 var bcrypt = require('bcrypt');
 
+
 module.exports = {
   login: function (req, res) {
     //set username/password request to attempt variable
@@ -142,4 +143,5 @@ module.exports = {
       })
   }
 
-};
+}
+

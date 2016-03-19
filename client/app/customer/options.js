@@ -123,6 +123,7 @@ angular.module('asyncdrink.options', [])
       });
   };
   $interval($scope.getDK, 3600000);
+
 })
 
 .factory('optionsFactory', function ($http) {

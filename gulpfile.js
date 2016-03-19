@@ -11,7 +11,7 @@ var rename = require('gulp-rename');
 var cssmin = require('gulp-cssmin');
 var minify = require('gulp-minify');
 var nodemons = require('gulp-nodemon');
-var bootlint  = require('gulp-bootlint');
+var bootlint = require('gulp-bootlint');
 
 //Lint Task
 gulp.task('lint', function (cb) {
@@ -31,6 +31,7 @@ gulp.task('bootlint', ['lint'], function (cb){
     }));
   cb(err)
   });
+
 
 //CSS minify
 gulp.task('minify-css', ['bootlint'], function (cb) {
