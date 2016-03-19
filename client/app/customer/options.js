@@ -32,7 +32,6 @@ angular.module('asyncdrink.options', [])
   $scope.getDK = function () {
     optionsFactory.getDrinkCount($scope.currentUser)
       .then(function (response) {
-        console.log(response);
         $scope.currentUser.drinkCount = response.drinkcount;
         $scope.currentUser.BAC = response.BAC;
         $scope.order.BAC = response.BAC
@@ -43,7 +42,6 @@ angular.module('asyncdrink.options', [])
   //Order only process
   $scope.orderOnly = function () {
     $scope.savedDrinkType = $scope.order.drinkType;
-
     optionsFactory.orderOnly($scope.order)
       .then(function (response) {
         //reset response messages
@@ -140,10 +138,13 @@ angular.module('asyncdrink.options', [])
 
   var orderOnly = function (order) {
     return $http({
-      method: "POST",
-      url: '/api/menu/order',
-      data: order
-    });
+        method: "POST",
+        url: '/api/menu/order',
+        data: order
+      })
+      .then(function (response) {
+        return response.data;
+      })
   };
 
   var closeTabOnly = function (order) {
