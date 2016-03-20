@@ -19,6 +19,15 @@ angular.module('asyncdrink.options', [])
   $scope.tabSuccess = false;
   $scope.orderCloseSuccess = false;
 
+  $scope.test = function () {
+    console.log("TESTING TESTING");
+  };
+
+  $scope.clickImage = function () {
+    $scope.order.drinkType = drink.name;
+    $scope.order.drinkid = drink.id;
+  }
+
   //get all drinks from db
   $scope.getDrinks = function () {
     optionsFactory.getDrinksList()
@@ -43,7 +52,11 @@ angular.module('asyncdrink.options', [])
 
   //Order only process
   $scope.orderOnly = function () {
+    // console.log("ORDER ONLY $scope.order.drinkType: ", $scope.order.drinkType);
+    // console.log("ORDER ONLY $scope.order.drinkid: ", $scope.order.drinkid);
     $scope.savedDrinkType = $scope.order.drinkType;
+    $scope.savedDrinkid = $scope.order.drinkid;
+
     optionsFactory.orderOnly($scope.order)
       .then(function (response) {
         //reset response messages
@@ -92,6 +105,7 @@ angular.module('asyncdrink.options', [])
 
   //Order and close process
   $scope.orderAndCloseTab = function () {
+    console.log("$scope.order.drinkType: ", $scope.order.drinkType);
 
     optionsFactory.orderAndCloseTab($scope.order)
       .then(function (response) {

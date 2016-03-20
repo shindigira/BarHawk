@@ -24,8 +24,11 @@ form {
 }
 
 .selectionOptions {
-  text-align:center;
+  display: block;
+  margin-left: 30%;
+  margin-right: 35%;
 }
+
 .selectionOptions ul {
   display: inline-table;
   white-space: nowrap;
@@ -69,61 +72,68 @@ li {
   font-size: 14px;
 }
 
+
+/*STYLING FOR ORDER PAGE*/
+
 .selectionOptions {
-  text-align:center;
+  text-align: center;
 }
+
 .selectionOptions ul {
   display: inline-table;
   white-space: nowrap;
 }
 
-
-.selectionOptions ul li{
+.selectionOptions ul li {
   color: #AAAAAA;
   display: inline-block;
   padding: 5%;
 }
 
-.selectionOptions ul li input[type=radio]{
+.selectionOptions ul li input[type=radio] {
   position: absolute;
   visibility: hidden;
 }
 
-.selectionOptions ul li label{
+.selectionOptions ul li label {
+  cursor: pointer;
   position: relative;
   font-weight: 300;
   font-size: 3em;
   -webkit-transition: all 0.25s linear;
 }
 
-.selectionOptions input[type=radio]:checked ~ label{
-  color:  #33cc33;
+.selectionOptions input[type=radio]:checked ~ label {
+  color: #33cc33;
 }
 
-ul li .drinkCell {
-  height: 10%;
-  overflow: hidden;
-  -webkit-column-break-inside: avoid;
-  text-align:center;
-}
+
+/*ON CLICK*/
 
 ul li .drinkCell img {
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  height: 400px;
+  /*    border: 6px solid #33cc33;
+    border-radius: 6px;*/
+}
+
+.selected-drink {
+  border: 5px solid black;
+}
+
+ul li .drinkCell img.selectedDrink {
+  border: 6px solid red;
+  border-radius: 6px;
 }
 
 button {
   display: inline-block;
   margin: auto auto;
-
-
-  width:100px;
   border-radius: 28px;
   color: green;
   font-size: 15px;
-
-  border-radius: 28px;
   background: white;
   padding: 5px 10px 5px 5px;
   text-decoration: none;
@@ -134,17 +144,16 @@ button {
 }
 
 #topbar button {
-    color: #009900;
+  color: #009900;
 }
 
 #results button {
-    color: #009900;
+  color: #009900;
 }
 
 ul li .drinkCell button {
-    color: #009900;
+  color: #009900;
 }
-
 
 button:hover {
   background: #f2f2f2;
@@ -154,9 +163,52 @@ button:hover {
   outline: none;
 }
 
+
+/*DRINK DISPLAY */
+
 ul {
   columns: 3;
   -webkit-columns: 3;
   -moz-columns: 3;
   list-style-type: none;
+  max-width: 50%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+ul li .drinkCell {
+  height: 550px;
+  overflow: hidden;
+  -webkit-column-break-inside: avoid;
+  text-align: center;
+}
+
+.drinkName,
+p {
+  display: inline;
+  font-size: 2em;
+  color: #686868;
+  font-weight: bold;
+}
+
+.drinkPrice {
+  display: inline;
+  font-size: 2em;
+  color: #686868;
+}
+
+
+/*submit order + submit order + close buttons*/
+
+.orderButtons {
+  position: fixed;
+  right: 10%;
+  top: 40%;
+}
+
+.shoppingCart img {
+  display: inline-block;
+  margin-left: auto;
+  margin-right: auto;
+  height: 50px;
 }
