@@ -4,7 +4,7 @@ var db = require('../models/index.js');
 module.exports = {
 
   getDrinks: function (req, res) {
-    db.sequelize.query('Select name, type, price, volume from drinks;')
+    db.sequelize.query('Select name, type, price, volume, imageurl from drinks;')
       .then(function (drinks) {
         //return
         res.send(drinks[0]);
