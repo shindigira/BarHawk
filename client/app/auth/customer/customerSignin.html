@@ -1,9 +1,12 @@
 <body>
     <link rel="stylesheet" type="text/css" href="styles/sign-in.css">
     <div class='container'>
+        <div class = "topButtons">
         <button class="btn btn-primary" ui-sref="barSignin">Bartender Sign In</button>
         <button class="btn btn-primary" ui-sref="customerSignup">Sign Up</button>
     </div>
+    </div>
+    <h1 id='title-heading'>Bar Hawk</h1>
     <form name="signinForm" class='form-inline' novalidate ng-submit='logIn(signinForm.$valid)'>
         <div class='form-group' ng-class="{ 'has-error' : invalidLogIn && !signinForm.username.$pristine && signinForm.username.$touched }">
             <label>Username</label>

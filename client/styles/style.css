@@ -1,138 +1,133 @@
 table,
 th,
 td {
-  text-align: center!important;
-}
-#title-heading{
-  font-size: 130px;
+    text-align: center!important;
 }
 
+#title-heading {
+    font-size: 130px;
+}
 
 #queue {
-  width: 100%;
+    width: 100%;
 }
 
 td {
-  border-right: 1px dotted gray;
-  background: rgba(220, 220, 220, 0.4);
+    border-right: 1px dotted gray;
+    background: rgba(220, 220, 220, 0.4);
 }
 
 body {
-  padding-top: 50px;
-  padding-right: 100px;
-  padding-left: 50px;
+    padding-top: 50px;
+    padding-right: 100px;
+    padding-left: 50px;
 }
 
 form {
-  margin-bottom: 50px;
-}
-
-.selectionOptions {
-  display: block;
-  margin-left: 30%;
-  margin-right: 35%;
-}
-
-.selectionOptions ul {
-  display: inline-table;
-  white-space: nowrap;
+    margin-bottom: 50px;
 }
 
 .complete {
-  color: white;
-  cursor: pointer;
-  display: block;
-  text-decoration: none;
-  margin: 0 auto;
-  border-radius: 5px;
-  border: solid 1px rgb(25, 72, 0);
-  background: rgb(79, 195, 18);
-  text-align: center;
-  padding: 5%;
-  -webkit-transition: all 0.1s;
-  -moz-transition: all 0.1s;
-  transition: all 0.1s;
-  -webkit-box-shadow: 0px 9px 0px #84261a;
-  -moz-box-shadow: 0px 9px 0px #84261a;
-  box-shadow: 0px 9px 0px green;
+    color: white;
+    cursor: pointer;
+    display: block;
+    text-decoration: none;
+    margin: 0 auto;
+    border-radius: 5px;
+    border: solid 1px rgb(25, 72, 0);
+    background: rgb(79, 195, 18);
+    text-align: center;
+    padding: 5%;
+    -webkit-transition: all 0.1s;
+    -moz-transition: all 0.1s;
+    transition: all 0.1s;
+    -webkit-box-shadow: 0px 9px 0px #84261a;
+    -moz-box-shadow: 0px 9px 0px #84261a;
+    box-shadow: 0px 9px 0px green;
 }
 
 .complete:hover {
-  background: green;
+    background: green;
 }
 
 .complete:active {
-   -webkit-box-shadow: 0px 2px 0px #84261a;
-  -moz-box-shadow: 0px 2px 0px #84261a;
-
-  box-shadow: 0px 2px 0px green;
-  position: relative;
-  left: 7px;
+    -webkit-box-shadow: 0px 2px 0px #84261a;
+    -moz-box-shadow: 0px 2px 0px #84261a;
+    box-shadow: 0px 2px 0px green;
+    position: relative;
+    left: 7px;
 }
 
 li {
-  list-style-type: none;
-  color: #243ac7;
-  font-size: 14px;
+    list-style-type: none;
+    color: #243ac7;
+    font-size: 14px;
 }
 
 
-/*STYLING FOR ORDER PAGE*/
+/*STYLING FOR MENU OPTIONS*/
 
 .selectionOptions {
-  text-align: center;
+    text-align: center;
+    max-width: 50%;
+    display: block;
+    margin-right: auto;
+    margin-left: auto;
 }
 
 .selectionOptions ul {
-  display: inline-table;
-  white-space: nowrap;
+    display: block;
+    margin-right: auto;
+    margin-left: auto;
+    display: inline-table;
+    white-space: nowrap;
 }
 
 .selectionOptions ul li {
-  color: #AAAAAA;
-  display: inline-block;
-  padding: 5%;
+    color: #AAAAAA;
+    display: inline-block;
+    padding: 5%;
 }
 
 .selectionOptions ul li input[type=radio] {
-  position: absolute;
-  visibility: hidden;
+    position: absolute;
+    visibility: hidden;
 }
 
 .selectionOptions ul li label {
-  cursor: pointer;
-  position: relative;
-  font-weight: 300;
-  font-size: 3em;
-  -webkit-transition: all 0.25s linear;
+    cursor: pointer;
+    position: relative;
+    font-weight: 300;
+    font-size: 2em;
+    -webkit-transition: all 0.25s linear;
 }
 
 .selectionOptions input[type=radio]:checked ~ label {
-  color: #33cc33;
+    color: #33cc33;
 }
 
 
 /*ON CLICK*/
 
 ul li .drinkCell img {
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
-  height: 400px;
-  /*    border: 6px solid #33cc33;
-    border-radius: 6px;*/
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    height: 15em;
 }
 
-.selected-drink {
+
+/*.selected-drink {
   border: 5px solid black;
 }
 
 ul li .drinkCell img.selectedDrink {
   border: 6px solid red;
   border-radius: 6px;
-}
+}*/
 
-button {
+
+/*button {
   display: inline-block;
   margin: auto auto;
   border-radius: 28px;
@@ -145,76 +140,105 @@ button {
   border: 1;
   border-color: #009900;
   outline: none;
-}
+}*/
 
-#topbar button {
+
+/*#topbar button {
   color: #009900;
-}
+}*/
 
 #results button {
-  color: #009900;
+    color: #009900;
 }
 
-ul li .drinkCell button {
-  color: #009900;
-}
 
-button:hover {
+/*ul li .drinkCell button {
+  color: #009900;
+}*/
+
+
+/*button:hover {
   background: #f2f2f2;
   text-decoration: none;
   border: 1;
   border-color: #009900;
   outline: none;
-}
+}*/
 
 
 /*DRINK DISPLAY */
 
 ul {
-  columns: 3;
-  -webkit-columns: 3;
-  -moz-columns: 3;
-  list-style-type: none;
-  max-width: 50%;
-  margin-left: auto;
-  margin-right: auto;
+    columns: 3;
+    -webkit-columns: 3;
+    -moz-columns: 3;
+    list-style-type: none;
+    max-width: 50%;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 ul li .drinkCell {
-  height: 550px;
-  overflow: hidden;
-  -webkit-column-break-inside: avoid;
-  text-align: center;
+    height: 5%;
+    overflow: hidden;
+    -webkit-column-break-inside: avoid;
+    text-align: center;
 }
 
-.drinkName,
-  {
-  display: inline;
-  font-size: 2em;
-  color: #686868;
-  font-weight: bold;
+.drinkName {
+    display: inline;
+    font-size: 1em;
+    color: #686868;
+    font-weight: bold;
 }
 
 .drinkPrice {
-  display: inline;
-  font-size: 2em;
-  color: #686868;
+    display: inline;
+    font-size: 1em;
+    color: #686868;
 }
 
 
 /*submit order + submit order + close buttons*/
 
 .orderButtons {
-  position: fixed;
-  right: 10%;
-  top: 40%;
+    position: fixed;
+    right: 5%;
+    top: 50%;
 }
 
 .shoppingCart img {
-  display: inline-block;
-  margin-left: auto;
-  margin-right: auto;
-  height: 50px;
+    display: inline-block;
+    margin-left: auto;
+    margin-right: auto;
+    height: 2em;
+}
+
+.order {
+    color: #AAAAAA;
+    size: 3em;
 }
 
 
+/*BTN CSS FROM SIGN IN, IF WE CONDENSE OK TO REMOVE */
+
+.btn-primary {
+    position: relative;
+    display: inline-block;
+    margin: 0 .5em 0 .5em;
+}
+
+.topButtons {
+    position: relative;
+    display: inline-block;
+    float: right;
+}
+
+.btn-default,
+.btn-default:hover,
+.btn-default:focus {
+    color: #333;
+    text-shadow: none;
+    /* Prevent inheritence from `body` */
+    background-color: #fff;
+    border: 1px solid #fff;

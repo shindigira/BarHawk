@@ -1,0 +1,151 @@
+html {
+    background: url(http://res.cloudinary.com/df1u5o3g6/image/upload/v1458603380/background_g3ksno.jpg) no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    ^^ -o-background-size: cover;
+    background-size: cover;
+    padding: 5%;
+}
+
+body {
+    background-color: rgba(255, 255, 255, .01);
+}
+
+
+/*STYLING FOR MENU OPTIONS*/
+
+.selectionOptions {
+    text-align: center;
+    max-width: 50%;
+    display: block;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+.selectionOptions ul {
+    display: block;
+    margin-right: auto;
+    margin-left: auto;
+    display: inline-table;
+    white-space: nowrap;
+}
+
+.selectionOptions ul li {
+    color: black;
+    display: inline-block;
+    padding: 5%;
+}
+
+.selectionOptions ul li input[type=radio] {
+    position: absolute;
+    visibility: hidden;
+}
+
+.selectionOptions ul li label {
+    cursor: pointer;
+    position: relative;
+    font-weight: 300;
+    font-size: 2em;
+    -webkit-transition: all 0.25s linear;
+}
+
+.selectionOptions input[type=radio]:checked ~ label {
+    color: #33cc33;
+}
+
+ul li .drinkCell img {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    height: 15em;
+}
+
+
+/*DRINK DISPLAY */
+
+.drinkDisplay {}
+
+ul {
+    padding-bottom: 5%;
+    padding-top: 5%;
+    padding-right: 4%;
+    columns: 3;
+    -webkit-columns: 3;
+    -moz-columns: 3;
+    list-style-type: none;
+    max-width: 60%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.drinkDisplay ul {
+    background-color: rgba(255, 255, 255, 0.4);
+}
+
+ul li .drinkCell {
+    height: 5%;
+    overflow: hidden;
+    -webkit-column-break-inside: avoid;
+    text-align: center;
+}
+
+.drinkName {
+    display: inline;
+    font-size: 1em;
+    color: black;
+    font-weight: bold;
+}
+
+.drinkPrice {
+    display: inline;
+    font-size: 1em;
+    color: black;
+}
+
+
+/*submit order + submit order + close buttons*/
+
+.orderButtons {
+    position: fixed;
+    right: 5%;
+    top: 50%;
+}
+
+.shoppingCart img {
+    display: inline-block;
+    margin-left: auto;
+    margin-right: auto;
+    height: 2em;
+}
+
+.order {
+    color: black;
+    size: 3em;
+}
+
+.btn-default,
+.btn-default:hover,
+.btn-default:focus {
+    color: #333;
+    text-shadow: none;
+    /* Prevent inheritence from `body` */
+    background-color: #fff;
+    border: 1px solid #fff;
+}
+
+.title-heading {
+    color: black;
+    font-size: 6em;
+    text-align: center;
+}
+
+.btn-primary {
+    position: relative;
+    display: inline-block;
+    margin: 0 .5em 0 .5em;
+}
+
+.topButtons {
+    position: relative;
+    display: inline-block;
+    float: right;
