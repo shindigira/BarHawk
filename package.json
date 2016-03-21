@@ -4,7 +4,7 @@
   "description": "Socially responsible order and fulfillment system for bars.",
   "main": "server.js",
   "scripts": {
-    "test": "mocha --recursive spec/server/**/*.spec.js && karma start"
+    "test": "mocha --recursive spec/server/**/*.spec.js && karma start --single-run"
   },
   "repository": {
     "type": "git",
@@ -23,6 +23,7 @@
     "bootstrap": "^3.3.6",
     "express": "^4.13.4",
     "jwt-simple": "^0.5.0",
+    "moment": "^2.12.0",
     "node-uber": "0.0.7",
     "pg": "^4.4.3",
     "pg-hstore": "^2.3.2",
