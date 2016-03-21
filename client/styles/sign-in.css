@@ -5,15 +5,17 @@
   background-image: url(https://media.timeout.com/images/102534016/image.jpg);
 }*/
 
+
 /*
  * Globals
  */
 
 /* Links */
+
 a,
 a:focus,
 a:hover {
-  color: #fff;
+color: #fff;
 }
 
 /* Custom default button */
@@ -36,7 +38,8 @@ body {
   height: 100%;
   background-color: #333;
 }
-body {
+body,
+.veiw1 {
   color: #fff;
   text-align: center;
   text-shadow: 0 1px 3px rgba(0,0,0,.5);
@@ -123,6 +126,7 @@ background-image: url(https://media.timeout.com/images/102534016/image.jpg);
 .cover .btn-lg {
   padding: 10px 20px;
   font-weight: bold;
+  color: #fff;
 }
 
 
@@ -169,3 +173,9 @@ background-image: url(https://media.timeout.com/images/102534016/image.jpg);
     width: 700px;
   }
 }
+
+
+
+
+
+

@@ -3,6 +3,10 @@ th,
 td {
   text-align: center!important;
 }
+#title-heading{
+  font-size: 130px;
+}
+
 
 #queue {
   width: 100%;
