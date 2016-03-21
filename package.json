@@ -33,6 +33,7 @@
     "twilio": "^2.9.0"
   },
   "devDependencies": {
+    "chai": "^3.5.0",
     "gulp": "^3.9.1",
     "gulp-bootlint": "^0.7.1",
     "gulp-clean-css": "^2.0.3",
@@ -51,6 +52,7 @@
     "karma-chrome-launcher": "^0.2.2",
     "karma-jasmine": "^0.3.7",
     "karma-requirejs": "^0.2.5",
+    "mocha": "^2.4.5",
     "requirejs": "~2.1.0",
     "supertest": "^1.2.0",
     "watchify": "^3.7.0"
