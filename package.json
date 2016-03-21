@@ -4,7 +4,7 @@
   "description": "Socially responsible order and fulfillment system for bars.",
   "main": "server.js",
   "scripts": {
-    "test": "karma start"
+    "test": "mocha --recursive spec/server/**/*.spec.js && karma start"
   },
   "repository": {
     "type": "git",
@@ -52,6 +52,7 @@
     "karma-jasmine": "^0.3.7",
     "karma-requirejs": "^0.2.5",
     "requirejs": "~2.1.0",
+    "supertest": "^1.2.0",
     "watchify": "^3.7.0"
   }
 }
