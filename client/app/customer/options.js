@@ -123,6 +123,7 @@ angular.module('asyncdrink.options', [])
       });
   };
   $interval($scope.getDK, 3600000);
+
 })
 
 .factory('optionsFactory', function ($http) {
@@ -177,6 +178,7 @@ angular.module('asyncdrink.options', [])
   };
 
 
+
   return {
     currentUser: currentUser,
     orderOnly: orderOnly,
@@ -184,5 +186,6 @@ angular.module('asyncdrink.options', [])
     orderAndCloseTab: orderAndCloseTab,
     getDrinksList: getDrinksList,
     getDrinkCount: getDrinkCount
+
   };
 });
