@@ -42,7 +42,6 @@ angular.module('asyncdrink.options', [])
   $scope.getDK = function () {
     optionsFactory.getDrinkCount($scope.currentUser)
       .then(function (response) {
- getDrinks query, and image display on options.html
         $scope.currentUser.drinkCount = response.drinkcount;
         $scope.currentUser.BAC = response.BAC;
         $scope.order.BAC = response.BAC

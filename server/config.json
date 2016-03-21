@@ -2,11 +2,7 @@
   "development": {
     "username": null,
     "password": null,
-<<<<<<< HEAD
     "database": "collinadams",
-=======
-    "database": "nadineottNadine",
->>>>>>> (feat) Add drink image formatting, options page styling, and order selection display
     "host": "127.0.0.1",
     "port": "5432",
     "dialect": "postgres"
