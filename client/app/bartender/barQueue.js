@@ -40,11 +40,11 @@ angular.module('asyncdrink.barQueue', [])
                 customerDrinkType: completedOrder.drinktype,
                 customerCloseout: completedOrder.closeout
             };
-            OrdersFactory.sendTextMessage(textMessDetails);
             OrdersFactory.removeOrder(completedOrder)
                 //on success of removeOrder, showPendingOrders is called to submit get request for updated queue
                 .then(function() {
                     showPendingOrders();
+                    OrdersFactory.sendTextMessage(textMessDetails);
                 })
                 .catch(function(error) {
                     console.error(error);

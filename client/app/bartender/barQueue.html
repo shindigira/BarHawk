@@ -1,3 +1,6 @@
+<link rel="stylesheet" type="text/css" href="styles/barqueue.css">
+
+
 <h1>Here is the Bar Queue</h1>
 <button type='button' ng-click="bartenderLogout()">Bar logout</button>
 <br></br>
@@ -15,7 +18,7 @@
     <!-- create a table row for each order in list of orders retrieved from server-->
     <!-- queue is ordered by time the drink order was submitted,  -->
     <!-- potential future refactor if donating to MADD can move a customer's order up in queue -->
-    <tr ng-repeat="order in data.orders | orderBy: 'time'">
+    <tr ng-repeat="order in data.orders | orderBy: 'time'" ng-class-even="'even'" ng-class-odd="'odd'">
         <td>{{order.username}}</td>
         <td>{{order.drinktype}}</td>
         <td>{{order.createdAt}}</td>
