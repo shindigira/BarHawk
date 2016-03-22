@@ -9,11 +9,14 @@ angular.module('asyncdrink.barQueue', [])
         $scope.bartenderLogout = function() {
             $interval.cancel(poll);
             optionsFactory.currentUser = undefined;
+
+            //remove currentUser and token from local storage upon bartender logout
+            $window.localStorage.removeItem('com.barhawk.currentUser');
             $window.localStorage.removeItem('com.barhawk');
             $state.go('barSignin');
         };
-        
-        var showPendingOrders = function(){
+
+        var showPendingOrders = function() {
             OrdersFactory.getAll()
                 //after all orders retrieved from server, add them to scope
                 .then(function(orders) {
@@ -24,8 +27,11 @@ angular.module('asyncdrink.barQueue', [])
                 });
         };
 
-        //poll all pending orders from the server
-        var poll = $interval(showPendingOrders, 3000);
+        //show pending orders immediately upon rendering this state
+        showPendingOrders();
+
+        //poll all pending orders from the server every fifteen seconds
+        var poll = $interval(showPendingOrders, 15000);
 
         $scope.completeOrder = function(completedOrder) {
 
