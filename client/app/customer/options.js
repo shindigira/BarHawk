@@ -44,6 +44,7 @@ angular.module('asyncdrink.options', [])
             .then(function(response) {
                 $scope.currentUser.drinkCount = response.drinkcount;
                 $scope.currentUser.BAC = response.BAC;
+
                 $scope.order.BAC = response.BAC;
                 //BAC spectrum slider
           var spectrum = document.getElementById('spectrum');
@@ -64,9 +65,56 @@ angular.module('asyncdrink.options', [])
             x = 'your in a COMMA';
           }
           spectrumText.value = x;
+
+                $scope.order.BAC = response.BAC
+
+
+                var chartdata = [$scope.currentUser.BAC * 400];
+                console.log('bac', chartdata)
+                    //var data = [4, 8, 15, 16, 23, 42];
+                    //var chartdata = [40, 60, 80, 100, 70, 120, 100, 60, 70, 150, 120, 140];
+                    //  the size of the overall svg element
+                var height = 200;
+                var width = 200;
+
+                //  the width of each bar and the offset between each bar
+                var barWidth = 40;
+                var barOffset = 20;
+
+
+
+
+
+
+                // Add
+                // d3.select('#bar-chart').enter().append('rect').style('fill', 'orange');
+
+                d3.select('#bar-chart').append('svg')
+                    .attr('width', width)
+                    .attr('height', height)
+                    .style('background', '#dff0d8')
+                    .selectAll('rect').data(chartdata)
+                    .enter().append('rect')
+                    .style({ 'fill': '#3c763d', 'stroke': '#d6e9c6', 'stroke-width': '5' })
+                    .attr('width', barWidth)
+                    .attr('height', function(data) {
+                        return data;
+                    })
+                    .attr('x', function(data, i) {
+                        return i * (barWidth + barOffset);
+                    })
+                    .attr('y', function(data) {
+                        return height - data;
+                    });
+
+
+
+
+
             })
     };
     $scope.getDK();
+
 
     //Order only process
     $scope.orderOnly = function() {
@@ -87,6 +135,11 @@ angular.module('asyncdrink.options', [])
                 $scope.order.drinkType = "";
                 $scope.getDK();
                 // $scope.currentUser.drinkCount = response.data.drinkcount;
+
+
+                // Remove
+                d3.selectAll('svg').remove();
+
             }).catch(function(err) {
                 $scope.orderFail = true;
             });
@@ -98,6 +151,7 @@ angular.module('asyncdrink.options', [])
         $window.localStorage.removeItem('com.barhawk.currentUser');
 
         //delete token from localStorage
+
         $window.localStorage.removeItem('com.barhawk');
         $state.go('customerLogin');
     };
@@ -202,6 +256,8 @@ angular.module('asyncdrink.options', [])
 
 
 
+
+
     return {
         currentUser: currentUser,
         orderOnly: orderOnly,
@@ -209,6 +265,7 @@ angular.module('asyncdrink.options', [])
         orderAndCloseTab: orderAndCloseTab,
         getDrinksList: getDrinksList,
         getDrinkCount: getDrinkCount
+
 
     };
 })
