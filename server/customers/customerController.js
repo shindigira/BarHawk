@@ -9,7 +9,6 @@ module.exports = {
     //set username/password request to attempt variable
     var attempt = req.body;
 
-    console.log(attempt);
     models.users.findOne({
       where: { username: attempt.username },
     }).then(function (result) {
@@ -53,7 +52,6 @@ module.exports = {
           phone: attempt.phonenumber
         }
       }).spread(function (user, created) {
-        console.log("able to create new user " + attempt.username + "?", created);
         // //returns preexisting user
         var userObj = user.get({
           plain: false
