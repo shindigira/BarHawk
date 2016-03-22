@@ -12,7 +12,7 @@ module.exports = {
             calories: 153,
             carbs: 16,
             volume: 12,
-            imageurl: 'http://res.cloudinary.com/df1u5o3g6/image/upload/v1458585300/as_y7rqwg.png',
+            imageurl: 'http://res.cloudinary.com/hidgkk5lm/image/upload/v1458675034/as-min_lhq2vd.png',
             createdAt: new Date(),
             updatedAt: new Date()
         }, {
@@ -24,7 +24,7 @@ module.exports = {
             calories: 148,
             carbs: 11,
             volume: 12,
-            imageurl: 'http://res.cloudinary.com/df1u5o3g6/image/upload/v1458585300/he_uwx8ht.png',
+            imageurl: 'http://res.cloudinary.com/hidgkk5lm/image/upload/v1458675035/he-min_vcgj6s.png',
             createdAt: new Date(),
             updatedAt: new Date()
         }, {
@@ -36,7 +36,7 @@ module.exports = {
             calories: 150,
             carbs: 12,
             volume: 12,
-            imageurl: 'http://res.cloudinary.com/df1u5o3g6/image/upload/v1458585301/sa_p5bezb.png',
+            imageurl: 'http://res.cloudinary.com/hidgkk5lm/image/upload/v1458680927/sa-min_kb2y9s.png',
             createdAt: new Date(),
             updatedAt: new Date()
         }, {
@@ -48,7 +48,7 @@ module.exports = {
             calories: 148,
             carbs: 13,
             volume: 12,
-            imageurl: 'http://res.cloudinary.com/df1u5o3g6/image/upload/v1458585301/ce_lnmv0n.png',
+            imageurl: 'http://res.cloudinary.com/hidgkk5lm/image/upload/v1458675034/ce-min_u7wpkq.png',
             createdAt: new Date(),
             updatedAt: new Date()
         }, {
@@ -60,7 +60,7 @@ module.exports = {
             calories: 99,
             carbs: 5,
             volume: 12,
-            imageurl: 'http://res.cloudinary.com/df1u5o3g6/image/upload/v1458585303/cl_oytwew.png',
+            imageurl: 'http://res.cloudinary.com/hidgkk5lm/image/upload/v1458675034/cl-min_uiuj8i.png',
             createdAt: new Date(),
             updatedAt: new Date()
         }, {
@@ -72,7 +72,7 @@ module.exports = {
             calories: 110,
             carbs: 7,
             volume: 12,
-            imageurl: 'http://res.cloudinary.com/df1u5o3g6/image/upload/v1458585304/ml_colsm4.png',
+            imageurl: 'http://res.cloudinary.com/hidgkk5lm/image/upload/v1458675036/ml-min_opdfvp.png',
             createdAt: new Date(),
             updatedAt: new Date()
         }, {
@@ -84,7 +84,7 @@ module.exports = {
             calories: 145,
             carbs: 11,
             volume: 12,
-            imageurl: 'http://res.cloudinary.com/df1u5o3g6/image/upload/v1458585305/bud_nvdhsm.png',
+            imageurl: 'http://res.cloudinary.com/hidgkk5lm/image/upload/v1458675034/bud-min_btrr1h.png',
             createdAt: new Date(),
             updatedAt: new Date()
         }, {
@@ -96,7 +96,7 @@ module.exports = {
             calories: 110,
             carbs: 7,
             volume: 12,
-            imageurl: 'http://res.cloudinary.com/df1u5o3g6/image/upload/v1458585300/bl_zuupyr.png',
+            imageurl: 'http://res.cloudinary.com/hidgkk5lm/image/upload/v1458675034/budl-min_1_az6xeo.png',
             createdAt: new Date(),
             updatedAt: new Date()
         }, {
@@ -108,7 +108,7 @@ module.exports = {
             calories: 215,
             carbs: 18,
             volume: 16,
-            imageurl: 'http://res.cloudinary.com/df1u5o3g6/image/upload/v1458585300/gu_b4ll4q.png',
+            imageurl: 'http://res.cloudinary.com/hidgkk5lm/image/upload/v1458675035/gu-min_yc0t6l.png',
             createdAt: new Date(),
             updatedAt: new Date()
         }, {
@@ -120,7 +120,7 @@ module.exports = {
             calories: 123,
             carbs: 3,
             volume: 5,
-            imageurl: 'http://res.cloudinary.com/df1u5o3g6/image/upload/v1458585301/pn_mqz3at.png',
+            imageurl: 'http://res.cloudinary.com/hidgkk5lm/image/upload/v1458675037/pn-min_f7mdqy.png',
             createdAt: new Date(),
             updatedAt: new Date()
         }, {
@@ -132,7 +132,7 @@ module.exports = {
             calories: 123,
             carbs: 4,
             volume: 5,
-            imageurl: 'http://res.cloudinary.com/df1u5o3g6/image/upload/v1458585302/mer_qleryf.png',
+            imageurl: 'http://res.cloudinary.com/hidgkk5lm/image/upload/v1458675036/mer-min_wbgkfv.png',
             createdAt: new Date(),
             updatedAt: new Date()
         }, {
@@ -156,7 +156,7 @@ module.exports = {
             calories: 114,
             carbs: 4,
             volume: 5,
-            imageurl: 'http://res.cloudinary.com/df1u5o3g6/image/upload/v1458585304/pg_jsm8jb.png',
+            imageurl: 'http://res.cloudinary.com/hidgkk5lm/image/upload/v1458675036/pg-min_q70jk9.png',
             createdAt: new Date(),
             updatedAt: new Date()
         }, {
@@ -168,7 +168,7 @@ module.exports = {
             calories: 115,
             carbs: 4,
             volume: 5,
-            imageurl: 'http://res.cloudinary.com/df1u5o3g6/image/upload/v1458585307/cab_j3jshp.png',
+            imageurl: 'http://res.cloudinary.com/hidgkk5lm/image/upload/v1458675034/cab-min_1_xjzfvs.png',
             createdAt: new Date(),
             updatedAt: new Date()
         }, {
@@ -180,7 +180,7 @@ module.exports = {
             calories: 160,
             carbs: 5,
             volume: 5,
-            imageurl: 'http://res.cloudinary.com/df1u5o3g6/image/upload/v1458585302/zin_jtzr7v.png',
+            imageurl: 'http://res.cloudinary.com/hidgkk5lm/image/upload/v1458675037/zin-min_hcokbj.png',
             createdAt: new Date(),
             updatedAt: new Date()
         }, {
@@ -192,7 +192,7 @@ module.exports = {
             calories: 124,
             carbs: 4,
             volume: 5,
-            imageurl: 'http://res.cloudinary.com/df1u5o3g6/image/upload/v1458585301/syrah_gv8iua.png',
+            imageurl: 'http://res.cloudinary.com/hidgkk5lm/image/upload/v1458675037/syrah-min_tmbjz8.png',
             createdAt: new Date(),
             updatedAt: new Date()
         }, {
@@ -204,7 +204,7 @@ module.exports = {
             calories: 150,
             carbs: 12,
             volume: 5,
-            imageurl: 'http://res.cloudinary.com/df1u5o3g6/image/upload/v1458585301/pro_pr43f7.png',
+            imageurl: 'http://res.cloudinary.com/hidgkk5lm/image/upload/v1458675037/pro-min_pm0zaa.png',
             createdAt: new Date(),
             updatedAt: new Date()
         }, {
@@ -216,7 +216,7 @@ module.exports = {
             calories: 87,
             carbs: 3,
             volume: 5,
-            imageurl: 'http://res.cloudinary.com/df1u5o3g6/image/upload/v1458585312/cha_nmz2zg.png',
+            imageurl: 'http://res.cloudinary.com/hidgkk5lm/image/upload/v1458681376/cha-min_2_g4qwv7.png',
             createdAt: new Date(),
             updatedAt: new Date()
         }, {
@@ -228,7 +228,7 @@ module.exports = {
             calories: 180,
             carbs: 10,
             volume: 8,
-            imageurl: 'http://res.cloudinary.com/df1u5o3g6/image/upload/v1458585303/lit_ycdjmg.png',
+            imageurl: 'http://res.cloudinary.com/hidgkk5lm/image/upload/v1458675036/lit-min_bqy5zd.png',
             createdAt: new Date(),
             updatedAt: new Date()
         }, {
@@ -240,7 +240,7 @@ module.exports = {
             calories: 171,
             carbs: 16,
             volume: 8,
-            imageurl: 'http://res.cloudinary.com/df1u5o3g6/image/upload/v1458585304/gandt_zqwpg5.png',
+            imageurl: 'http://res.cloudinary.com/hidgkk5lm/image/upload/v1458675034/gandt-min_wt3hsn.png',
             createdAt: new Date(),
             updatedAt: new Date()
         }, {
@@ -252,7 +252,7 @@ module.exports = {
             calories: 217,
             carbs: 8,
             volume: 12,
-            imageurl: 'http://res.cloudinary.com/df1u5o3g6/image/upload/v1458585305/mojito_tbzbwf.png',
+            imageurl: 'http://res.cloudinary.com/hidgkk5lm/image/upload/v1458675036/mojito-min_h0taeu.png',
             createdAt: new Date(),
             updatedAt: new Date()
         }, {
@@ -264,7 +264,7 @@ module.exports = {
             calories: 181,
             carbs: 27,
             volume: 12,
-            imageurl: 'http://res.cloudinary.com/df1u5o3g6/image/upload/v1458585304/rbv_lt0ex3.png',
+            imageurl: 'http://res.cloudinary.com/hidgkk5lm/image/upload/v1458675036/rbv-min_i17fwm.png',
             createdAt: new Date(),
             updatedAt: new Date()
         }, {
@@ -276,7 +276,7 @@ module.exports = {
             calories: 213,
             carbs: 13,
             volume: 5,
-            imageurl: 'http://res.cloudinary.com/df1u5o3g6/image/upload/v1458585300/cos_otyxaa.png',
+            imageurl: 'http://res.cloudinary.com/hidgkk5lm/image/upload/v1458675034/cos-min_yrmuhd.png',
             createdAt: new Date(),
             updatedAt: new Date()
         }, {
@@ -288,19 +288,19 @@ module.exports = {
             calories: 96,
             carbs: 0,
             volume: 5,
-            imageurl: 'http://res.cloudinary.com/df1u5o3g6/image/upload/v1458585300/vods_e7n54c.png',
+            imageurl: 'http://res.cloudinary.com/hidgkk5lm/image/upload/v1458675037/vods-min_kjmiiv.png',
             createdAt: new Date(),
             updatedAt: new Date()
         }, {
-            name: 'White Russian',
+            name: 'Margarita',
             type: 'mixed',
-            price: 15,
-            alcohol: 18,
+            price: 14,
+            alcohol: 14,
             sugar: 16,
-            calories: 257,
-            carbs: 16,
+            calories: 280,
+            carbs: 22,
             volume: 8,
-            imageurl: 'http://res.cloudinary.com/df1u5o3g6/image/upload/v1458596493/whiterussian_snpqjo.png',
+            imageurl: 'http://res.cloudinary.com/hidgkk5lm/image/upload/v1458682474/marg-min_sz99si.png',
             createdAt: new Date(),
             updatedAt: new Date()
         }, {
@@ -312,7 +312,7 @@ module.exports = {
             calories: 320,
             carbs: 34,
             volume: 10,
-            imageurl: 'http://res.cloudinary.com/df1u5o3g6/image/upload/v1458596149/moscowmule_ayfvfo.png',
+            imageurl: 'http://res.cloudinary.com/hidgkk5lm/image/upload/v1458675036/moscowmule-min_r0b0lz.png',
             createdAt: new Date(),
             updatedAt: new Date()
         }, {
@@ -324,7 +324,7 @@ module.exports = {
             calories: 255,
             carbs: 32,
             volume: 12,
-            imageurl: 'http://res.cloudinary.com/df1u5o3g6/image/upload/v1458585304/jandc_qjhbnr.png',
+            imageurl: 'http://res.cloudinary.com/hidgkk5lm/image/upload/v1458675035/jandc-min_aks3aj.png',
             createdAt: new Date(),
             updatedAt: new Date()
         }, {
@@ -336,7 +336,7 @@ module.exports = {
             calories: 96,
             carbs: 0,
             volume: 1.5,
-            imageurl: 'http://res.cloudinary.com/df1u5o3g6/image/upload/v1458585309/cr_x0yrha.png',
+            imageurl: 'http://res.cloudinary.com/hidgkk5lm/image/upload/v1458675035/cr-min_nkzhke.png',
             createdAt: new Date(),
             updatedAt: new Date()
         }, {
@@ -348,7 +348,7 @@ module.exports = {
             calories: 86,
             carbs: 0,
             volume: 1.5,
-            imageurl: 'http://res.cloudinary.com/df1u5o3g6/image/upload/v1458585300/cm_qbc8fj.png',
+            imageurl: 'http://res.cloudinary.com/hidgkk5lm/image/upload/v1458675034/cm-min_ilpsza.png',
             createdAt: new Date(),
             updatedAt: new Date()
         }, {
@@ -372,7 +372,7 @@ module.exports = {
             calories: 103,
             carbs: 0,
             volume: 1.5,
-            imageurl: 'http://res.cloudinary.com/df1u5o3g6/image/upload/v1458585302/ja_gvo8gw.png',
+            imageurl: 'http://res.cloudinary.com/hidgkk5lm/image/upload/v1458675035/ja-min_1_utmnf1.png',
             createdAt: new Date(),
             updatedAt: new Date()
         }, {
@@ -384,7 +384,7 @@ module.exports = {
             calories: 96,
             carbs: 0,
             volume: 1.5,
-            imageurl: 'http://res.cloudinary.com/df1u5o3g6/image/upload/v1458585303/jc_rynwep.png',
+            imageurl: 'http://res.cloudinary.com/hidgkk5lm/image/upload/v1458675035/jc-min_jwhm1b.png',
             createdAt: new Date(),
             updatedAt: new Date()
         }, {
@@ -396,7 +396,7 @@ module.exports = {
             calories: 69,
             carbs: 0,
             volume: 1.5,
-            imageurl: 'http://res.cloudinary.com/df1u5o3g6/image/upload/v1458585302/jam_lipi8y.png',
+            imageurl: 'http://res.cloudinary.com/hidgkk5lm/image/upload/v1458675035/jam-min_tixsfe.png',
             createdAt: new Date(),
             updatedAt: new Date()
         }, {
@@ -408,7 +408,7 @@ module.exports = {
             calories: 69,
             carbs: 0,
             volume: 1.5,
-            imageurl: 'http://res.cloudinary.com/df1u5o3g6/image/upload/v1458595788/mama_o7ivri.png',
+            imageurl: 'http://res.cloudinary.com/hidgkk5lm/image/upload/v1458675036/mama-min_gnhkiu.png',
             createdAt: new Date(),
             updatedAt: new Date()
         }, {
@@ -432,7 +432,7 @@ module.exports = {
             calories: 100,
             carbs: 0,
             volume: 1.5,
-            imageurl: 'http://res.cloudinary.com/df1u5o3g6/image/upload/v1458585299/jd_j3jnu0.png',
+            imageurl: 'http://res.cloudinary.com/hidgkk5lm/image/upload/v1458675035/jd-min_vzyomp.png',
             createdAt: new Date(),
             updatedAt: new Date()
         }]);
@@ -447,4 +447,3 @@ module.exports = {
           return queryInterface.bulkDelete('Person', null, {});
         */
     }
-}

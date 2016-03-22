@@ -21,10 +21,6 @@
     }
     
     .selectionOptions ul {
-        /*    display: block;*/
-        /*    margin-right: auto;
-    margin-left: auto;*/
-        /*display: inline-table;*/
         white-space: nowrap;
         padding-right: 40%;
     }
@@ -48,8 +44,12 @@
         -webkit-transition: all 0.25s linear;
     }
     
+    .selectionOptions ul li label:hover {
+        color: #800000;
+    }
+    
     .selectionOptions input[type=radio]:checked ~ label {
-        color: #33cc33;
+        color: #800000;
     }
     
     ul li .drinkCell img {
@@ -99,42 +99,60 @@
         top: 50%;
     }
     
-    .shoppingCart img {
+    img {
         display: inline-block;
         margin-left: auto;
         margin-right: auto;
-        height: 2em;
+        height: 1.5em;
     }
     
     .order {
         color: black;
-        size: 3em;
+        font-size: 2em;
     }
     
-    .btn-default,
-    .btn-default:hover,
-    .btn-default:focus {
-        color: #333;
-        text-shadow: none;
-        /* Prevent inheritence from `body` */
-        background-color: #fff;
-        border: 1px solid #fff;
+    .selection,
+    #results {
+        color: black;
+        font-size: 1.5em;
     }
     
     .title-heading {
         color: black;
         font-size: 6em;
         text-align: center;
+        max-width: 40%;
+        display: block;
+        margin-right: auto;
+        margin-left: auto;
     }
     
     .btn-primary {
+        background-color: #800000;
         position: relative;
         display: inline-block;
         margin: 0 .5em 0 .5em;
     }
     
+    .btn-primary:hover {
+        background-color: #b30000;
+    }
+    
+    .btn-primary:focus {
+        background-color: #800000;
+    }
+    
+    .btn-primary:active {
+        background-color: #800000;
+    }
+    
     .topButtons {
         position: relative;
         display: inline-block;
-        float: right;
+        float: right
+    }
+    
+    .BAC {
+        color: #800000;
+        text-align: center;
     

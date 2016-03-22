@@ -84,7 +84,7 @@ angular.module('asyncdrink.options', [])
                 $scope.tabSuccess = false;
                 $scope.tabSuccessIncludingOrder = false;
                 //set drinkType to empty string after successfully placing order
-                $scope.drinkType = "";
+                $scope.order.drinkType = "";
                 $scope.getDK();
                 // $scope.currentUser.drinkCount = response.data.drinkcount;
             }).catch(function(err) {
@@ -137,7 +137,7 @@ angular.module('asyncdrink.options', [])
                 $scope.tabSuccessIncludingOrder = true;
                 $scope.userTab = response.data;
                 $scope.orderSuccess = false;
-
+                $scope.order.drinkType = "";
                 $scope.getDK();
 
             }).catch(function(err) {
@@ -211,4 +211,4 @@ angular.module('asyncdrink.options', [])
         getDrinkCount: getDrinkCount
 
     };
-});
+})
