@@ -91,7 +91,7 @@ input[type="range"]::-webkit-slider-thumb{
     }
     
     body {
-      font-family: 'Lato', serif;
+        font-family: 'Lato', serif;
         padding-top: 50px;
         padding-right: 100px;
         padding-left: 50px;
@@ -106,7 +106,10 @@ input[type="range"]::-webkit-slider-thumb{
         list-style-type: none;
         color: #243ac7;
         font-size: 14px;
-        #results button {
+    }
+    
+    #results button {
         color: #009900;
+
         }
 
