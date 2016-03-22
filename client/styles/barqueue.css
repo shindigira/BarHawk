@@ -12,6 +12,8 @@
     }
         
     .title-heading {
+        text-shadow: 2px 2px 3px black;
+
         color: #800000;
         font-size: 6em;
         text-align: center;
@@ -49,9 +51,11 @@
     /*Table styling*/
 
     .tableHeaders {
-        color: #993232;
+        font-size: 24px; 
+        color: #fff; 
+        background-color: #000; 
+        text-shadow: 2px 2px 3px #d4af37;
         font-size: 2em;
-        background-color: #422910;
     }
 
     .bacRed {
