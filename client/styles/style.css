@@ -58,10 +58,43 @@ form {
     left: 7px;
 }
 
-li {
+/*li {
     list-style-type: none;
     color: #243ac7;
     font-size: 14px;
     #results button {
-        color: #009900;
+        color: #009900;*/
+
+        input[type="range"]{
+    -webkit-appearance: none;
+    -moz-apperance: none;
+    width: 100%;
+    height: 25px;
+    font-size:24pt
+    background: #0000ff;
+    background: -moz-linear-gradient(left,  #0000ff 0%, #0000ff 50%, #000000 50%, #000000 100%);
+    background: -webkit-gradient(linear, left top, right top, color-stop(0%,#0000ff), color-stop(50%,#0000ff), color-stop(50%,#000000), color-stop(100%,#000000));
+    background: -webkit-linear-gradient(left,  #0000ff 0%,#0000ff 50%,#000000 50%,#000000 100%);
+    background: -o-linear-gradient(left,  #0000ff 0%,#0000ff 50%,#000000 50%,#000000 100%);
+    background: -ms-linear-gradient(left,  #0000ff 0%,#0000ff 50%,#000000 50%,#000000 100%);
+    background: linear-gradient(to right,  #bfff00, #ff4000, #661a00);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#0000ff', endColorstr='#000000',GradientType=1 );
+    border-radius: 2px;
+    margin-top: 25px;
+}
+
+
+input[type="range"]::-webkit-slider-thumb{
+    -webkit-appearance:none; 
+    -moz-apperance:none; 
+    width:40px; 
+    height:40px;
+    -webkit-border-radius:20px; 
+    -moz-border-radius:20px; 
+    -ms-border-radius:20px; 
+    -o-border-radius:20px; 
+    border-radius:20px;
+    background-image:-webkit-gradient(linear, left top, left bottom, color-stop(0, #fefefe), color-stop(0.49, #d7d7d7), color-stop(0.51, #d1d1d1), color-stop(1, #c8c8c8) );
+    border: 1px solid #787878;
+}
     
