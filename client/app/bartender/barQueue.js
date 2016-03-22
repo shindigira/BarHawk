@@ -3,94 +3,93 @@
 angular.module('asyncdrink.barQueue', [])
 
 .controller('BarQueueController',
-  function ($scope, OrdersFactory, $window, $state, optionsFactory) {
-    $scope.data = {};
+    function($scope, OrdersFactory, $window, $state, $interval, optionsFactory) {
+        $scope.data = {};
 
-    $scope.bartenderLogout = function () {
-      optionsFactory.currentUser = undefined;
-      $window.localStorage.removeItem('com.barhawk');
-      $state.go('barSignin');
-    };
-    //scope function to retrieve all the orders from the server
-    $scope.getOrders = function () {
-      OrdersFactory.getAll()
-        //after all orders retrieved from server, add them to scope
-        .then(function (orders) {
-          $scope.data.orders = orders;
-        })
-        .catch(function (error) {
-          console.error(error);
-        });
+        $scope.bartenderLogout = function() {
+            $interval.cancel(poll);
+            optionsFactory.currentUser = undefined;
 
-        setTimeout($scope.getOrders, 4000);
+            //remove currentUser and token from local storage upon bartender logout
+            $window.localStorage.removeItem('com.barhawk.currentUser');
+            $window.localStorage.removeItem('com.barhawk');
+            $state.go('barSignin');
+        };
 
-    };
+        var showPendingOrders = function() {
+            OrdersFactory.getAll()
+                //after all orders retrieved from server, add them to scope
+                .then(function(orders) {
+                    $scope.data.orders = orders;
+                })
+                .catch(function(error) {
+                    console.error(error);
+                });
+        };
 
-    $scope.dequeue = function (completedOrder) {
-      //completedOrder passed in on the view as ng-repeat order in orders in html
+        //show pending orders immediately upon rendering this state
+        showPendingOrders();
 
-      // var currentUserOrder = models.users.findAll({
-      //   where:{
-      //     username: completedOrder.username
-      //   }
-      // })
+        //poll all pending orders from the server every fifteen seconds
+        var poll = $interval(showPendingOrders, 15000);
 
-      var textMessDetails = {
-        customerName: completedOrder.username,
-        customerDrinkType: completedOrder.drinktype
-      };
-      OrdersFactory.sendTextMessage(textMessDetails);
-      OrdersFactory.removeOrder(completedOrder)
-        //on success of removeOrder (server.js), getOrders is called to submit get request for updated queue
-        .then(function () {
-          $scope.getOrders();
-        })
-        .catch(function (error) {
-          console.error(error);
-        });
-    };
+        $scope.completeOrder = function(completedOrder) {
 
-    $scope.getOrders();
-  })
-
-.factory('OrdersFactory', function ($http, optionsFactory) {
-
-  //factory function to send http GET request to server for all orders
-  var getAll = function () {
-    return $http({
-        method: 'POST',
-        url: '/api/barqueue/showPendingOrders',
-        data: optionsFactory.currentUser
-      })
-      .then(function (resp) {
-        return resp.data;
-      });
-  };
-
-  var sendTextMessage = function (textMessInfo) {
-    return $http({
-      method: 'POST',
-      url: '/api/barqueue/orderCompleteTextMessage',
-      data: textMessInfo
+            var textMessDetails = {
+                customerName: completedOrder.username,
+                customerDrinkType: completedOrder.drinktype,
+                customerCloseout: completedOrder.closeout
+            };
+            OrdersFactory.sendTextMessage(textMessDetails);
+            OrdersFactory.removeOrder(completedOrder)
+                //on success of removeOrder, showPendingOrders is called to submit get request for updated queue
+                .then(function() {
+                    showPendingOrders();
+                })
+                .catch(function(error) {
+                    console.error(error);
+                });
+        };
     })
-  };
 
-  var removeOrder = function (completedOrder) {
-    //sending post request with the specific drink order object whose button was clicked to be removed
-    return $http({
-        method: 'POST',
-        url: '/api/barqueue/completeOrder',
-        data: completedOrder
-      })
-      .then(function (resp) {
-        return resp.data;
-      });
+.factory('OrdersFactory', function($http, optionsFactory) {
 
-  };
+    //factory function to send http GET request to server for all orders
+    var getAll = function() {
+        return $http({
+                method: 'POST',
+                url: '/api/barqueue/showPendingOrders',
+                data: optionsFactory.currentUser
+            })
+            .then(function(resp) {
+                return resp.data;
+            });
+    };
 
-  return {
-    sendTextMessage: sendTextMessage,
-    getAll: getAll,
-    removeOrder: removeOrder
-  }
+    var sendTextMessage = function(textMessInfo) {
+        return $http({
+            method: 'POST',
+            url: '/api/barqueue/orderCompleteTextMessage',
+            data: textMessInfo
+        })
+    };
+
+    var removeOrder = function(completedOrder) {
+        //sending post request with the specific drink order object whose button was clicked to be removed
+        return $http({
+                method: 'POST',
+                url: '/api/barqueue/completeOrder',
+                data: completedOrder
+            })
+            .then(function(resp) {
+                return resp.data;
+            });
+
+    };
+
+    return {
+        sendTextMessage: sendTextMessage,
+        getAll: getAll,
+        removeOrder: removeOrder
+    }
 })

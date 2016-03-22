@@ -7,6 +7,7 @@ module.exports = function (sequelize, DataTypes) {
     currentprice: DataTypes.DECIMAL,
     totalprice: DataTypes.DECIMAL,
     drinkcount: DataTypes.INTEGER,
+    bac: DataTypes.STRING,
     completed: {
       type: DataTypes.BOOLEAN,
       defaultValue: false

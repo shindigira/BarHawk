@@ -4,14 +4,17 @@ var db = require('../models/index.js');
 module.exports = {
 
   getDrinks: function (req, res) {
-    db.sequelize.query('Select name, type, price, volume from drinks;')
+    db.sequelize.query('Select name, type, price, volume, imageurl from drinks;')
       .then(function (drinks) {
         //return
         res.send(drinks[0]);
       })
+      .catch(function (err) {
+        res.sendStatus(404);
+      })
   },
 
-    closeTab: function (req, res) {
+  closeTab: function (req, res) {
     var tab = req.body;
     //query user's past drinks
     models.orders.findAll({
@@ -26,11 +29,11 @@ module.exports = {
       ]
     }).then(function (result) {
       //if user has not ordered
-      if (result[0].dataValues.drinkCount == 0) {
+      if (result[0].dataValues.drinkCount === 0) {
         res.sendStatus(400);
       } else {
         tab.drinkCount = result[0].dataValues.drinkCount
-        //find user's last closeTab order
+          //find user's last closeTab order
         models.orders.max('id', {
           where: {
             username: tab.username,
@@ -65,7 +68,7 @@ module.exports = {
                 totalprice: receipt.tabTotal,
                 drinkcount: tab.drinkCount
               }).then(function (closed) {
-                res.json(closed);
+                res.json(closed.dataValues);
               })
             }
           })
@@ -109,11 +112,11 @@ module.exports = {
                   closeout: false,
                   currentprice: drinkPrice,
                   totalprice: null,
-                  drinkcount: userData.drinkCount
+                  drinkcount: userData.drinkCount,
+                  bac: ord.BAC
                 })
                 .then(function (userorder) {
-
-                  res.json(userorder);
+                  res.json(userorder.dataValues);
                 });
             });
         })
@@ -146,7 +149,6 @@ module.exports = {
             [db.sequelize.fn('COUNT', db.sequelize.col('username')), 'drinkCount']
           ]
         }).then(function (drinks) {
-          console.log(drinks);
           var drinkCount = drinks[0].dataValues.drinkCount;
 
           //get id of user's last closeout order
@@ -172,7 +174,6 @@ module.exports = {
                 [db.sequelize.fn('SUM', db.sequelize.col('currentprice')), 'tabTotal']
               ]
             }).then(function (tabTotal) {
-              console.log("USER's TAB OBJECT", tabTotal[0].dataValues);
               //submit order
               var finalTab = tabTotal[0].dataValues.tabTotal;
               if (finalTab === null) {
@@ -184,7 +185,8 @@ module.exports = {
                 closeout: true,
                 currentprice: drinkPrice,
                 totalprice: finalTab + drinkPrice,
-                drinkcount: drinkCount
+                drinkcount: drinkCount,
+                bac: ord.BAC
               }).then(function (order) {
                 res.json(order);
               })

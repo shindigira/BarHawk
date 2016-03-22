@@ -10,6 +10,7 @@ module.exports = function (app, express) {
   app.use(bodyParser.json());
   app.use(express.static(__dirname + '/../../client'));
 
+
   app.use('/api/customers', customerRouter);
   app.use('/api/bartenders', bartenderRouter);
   app.use('/api/menu', menuRouter);

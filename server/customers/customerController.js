@@ -1,18 +1,21 @@
 var jwt = require('jwt-simple');
 var models = require('../models');
 var db = require('../models/index.js');
+var bcrypt = require('bcrypt');
+
 
 module.exports = {
   login: function (req, res) {
     //set username/password request to attempt variable
     var attempt = req.body;
+
     models.users.findOne({
-      where: { username: attempt.username }
+      where: { username: attempt.username },
     }).then(function (result) {
-      if (result === null) {
-        res.sendStatus(401)
-      } else {
-        if (attempt.password === result.dataValues.password) {
+      var hashedPassword = result.dataValues.password;
+      //check attempted password with password saved in db
+      bcrypt.compare(attempt.password, hashedPassword, function (err, success) {
+        if (success) {
           var token = jwt.encode(attempt.username, 'barHawksecret444');
           res.json({
             currentUser: result,
@@ -21,50 +24,57 @@ module.exports = {
         } else {
           res.sendStatus(401);
         }
-      }
-    });
+      })
+    }).catch(function (err) {
+      res.sendStatus(401);
+    })
   },
 
   signup: function (req, res) {
     //assigning drink order to variable
     var attempt = req.body;
+    var hashedPW;
+    //hash passwords
+    bcrypt.hash(attempt.password, 10, function (err, hash) {
+      hashedPW = hash;
 
-    //find existing user (err) or create new (success)
-    models.users.findOrCreate({
-      where: { username: attempt.username },
-      defaults: {
-        firstname: attempt.firstname,
-        lastname: attempt.lastname,
-        password: attempt.password,
-        age: attempt.age,
-        weight: attempt.weight,
-        gender: attempt.gender,
-        photo: attempt.photo,
-        phone: attempt.phonenumber
-      }
-    }).spread(function (user, created) {
-      console.log("able to create new user " + attempt.username + "?", created);
-      // //returns preexisting user
-      var userObj = user.get({
-        plain: false
-      });
-      if (created) {
-        var token = jwt.encode(user, 'barHawksecret444');
-        console.log(attempt);
-        res.json({
-          currentUser: attempt,
-          token: token
+      //find existing user (err) or create new (success)
+      models.users.findOrCreate({
+        where: { username: attempt.username },
+        defaults: {
+          firstname: attempt.firstname,
+          lastname: attempt.lastname,
+          password: hashedPW,
+          age: attempt.age,
+          weight: attempt.weight,
+          gender: attempt.gender,
+          photo: attempt.photo,
+          phone: attempt.phonenumber
+        }
+      }).spread(function (user, created) {
+        // //returns preexisting user
+        var userObj = user.get({
+          plain: false
         });
-        //res.send(userObj);
-      } else {
-        res.sendStatus(401);
-      }
+        if (created) {
+          var token = jwt.encode(user, 'barHawksecret444');
+
+          res.json({
+            currentUser: attempt,
+            token: token
+          });
+          //res.send(userObj);
+        } else {
+          res.sendStatus(401);
+        }
+      });
     });
   },
 
   drinkcount: function (req, res) {
     var user = req.body.username;
     var drinkCount;
+    var lastOrder;
     //set current time
     var time = new Date();
     var now = new Date();
@@ -84,12 +94,14 @@ module.exports = {
           }
         },
         attributes: [
-          [db.sequelize.fn('COUNT', db.sequelize.col('username')), 'drinkCount']
+          [db.sequelize.fn('COUNT', db.sequelize.col('username')), 'drinkCount'],
+          [db.sequelize.fn('MAX', db.sequelize.col('id')), 'latestOrder']
         ]
       })
       .then(function (userdrinks) {
         //set drink count
         drinkCount = userdrinks[0].dataValues.drinkCount;
+        lastOrder = userdrinks[0].dataValues.latestOrder;
 
         if (drinkCount === '0') {
           res.json({
@@ -120,8 +132,6 @@ module.exports = {
               //round it
               var BAC = Math.round(unroundedBAC * 1000) / 1000;
 
-
-
               res.json({
                 drinkcount: drinkCount,
                 BAC: BAC
@@ -131,4 +141,5 @@ module.exports = {
       })
   }
 
-};
+}
+
