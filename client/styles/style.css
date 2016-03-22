@@ -188,7 +188,7 @@ ul li .drinkCell {
 }
 
 .drinkName,
-p {
+  {
   display: inline;
   font-size: 2em;
   color: #686868;
