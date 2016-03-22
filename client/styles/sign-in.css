@@ -196,6 +196,7 @@ body,
 }
 
 .btn-primary {
+  background-color: #800000;
     position: relative;
     display: inline-block;
     margin: 0 .5em 0 .5em;
