@@ -1,17 +1,15 @@
 html {
-    background: url(http://res.cloudinary.com/df1u5o3g6/image/upload/v1458603380/background_g3ksno.jpg) no-repeat center center fixed;
-    -webkit-background-size: cover;
-    -moz-background-size: cover;
-    ^^ -o-background-size: cover;
-    background-size: cover;
-    padding: 5%;
+  background: url(http://res.cloudinary.com/df1u5o3g6/image/upload/v1458603380/background_g3ksno.jpg) no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;^^
+  -o-background-size: cover;
+  background-size: cover;
+  padding: 5%;
 }
 
 body {
-    background-color: rgba(255, 255, 255, .01);
+  background-color: rgba(255, 255, 255, .01);
 }
-
-
 /*STYLING FOR MENU OPTIONS*/
 
 .selectionOptions {
@@ -60,15 +58,12 @@ ul li .drinkCell img {
     height: 15em;
 }
 
-
 /*DRINK DISPLAY */
 
-.drinkDisplay {}
-
 ul {
-    padding-bottom: 5%;
-    padding-top: 5%;
-    padding-right: 4%;
+  padding-bottom: 5%;
+  padding-top: 5%;
+  padding-right: 4%;
     columns: 3;
     -webkit-columns: 3;
     -moz-columns: 3;
@@ -79,7 +74,7 @@ ul {
 }
 
 .drinkDisplay ul {
-    background-color: rgba(255, 255, 255, 0.4);
+  background-color: rgba(255,255,255,0.4);
 }
 
 ul li .drinkCell {
@@ -134,9 +129,9 @@ ul li .drinkCell {
 }
 
 .title-heading {
-    color: black;
-    font-size: 6em;
-    text-align: center;
+  color: black;
+  font-size: 6em;
+  text-align: center;
 }
 
 .btn-primary {
@@ -149,3 +144,4 @@ ul li .drinkCell {
     position: relative;
     display: inline-block;
     float: right;
+}
