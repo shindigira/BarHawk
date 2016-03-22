@@ -7,12 +7,13 @@ angular.module('asyncdrink.barQueue', [])
         $scope.data = {};
 
         $scope.bartenderLogout = function() {
+            $interval.cancel(poll);
             optionsFactory.currentUser = undefined;
             $window.localStorage.removeItem('com.barhawk');
             $state.go('barSignin');
         };
-        //scope function to retrieve all the orders from the server
-        $scope.getOrders = function() {
+        
+        var showPendingOrders = function(){
             OrdersFactory.getAll()
                 //after all orders retrieved from server, add them to scope
                 .then(function(orders) {
@@ -21,18 +22,12 @@ angular.module('asyncdrink.barQueue', [])
                 .catch(function(error) {
                     console.error(error);
                 });
-            // $interval($scope.getOrders, 3000);
-            // setInterval
         };
 
-        $scope.dequeue = function(completedOrder) {
-            //completedOrder passed in on the view as ng-repeat order in orders in html
+        //poll all pending orders from the server
+        var poll = $interval(showPendingOrders, 3000);
 
-            // var currentUserOrder = models.users.findAll({
-            //   where:{
-            //     username: completedOrder.username
-            //   }
-            // })
+        $scope.completeOrder = function(completedOrder) {
 
             var textMessDetails = {
                 customerName: completedOrder.username,
@@ -41,16 +36,14 @@ angular.module('asyncdrink.barQueue', [])
             };
             OrdersFactory.sendTextMessage(textMessDetails);
             OrdersFactory.removeOrder(completedOrder)
-                //on success of removeOrder (server.js), getOrders is called to submit get request for updated queue
+                //on success of removeOrder, showPendingOrders is called to submit get request for updated queue
                 .then(function() {
-                    $scope.getOrders();
+                    showPendingOrders();
                 })
                 .catch(function(error) {
                     console.error(error);
                 });
         };
-
-        $scope.getOrders();
     })
 
 .factory('OrdersFactory', function($http, optionsFactory) {
