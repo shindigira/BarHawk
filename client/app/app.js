@@ -31,7 +31,7 @@ angular.module('asyncdrink', ['ui.router', 'asyncdrink.customerAuth',
             url: "/login",
             templateUrl: "/app/auth/customer/customerSignin.html",
             controller: 'customerController'
-        })
+        });
 
     //Inject the AttachTokens factory into $http's interceceptors array so
     //all outgoing requests are stopped and AttachTokens runs on every
