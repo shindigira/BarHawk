@@ -1,4 +1,4 @@
-table,
+    table,
 th,
 td {
     text-align: center!important;
@@ -62,8 +62,6 @@ li {
     list-style-type: none;
     color: #243ac7;
     font-size: 14px;
-
-
-#results button {
-    color: #009900;
-}
+    #results button {
+        color: #009900;
+    
