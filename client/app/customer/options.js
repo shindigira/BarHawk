@@ -47,28 +47,26 @@ angular.module('asyncdrink.options', [])
 
                 $scope.order.BAC = response.BAC;
                 //BAC spectrum slider
-                var spectrum = document.getElementById('spectrum');
-                var t = Math.floor(($scope.currentUser.BAC / 0.4) * 100);
-                spectrum.value = t;
-                var spectrumText = document.getElementById('spectrumText');
-                var x;
-                if ($scope.currentUser.BAC >= 0 && $scope.currentUser.BAC < 0.08) {
-                    x = 'sober';
-                } else if ($scope.currentUser.BAC === 0.08) {
-                    x = 'keep drinking. but DONT DRIVE!';
-                } else if ($scope.currentUser.BAC > 0.08 && $scope.currentUser.BAC < 0.4) {
-                    x = 'start dancing';
-                } else {
-                    x = 'your in a COMMA';
-                }
-                spectrumText.value = x;
+                // var spectrum = document.getElementById('spectrum');
+                // var t = Math.floor(($scope.currentUser.BAC / 0.4) * 100);
+                // spectrum.value = t;
+                // var spectrumText = document.getElementById('spectrumText');
+                // var x;
+                // if ($scope.currentUser.BAC >= 0 && $scope.currentUser.BAC < 0.08) {
+                //     x = 'sober';
+                // } else if ($scope.currentUser.BAC === 0.08) {
+                //     x = 'keep drinking. but DONT DRIVE!';
+                // } else if ($scope.currentUser.BAC > 0.08 && $scope.currentUser.BAC < 0.4) {
+                //     x = 'start dancing';
+                // } else {
+                //     x = 'your in a COMMA';
+                // }
+                // spectrumText.value = x;
 
                 $scope.order.BAC = response.BAC
 
 
                 var chartdata = [$scope.currentUser.BAC];
-                console.log('bac', chartdata / 1300)
-                console.log("bac with *", chartdata)
                     //var data = [4, 8, 15, 16, 23, 42];
                     //var chartdata = [40, 60, 80, 100, 70, 120, 100, 60, 70, 150, 120, 140];
                     //  the size of the overall svg element
@@ -94,7 +92,7 @@ angular.module('asyncdrink.options', [])
                 d3.select('#bar-chart').append('svg')
                     .attr('width', width)
                     .attr('height', height)
-                    .style('background', 'grey')
+                    .style('background', 'white')
                     .selectAll('rect').data(chartdata)
                     .enter().append('rect')
                     //.style({ 'fill': 'red', 'stroke': 'red', 'stroke-width': '1' })
@@ -103,7 +101,7 @@ angular.module('asyncdrink.options', [])
                         if (d < .08) {
                             console.log('this is d', d)
                             return 'green'
-                        } else if (d >= .08 && d < .29) {
+                        } else if (d >= .08 && d < .2) {
                             return 'orange'
                         } else {
                             return 'red'
@@ -119,7 +117,6 @@ angular.module('asyncdrink.options', [])
                     })
                     .attr('y', function(data) {
                         //return 204
-                        console.log(height - data * 1000)
                         return height - data * 823;
                         //return height - data *  1000;
                         //return data
