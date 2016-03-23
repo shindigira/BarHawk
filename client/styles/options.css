@@ -1,17 +1,17 @@
     html {
-        background: url(http://res.cloudinary.com/df1u5o3g6/image/upload/v1458603380/background_g3ksno.jpg) no-repeat center center fixed;
+        background: url(http://res.cloudinary.com/df1u5o3g6/image/upload/v1458603380/background_g3ksno.jpg) no-repeat center center fixed;*/
         -webkit-background-size: cover;
         -moz-background-size: cover;
         ^^ -o-background-size: cover;
         background-size: cover;
         padding: 5%;
     }
-    
+
     body {
         background-color: rgba(255, 255, 255, .01);
     }
     /*STYLING FOR MENU OPTIONS*/
-    
+
     .selectionOptions {
         text-align: center;
         max-width: 50%;
@@ -19,27 +19,23 @@
         margin-right: auto;
         margin-left: auto;
     }
-    
+
     .selectionOptions ul {
-        /*    display: block;*/
-        /*    margin-right: auto;
-    margin-left: auto;*/
-        /*display: inline-table;*/
         white-space: nowrap;
         padding-right: 40%;
     }
-    
+
     .selectionOptions ul li {
         color: black;
         display: inline-block;
         padding: 5%;
     }
-    
+
     .selectionOptions ul li input[type=radio] {
         position: absolute;
         visibility: hidden;
     }
-    
+
     .selectionOptions ul li label {
         cursor: pointer;
         position: relative;
@@ -47,11 +43,15 @@
         font-size: 2em;
         -webkit-transition: all 0.25s linear;
     }
-    
-    .selectionOptions input[type=radio]:checked ~ label {
-        color: #33cc33;
+
+    .selectionOptions ul li label:hover {
+        color: #800000;
     }
-    
+
+    .selectionOptions input[type=radio]:checked ~ label {
+        color: #800000;
+    }
+
     ul li .drinkCell img {
         display: block;
         margin-left: auto;
@@ -59,8 +59,26 @@
         height: 15em;
     }
     /*DRINK DISPLAY */
-    
-    .drinkDisplay ul {
+
+        .drinkDisplay {
+            overflow-y: auto;
+            height: 30em;
+            max-width: 60%;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+            .drinkDisplay ul {
+                background-color: rgba(255, 255, 255, 0.4);
+                padding-bottom: 5%;
+                padding-top: 5%;
+                padding-right: 5%;
+                columns: 3;
+                -webkit-columns: 3;
+                -moz-columns: 3;
+                list-style-type: none;
+            }
+/*    .drinkDisplay ul {
         background-color: rgba(255, 255, 255, 0.4);
         padding-bottom: 5%;
         padding-top: 5%;
@@ -72,69 +90,89 @@
         max-width: 60%;
         margin-left: auto;
         margin-right: auto;
-    }
-    
+    }*/
+
     ul li .drinkCell {
         height: 5%;
         overflow: hidden;
         -webkit-column-break-inside: avoid;
         text-align: center;
     }
-    
+
     .drinkPrice,
     .drinkName {
         display: inline;
         font-size: 1em;
         color: black;
     }
-    
+
     .drinkName {
         font-weight: bold;
     }
     /*submit order + submit order + close buttons*/
-    
+
     .orderButtons {
         position: fixed;
         right: 5%;
         top: 50%;
     }
-    
-    .shoppingCart img {
+
+    img {
         display: inline-block;
         margin-left: auto;
         margin-right: auto;
-        height: 2em;
+        height: 1.5em;
     }
-    
+
     .order {
         color: black;
-        size: 3em;
+
+        font-size: 2em;
     }
-    
-    .btn-default,
-    .btn-default:hover,
-    .btn-default:focus {
-        color: #333;
-        text-shadow: none;
-        /* Prevent inheritence from `body` */
-        background-color: #fff;
-        border: 1px solid #fff;
+
+    .selection,
+    #results {
+        color: black;
+        font-size: 1.5em;
+
     }
-    
+
     .title-heading {
         color: black;
         font-size: 6em;
         text-align: center;
+        max-width: 40%;
+        display: block;
+        margin-right: auto;
+        margin-left: auto;
     }
-    
+
     .btn-primary {
+        background-color: #800000;
         position: relative;
         display: inline-block;
         margin: 0 .5em 0 .5em;
     }
-    
+
+    .btn-primary:hover {
+        background-color: #b30000;
+    }
+
+    .btn-primary:focus {
+        background-color: #800000;
+    }
+
+    .btn-primary:active {
+        background-color: #800000;
+    }
+
     .topButtons {
         position: relative;
         display: inline-block;
-        float: right;
-    
+        float: right
+    }
+
+    .BAC {
+        color: #800000;
+        text-align: center;
+    }

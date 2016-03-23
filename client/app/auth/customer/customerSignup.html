@@ -1,8 +1,10 @@
-<h3>Sign Up!</h3>
-<form name="userForm" novalidate ng-submit='signUp(userForm.$valid)'>
+<body>
+<link rel="stylesheet" type="text/css" href="styles/sign-up.css">
+<h3>Sign Up:</h3>
+<form name="userForm" class="col-lg-4" novalidate ng-submit='signUp(userForm.$valid)'>
     <div class='form-group' ng-class="{ 'has-error' : userForm.firstname.$invalid && !userForm.firstname.$pristine &&  userForm.firstname.$touched}">
         <label> First Name </label>
-        <input name='firstname' type="text" class="form-control" ng-model="newUser.firstname" ng-class="{'error': userForm.$invalid && userForm.$dirty}" required/>
+        <input name='firstname' type="text" class="form-control" ng-model="newUser.firstname" ng-class="{'error': userForm.$invalid && userForm.$dirty}" class="col-lg-4" required/>
         <!--  <p ng-show="userForm.name.$invalid && !userForm.name.$pristine" class="help-block">You name is required.</p> -->
         <p ng-show="userForm.firstname.$invalid && !userForm.firstname.$pristine" class="help-block">Please enter your first name.</p>
     </div>
@@ -56,5 +58,9 @@
     </div>
 </form>
 <p ng-show='invalidSignup'>This user is already registered!</p>
+<form class="col-lg-4">
+<div class='btn-primary'>
 <p> Already a user?
     <a ui-sref='customerLogin'>Click here</a> to login</p>
+    </div>
+        </form>
