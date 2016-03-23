@@ -5,18 +5,13 @@ angular.module('asyncdrink.customerAuth', [])
     //newUser obj will hold all sign up inputs and set drinkCount to 0
     $scope.newUser = {
         drinkCount: 0,
-        totalPrice: 0,
-        firstname: 'Jane',
-        lastname: 'Doe',
-        username: 'JaneDoe85',
-        password: 'janedoepassword',
-        phonenumber: 5059342914,
-        age: 35,
-        weight: 150,
-        gender: 'female'
+        totalPrice: 0
     };
 
-    $scope.loginAttempt = {};
+    $scope.loginAttempt = {
+        username: 'JaneDoe85',
+        password: 'janedoepassword'
+    };
 
     $scope.invalidLogIn = false;
 
