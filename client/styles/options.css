@@ -1,5 +1,5 @@
     html {
-        background: url(http://res.cloudinary.com/df1u5o3g6/image/upload/v1458603380/background_g3ksno.jpg) no-repeat center center fixed;
+        /*background: url(http://res.cloudinary.com/df1u5o3g6/image/upload/v1458603380/background_g3ksno.jpg) no-repeat center center fixed;*/
         -webkit-background-size: cover;
         -moz-background-size: cover;
         ^^ -o-background-size: cover;
@@ -44,10 +44,13 @@
         -webkit-transition: all 0.25s linear;
     }
 
+<<<<<<< HEAD
     .selectionOptions ul li label:hover {
         color: #800000;
     }
 
+=======
+>>>>>>> (feat) Implement d3 graph for bac
     .selectionOptions input[type=radio]:checked ~ label {
         color: #800000;
     }
@@ -108,6 +111,7 @@
 
     .order {
         color: black;
+
         font-size: 2em;
     }
 
@@ -115,6 +119,7 @@
     #results {
         color: black;
         font-size: 1.5em;
+
     }
 
     .title-heading {
@@ -156,3 +161,4 @@
         color: #800000;
         text-align: center;
     }
+
