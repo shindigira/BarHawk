@@ -60,7 +60,24 @@
     }
     /*DRINK DISPLAY */
 
-    .drinkDisplay ul {
+        .drinkDisplay {
+            overflow-y: auto;
+            height: 30em;
+            max-width: 60%;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .drinkDisplay ul {
+            background-color: rgba(255, 255, 255, 0.4);
+            padding-bottom: 5%;
+            padding-top: 5%;
+            columns: 3;
+            -webkit-columns: 3;
+            -moz-columns: 3;
+            list-style-type: none;
+        }
+/*    .drinkDisplay ul {
         background-color: rgba(255, 255, 255, 0.4);
         padding-bottom: 5%;
         padding-top: 5%;
@@ -72,7 +89,7 @@
         max-width: 60%;
         margin-left: auto;
         margin-right: auto;
-    }
+    }*/
 
     ul li .drinkCell {
         height: 5%;
@@ -158,4 +175,5 @@
         color: #800000;
         text-align: center;
     }
+
 
