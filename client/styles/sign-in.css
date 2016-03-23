@@ -275,4 +275,5 @@ body,
     .topButtons {
         position: relative;
         display: inline-block;
-        float: righ
+        float: right;
+    }
