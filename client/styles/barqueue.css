@@ -1,0 +1,79 @@
+    html {
+        background: url(http://res.cloudinary.com/df1u5o3g6/image/upload/v1458603380/background_g3ksno.jpg) no-repeat center center fixed;
+        -webkit-background-size: cover;
+        -moz-background-size: cover;
+        ^^ -o-background-size: cover;
+        background-size: cover;
+        padding: 5%;
+    }
+    
+    body {
+        background-color: rgba(255, 255, 255, .01);
+    }
+        
+    .title-heading {
+        text-shadow: 2px 2px 3px black;
+
+        color: #800000;
+        font-size: 6em;
+        text-align: center;
+        max-width: 40%;
+        display: block;
+        margin-right: auto;
+        margin-left: auto;
+    }
+    
+    .btn-primary {
+        background-color: #800000;
+        position: relative;
+        display: inline-block;
+        margin: 0 .5em 0 .5em;
+    }
+    
+    .btn-primary:hover {
+        background-color: #b30000;
+    }
+    
+    .btn-primary:focus {
+        background-color: #800000;
+    }
+    
+    .btn-primary:active {
+        background-color: #800000;
+    }
+    
+    .topButtons {
+        position: relative;
+        display: inline-block;
+        float: right
+    }
+    
+    /*Table styling*/
+
+    .tableHeaders {
+        font-size: 24px; 
+        color: #fff; 
+        background-color: #000; 
+        text-shadow: 2px 2px 3px #d4af37;
+        font-size: 2em;
+    }
+
+    .bacRed {
+        background-color: red;
+    }
+
+    .bacGreen {
+        background-color: green;
+    }
+
+    .bacYellow {
+        background-color: yellow;
+    }
+
+    .even {
+        background-color: #ae773f;
+    }
+
+    .odd {
+        background-color: #dbc2a9;
+    }
