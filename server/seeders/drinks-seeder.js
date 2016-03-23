@@ -436,9 +436,7 @@ module.exports = {
         createdAt: new Date(),
         updatedAt: new Date()
       }])
-    }
-
-    ,
+    },
 
     down: function(queryInterface, Sequelize) {
       /*
@@ -449,9 +447,6 @@ module.exports = {
         return queryInterface.bulkDelete('Person', null, {});
       */
     }
-<<<<<<< HEAD
-}
 
-=======
-}
->>>>>>> (cleanup) Remove console logs from bac graph
+};
+
