@@ -10,8 +10,22 @@
  * Globals
  */
 
+label{
+    border-radius: 5px;
+    box-shadow: 2px 2px 2px black;
+    background: #800000;
+    opacity: 9;
+    margin: 1px;
+    padding: 1%;
+}
 
 /* Links */
+h1{
+    font-size: 40px;
+    font-family: Monaco;
+    margin-bottom: 10px;
+    color: #800000;
+}
 
 a,
 a:focus,
