@@ -449,5 +449,9 @@ module.exports = {
         return queryInterface.bulkDelete('Person', null, {});
       */
     }
+<<<<<<< HEAD
 }
 
+=======
+}
+>>>>>>> (cleanup) Remove console logs from bac graph
