@@ -183,6 +183,7 @@ angular.module('asyncdrink.options', [])
                     .style({ fill: 'none', stroke: "black" })
                 verticalGuide.selectAll('line')
                     .style({ stroke: "black" })
+
             })
     };
     $scope.getDK();
@@ -328,10 +329,6 @@ angular.module('asyncdrink.options', [])
         });
     };
 
-
-
-
-
     return {
         currentUser: currentUser,
         orderOnly: orderOnly,
@@ -342,4 +339,4 @@ angular.module('asyncdrink.options', [])
 
 
     };
-})
+});
