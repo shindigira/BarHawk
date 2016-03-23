@@ -23,8 +23,13 @@
     </div>
     <div class='form-group' ng-class="{ 'has-error' : userForm.password.$invalid && !userForm.password.$pristine && userForm.password.$touched}">
         <label>Password</label>
-        <input name='password' type="password" class="form-control" ng-model="newUser.password" ng-minlength="8" ng-maxlength="20" ng-class="{'error': userForm.$invalid && userForm.$dirty}" required/>
+        <input type="password" name="password" class="form-control" ng-model="newUser.password" ng-minlength="8" ng-maxlength="20" ng-class="{'error': userForm.$invalid && userForm.$dirty}" required/>
         <p ng-show="userForm.password.$error.minlength" class="help-block">To help keep your account secure, please choose a password between 8-20 characters.</p>
+    </div>
+    <div>
+        <label>Confirm Password</label>
+        <input type="password" name='passwordCheck' ng-model="passwordCheck" required compare-to="newUser.password"/>
+        <p ng-show="userForm.passwordCheck.$invalid">Your passwords do not match. Please try again.</p>
     </div>
     <div class='form-group' ng-class="{ 'has-error' : userForm.phonenumber.$invalid && !userForm.phonenumber.$pristine && userForm.phonenumber.$touched }">
         <label>Phone Number</label>

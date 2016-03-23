@@ -8,6 +8,8 @@ angular.module('asyncdrink.customerAuth', [])
         totalPrice: 0
     };
 
+    $scope.passwordCheck = '';
+
     $scope.loginAttempt = {
         username: 'JaneDoe85',
         password: 'janedoepassword'
@@ -115,4 +117,26 @@ angular.module('asyncdrink.customerAuth', [])
         isAuth: isAuth
     };
 
+})
+
+.directive('compareTo', function(){
+    return {
+        restrict: 'A',
+        require: 'ngModel',
+        scope: {
+            otherModelValue: "=compareTo"
+        },
+        link: function(scope, element, attributes, ngModel){
+            ngModel.$validators.compareTo = function(modelValue){
+                console.log(modelValue === scope.otherModelValue);
+                return modelValue === scope.otherModelValue;
+            };
+            scope.$watch('otherModelValue', function(){
+                ngModel.$validate();
+            });
+        }
+    };
 });
+
+
+
