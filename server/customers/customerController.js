@@ -2,7 +2,7 @@ var jwt = require('jwt-simple');
 var models = require('../models');
 var db = require('../models/index.js');
 var bcrypt = require('bcrypt');
-
+var moment = require("moment");
 
 module.exports = {
   login: function (req, res) {
@@ -139,7 +139,33 @@ module.exports = {
             });
         }
       })
-  }
+  },
 
+  getStats: function(req, res) {
+    var timeFulfilled = '"updatedAt"'
+    db.sequelize.query("select orders.username, orders.drinktype, orders." + timeFulfilled + ", drinks.sugar, drinks.calories, drinks.carbs, drinks.volume from orders, drinks where orders.drinktype = drinks.name AND orders.username = '" + req.body.username+"' order by orders." + timeFulfilled + ";")
+    .then(function(drinkHistory) {
+      var drinkData = {
+        labels: [],
+        series: ['Calories (kCal)', 'Sugar(g)', 'Carbs(g)'],
+        data: [
+        //cals
+        [],
+        //sugar
+        [],
+        //carbs
+        []
+        ]
+      };
+      for (var i = 0; i < drinkHistory[0].length; i++) {
+        drinkData.labels.push(drinkHistory[0][i].drinktype + " (" + moment(drinkHistory[0][i].updatedAt).format('ddd[,] M[.]d[.]YY') + ")");
+        drinkData.data[0].push(drinkHistory[0][i].calories);
+        drinkData.data[1].push(drinkHistory[0][i].sugar);
+        drinkData.data[2].push(drinkHistory[0][i].carbs);
+      }
+      console.log(drinkHistory);
+      res.json(drinkData);
+    })
+  },
 }
 
