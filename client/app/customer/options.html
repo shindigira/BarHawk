@@ -92,10 +92,15 @@
                 </li>
             </ul>
         </div>
+
+
         <!-- DRINK IMAGE DISPLAY -->
         <div class="drinkDisplay">
+        <label class="selectionOptions">Order by...</label>
+        <select class="selectionOptions" ng-model="selectedOrder" ng-options="option for option in options">
+        </select>
             <ul>
-                <li ng-repeat="drink in drinks.list | filter:type: type | orderBy: 'name'">
+                <li ng-repeat="drink in drinks.list | filter:type: type | orderBy: selectedOrder">
                     <div class="drinkCell">
                         <img ng-src="{{drink.imageurl}}" alt="alt" ng-model="order.drinkType" ng-click="order.drinkType = drink.name; order.imageurl = drink.imageurl;" value='drink.name' />
                         <br>
