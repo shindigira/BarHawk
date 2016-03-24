@@ -1,9 +1,16 @@
-<h5>Are you a customer? <a ui-sref="customerLogin">Click here</a> to login as a customer</h5>
-<br></br>
-<h1>Welcome bartender, please enter your information</h1>
+<link rel="stylesheet" type="text/css" href="styles/barsign-in.css">
+
+<div class='container'>
+    <div class="topButtons">
+        <button class="btn btn-primary" ui-sref="customerLogin">Customer Signin</button>
+    </div>
+</div>
+<h1 id='title-heading'>Bar Hawk</h1>
+
+<h1>Welcome, Bartender.</h1>
 <form name="barSignin" novalidate ng-submit='barLogin()'>
   <div class="form-group " ng-class="{ 'has-error' : invalidLogIn}">
-    <label>Username</label>
+    <label class="label">Username</label>
     <input type="text" name="username" class="form-control" ng-model="barUser.barUsername" required/>
     <p ng-show="invalidLogIn" class='help-block'>Invalid username and/or password combination</p>
     <!-- <p>{{invalidLogIn}}</p> -->
