@@ -1,4 +1,4 @@
-# BarHawk
+BarHawk
 ==========
 [![Build Status](https://travis-ci.org/MKSBest/BarHawk.svg?branch=master)](https://travis-ci.org/MKSBest/BarHawk)
 
@@ -8,6 +8,7 @@ BarHawk is a mobile-friendly web application designed to track bar orders and Bl
 
 Installation
 =============
+To get started, run these commands from the terminal:
 ```
 $ git clone https://github.com/MKSBest/BarHawk.git
 $ cd BarHawk
@@ -15,47 +16,40 @@ $ npm install
 $ npm start
 ```
 
-!!!!!! change this later --> For an in depth guide, please refer to our [Getting Started] (insert url here) page.
-
 Testing
 =============
-!!!!!!!!!! change this later --> -server side unit tests: `grunt test`
-!!!!!!!! change this later --> -client side unit tests: `grunt karma`
+Mocha/Chai/Supertest server-side tests and Jasmine/Karma client-side tests can be run by typing this command from the terminal:
+```
+$ npm test
+```
 
-!!!!! change this later --> For an in depth guide, please refer to our [Testing](insert url) page.
-
-Tech Stack
+Technology Stack
 ==========
-!!!!!!! change this later --> insert log pictures of Angular, Node, Express, Karma, Jasmine, Grunt
-- Angular
-- Express
-- Node.js
-- PostgreSQL
-- Sequelize
-- Karma
-- Jasmine
-- Grunt
+![](http://res.cloudinary.com/hidgkk5lm/image/upload/v1458860341/Screen_Shot_2016-03-24_at_3.57.01_PM_hkmnxa.png)
 
 File Structure
 ==========
 
-Client: holds all files associated with the View, Controllers, and Factories. The client directory also contains the styling and assets.
+Client Folder: Holds all files associated with the View, Controllers, and Factories. The client directory also contains the styling and assets.
 
-!!!!! Change this in future--> Server: contains the server, middleware, express routing, and helper functions.
+ServerFolder: Contains the server, middleware, routing, database configuration, migration, and seeder files.
 
-!!!!!! Change this in future--> Specs: contains all Jasmine/Karma tests.
-
-!!!!! Change this in the future--v
+Specs: Contains 20 Mocha/Chai/Supertest server-side tests and 10 Jasmine/Karma client-side tests.
 
 ```
-AsyncDrink
+BarHawk
   |-client
-  |---app             # Views / Controllers / Factories
-  |---assets          # Logos and images
-  |---styles          # Stylesheets and fonts
-  |---build           # Compiled / minified assets, JavaScripts, and modules
-  |-server            # Server files
-  |-spec              # Jasmine / Karma testing files
+    |---app             # Configuration, views, controllers, and factories
+    |---assets          # Logos and images
+    |---styles          # Stylesheets and logos
+  |-server           
+    |---database        # Sequelize instantiation
+    |---migrations      # PostgreSQL migrations
+    |---models          # Schema
+    |---seeders         # Database prepopulation
+  |-spec              
+    |---client          # Jasmine/Karma client-side controller tests
+    |---server          # Mocha/Chai/Supertest server-side tests
 
 ```
 
