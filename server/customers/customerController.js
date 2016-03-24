@@ -143,18 +143,22 @@ module.exports = {
 
   getStats: function(req, res) {
     var timeFulfilled = '"updatedAt"'
-    db.sequelize.query("select orders.username, orders.drinktype, orders." + timeFulfilled + ", drinks.sugar, drinks.calories, drinks.carbs, drinks.volume from orders, drinks where orders.drinktype = drinks.name AND orders.username = '" + req.body.username+"' order by orders." + timeFulfilled + ";")
+    db.sequelize.query("select orders.username, orders.drinktype, orders." + timeFulfilled + ", orders.bac, drinks.sugar, drinks.calories, drinks.carbs, drinks.volume from orders, drinks where orders.drinktype = drinks.name AND orders.username = '" + req.body.username+"' order by orders." + timeFulfilled + ";")
     .then(function(drinkHistory) {
       var drinkData = {
         labels: [],
-        series: ['Calories (kCal)', 'Sugar(g)', 'Carbs(g)'],
+        series: ['Calories (kCal)', 'Sugar (g)', 'Carbs (g)'],
         data: [
         //cals
         [],
         //sugar
         [],
         //carbs
+        [],
+        ],
+        bac: [
         []
+        //userData
         ]
       };
       for (var i = 0; i < drinkHistory[0].length; i++) {
@@ -162,6 +166,7 @@ module.exports = {
         drinkData.data[0].push(drinkHistory[0][i].calories);
         drinkData.data[1].push(drinkHistory[0][i].sugar);
         drinkData.data[2].push(drinkHistory[0][i].carbs);
+        drinkData.bac[0].push(Number(drinkHistory[0][i].bac));
       }
       console.log(drinkHistory);
       res.json(drinkData);

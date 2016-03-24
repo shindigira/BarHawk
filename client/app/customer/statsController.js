@@ -11,34 +11,24 @@ angular.module('asyncdrink.statistics', ['chart.js'])
         .then(function(barData) {
           console.log(barData);
           $scope.barLabels = barData.labels;
-    $scope.series = barData.series;
+          $scope.lineLabels = barData.labels;
+    $scope.barSeries = barData.series;
+    $scope.lineSeries = ['BAC'];
     $scope.barData = barData.data;
+    console.log("SERVER BAC", barData.bac, "SCOPE SERIES", $scope.lineSeries, "SCOPE BAC", $scope.lineData);
+    $scope.lineData = barData.bac;
         })
-
       };
 
-// $scope.barLabels = ['2006', '2007', '2008', '2009', '2010', '2011', '2012'];
-//     $scope.series = ['Series A', 'Series B'];
-
-//     $scope.barData = [
-//         [65, 59, 80, 81, 56, 55, 40],
-//         [28, 48, 40, 19, 86, 27, 90]
-//     ];
     $scope.getData();
 
     $scope.onClick = function(points, evt) {
         console.log(points, evt);
     };
 
-
-    // Simulate async data update
-    // $timeout(function () {
-    //   $scope.data = [
-    //     [28, 48, 40, 19, 86, 27, 90],
-    //     [65, 59, 80, 81, 56, 55, 40]
-    //   ];
-    // }, 3000);
-
+  $scope.onClick = function (points, evt) {
+    console.log(points, evt);
+  }
 
 })
 
