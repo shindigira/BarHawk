@@ -312,7 +312,7 @@ module.exports = {
         calories: 320,
         carbs: 34,
         volume: 10,
-        imageurl: 'http://res.cloudinary.com/hidgkk5lm/image/upload/v1458675036/moscowmule-min_r0b0lz.png',
+        imageurl: 'http://res.cloudinary.com/hidgkk5lm/image/upload/v1458862415/mm-min_t2m0jb.png',
         createdAt: new Date(),
         updatedAt: new Date()
       }, {
