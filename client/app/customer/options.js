@@ -24,7 +24,6 @@ angular.module('asyncdrink.options', [])
     };
 
     $scope.clickImage = function() {
-        //cannot run this function as ng-click from image element
         $scope.order.drinkType = drink.name;
         $scope.order.drinkid = drink.id;
     }
@@ -34,7 +33,7 @@ angular.module('asyncdrink.options', [])
         optionsFactory.getDrinksList()
             .then(function(drinks) {
                 $scope.drinks.list = drinks;
-                console.log('$scope.drinks.list: ', $scope.drinks.list);
+                //console.log('$scope.drinks.list[0]: ', $scope.drinks.list[0]);
             });
     };
     $scope.getDrinks();
@@ -288,7 +287,6 @@ angular.module('asyncdrink.options', [])
             method: "GET",
             url: '/api/menu/drinks'
         }).then(function(response) {
-            console.log('response from getDrinksList is ', response)
             return response.data;
 
         });

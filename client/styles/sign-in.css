@@ -10,8 +10,8 @@
 
 label{
     border-radius: 5px;
-    box-shadow: 2px 2px 2px #00ff00;
-    background: #00ff00;
+    box-shadow: 2px 2px 2px black;
+    background: #800000;
     opacity: 9;
     margin: 1px;
     padding: 1%;
