@@ -19,7 +19,6 @@ angular.module('asyncdrink.options', [])
     $scope.tabSuccess = false;
     $scope.orderCloseSuccess = false;
     $scope.canDrive = true;
-
     $scope.clickImage = function() {
         $scope.order.drinkType = drink.name;
         $scope.order.drinkid = drink.id;
@@ -223,7 +222,6 @@ angular.module('asyncdrink.options', [])
                     .style({ stroke: "black" });
         })
 };
-
 
     $scope.getDK();
 
