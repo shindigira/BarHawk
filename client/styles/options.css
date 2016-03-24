@@ -175,15 +175,6 @@
         height: 15em;
     }
 
-
-    }
-    .sideDrink{
-        height: 20%;
-        display: block;
-        margin-left: auto;
-        margin-right: auto;
-        height: 15em;
-    }
     ul li .drinkCell {
         height: 5%;
         -webkit-column-break-inside: avoid;
