@@ -13,9 +13,9 @@ h3 {
 
 label {
     border-radius: 5px;
-    box-shadow: 2px 2px 2px #00ff00;
-    background: #00ff00;
-    opacity: 9;
+    box-shadow: 2px 2px 2px black;
+    background: #800000;
+    opacity: 0.8;
     margin: 1px;
     padding: 1%;
 }
@@ -35,7 +35,6 @@ background-color : #99FFCC;
     border: 1px solid #800000;
     width: 230px;
 }
-
 .btn-primary {
   background-color: #800000;
     position: relative;
