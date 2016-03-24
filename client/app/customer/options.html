@@ -16,10 +16,31 @@
 <div class="row">
     <div class="sidebar col-xs-12 col-sm-4 col-sm-4-push-5" style="text-align:center">
         <h1>Hi, {{currentUser.firstname}}!</h1>
-        <p><strong>Your Drink Count: {{currentUser.drinkCount}}</strong></p>
-        <p><strong>Estimated BAC: {{currentUser.BAC}}%</strong></p>
+        <div id='bar-chart'>
+            <h2 id='bacTitle'> {{currentUser.firstname}}'s Blood Alcohol Content</h2>
+            <!-- <h2>Hi, {{currentUser.firstname}}!</h2> -->
+            <h4 ng-show='!canDrive'>Above the legal driving limit, please do not drive *</h4>
+            <h4 ng-show='canDrive'>Currently below the legal driving limit*</h4>
+            <!--
+    <h4 ng-show= '!canDrive'>{{currentUser.firstname}}, you are currently above the legal driving limit, please do not drive *</h4>
+    <h4 ng-show= 'canDrive'>{{currentUser.firstname}}, you are currently below the legal driving limit of 0.08 *</h4> -->
+            <!-- <h4>Drink Count: {{currentUser.drinkCount}}</h4> -->
+            <h4>{{currentUser.drinkCount}} drink(s) consumed since {{timeOfFirstDrink}} today</h4>
+            <h4> Estimated BAC: {{currentUser.BAC}}</h4>
+            <button class='btn btn-primary' ng-click='showme=true'>More Info On BAC</button>
 
-        <div id='bar-chart'></div>
+        </div>
+                    <div id='bacdiv' ng-show='showme'>
+                BAC Chart Values<br><br>
+                <p align="left">0.00 – 0.03%  Normal behavior, no impairment</p>
+                <p align="left">0.03 – 0.06%  Mild euphoria and impairment; decreased inhibitions</p>
+                <p align="left">0.06 – 0.10%  Buzzed, euphoric, increased impairment</p>
+                <p align="left">0.10 – 0.20%  Drunk, emotional swings, slurred speech, nausea</p>
+                <p align="left">0.20 – 0.30%  Confused, nauseated, poor mentation, blackout</p>
+                <p align="left">0.30 – 0.40%  Possibly unconscious, unarrousable, loss of bladder function</p>
+                <p align="left">Above 0.40%  Unconscious, coma, impaired breathing, risk of death</p>
+                <div ng-click='showme=false' id='hideBAC'> Hide BAC Info</div>
+            </div>
         <button class="btn btn-primary" ng-click='closeTabOnly()' ng-disabled="orderCloseSuccess || tabSuccess">Close Tab</button>
         <br>
         <br>
@@ -33,7 +54,7 @@
                 <img src="http://res.cloudinary.com/hidgkk5lm/image/upload/v1458753248/shopping-cart_f6j0n2.png">
                 <br>
                 <div class="selection"> {{ order.drinkType }} </div>
-                <img class="sideDrink" ng-src="{{order.imageurl}}"/>
+                <img class="sideDrink" ng-src="{{order.imageurl}}" />
             </p>
             <button class="btn btn-primary" ng-click='orderOnly()'>Submit Order</button>
             <br>
@@ -89,5 +110,5 @@
         <br>
         <br>
     </div>
-        <br>
+    <br>
 </div>
