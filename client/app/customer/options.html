@@ -28,7 +28,7 @@
             <h4>{{currentUser.drinkCount}} drink(s) consumed since {{timeOfFirstDrink}} today</h4>
             <h4> Estimated BAC: {{currentUser.BAC}}</h4>
             <button class='btn btn-primary' ng-click='showme=true'>More Info On BAC</button>
-
+            <button class='btn btn-primary' ui-sref='statistics'>How am I doing?</button>
         </div>
                     <div id='bacdiv' ng-show='showme'>
                 BAC Chart Values<br><br>
