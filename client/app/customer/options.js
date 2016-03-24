@@ -31,10 +31,16 @@ angular.module('asyncdrink.options', [])
         }
     }
 
-    $scope.allCals = function(drinkObj) {
+    $scope.reset = function(drinkObj) {
         return function(drinkObj) {
-            console.log("in all calories");
+            console.log("reset");
             return drinkObj;
+        }
+    }
+
+    $scope.isZeroCarb = function(num) {
+        return function(num) {
+            return num === 0;
         }
     }
     //get all drinks from db
