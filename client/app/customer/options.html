@@ -54,6 +54,21 @@
                 <img src="http://res.cloudinary.com/hidgkk5lm/image/upload/v1458753248/shopping-cart_f6j0n2.png">
 
 
+
+<!-- DRINK IMAGE DISPLAY -->
+<div class="drinkDisplay">
+    <ul>
+<!--         <li ng-repeat="drink in drinks.list | filter: type: type | orderBy: orderByValue "> -->
+<!--        example code     <tr ng-repeat="friend in friends | orderBy:'-age'"> -->
+        <li ng-repeat="drink in drinks.list | filter: type: type | orderBy: selectedOrder">
+            
+            <div class="drinkCell">
+                <img ng-src="{{drink.imageurl}}" alt="alt" ng-model="order.drinkType" ng-click="order.drinkType = drink.name" value='drink.name' />
+                <br>
+                <p class="drinkName"> {{ drink.name }} </p>
+                <p class="drinkPrice"> ${{ drink.price }} </p><br>
+                <p class="drinkPrice"> {{ drink.calories }}cal </p>
+                <p class = "drinkPrice"> {{ drink.carbs }}carbs
                 <br>
                 <div class="selection"> {{ order.drinkType }} </div>
                 <img class="sideDrink" ng-src="{{order.imageurl}}" />

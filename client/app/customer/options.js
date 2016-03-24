@@ -19,6 +19,9 @@ angular.module('asyncdrink.options', [])
     $scope.tabSuccess = false;
     $scope.orderCloseSuccess = false;
     $scope.canDrive = true;
+
+    $scope.options = ['name', 'price', 'alcohol', 'calories', 'carbs', 'sugar'];
+
     $scope.clickImage = function() {
         $scope.order.drinkType = drink.name;
         $scope.order.drinkid = drink.id;
