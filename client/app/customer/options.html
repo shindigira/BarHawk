@@ -18,19 +18,29 @@
     <h4> Estimated BAC: {{currentUser.BAC}}%</h4>
 
         <!-- BAC spectrum slider -->
-     <!--  <input id='spectrum' type="range" />
-      <input type='text'/ id='spectrumText' size="75%" >
-      <br>
-      <br> -->
+      <input id='spectrum' type="range" />
+      <input type='text'/ id='spectrumText' size="75%" />
+
 
   </div>
 
     <!-- ORDER AND ORDER/CLOSE BUTTONS -->
     <div class='orderButtons'>
         <p class="order"> <img src="http://res.cloudinary.com/hidgkk5lm/image/upload/v1458675036/sc-min_jwehxr.png"> Your order <img src="http://res.cloudinary.com/hidgkk5lm/image/upload/v1458675036/sc-min_jwehxr.png">
+        </p>
+            <br>
+            <br>
             <br>
             <div class="selection"> {{ order.drinkType }} </div>
-        </p>
+            <img class= "sideDrink"ng-src="{{order.imageurl}}"  />
+            <br>
+            <br>
+            <br>
+            <br>
+
+<!--            <div class="drinkCell"> <img ng-src="{{order.imageurl}}" /> </div>
+ doesnt work-->      
+   
         <button class="btn btn-primary" ng-click='orderOnly()'>Submit Order</button>
 
         <br>
@@ -76,7 +86,8 @@
         <ul>
             <li ng-repeat="drink in drinks.list | filter:type: type">
                 <div class="drinkCell">
-                    <img ng-src="{{drink.imageurl}}" alt="alt" ng-model="order.drinkType" ng-click="order.drinkType = drink.name" value='drink.name' />
+                    <img ng-src="{{drink.imageurl}}" alt="alt" ng-model="order.drinkType" ng-click="order.drinkType = drink.name; order.imageurl = drink.imageurl;" value='drink.name' />
+                    
                     <br>
                     <p class="drinkName"> {{ drink.name }} </p>
                     <p class="drinkPrice"> ${{ drink.price }} </p>

@@ -92,6 +92,15 @@
         margin-right: auto;
     }*/
 
+
+    }
+    .sideDrink{
+        height: 20%;
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        height: 15em;
+    }
     ul li .drinkCell {
         height: 5%;
         overflow: hidden;
