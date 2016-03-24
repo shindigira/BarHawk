@@ -25,6 +25,18 @@ angular.module('asyncdrink.options', [])
         $scope.order.drinkid = drink.id;
     }
 
+    $scope.isLowCal = function(drinkObj) {
+        return function(drinkObj) {
+            return drinkObj.calories<150;
+        }
+    }
+
+    $scope.allCals = function(drinkObj) {
+        return function(drinkObj) {
+            console.log("in all calories");
+            return drinkObj;
+        }
+    }
     //get all drinks from db
     $scope.getDrinks = function() {
         optionsFactory.getDrinksList()
