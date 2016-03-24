@@ -54,9 +54,7 @@
         </div>
         <div class='orderButtons'>
             <p class="order">
-                <img src="http://res.cloudinary.com/hidgkk5lm/image/upload/v1458753248/shopping-cart_f6j0n2.png">
-                <br>
-                <div class="selection"> {{ order.drinkType }} </div>
+                <div class="selection"> Order: {{ order.drinkType }} </div>
                 <img class="sideDrink" ng-src="{{order.imageurl}}" />
             </p>
             <button class="btn btn-primary" ng-click='orderOnly()'>Submit Order</button>
