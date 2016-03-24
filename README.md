@@ -18,7 +18,7 @@ $ npm start
 
 Testing
 =============
-Mocha/Chai/Supertest server-side tests and Jasmine/Karma client-side tests can be run by typing this command from the terminal:
+20 Mocha/Chai/Supertest server-side tests and 10 Jasmine/Karma client-side tests can be run by typing this command from the terminal:
 ```
 $ npm test
 ```
@@ -67,16 +67,12 @@ Bartenders:
 - ...
 - ...
 
-# Tests
-Testing done in Jasmine/Karma. 
-!!!!! Change this in future --> Coverage [80%]
-
 # Style Guide
-All code adheres to the [style guide](https://github.com/MKSBest/AsyncDrink/blob/master/_STYLE-GUIDE.md) which is based on the airbnb style guide.
+All code adheres to the [style guide](https://github.com/MKSBest/BarHawk/blob/master/_STYLE-GUIDE.md) which is based on the airbnb style guide.
 
 Contributing
 =========
-Thank you for taking interest in contributing! Please read our [CONTRIBUTING.md](https://github.com/MKSBest/AsyncDrink/blob/master/_CONTRIBUTING.md) and check out our current [issues](https://github.com/MKSBest/AsyncDrink/issues).
+Thank you for taking interest in contributing! Please read our [CONTRIBUTING.md](https://github.com/MKSBest/BarHawk/blob/master/CONTRIBUTING.md) and check out our current [issues](https://github.com/MKSBest/BarHawk/issues).
 
 Engineers
 ==========
