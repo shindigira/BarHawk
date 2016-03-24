@@ -31,17 +31,19 @@
             <button class='btn btn-primary' ng-click='showme=true'>What's BAC?</button>
             <button class='btn btn-primary' ui-sref='statistics'>My Stats</button>
         </div>
-                    <div id='bacdiv' ng-show='showme'>
-                BAC Chart Values<br><br>
-                <p align="left">0.00 – 0.03%  Normal behavior, no impairment</p>
-                <p align="left">0.03 – 0.06%  Mild euphoria and impairment; decreased inhibitions</p>
-                <p align="left">0.06 – 0.10%  Buzzed, euphoric, increased impairment</p>
-                <p align="left">0.10 – 0.20%  Drunk, emotional swings, slurred speech, nausea</p>
-                <p align="left">0.20 – 0.30%  Confused, nauseated, poor mentation, blackout</p>
-                <p align="left">0.30 – 0.40%  Possibly unconscious, unarrousable, loss of bladder function</p>
-                <p align="left">Above 0.40%  Unconscious, coma, impaired breathing, risk of death</p>
-                <div ng-click='showme=false' id='hideBAC'> Hide BAC Info</div>
-            </div>
+        <div id='bacdiv' ng-show='showme'>
+            BAC Chart Values
+            <br>
+            <br>
+            <p align="left">0.00 – 0.03% Normal behavior, no impairment</p>
+            <p align="left">0.03 – 0.06% Mild euphoria and impairment; decreased inhibitions</p>
+            <p align="left">0.06 – 0.10% Buzzed, euphoric, increased impairment</p>
+            <p align="left">0.10 – 0.20% Drunk, emotional swings, slurred speech, nausea</p>
+            <p align="left">0.20 – 0.30% Confused, nauseated, poor mentation, blackout</p>
+            <p align="left">0.30 – 0.40% Possibly unconscious, unarrousable, loss of bladder function</p>
+            <p align="left">Above 0.40% Unconscious, coma, impaired breathing, risk of death</p>
+            <div ng-click='showme=false' id='hideBAC'> Hide BAC Info</div>
+        </div>
         <button class="btn btn-primary" ng-click='closeTabOnly()' ng-disabled="orderCloseSuccess || tabSuccess">Close Bar Tab</button>
         <br>
         <br>
@@ -68,7 +70,8 @@
             <div ng-show='orderCloseSuccess'>
                 <p>You've successfully placed an order for {{savedDrinkType}} and closed your tab.</p>
                 <p>Tab Total: ${{userTab.totalprice}}</p>
-                <p>You're above the legal driving limit, please call a cab.<br>Yellow Cab: 415-333-3333</p>
+                <p>You're above the legal driving limit, please call a cab.
+                    <br>Yellow Cab: 415-333-3333</p>
                 <br>
             </div>
         </div>
@@ -94,13 +97,11 @@
                 </li>
             </ul>
         </div>
-
-
         <!-- DRINK IMAGE DISPLAY -->
         <div class="drinkDisplay">
-        <label class="selectionOptions">Order by...</label>
-        <select class="selectionOptions" ng-model="selectedOrder" ng-options="option for option in options">
-        </select>
+            <label class="selectionOptions">Order by...</label>
+            <select class="selectionOptions" ng-model="selectedOrder" ng-options="option for option in options">
+            </select>
             <ul>
                 <li ng-repeat="drink in drinks.list | filter:type: type | orderBy: selectedOrder">
                     <div class="drinkCell">
