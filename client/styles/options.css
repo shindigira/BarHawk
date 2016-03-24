@@ -1,5 +1,5 @@
     html {
-        background: url(http://res.cloudinary.com/df1u5o3g6/image/upload/v1458603380/background_g3ksno.jpg) no-repeat center center fixed;*/
+        background: url(http://res.cloudinary.com/df1u5o3g6/image/upload/v1458603380/background_g3ksno.jpg) no-repeat center center fixed;
         -webkit-background-size: cover;
         -moz-background-size: cover;
         -o-background-size: cover;
@@ -13,7 +13,8 @@
 
     @media(min-width:780px) {
         .sidebar {
-            position: fixed;
+            /*position: fixed;*/
+            float: right;
             right: 0;
             top: 10%;
         }
@@ -54,12 +55,33 @@
     }
 
     }
-    /*STYLING FOR MENU OPTIONS*/
-    #bar-chart {
-    -ms-transform: rotate(90deg); /* IE 9 */
-    -webkit-transform: rotate(90deg); /* Chrome, Safari, Opera */
-    transform: rotate(90deg);
+
+    #bacTitle{
+        color: #800000;
+        display:inline-block;
+        /*background-color: rgba(255, 255, 255, 0.4);*/
     }
+
+  #bacdiv  {
+     display:inline-block;
+     background-color: rgba(255, 255, 255, 0.5);
+  }
+
+  #bar-chart{
+ display:inline-block;
+ background-color: rgba(255, 255, 255, 0.5);
+  }
+
+  #hideBAC{
+    background-color: #800000;
+    color:white;
+  }
+    /*STYLING FOR MENU OPTIONS*/
+  /*  #bar-chart {
+    -ms-transform: rotate(90deg);
+    -webkit-transform: rotate(90deg);
+    transform: rotate(90deg);
+    }*/
 
     .selectionOptions {
         text-align: center;
@@ -114,7 +136,7 @@
         background-color: rgba(255, 255, 255, 0.4);
         border-radius: 25px;
         overflow-y: auto;
-        max-height:41em;
+        max-height:80em;
         max-width: 80%;
         margin-left: auto;
         margin-right: auto;

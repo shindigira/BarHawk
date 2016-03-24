@@ -1,6 +1,6 @@
 angular.module('asyncdrink.options', [])
 
-.controller('optionsController', function($scope, $state, $window, $interval, customerFactory, optionsFactory) {
+.controller('optionsController', function($scope, $state, $window, $interval, customerFactory, optionsFactory, $filter) {
     //set up drinks
     $scope.drinks = {};
 
@@ -18,6 +18,7 @@ angular.module('asyncdrink.options', [])
     $scope.tabFail = false;
     $scope.tabSuccess = false;
     $scope.orderCloseSuccess = false;
+    $scope.canDrive = true;
 
     $scope.clickImage = function() {
         $scope.order.drinkType = drink.name;
@@ -38,6 +39,7 @@ angular.module('asyncdrink.options', [])
     $scope.getDK = function() {
         optionsFactory.getDrinkCount($scope.currentUser)
             .then(function(response) {
+
                 $scope.currentUser.drinkCount = response.drinkcount;
                 $scope.currentUser.BAC = response.BAC;
 
@@ -61,8 +63,15 @@ angular.module('asyncdrink.options', [])
 
                 $scope.order.BAC = response.BAC
 
+                if(chartdata>=.08){
+                    $scope.canDrive  = false;
+                }
 
                 var chartdata = [$scope.currentUser.BAC];
+
+                if(chartdata>=.08){
+                    $scope.canDrive  = false;
+                }
                     //var data = [4, 8, 15, 16, 23, 42];
                     //var chartdata = [40, 60, 80, 100, 70, 120, 100, 60, 70, 150, 120, 140];
                     //  the size of the overall svg element
@@ -88,10 +97,19 @@ angular.module('asyncdrink.options', [])
                 d3.select('#bar-chart').append('svg')
                     .attr('width', width)
                     .attr('height', height)
-                    .style('background', 'white')
+                    .style('background', 'transparent')
                     .selectAll('rect').data(chartdata)
+
                     .enter().append('rect')
                     //.style({ 'fill': 'red', 'stroke': 'red', 'stroke-width': '1' })
+
+   //                  .each("start", function() {      // <-- Executes at start of transition
+   //     d3.select(this)
+   //       .attr("fill", "magenta")
+   //       .attr("r", 3);
+   // })
+
+
                     .attr("fill", function(d) {
 
                         if (d < .08) {
@@ -111,6 +129,10 @@ angular.module('asyncdrink.options', [])
                         return 180;
                         //return i * (barWidth + barOffset)
                     })
+
+                    .transition()
+                    .duration(1500)
+                    .ease('bounce')
                     .attr('y', function(data) {
                         //return 204
                         return height - data * 823;
@@ -135,38 +157,41 @@ angular.module('asyncdrink.options', [])
 
                 var vAxis = d3.svg.axis()
                     .scale(verticalGuideScale)
-                    .tickValues([0.0, 0.03, 0.06, 0.08, 0.12, 0.15, 0.18, 0.21, 0.24, 0.27, 0.3, 0.33, 0.36, 0.39])
+                    .tickValues([0.0, 0.03, 0.06, 0.08, 0.12, 0.15, 0.18, 0.21, 0.24, 0.27, 0.3, 0.33, 0.36, 0.39, 0.42 ,0.45, 0.48])
                     .tickSize(5)
                     .orient("left")
                     //.innerTickSize([size])
                     .tickFormat(function(d) {
-                        if (d === 0.03) {
-                            return 'mild euphoria ' + d;
-                        } else if (d === 0.06) {
-                            return 'blunted feelings ' + d;
+                        if(d === 0.0){
+                            return 'sober ' + d;
+                       // }
+                        //if (d === 0.03) {
+                            //return 'mild euphoria ' + d;
+                        //} else if (d === 0.06) {
+                            //return 'blunted feelings ' + d;
                         } else if (d === 0.08) {
-                            return "exceeded legal limit " + d;
-                        } else if (d === 0.12) {
-                            return 'boisterousness ' + d;
-                        } else if (d === 0.15) {
-                            return 'slurred speech ' + d;
-                        } else if (d === 0.18) {
-                            return 'motor impairment' + d;
+                            return "exceeded legal limit " +d;
+                       // } else if (d === 0.12) {
+                        //     return 'boisterousness ' + d;
+                        // } else if (d === 0.15) {
+                        //     return 'slurred speech ' + d;
+                        // } else if (d === 0.18) {
+                        //     return 'motor impairment' + d;
                         } else if (d === 0.21) {
                             return 'decreased libido ' + d;
                         } else if (d === 0.24) {
-                            return 'possible vomiting ' + d;
-                        } else if (d === 0.27) {
-                            return 'bladder dysfunction ' + d;
-                        } else if (d === 0.3) {
-                            return 'memory blackout ' + d;
-                        } else if (d === 0.33) {
-                            return 'dysequilibrium ' + d;
-                        } else if (d === 0.36) {
-                            return 'coma ' + d;
-                        } else if (d === 0.39) {
-                            return 'possible death ' + d;
-                        }
+                        //     return 'possible vomiting ' + d;
+                        // } else if (d === 0.27) {
+                        //     return 'bladder dysfunction ' + d;
+                        }else if (d === 0.3) {
+                            return 'memory blackout '+d;
+                        } //else if (d === 0.33) {
+                        //     return 'dysequilibrium ' + d;
+                        // } else if (d === 0.36) {
+                        //     return 'coma ' + d;
+                        // } else if (d === 0.39) {
+                        //     return 'possible death ' + d;
+                        // }
                         return d
                     })
                     .tickSubdivide(true);
@@ -184,13 +209,13 @@ angular.module('asyncdrink.options', [])
 
     $scope.getDK();
 
-
     //Order only process
     $scope.orderOnly = function() {
         // console.log("ORDER ONLY $scope.order.drinkType: ", $scope.order.drinkType);
         // console.log("ORDER ONLY $scope.order.drinkid: ", $scope.order.drinkid);
         $scope.savedDrinkType = $scope.order.drinkType;
         $scope.savedDrinkid = $scope.order.drinkid;
+
 
         optionsFactory.orderOnly($scope.order)
             .then(function(response) {
@@ -204,7 +229,16 @@ angular.module('asyncdrink.options', [])
                 $scope.order.drinkType = "";
                 $scope.getDK();
                 // $scope.currentUser.drinkCount = response.data.drinkcount;
+                var dateAsString;
+                console.log(response.drinkcount)
+                console.log(typeof response.drinkcount)
+                 if(response.drinkcount === 0){
+                    dateAsString = $filter('date')(response.createdAt, "shortTime");
+                    $scope.timeOfFirstDrink = dateAsString;
+                    console.log(dateAsString)
+                 }
 
+                 //$scope.first = $scope.timeOfFirstDrink
 
                 // Remove
                 d3.selectAll('svg').remove();
@@ -264,6 +298,9 @@ angular.module('asyncdrink.options', [])
                 $scope.orderSuccess = false;
                 $scope.order.drinkType = "";
                 $scope.getDK();
+
+                // Remove
+                d3.selectAll('svg').remove();
 
             }).catch(function(err) {
                 $scope.tabSuccessIncludingOrder = false;
