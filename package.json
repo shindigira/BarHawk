@@ -4,7 +4,8 @@
   "description": "Socially responsible order and fulfillment system for bars.",
   "main": "server.js",
   "scripts": {
-    "test": "mocha --recursive spec/server/**/*.spec.js && karma start --single-run"
+    "test": "mocha --recursive spec/server/**/*.spec.js && karma start --single-run",
+    "start": "gulp"
   },
   "repository": {
     "type": "git",
@@ -18,18 +19,17 @@
   "homepage": "https://github.com/mksbest/asyncdrink#readme",
   "dependencies": {
     "angular": "^1.5.0",
-    "angular-material": "^1.0.6",
+    "angular-chart.js": "^0.9.0",
     "bcrypt": "^0.8.5",
     "body-parser": "^1.15.0",
     "bootstrap": "^3.3.6",
+    "chart.js": "^1.0.2",
     "express": "^4.13.4",
     "jwt-simple": "^0.5.0",
     "moment": "^2.12.0",
     "ng-dialog": "^0.5.9",
-    "node-uber": "0.0.7",
     "pg": "^4.4.3",
     "pg-hstore": "^2.3.2",
-    "python-shell": "^0.4.0",
     "semver": "^5.1.0",
     "sequelize": "^3.19.3",
     "sequelize-cli": "^2.3.1",

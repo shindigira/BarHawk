@@ -2,34 +2,27 @@ angular.module('asyncdrink.statistics', ['chart.js'])
 
 .controller('statsController', function($scope, $timeout, statsFactory) {
 
-    $scope.currentUser = {
-        username: "dnovo"
-    };
-
     $scope.getData = function() {
-        statsFactory.getBarChartData($scope.currentUser)
-        .then(function(barData) {
-          console.log(barData);
-          $scope.barLabels = barData.labels;
-          $scope.lineLabels = barData.labels;
-    $scope.barSeries = barData.series;
-    $scope.lineSeries = ['BAC'];
-    $scope.barData = barData.data;
-    console.log("SERVER BAC", barData.bac, "SCOPE SERIES", $scope.lineSeries, "SCOPE BAC", $scope.lineData);
-    $scope.lineData = barData.bac;
-        })
-      };
+        statsFactory.getBarChartData(statsFactory.currentUser)
+            .then(function(barData) {
+
+                //x-axis tick labels
+                $scope.barLabels = barData.labels;
+                $scope.lineLabels = barData.labels;
+                //series
+                $scope.barSeries = barData.series;
+                $scope.lineSeries = ['BAC'];
+                //data points
+                $scope.barData = barData.data;
+                $scope.lineData = barData.bac;
+            })
+    };
 
     $scope.getData();
 
     $scope.onClick = function(points, evt) {
         console.log(points, evt);
     };
-
-  $scope.onClick = function (points, evt) {
-    console.log(points, evt);
-  }
-
 })
 
 .factory('statsFactory', function($http, $window) {
@@ -40,13 +33,14 @@ angular.module('asyncdrink.statistics', ['chart.js'])
             url: 'api/customers/statistics',
             data: currentUser
         }).then(function(response) {
-          return response.data
+            return response.data
         })
     }
 
 
     return {
-        getBarChartData: getBarChartData
+        getBarChartData: getBarChartData,
+        currentUser: currentUser
     }
 
 });

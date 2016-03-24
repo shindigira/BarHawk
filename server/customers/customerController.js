@@ -143,6 +143,7 @@ module.exports = {
 
   getStats: function(req, res) {
     var timeFulfilled = '"updatedAt"'
+
     db.sequelize.query("select orders.username, orders.drinktype, orders." + timeFulfilled + ", orders.bac, drinks.sugar, drinks.calories, drinks.carbs, drinks.volume from orders, drinks where orders.drinktype = drinks.name AND orders.username = '" + req.body.username+"' order by orders." + timeFulfilled + ";")
     .then(function(drinkHistory) {
       var drinkData = {
@@ -161,16 +162,23 @@ module.exports = {
         //userData
         ]
       };
+
       for (var i = 0; i < drinkHistory[0].length; i++) {
+        //set tick marks
         drinkData.labels.push(drinkHistory[0][i].drinktype + " (" + moment(drinkHistory[0][i].updatedAt).format('ddd[,] M[.]d[.]YY') + ")");
+        //pluck drink calories
         drinkData.data[0].push(drinkHistory[0][i].calories);
+        //pluck drink sugar
         drinkData.data[1].push(drinkHistory[0][i].sugar);
+        //pluck drink carbs
         drinkData.data[2].push(drinkHistory[0][i].carbs);
+        //pluck user BAC
         drinkData.bac[0].push(Number(drinkHistory[0][i].bac));
-      }
-      console.log(drinkHistory);
+      };
+
       res.json(drinkData);
     })
-  },
+  }
+
 }
 
