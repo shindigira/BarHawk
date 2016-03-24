@@ -55,20 +55,31 @@ BarHawk
 
 # Features
 Customers:
-!!!! Change this in future -->
+
+- Sort menu options by price, calories, carbs, sugar, and alcoholic content
+- Order drinks and close bar tab via smart phone
+- Visualize up-to-date BAC
+- Track order history
 
 Bartenders:
-!!!! Change this in future -->
 
+- Track customers' BACs
+- Notify customers via text message that drink is ready to be picked up
+- Notify customers of Last Call for drink orders half an hour before bar closes
+- Hail taxis for customers in need
 
 # Future Features
-!!!! Change this in future -->
-- ...
-- ...
-- ...
+With more time, we would have loved to implement the below features. Feel free to check out our current [issues](https://github.com/MKSBest/BarHawk/issues).
+
+- Enable customers to order more than one drink at a time 
+- Update BAC of one customer who received a drink purchased by a separate customer
+- Upload customer photographs
+- Solicit satisfaction ratings from customers and bartenders
+- PayPal/credit card payment
+- Move your drink order to the front of the queue by donating to Mothers Against Drunk Driving (MADD)
 
 # Style Guide
-All code adheres to the [style guide](https://github.com/MKSBest/BarHawk/blob/master/_STYLE-GUIDE.md) which is based on the airbnb style guide.
+All code adheres to the [style guide](https://github.com/MKSBest/BarHawk/blob/master/STYLE-GUIDE.md) which is based on the airbnb style guide.
 
 Contributing
 =========
