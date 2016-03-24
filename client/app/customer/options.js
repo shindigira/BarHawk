@@ -19,10 +19,6 @@ angular.module('asyncdrink.options', [])
     $scope.tabSuccess = false;
     $scope.orderCloseSuccess = false;
 
-    $scope.test = function() {
-        console.log("TESTING TESTING");
-    };
-
     $scope.clickImage = function() {
         $scope.order.drinkType = drink.name;
         $scope.order.drinkid = drink.id;
@@ -172,7 +168,6 @@ angular.module('asyncdrink.options', [])
                             return 'possible death ' + d;
                         }
                         return d
-
                     })
                     .tickSubdivide(true);
 
@@ -182,10 +177,11 @@ angular.module('asyncdrink.options', [])
                 verticalGuide.selectAll('path')
                     .style({ fill: 'none', stroke: "black" })
                 verticalGuide.selectAll('line')
-                    .style({ stroke: "black" })
+                    .style({ stroke: "black" });
+        })
+};
 
-            })
-    };
+
     $scope.getDK();
 
 
