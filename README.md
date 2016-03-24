@@ -1,21 +1,18 @@
-# AsyncDrink
+# BarHawk
 ==========
-
-!!!!!!! change this later --> Insert build status from travis
-
-Asynchronous drink ordering for bars.
+[![Build Status](https://travis-ci.org/MKSBest/BarHawk.svg?branch=master)](https://travis-ci.org/MKSBest/BarHawk)
 
 Overview 
 ======
-AsyncDrink is an app designed to take drink orders from bar customers in an orderly fasion. No more elbowing your way to the bar and trying to flag down a bartender!
+BarHawk is a mobile-friendly web application designed to track bar orders and Blood Alcohol Concentrations (BACs). Upon submitting a drink order, BarHawk's personalized algorithm calculates the current BAC based on a customer's weight, gender, grams of alcohol consumed, and time elapsed since starting to drink. Drink orders from all customers are neatly organized to minimize order surges. Bartenders will be less likely to overserve with the help of BarHawk's color-coded list of customer BACs. Customers receive text messages when their drink or closed tab is ready to be picked up at the bar. BarHawk ensures a smooth customer experience while also unburdening bartenders of stress and liability.
 
 Installation
 =============
 ```
-$ git clone https://github.com/MKSBest/AsynkDrink.git
-$cd AsyncDrink
-$npm install
-!!! change this later --> $npm start
+$ git clone https://github.com/MKSBest/BarHawk.git
+$ cd BarHawk
+$ npm install
+$ npm start
 ```
 
 !!!!!! change this later --> For an in depth guide, please refer to our [Getting Started] (insert url here) page.
