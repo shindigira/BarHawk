@@ -1,5 +1,5 @@
 angular.module('asyncdrink', ['ui.router', 'asyncdrink.customerAuth',
-    'asyncdrink.options', 'asyncdrink.barAuth', 'asyncdrink.barQueue'
+    'asyncdrink.options', 'asyncdrink.barAuth', 'asyncdrink.barQueue', 'asyncdrink.statistics', 'chart.js'
 ])
 
 .config(function($stateProvider, $urlRouterProvider, $httpProvider) {
@@ -31,6 +31,12 @@ angular.module('asyncdrink', ['ui.router', 'asyncdrink.customerAuth',
             url: "/login",
             templateUrl: "/app/auth/customer/customerSignin.html",
             controller: 'customerController'
+        })
+        .state('statistics', {
+            url: "/stats",
+            templateUrl: "/app/customer/statistics.html",
+            controller: 'statsController',
+            authenticate: true
         });
 
     //Inject the AttachTokens factory into $http's interceceptors array so
