@@ -8,6 +8,8 @@ angular.module('asyncdrink.customerAuth', [])
         totalPrice: 0
     };
 
+    $scope.passwordCheck = '';
+
     $scope.loginAttempt = {
         username: 'JaneDoe85',
         password: 'janedoepassword'
@@ -126,6 +128,7 @@ angular.module('asyncdrink.customerAuth', [])
         },
         link: function(scope, element, attributes, ngModel){
             ngModel.$validators.compareTo = function(modelValue){
+                console.log(modelValue === scope.otherModelValue);
                 return modelValue === scope.otherModelValue;
             };
             scope.$watch('otherModelValue', function(){
