@@ -59,20 +59,19 @@ angular.module('asyncdrink.options', [])
                     $scope.canDrive  = false;
                 }
 
-                var margin = { top: -5, right: 10, bottom: 30, left: 170 }
+                var margin = { top: -5, right: 10, bottom: 10, left: 170 }
 
                 var height = 400;
                 var width = 420 - margin.left - margin.right;
                 var barWidth = 40;
                 var barOffset = 170;
                 var colorFill
-                var yoffset = 50;
                 var heightScale = 1000;
 
                 // Add
                 d3.select('#bar-chart').append('svg')
                     .attr('width', width)
-                    .attr('height', height)
+                    .attr('height',  height + margin.top + margin.bottom)
                     .style('background', 'transparent')
                     .selectAll('rect').data(chartdata)
                     .enter().append('rect')
@@ -93,8 +92,6 @@ angular.module('asyncdrink.options', [])
                             return 'red'
                         }
                     })
-  //console.log(colorFill)
-                    //.style({ 'fill': colorFill, 'stroke': colorFill, 'stroke-width': '10px' })
                     .attr('width', barWidth)
                     .attr('height', function(data) {
                         console.log('height',data*heightScale)
@@ -119,7 +116,7 @@ angular.module('asyncdrink.options', [])
 
                 var verticalGuideScale = d3.scale.linear()
                     .domain([0, d3.max([maxBAC])])
-                    .range([height, 0])
+                    .range([height, 96])
 
 
                 var vAxis = d3.svg.axis()
@@ -137,7 +134,7 @@ angular.module('asyncdrink.options', [])
                         //} else if (d === 0.06) {
                             //return 'blunted feelings ' + d;
                         } else if (d === 0.08) {
-                            return "exceeded legal limit " +d;
+                            return "legal driving limit " +d;
                        // } else if (d === 0.12) {
                         //     return 'boisterousness ' + d;
                         // } else if (d === 0.15) {
