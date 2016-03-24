@@ -18,9 +18,8 @@
         <h1>Hi, {{currentUser.firstname}}!</h1>
         <p><strong>Your Drink Count: {{currentUser.drinkCount}}</strong></p>
         <p><strong>Estimated BAC: {{currentUser.BAC}}%</strong></p>
-        <br>
+
         <div id='bar-chart'></div>
-        <br>
         <button class="btn btn-primary" ng-click='closeTabOnly()' ng-disabled="orderCloseSuccess || tabSuccess">Close Tab</button>
         <br>
         <br>
@@ -34,7 +33,7 @@
                 <img src="http://res.cloudinary.com/hidgkk5lm/image/upload/v1458753248/shopping-cart_f6j0n2.png">
                 <br>
                 <div class="selection"> {{ order.drinkType }} </div>
-                <img class="sideDrink" ng-src="{{order.imageurl}}" />
+                <img class="sideDrink" ng-src="{{order.imageurl}}"/>
             </p>
             <button class="btn btn-primary" ng-click='orderOnly()'>Submit Order</button>
             <br>
@@ -77,7 +76,7 @@
             <ul>
                 <li ng-repeat="drink in drinks.list | filter:type: type | orderBy: 'name'">
                     <div class="drinkCell">
-                        <img ng-src="{{drink.imageurl}}" alt="alt" ng-model="order.drinkType" ng-click="order.drinkType = drink.name" value='drink.name' />
+                        <img ng-src="{{drink.imageurl}}" alt="alt" ng-model="order.drinkType" ng-click="order.drinkType = drink.name; order.imageurl = drink.imageurl;" value='drink.name' />
                         <br>
                         <p class="drinkName"> {{ drink.name }} </p>
                         <p class="drinkPrice"> ${{ drink.price }} </p>

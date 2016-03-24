@@ -15,7 +15,7 @@
         .sidebar {
             position: fixed;
             right: 0;
-            top: 15%;
+            top: 10%;
         }
         .sidebar h1 {
             font-size: 5em;
@@ -55,6 +55,11 @@
 
     }
     /*STYLING FOR MENU OPTIONS*/
+    #bar-chart {
+    -ms-transform: rotate(90deg); /* IE 9 */
+    -webkit-transform: rotate(90deg); /* Chrome, Safari, Opera */
+    transform: rotate(90deg);
+    }
 
     .selectionOptions {
         text-align: center;
@@ -141,7 +146,7 @@
     }
 
     .sideDrink{
-        height: 20%;
+        height: 15%;
         display: block;
         margin-left: auto;
         margin-right: auto;
@@ -165,10 +170,6 @@
         font-weight: bold;
     }
     /*submit order + submit order + close buttons*/
-
-     .orderButtons {
-        margin-top:15%;
-    }
 
     img {
         display: inline-block;
