@@ -20,11 +20,31 @@ angular.module('asyncdrink.options', [])
     $scope.orderCloseSuccess = false;
     $scope.canDrive = true;
 
+    $scope.options = ['name', 'price', 'alcohol', 'calories', 'carbs', 'sugar'];
+
     $scope.clickImage = function() {
         $scope.order.drinkType = drink.name;
         $scope.order.drinkid = drink.id;
     }
 
+    $scope.isLowCal = function(drinkObj) {
+        return function(drinkObj) {
+            return drinkObj.calories<150;
+        }
+    }
+
+    $scope.reset = function(drinkObj) {
+        return function(drinkObj) {
+            console.log("reset");
+            return drinkObj;
+        }
+    }
+
+    $scope.isZeroCarb = function(num) {
+        return function(num) {
+            return num === 0;
+        }
+    }
     //get all drinks from db
     $scope.getDrinks = function() {
         optionsFactory.getDrinksList()
@@ -205,7 +225,6 @@ angular.module('asyncdrink.options', [])
                     .style({ stroke: "black" });
         })
 };
-
 
     $scope.getDK();
 
