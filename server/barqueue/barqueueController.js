@@ -5,36 +5,6 @@ var models = require('../models');
 var db = require('../models/index.js');
 var moment = require("moment");
 
-//dummy orders table
-var ordersArray = [{
-    username: 'zeebow',
-    drinkType: 'beer',
-    time: 'Tue Mar 08 2016 16:24:37 GMT-0800 (PST)',
-    closeout: false,
-    currentPrice: 5,
-    totalPrice: 60,
-    drinkCount: 1,
-    showInQueue: true
-}, {
-    username: "Nadine",
-    drinkType: "beer",
-    time: 'Tue Mar 08 2016 17:24:37 GMT-0800 (PST)',
-    closeout: false,
-    currentPrice: 5,
-    totalPrice: 100,
-    drinkCount: 4,
-    showInQueue: true
-}, {
-    username: "Collin",
-    drinkType: "wine",
-    time: 'Tue Mar 08 2016 18:24:37 GMT-0800 (PST)',
-    closeout: false,
-    currentPrice: 5,
-    totalPrice: 15,
-    drinkCount: 8,
-    showInQueue: true
-}];
-
 module.exports = {
 
     showPendingOrders: function(req, res) {
@@ -54,17 +24,26 @@ module.exports = {
         }
     },
 
+    cancelOrder: function(req, res) {
+        console.log("WHATWHATWHAT");
+        db.sequelize.query("Delete from orders where orders.id = '" + req.body.id + "';")
+            .then(function(deletedOrder) {
+                res.sendStatus(200);
+            })
+            .catch(function(err) {
+                res.sendStatus(404);
+            })
+    },
+
     completeOrder: function(req, res) {
 
         db.sequelize.query("Update orders set completed = 't' where id = '" + req.body.id + "';")
-
         .then(function(orderToBeCompleted) {
             res.sendStatus(200);
         })
-
         .catch(function(err) {
             res.sendStatus(404);
-        })
+        });
 
     },
 
@@ -72,6 +51,7 @@ module.exports = {
         var customerName = req.body.customerName;
         var drinkType = req.body.customerDrinkType;
         var closeout = req.body.customerCloseout;
+        var cancelled = req.body.cancelled;
         var toPhoneNum;
 
         var messageBody;
@@ -79,14 +59,17 @@ module.exports = {
         db.sequelize.query("Select firstname, phone from users where username = '" + customerName + "';")
             .then(function(targetPhoneNum) {
                 messageBody = 'Hey ' + targetPhoneNum[0]['0'].firstname + ', ';
-                if (!(drinkType)) {
+                if (cancelled) {
+                    messageBody += 'your order for a ' + drinkType + ' has been cancelled by the bartender. Please see the bartender for more details.'
+                }
+                else if (!(drinkType)) {
                     messageBody += 'your check is ready to be picked up and paid at the bar. Thank you!'
                 } else if (closeout === true) {
                     messageBody += 'your ' + drinkType + ' and check are ready to be picked up at the bar. Thank you and enjoy!'
                 } else if (closeout === false) {
                     messageBody += 'your ' + drinkType + ' is ready to be picked up at the bar. Enjoy!'
                 }
-
+                console.log(messageBody);
                 client.messages.create({
                     to: '+1' + targetPhoneNum[0]['0'].phone,
                     from: '+15754485544',
