@@ -93,5 +93,3 @@ Engineers
 - [Nadine Ott](https://github.com/nadineott)
 - [Michael Serna](https://github.com/michaelserna)
 
-![](http://res.cloudinary.com/hidgkk5lm/image/upload/c_scale,r_21,w_801/v1458866640/ThesisGroup_qd3vda.jpg)
-
