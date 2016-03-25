@@ -33,6 +33,26 @@ angular.module('asyncdrink.barQueue', [])
         //poll all pending orders from the server every fifteen seconds
         var poll = $interval(showPendingOrders, 15000);
 
+        $scope.cancelOrder = function(cancelledOrder) {
+
+            var textMessDetails = {
+                customerName: cancelledOrder.username,
+                customerDrinkType: cancelledOrder.drinktype,
+                customerCloseout: cancelledOrder.closeout,
+                cancelled: true
+            };
+            console.log("CANCELLED ORDER", cancelledOrder);
+            OrdersFactory.cancelOrder(cancelledOrder)
+                //on success of removeOrder, showPendingOrders is called to submit get request for updated queue
+                .then(function() {
+                    showPendingOrders();
+                    OrdersFactory.sendTextMessage(textMessDetails);
+                })
+                .catch(function(error) {
+                    console.error(error);
+                });
+        };
+
         $scope.completeOrder = function(completedOrder) {
 
             var textMessDetails = {
@@ -84,12 +104,25 @@ angular.module('asyncdrink.barQueue', [])
             .then(function(resp) {
                 return resp.data;
             });
-
     };
+
+    var cancelOrder = function(cancelledOrder) {
+
+        console.log(cancelledOrder);
+        return $http({
+            method: 'POST',
+            url: '/api/barqueue/cancelOrder',
+            data: cancelledOrder
+        })
+        .then(function(resp) {
+            return resp.data;
+        });
+    }
 
     return {
         sendTextMessage: sendTextMessage,
         getAll: getAll,
-        removeOrder: removeOrder
+        removeOrder: removeOrder,
+        cancelOrder: cancelOrder
     }
 })

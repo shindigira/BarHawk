@@ -22,9 +22,10 @@ angular.module('asyncdrink.options', [])
 
     $scope.options = ['name', 'price', 'calories', 'carbs', 'sugar'];
 
-    $scope.clickImage = function() {
-        $scope.order.drinkType = drink.name;
-        $scope.order.drinkid = drink.id;
+    //color selected drink
+    $scope.selectedDrink = null;
+    $scope.selectDrink = function(selected) {
+        $scope.selectedDrink = selected;
     }
 
     //get all drinks from db
@@ -191,15 +192,15 @@ angular.module('asyncdrink.options', [])
                 $scope.tabSuccessIncludingOrder = false;
                 //set drinkType to empty string after successfully placing order
                 $scope.order.drinkType = "";
+                $scope.selectedDrink = null;
                 $scope.getDK();
                 // $scope.currentUser.drinkCount = response.data.drinkcount;
                 var dateAsString;
-                console.log(response.drinkcount)
-                console.log(typeof response.drinkcount)
+
                  if(response.drinkcount === 0){
                     dateAsString = $filter('date')(response.createdAt, "shortTime");
                     $scope.timeOfFirstDrink = dateAsString;
-                    console.log(dateAsString)
+
                  }
 
                  //$scope.first = $scope.timeOfFirstDrink
@@ -250,7 +251,7 @@ angular.module('asyncdrink.options', [])
 
     //Order and close process
     $scope.orderAndCloseTab = function() {
-        console.log("$scope.order.drinkType: ", $scope.order.drinkType);
+
 
         optionsFactory.orderAndCloseTab($scope.order)
             .then(function(response) {
@@ -261,6 +262,8 @@ angular.module('asyncdrink.options', [])
                 $scope.userTab = response.data;
                 $scope.orderSuccess = false;
                 $scope.order.drinkType = "";
+                $scope.selectedDrink = null;
+
                 $scope.getDK();
 
                 // Remove
@@ -333,7 +336,5 @@ angular.module('asyncdrink.options', [])
         orderAndCloseTab: orderAndCloseTab,
         getDrinksList: getDrinksList,
         getDrinkCount: getDrinkCount
-
-
     };
 });

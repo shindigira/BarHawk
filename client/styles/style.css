@@ -12,41 +12,6 @@
 
 }
 
-.complete {
-    color: white;
-    cursor: pointer;
-    display: block;
-    text-decoration: none;
-    margin: 4px;
-    border-radius: 5px;
-    border: solid 1px transparent;
-    background-color: #800000;
-    text-align: center;
-    padding: 5%;
-    -webkit-transition: all 0.1s;
-    -moz-transition: all 0.1s;
-    transition: all 0.1s;
-/*    -webkit-box-shadow: 0px 9px 0px black;
-    -moz-box-shadow: 0px 9px 0px black;
-    box-shadow: 0px 9px 0px black;*/
-}
-
-.complete:hover {
-    background-color: #b30000;
-}
-
-.complete:focus {
-    background-color: #800000;
-}
-
-.complete:active {
-    background-color: #800000;
-    -webkit-box-shadow: 0px 2px 0px red;
-    -moz-box-shadow: 0px 2px 0px red;
-    box-shadow: 0px 2px 0px red;
-    position: relative;
-    left: 7px;
-}
 
 /*li {
 =======
@@ -68,11 +33,11 @@
         -moz-box-shadow: 0px 9px 0px #84261a;
         box-shadow: 0px 9px 0px green;
     }
-    
+
     .complete:hover {
         background: green;
     }
-    
+
     .complete:active {
         -webkit-box-shadow: 0px 2px 0px #84261a;
         -moz-box-shadow: 0px 2px 0px #84261a;
@@ -80,15 +45,15 @@
         position: relative;
         left: 7px;
     }
-    
+
     .bacRed {
         background-color: red;
     }
-    
+
     .bacGreen {
         background-color: green;
     }
-    
+
     .bacYellow {
         background-color: yellow;
     }
@@ -135,7 +100,7 @@ input[type="range"]::-webkit-slider-thumb{
 }
 
 =======
-    
+
     input[type="range"] {
         -webkit-appearance: none;
         -moz-apperance: none;
@@ -152,7 +117,7 @@ input[type="range"]::-webkit-slider-thumb{
         border-radius: 2px;
         margin-top: 25px;
     }
-    
+
     input[type="range"]::-webkit-slider-thumb {
         -webkit-appearance: none;
         -moz-apperance: none;
@@ -167,24 +132,7 @@ input[type="range"]::-webkit-slider-thumb{
         border: 1px solid #787878;
     }
 
-    table,
-    th,
-    td {
-        text-align: center!important;
-    }
 
-    #title-heading {
-        font-size: 130px;
-    }
-
-    #queue {
-        width: 100%;
-    }
-
-    td {
-        border-right: 1px dotted gray;
-        background: rgba(220, 220, 220, 0.4);
-    }
 
     body {
         font-family: 'Lato', serif;
@@ -205,4 +153,4 @@ input[type="range"]::-webkit-slider-thumb{
 
     #results button {
         color: #009900;
-    
+}
