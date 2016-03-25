@@ -54,11 +54,6 @@
         padding: .5%!important;
     }
     }
-    .filterOptions label {
-        float: left;
-        padding-left: 20px!important;
-        background-color: green;
-    }
 
     #bacTitle{
         color: #800000;
