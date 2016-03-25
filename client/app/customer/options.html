@@ -75,7 +75,12 @@
         </div>
     </div>
     <div class="col-xs-12 col-sm-8 col-sm-8-pull-4">
-        <div class="selectionOptions">
+        
+        <!-- DRINK IMAGE DISPLAY -->
+
+        <div class="drinkDisplay">
+
+<div class="selectionOptions">
             <ul>
                 <li>
                     <input type="radio" id="all-option" ng-model="type" name="selector" value="">
@@ -99,8 +104,7 @@
                 </li>
             </ul>
         </div>
-        <!-- DRINK IMAGE DISPLAY -->
-        <div class="drinkDisplay">
+            
         <label class="selectionOptions">Order by...</label>
         <select class="selectionOptions" ng-model="selectedOrder" ng-options="option for option in options">
         <option value="" disabled selected>Options</option>
