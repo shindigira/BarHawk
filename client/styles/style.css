@@ -99,7 +99,6 @@ input[type="range"]::-webkit-slider-thumb{
     border: 1px solid #787878;
 }
 
-=======
 
     input[type="range"] {
         -webkit-appearance: none;
@@ -136,9 +135,6 @@ input[type="range"]::-webkit-slider-thumb{
 
     body {
         font-family: 'Lato', serif;
-        padding-top: 50px;
-        padding-right: 100px;
-        padding-left: 50px;
     }
 
     form {
@@ -154,3 +150,4 @@ input[type="range"]::-webkit-slider-thumb{
     #results button {
         color: #009900;
 }
+
