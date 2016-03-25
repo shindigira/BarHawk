@@ -51,7 +51,6 @@ angular.module('asyncdrink.barQueue', [])
                 customerCloseout: cancelledOrder.closeout,
                 cancelled: true
             };
-            console.log("CANCELLED ORDER", cancelledOrder);
             OrdersFactory.cancelOrder(cancelledOrder)
                 //on success of removeOrder, showPendingOrders is called to submit get request for updated queue
                 .then(function() {
@@ -134,7 +133,6 @@ angular.module('asyncdrink.barQueue', [])
 
     var cancelOrder = function(cancelledOrder) {
 
-        console.log(cancelledOrder);
         return $http({
             method: 'POST',
             url: '/api/barqueue/cancelOrder',
