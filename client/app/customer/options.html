@@ -14,13 +14,13 @@
 </nav>
 <!-- RADIO BUTTONS FOR DRINK DISPLAY -->
 <div class="row">
-    <div class="sidebar col-xs-12 col-sm-4 col-sm-4-push-5" style="text-align:center">
+    <div class="sidebar col-xs-12 col-sm-4 col-sm-4-push-4" style="text-align:center">
         <!-- <h1>Hi, {{currentUser.firstname}}!</h1> -->
         <div id='bar-chart'>
             <h2 id='bacTitle'>{{currentUser.firstname}}'s Blood Alcohol Content</h2>
             <h2><strong>{{currentUser.BAC}}%</strong></h2>
             <!-- <h2>Hi, {{currentUser.firstname}}!</h2> -->
-            <h4 ng-show='!canDrive'>Above the legal driving limit, please do not drive *</h4>
+            <h4 ng-show='!canDrive'>*Above the legal driving limit, please do not drive *</h4>
             <h4 ng-show='canDrive'>Currently below the legal driving limit*</h4>
             <!--
     <h4 ng-show= '!canDrive'>{{currentUser.firstname}}, you are currently above the legal driving limit, please do not drive *</h4>
@@ -76,7 +76,7 @@
             </div>
         </div>
     </div>
-    <div class="col-xs-12 col-sm-8 col-sm-8-pull-5">
+    <div class="col-xs-12 col-sm-8 col-sm-8-pull-4">
         <div class="selectionOptions">
             <ul>
                 <li>

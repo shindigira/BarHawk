@@ -14,9 +14,10 @@
     @media(min-width:780px) {
         .sidebar {
             /*position: fixed;*/
+            /*top: 10%;*/
             float: right;
             right: 0;
-            top: 10%;
+            margin-top: 20px;
         }
         .sidebar h1 {
             font-size: 5em;
@@ -100,9 +101,11 @@
         margin-left: auto;
     }
 
+
     .selectionOptions ul {
-        margin-top: 10%;
-        white-space: normal!important;
+        margin-top: 5%;
+        margin-bottom: 2%;
+        white-space: nowrap;
         padding: 0px;
         text-align: center;
         ::-webkit-padding-start: 0px;
@@ -112,6 +115,7 @@
         color: black;
         display: inline-block;
         padding: 3%;
+        font-weight: 300;
     }
 
     .selectionOptions ul li input[type=radio] {
@@ -123,7 +127,7 @@
         cursor: pointer;
         position: relative;
         font-weight: 300;
-        font-size: 150%!important;
+        font-size: 2em;
         -webkit-transition: all 0.25s linear;
     }
 
