@@ -5,24 +5,48 @@ var models = require('../models');
 var db = require('../models/index.js');
 var moment = require("moment");
 
+
 module.exports = {
 
-    showPendingOrders: function(req, res) {
-        if (req.body.username === 'baradmin' && req.body.password === 'barpassword') {
-            //only send back to bar queue those orders which have not yet been completed
-            db.sequelize.query("Select * from orders where completed = 'f';")
-                .then(function(pendingOrder) {
-                    for (var i = 0; i < pendingOrder[0].length; i++) {
-                        pendingOrder[0][i].createdAt = moment(pendingOrder[0][i].createdAt).fromNow();
-                    }
-                    res.status(200);
-                    res.send(pendingOrder[0]);
-                })
+  showPendingOrders: function(req, res) {
+    if (req.body.username === 'baradmin' && req.body.password === 'barpassword') {
+      //only send back to bar queue those orders which have not yet been completed
+      db.sequelize.query("Select * from orders where completed = 'f';")
+        .then(function(pendingOrder) {
+          for (var i = 0; i < pendingOrder[0].length; i++) {
+            pendingOrder[0][i].createdAt = moment(pendingOrder[0][i].createdAt).fromNow();
+          }
+          res.status(200);
+          res.send(pendingOrder[0]);
+        })
 
-        } else {
-            res.status(401).send();
+    } else {
+      res.status(401).send();
+    }
+  },
+
+  showAllLoggedInUser: function(req, res) {
+
+    db.sequelize.query("Select * from users;")
+      .then(function(users) {
+        console.log('users from showAllLoggedInUser ...', users);
+        for(var i = 0; i < users[0].length;  i++){
+            console.log('users[0][i] is ', users[0][i])
+             client.messages.create({
+          to: '+1' + users[0][i].phone,
+          from: '+15754485544',
+          body: "the bar is closing soon. hurry up and finish your business"
+        }, function(err, message) {
+          if (err) {
+            console.log(err);
+          } else {
+            console.log(message);
+            res.end();
+          }
+        });
         }
-    },
+      })
+  },
 
     cancelOrder: function(req, res) {
 
@@ -35,55 +59,72 @@ module.exports = {
             })
     },
 
-    completeOrder: function(req, res) {
+   
+  getTaxi:function(){
+    //Below is the texting function to text a taxi
+    // client.messages.create({
+    //       to: '+1619777222',
+    //       from: '+15754485544',
+    //       body: "a taxi is coming to the bar"
+    //     }, function(err, message) {
+    //       if (err) {
+    //         console.log(err);
+    //       } else {
+    //         console.log(message);
+    //         res.end();
+    //       }
+    //     });
 
-        db.sequelize.query("Update orders set completed = 't' where id = '" + req.body.id + "';")
-        .then(function(orderToBeCompleted) {
-            res.sendStatus(200);
-        })
-        .catch(function(err) {
-            res.sendStatus(404);
+  },
+
+  completeOrder: function(req, res) {
+
+    db.sequelize.query("Update orders set completed = 't' where id = '" + req.body.id + "';")
+
+    .then(function(orderToBeCompleted) {
+      res.sendStatus(200);
+    })
+
+    .catch(function(err) {
+      res.sendStatus(404);
+    })
+
+  },
+
+  orderCompleteTextMessage: function(req, res) {
+    var customerName = req.body.customerName;
+    var drinkType = req.body.customerDrinkType;
+    var closeout = req.body.customerCloseout;
+    var toPhoneNum;
+
+    var messageBody;
+
+    db.sequelize.query("Select firstname, phone from users where username = '" + customerName + "';")
+      .then(function(targetPhoneNum) {
+        messageBody = 'Hey ' + targetPhoneNum[0]['0'].firstname + ', ';
+        if (!(drinkType)) {
+          messageBody += 'your check is ready to be picked up and paid at the bar. Thank you!'
+        } else if (closeout === true) {
+          messageBody += 'your ' + drinkType + ' and check are ready to be picked up at the bar. Thank you and enjoy!'
+        } else if (closeout === false) {
+          messageBody += 'your ' + drinkType + ' is ready to be picked up at the bar. Enjoy!'
+        }
+
+        client.messages.create({
+          to: '+1' + targetPhoneNum[0]['0'].phone,
+          from: '+15754485544',
+          body: messageBody
+        }, function(err, message) {
+          if (err) {
+            console.log(err);
+          } else {
+            console.log(message);
+            res.end();
+          }
         });
-
-    },
-
-    orderCompleteTextMessage: function(req, res) {
-        var customerName = req.body.customerName;
-        var drinkType = req.body.customerDrinkType;
-        var closeout = req.body.customerCloseout;
-        var cancelled = req.body.cancelled;
-        var toPhoneNum;
-
-        var messageBody;
-
-        db.sequelize.query("Select firstname, phone from users where username = '" + customerName + "';")
-            .then(function(targetPhoneNum) {
-                messageBody = 'Hey ' + targetPhoneNum[0]['0'].firstname + ', ';
-                if (cancelled) {
-                    messageBody += 'your order for a ' + drinkType + ' has been cancelled by the bartender. Please see the bartender for more details.'
-                }
-                else if (!(drinkType)) {
-                    messageBody += 'your check is ready to be picked up and paid at the bar. Thank you!'
-                } else if (closeout === true) {
-                    messageBody += 'your ' + drinkType + ' and check are ready to be picked up at the bar. Thank you and enjoy!'
-                } else if (closeout === false) {
-                    messageBody += 'your ' + drinkType + ' is ready to be picked up at the bar. Enjoy!'
-                }
-
-                client.messages.create({
-                    to: '+1' + targetPhoneNum[0]['0'].phone,
-                    from: '+15754485544',
-                    body: messageBody
-                }, function(err, message) {
-                    if (err) {
-                        console.log(err);
-                    } else {
-                        res.end();
-                    }
-                });
-            })
-            .catch(function(err) {
-                res.sendStatus(404);
-            });
-    }
+      })
+      .catch(function(err) {
+        res.sendStatus(404);
+      });
+  }
 };

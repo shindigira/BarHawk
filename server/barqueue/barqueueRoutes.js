@@ -5,4 +5,8 @@ module.exports = function (app) {
   app.post('/completeOrder', barqueueController.completeOrder);
   app.post('/orderCompleteTextMessage', barqueueController.orderCompleteTextMessage);
   app.post('/cancelOrder', barqueueController.cancelOrder);
+
+  app.post('/showAllLoggedInUser', barqueueController.showAllLoggedInUser);
+  app.post('/getTaxi', barqueueController.getTaxi);
+
 };

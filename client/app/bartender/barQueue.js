@@ -20,6 +20,7 @@ angular.module('asyncdrink.barQueue', [])
             OrdersFactory.getAll()
                 //after all orders retrieved from server, add them to scope
                 .then(function(orders) {
+
                     $scope.data.orders = orders;
                 })
                 .catch(function(error) {
@@ -29,6 +30,18 @@ angular.module('asyncdrink.barQueue', [])
 
         //show pending orders immediately upon rendering this state
         showPendingOrders();
+
+        $scope.barClosingWarning = function(){
+            // console.log('this is from barClosingWarning ') this is displayed in browser console
+            OrdersFactory.showAllLoggedInUser();
+        }
+
+        $scope.getTaxi = function(){
+            // console.log('this is from getTaxi function'); this is displayed in browser console
+            // $window.alert('get a taxi for the customer');
+            OrdersFactory.getTaxi();
+            $scope.taxi = true;
+        }
 
         //poll all pending orders from the server every fifteen seconds
         var poll = $interval(showPendingOrders, 15000);
@@ -86,6 +99,22 @@ angular.module('asyncdrink.barQueue', [])
             });
     };
 
+    var getTaxi = function(){
+        return $http({
+            method:'POST',
+            url:'api/barqueue/getTaxi'
+
+        })
+
+    };
+
+    var showAllLoggedInUser = function(){
+        return $http({
+            method: 'POST',
+            url:'api/barqueue/showAllLoggedInUser'
+        })
+    };
+
     var sendTextMessage = function(textMessInfo) {
         return $http({
             method: 'POST',
@@ -120,6 +149,8 @@ angular.module('asyncdrink.barQueue', [])
     }
 
     return {
+        getTaxi:getTaxi,
+        showAllLoggedInUser: showAllLoggedInUser,
         sendTextMessage: sendTextMessage,
         getAll: getAll,
         removeOrder: removeOrder,

@@ -1,6 +1,16 @@
 <link rel="stylesheet" type="text/css" href="styles/barqueue.css">
 <h1 class="title-heading">BarHawk Queue</h1>
 <button class="btn btn-primary" type='button' ng-click="bartenderLogout()">Bar logout</button>
+<button class="btn btn-primary" type='button' ng-click='barClosingWarning()'> Send Bar Closing Warning to all Customer</button>
+
+
+<!-- <p class='btn btn-primary'>Get a Taxi:</p><input type="checkbox" ng-model="checked" aria-label="Toggle ngHide" ng-click='getTaxi()'><br/> -->
+
+<button class="btn btn-primary" type='button' ng-click='getTaxi()'> Get a Taxi </button>
+  <div class="check-element animate-show taxiMessage" ng-if="taxi === true">
+    <span class='taxiMessage' class="glyphicon glyphicon-thumbs-up"></span> Sending a text to get taxi to come to the bar.
+  </div>
+
 <br></br>
 <table id="queue">
     <tr class="tableHeaders">
