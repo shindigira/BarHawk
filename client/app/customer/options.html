@@ -54,9 +54,7 @@
         </div>
         <div class='orderButtons'>
             <p class="order">
-                <img src="http://res.cloudinary.com/hidgkk5lm/image/upload/v1458753248/shopping-cart_f6j0n2.png">
-                <br>
-                <div class="selection"> {{ order.drinkType }} </div>
+                <div class="selection"> Order:{{ order.drinkType }} </div>
                 <img class="sideDrink" ng-src="{{order.imageurl}}" />
             </p>
             <button class="btn btn-primary" ng-click='orderOnly()'>Submit Order</button>
@@ -77,8 +75,17 @@
         </div>
     </div>
     <div class="col-xs-12 col-sm-8 col-sm-8-pull-4">
-        <div class="selectionOptions">
+        
+        <!-- DRINK IMAGE DISPLAY -->
+
+        <div class="drinkDisplay">
+
+<div class="selectionOptions">
             <ul>
+                <li>
+                    <input type="radio" id="all-option" ng-model="type" name="selector" value="">
+                    <label for="all-option">All</label>
+                </li>
                 <li>
                     <input type="radio" id="b-option" ng-model="type" name="selector" value="beer">
                     <label for="b-option">Beer</label>
@@ -97,8 +104,7 @@
                 </li>
             </ul>
         </div>
-        <!-- DRINK IMAGE DISPLAY -->
-        <div class="drinkDisplay">
+            
         <label class="selectionOptions">Order by...</label>
         <select class="selectionOptions" ng-model="selectedOrder" ng-options="option for option in options">
         <option value="" disabled selected>Options</option>

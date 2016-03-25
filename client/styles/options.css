@@ -1,13 +1,13 @@
-    html {
+/*    html {
         background: url(http://res.cloudinary.com/df1u5o3g6/image/upload/v1458603380/background_g3ksno.jpg) no-repeat center center fixed;
         -webkit-background-size: cover;
         -moz-background-size: cover;
         -o-background-size: cover;
         background-size: cover;
-    }
+    }*/
 
     body {
-        background-color: rgba(255, 255, 255, .01);
+/*        background-color: rgba(255, 255, 255, .01);*/
         padding: 0px;
     }
 
@@ -147,7 +147,7 @@
     }
 
     .drinkDisplay {
-        background-color: rgba(255, 255, 255, 0.4);
+        background-color: rgba(192,192,192, 0.4);
         border-radius: 25px;
         overflow-y: auto;
         max-height: 80em;
