@@ -1,6 +1,6 @@
 angular.module('asyncdrink.options', [])
 
-.controller('optionsController', function($scope, $state, $window, $interval, customerFactory, optionsFactory) {
+.controller('optionsController', function($scope, $state, $window, $interval, customerFactory, optionsFactory, $filter) {
     //set up drinks
     $scope.drinks = {};
 
@@ -18,14 +18,14 @@ angular.module('asyncdrink.options', [])
     $scope.tabFail = false;
     $scope.tabSuccess = false;
     $scope.orderCloseSuccess = false;
+    $scope.canDrive = true;
 
-    $scope.test = function() {
-        console.log("TESTING TESTING");
-    };
+    $scope.options = ['name', 'price', 'calories', 'carbs', 'sugar'];
 
-    $scope.clickImage = function() {
-        $scope.order.drinkType = drink.name;
-        $scope.order.drinkid = drink.id;
+    //color selected drink
+    $scope.selectedDrink = null;
+    $scope.selectDrink = function(selected) {
+        $scope.selectedDrink = selected;
     }
 
     //get all drinks from db
@@ -42,137 +42,122 @@ angular.module('asyncdrink.options', [])
     $scope.getDK = function() {
         optionsFactory.getDrinkCount($scope.currentUser)
             .then(function(response) {
+
                 $scope.currentUser.drinkCount = response.drinkcount;
                 $scope.currentUser.BAC = response.BAC;
 
                 $scope.order.BAC = response.BAC;
-                //BAC spectrum slider
-                // var spectrum = document.getElementById('spectrum');
-                // var t = Math.floor(($scope.currentUser.BAC / 0.4) * 100);
-                // spectrum.value = t;
-                // var spectrumText = document.getElementById('spectrumText');
-                // var x;
-                // if ($scope.currentUser.BAC >= 0 && $scope.currentUser.BAC < 0.08) {
-                //     x = 'sober';
-                // } else if ($scope.currentUser.BAC === 0.08) {
-                //     x = 'keep drinking. but DONT DRIVE!';
-                // } else if ($scope.currentUser.BAC > 0.08 && $scope.currentUser.BAC < 0.4) {
-                //     x = 'start dancing';
-                // } else {
-                //     x = 'your in a COMMA';
-                // }
-                // spectrumText.value = x;
 
                 $scope.order.BAC = response.BAC
 
+                if(chartdata>=.08){
+                    $scope.canDrive  = false;
+                }
 
                 var chartdata = [$scope.currentUser.BAC];
-                    //var data = [4, 8, 15, 16, 23, 42];
-                    //var chartdata = [40, 60, 80, 100, 70, 120, 100, 60, 70, 150, 120, 140];
-                    //  the size of the overall svg element
-                    // var height = 350;
-                    // var width = 200;
 
-                // //  the width of each bar and the offset between each bar
-                // var barWidth = 40;
-                // var barOffset = 20;
+                if(chartdata>=.08){
+                    $scope.canDrive  = false;
+                }
 
-
-                var margin = { top: -5, right: 10, bottom: 30, left: 170 }
+                var margin = { top: -5, right: 10, bottom: 10, left: 170 }
 
                 var height = 400;
                 var width = 420 - margin.left - margin.right;
                 var barWidth = 40;
                 var barOffset = 170;
-
+                var colorFill
+                var heightScale = 1000;
 
                 // Add
-                // d3.select('#bar-chart').enter().append('rect').style('fill', 'orange');
-
                 d3.select('#bar-chart').append('svg')
                     .attr('width', width)
-                    .attr('height', height)
-                    .style('background', 'white')
+                    .attr('height',  height + margin.top + margin.bottom)
+                    .style('background', 'transparent')
                     .selectAll('rect').data(chartdata)
                     .enter().append('rect')
-                    //.style({ 'fill': 'red', 'stroke': 'red', 'stroke-width': '1' })
+                    //.style({ 'fill': colorFill, 'stroke': colorFill, 'stroke-width': '10' })
                     .attr("fill", function(d) {
 
                         if (d < .08) {
                             console.log('this is d', d)
+                            colorFill = 'green';
                             return 'green'
                         } else if (d >= .08 && d < .2) {
+                            colorFill = "orange";
+                            console.log('this is d', d)
                             return 'orange'
                         } else {
+                            colorFill = "red";
+                            console.log('this is d', d)
                             return 'red'
                         }
                     })
                     .attr('width', barWidth)
                     .attr('height', function(data) {
-                        return data * 1000;
+                        console.log('height',data*heightScale)
+                        return data * heightScale;
                     })
                     .attr('x', function(data, i) {
+
                         return 180;
                         //return i * (barWidth + barOffset)
                     })
+                    .transition()
+                    .duration(1500)
+                    .ease('bounce')
                     .attr('y', function(data) {
-                        //return 204
-                        return height - data * 823;
-                        //return height - data *  1000;
-                        //return data
-                    })
-                    // .on('mouseover', function(data) {
-                    //     dynamicColor = this.style.fill;
-                    //     d3.select(this)
-                    //         .style('fill', 'blue')
-                    // })
-                    // .on('mouseout', function(data) {
-                    //     d3.select(this)
-                    //         .style('fill', dynamicColor)
-                    // })
+                        console.log('y', height - data * heightScale)
 
-                var maxBAC = [.5]
+                        return height - (data * heightScale);
+                    })
+
+                var maxBAC = [.31]
+
 
                 var verticalGuideScale = d3.scale.linear()
                     .domain([0, d3.max([maxBAC])])
-                    .range([height, 0])
+                    .range([height, 96])
+
 
                 var vAxis = d3.svg.axis()
                     .scale(verticalGuideScale)
-                    .tickValues([0.0, 0.03, 0.06, 0.08, 0.12, 0.15, 0.18, 0.21, 0.24, 0.27, 0.3, 0.33, 0.36, 0.39])
+                    .tickValues([0.0, 0.03, 0.06, 0.08, 0.12, 0.15, 0.18, 0.21, 0.24, 0.27, 0.3])
                     .tickSize(5)
                     .orient("left")
                     //.innerTickSize([size])
                     .tickFormat(function(d) {
-                        if (d === 0.03) {
-                            return 'mild euphoria ' + d;
-                        } else if (d === 0.06) {
-                            return 'blunted feelings ' + d;
+                        if(d === 0.0){
+                            return 'sober ' + d;
+                       // }
+                        //if (d === 0.03) {
+                            //return 'mild euphoria ' + d;
+                        //} else if (d === 0.06) {
+                            //return 'blunted feelings ' + d;
                         } else if (d === 0.08) {
-                            return "exceeded legal limit " + d;
-                        } else if (d === 0.12) {
-                            return 'boisterousness ' + d;
-                        } else if (d === 0.15) {
-                            return 'slurred speech ' + d;
-                        } else if (d === 0.18) {
-                            return 'motor impairment' + d;
+                            return "legal driving limit " +d;
+                       // } else if (d === 0.12) {
+                        //     return 'boisterousness ' + d;
+                        // } else if (d === 0.15) {
+                        //     return 'slurred speech ' + d;
+                        // } else if (d === 0.18) {
+                        //     return 'motor impairment' + d;
                         } else if (d === 0.21) {
                             return 'decreased libido ' + d;
                         } else if (d === 0.24) {
-                            return 'possible vomiting ' + d;
-                        } else if (d === 0.27) {
-                            return 'bladder dysfunction ' + d;
-                        } else if (d === 0.3) {
-                            return 'memory blackout ' + d;
-                        } else if (d === 0.33) {
-                            return 'dysequilibrium ' + d;
-                        } else if (d === 0.36) {
-                            return 'coma ' + d;
+                        //     return 'possible vomiting ' + d;
+                        // } else if (d === 0.27) {
+                        //     return 'bladder dysfunction ' + d;
+                        }else if (d === 0.3) {
+                            return 'memory blackout '+d;
+                        //} //else if (d === 0.33) {
+                        //     return 'dysequilibrium ' + d;
+                        // } else if (d === 0.36) {
+                        //     return 'coma ' + d;
                         } else if (d === 0.39) {
                             return 'possible death ' + d;
                         }
                         return d
-
                     })
                     .tickSubdivide(true);
 
@@ -182,12 +167,12 @@ angular.module('asyncdrink.options', [])
                 verticalGuide.selectAll('path')
                     .style({ fill: 'none', stroke: "black" })
                 verticalGuide.selectAll('line')
-                    .style({ stroke: "black" })
+                    .style({ stroke: "black" });
+        })
+};
 
-            })
-    };
+
     $scope.getDK();
-
 
     //Order only process
     $scope.orderOnly = function() {
@@ -195,6 +180,7 @@ angular.module('asyncdrink.options', [])
         // console.log("ORDER ONLY $scope.order.drinkid: ", $scope.order.drinkid);
         $scope.savedDrinkType = $scope.order.drinkType;
         $scope.savedDrinkid = $scope.order.drinkid;
+
 
         optionsFactory.orderOnly($scope.order)
             .then(function(response) {
@@ -206,9 +192,18 @@ angular.module('asyncdrink.options', [])
                 $scope.tabSuccessIncludingOrder = false;
                 //set drinkType to empty string after successfully placing order
                 $scope.order.drinkType = "";
+                $scope.selectedDrink = null;
                 $scope.getDK();
                 // $scope.currentUser.drinkCount = response.data.drinkcount;
+                var dateAsString;
 
+                 if(response.drinkcount === 0){
+                    dateAsString = $filter('date')(response.createdAt, "shortTime");
+                    $scope.timeOfFirstDrink = dateAsString;
+
+                 }
+
+                 //$scope.first = $scope.timeOfFirstDrink
 
                 // Remove
                 d3.selectAll('svg').remove();
@@ -256,7 +251,7 @@ angular.module('asyncdrink.options', [])
 
     //Order and close process
     $scope.orderAndCloseTab = function() {
-        console.log("$scope.order.drinkType: ", $scope.order.drinkType);
+
 
         optionsFactory.orderAndCloseTab($scope.order)
             .then(function(response) {
@@ -267,7 +262,12 @@ angular.module('asyncdrink.options', [])
                 $scope.userTab = response.data;
                 $scope.orderSuccess = false;
                 $scope.order.drinkType = "";
+                $scope.selectedDrink = null;
+
                 $scope.getDK();
+
+                // Remove
+                d3.selectAll('svg').remove();
 
             }).catch(function(err) {
                 $scope.tabSuccessIncludingOrder = false;
@@ -336,7 +336,5 @@ angular.module('asyncdrink.options', [])
         orderAndCloseTab: orderAndCloseTab,
         getDrinksList: getDrinksList,
         getDrinkCount: getDrinkCount
-
-
     };
 });

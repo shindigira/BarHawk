@@ -6,54 +6,140 @@
         background-size: cover;
         padding: 5%;
     }
-    
+
     body {
         background-color: rgba(255, 255, 255, .01);
     }
-        
+
+    table,
+    th,
+    td {
+        text-align: center!important;
+    }
+
+    th {
+        font-size: 20px;
+    }
+
+    #title-heading {
+        font-size: 130px;
+    }
+
+    #queue {
+        width: 100%;
+    }
+
+    td {
+        border-right: 1px dotted gray;
+        background: rgba(220, 220, 220, 0.4);
+    }
+
+    td .complete {
+        background: none!important;
+    }
+
     .title-heading {
         text-shadow: 2px 2px 3px black;
-
         color: #800000;
-        font-size: 6em;
+        font-size: 5em;
         text-align: center;
-        max-width: 40%;
+        max-width: 60%;
         display: block;
         margin-right: auto;
         margin-left: auto;
     }
-    
+
+    .complete {
+        color: white;
+        cursor: pointer;
+        display: block;
+        text-decoration: none;
+        margin: 4px;
+        border-radius: 5px;
+        border: solid 1px transparent;
+        background-color: #800000;
+        text-align: center;
+        padding: 5%;
+        -webkit-transition: all 0.1s;
+    -moz-transition: all 0.1s;
+    transition: all 0.1s;
+        /*    -webkit-box-shadow: 0px 9px 0px black;
+    -moz-box-shadow: 0px 9px 0px black;
+    box-shadow: 0px 9px 0px black;*/
+    }
+
+    .cancel {
+        color: white;
+        cursor: pointer;
+        display: block;
+        text-decoration: none;
+        margin: 4px;
+        border-radius: 5px;
+        border: solid 1px transparent;
+        background-color: #F44336;
+        text-align: center;
+        padding: 5%;
+        -webkit-transition: all 0.1s;
+        -moz-transition: all 0.1s;
+        transition: all 0.1s;
+        /*    -webkit-box-shadow: 0px 9px 0px black;
+    -moz-box-shadow: 0px 9px 0px black;
+    box-shadow: 0px 9px 0px black;*/
+    }
+
+    .complete:hover {
+        background-color: #2A4D17;
+    }
+
+    .cancel:hover {
+        background-color: red;
+    }
+
+    .complete:focus {
+        background-color: #2A4D13;
+    }
+
+    .complete:active {
+        background-color: #128a43;
+        /*-webkit-box-shadow: 0px 2px 0px red;
+    -moz-box-shadow: 0px 2px 0px red;
+    box-shadow: 0px 2px 0px red;*/
+        /*position: relative;*/
+    }
+    .cancel:active {
+        background-color: #ff3f00;
+    }
+
     .btn-primary {
         background-color: #800000;
         position: relative;
         display: inline-block;
         margin: 0 .5em 0 .5em;
     }
-    
+
     .btn-primary:hover {
         background-color: #b30000;
     }
-    
+
     .btn-primary:focus {
         background-color: #800000;
     }
-    
+
     .btn-primary:active {
         background-color: #800000;
     }
-    
+
     .topButtons {
         position: relative;
         display: inline-block;
         float: right
     }
-    
     /*Table styling*/
 
     .tableHeaders {
-        font-size: 24px; 
-        color: #fff; 
-        background-color: #000; 
+        font-size: 24px;
+        color: #fff;
+        background-color: #000;
         text-shadow: 2px 2px 3px #d4af37;
         font-size: 2em;
     }

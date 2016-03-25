@@ -14,11 +14,10 @@ module.exports = function (config) {
     files: [
       'client/library/angular.js',
       'client/library/angular-ui-router.js',
-      //'node_modules/angular-mocks/angular-mocks.js',
+      'client/library/Chart.min.js',
+      'client/library/angular-chart.min.js',
       'client/library/angular-mocks.js',
-
       'client/app/**/*.js',
-
       'spec/client/*.js'
     ],
 

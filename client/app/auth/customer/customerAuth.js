@@ -5,18 +5,15 @@ angular.module('asyncdrink.customerAuth', [])
     //newUser obj will hold all sign up inputs and set drinkCount to 0
     $scope.newUser = {
         drinkCount: 0,
-        totalPrice: 0,
-        firstname: 'Jane',
-        lastname: 'Doe',
-        username: 'JaneDoe85',
-        password: 'janedoepassword',
-        phonenumber: 5059342914,
-        age: 35,
-        weight: 150,
-        gender: 'female'
+        totalPrice: 0
     };
 
-    $scope.loginAttempt = {};
+    $scope.passwordCheck = '';
+
+    $scope.loginAttempt = {
+        username: 'JaneDoe85',
+        password: 'janedoepassword'
+    };
 
     $scope.invalidLogIn = false;
 
@@ -120,4 +117,26 @@ angular.module('asyncdrink.customerAuth', [])
         isAuth: isAuth
     };
 
+})
+
+.directive('compareTo', function(){
+    return {
+        restrict: 'A',
+        require: 'ngModel',
+        scope: {
+            otherModelValue: "=compareTo"
+        },
+        link: function(scope, element, attributes, ngModel){
+            ngModel.$validators.compareTo = function(modelValue){
+                console.log(modelValue === scope.otherModelValue);
+                return modelValue === scope.otherModelValue;
+            };
+            scope.$watch('otherModelValue', function(){
+                ngModel.$validate();
+            });
+        }
+    };
 });
+
+
+

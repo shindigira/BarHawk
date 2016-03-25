@@ -10,7 +10,7 @@
 
 label{
     border-radius: 5px;
-    box-shadow: 2px 2px 2px black;
+    box-shadow: 2px 2px 2px #800000;
     background: #800000;
     opacity: 9;
     margin: 1px;
@@ -60,7 +60,7 @@ body,
     color: #fff;
     text-align: center;
     text-shadow: 0 1px 3px rgba(0, 0, 0, .5);
-    background-image: url(http://res.cloudinary.com/hidgkk5lm/image/upload/v1458668206/barhawk-background_lvbl6q.jpg);
+    background-image: url(http://il8.picdn.net/shutterstock/videos/2365442/thumb/1.jpg);
 }
 
 
@@ -129,7 +129,9 @@ body,
         color: #fff;
         text-align: center;
         text-shadow: 0 1px 3px rgba(0, 0, 0, .5);
-        background-image: url(https://media.timeout.com/images/102534016/image.jpg);
+        background: no-repeat center center fixed;
+        background-size: cover;
+        background-image: url(http://il8.picdn.net/shutterstock/videos/2365442/thumb/1.jpg);
     }
     /* Extra markup and styles for table-esque vertical and horizontal centering */
     
