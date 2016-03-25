@@ -25,7 +25,7 @@ module.exports = {
     },
 
     cancelOrder: function(req, res) {
-        console.log("WHATWHATWHAT");
+
         db.sequelize.query("Delete from orders where orders.id = '" + req.body.id + "';")
             .then(function(deletedOrder) {
                 res.sendStatus(200);
@@ -69,7 +69,7 @@ module.exports = {
                 } else if (closeout === false) {
                     messageBody += 'your ' + drinkType + ' is ready to be picked up at the bar. Enjoy!'
                 }
-                console.log(messageBody);
+
                 client.messages.create({
                     to: '+1' + targetPhoneNum[0]['0'].phone,
                     from: '+15754485544',
@@ -78,7 +78,6 @@ module.exports = {
                     if (err) {
                         console.log(err);
                     } else {
-                        console.log(message);
                         res.end();
                     }
                 });
