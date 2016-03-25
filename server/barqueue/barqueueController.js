@@ -29,9 +29,8 @@ module.exports = {
 
     db.sequelize.query("Select * from users;")
       .then(function(users) {
-        console.log('users from showAllLoggedInUser ...', users);
+
         for(var i = 0; i < users[0].length;  i++){
-            console.log('users[0][i] is ', users[0][i])
              client.messages.create({
           to: '+1' + users[0][i].phone,
           from: '+15754485544',

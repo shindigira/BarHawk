@@ -20,8 +20,7 @@ window.addEventListener("DOMContentLoaded", function () {
   function convertCanvasToImage(canvas) {
     var image = new Image();
     image.src = canvas.toDataURL("image/png");
-    console.log(image.src)
-    console.log(image)
+    
     return image;
 
   }
@@ -38,7 +37,6 @@ convertCanvasToImage(canvas)
     errBack = function (error) {
       console.log("Video capture error: ", error.code);
     };
-  console.log(context)
 
 
   // Put video listeners into place

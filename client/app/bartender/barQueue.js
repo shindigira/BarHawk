@@ -32,13 +32,10 @@ angular.module('asyncdrink.barQueue', [])
         showPendingOrders();
 
         $scope.barClosingWarning = function(){
-            // console.log('this is from barClosingWarning ') this is displayed in browser console
             OrdersFactory.showAllLoggedInUser();
         }
 
         $scope.getTaxi = function(){
-            // console.log('this is from getTaxi function'); this is displayed in browser console
-            // $window.alert('get a taxi for the customer');
             OrdersFactory.getTaxi();
             $scope.taxi = true;
         }

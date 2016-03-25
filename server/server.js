@@ -14,7 +14,6 @@ if(!module.parent){
 module.exports= app;
 
 app.get('/api/users/signedin', function (req, res) {
-  console.log('req from server.js is ', req)
   var token = req.headers['x-access-token'];
   if (!token) {
     res.status(401).send();
