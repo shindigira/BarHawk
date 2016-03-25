@@ -103,6 +103,9 @@
     .selectionOptions ul {
         margin-top: 10%;
         white-space: normal!important;
+        padding: 0px;
+        text-align: center;
+        ::-webkit-padding-start: 0px;
     }
 
     .selectionOptions ul li {
