@@ -27,60 +27,70 @@
     }
 
     @media(max-width:700px) {
-    ul li .drinkCell img {
-        display: block;
-        margin-left: auto;
-        margin-right: auto;
-        height: 80px!important;
-
-        /*display: -webkit-flex;
+        ul li .drinkCell img {
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+            height: 80px!important;
+            /*display: -webkit-flex;
         display: -ms-flexbox;
         display: flex;*/
-    }
-    .selectionOptions ul {
-    margin-top: 10%;
-    white-space: normal!important;
-}
-    .selectionOptions ul li label {
-        cursor: pointer;
-        position: relative;
-        font-weight: 300;
-        font-size: 150%!important;
-        -webkit-transition: all 0.25s linear;
-    }
-    .selectionOptions ul li {
-        color: black;
-        display: inline-block;
-        padding: .5%!important;
-    }
+        }
+        .selectionOptions ul {
+            margin-top: 10%;
+            white-space: normal!important;
+        }
+        .selectionOptions ul li label {
+            cursor: pointer;
+            position: relative;
+            font-weight: 300;
+            font-size: 150%!important;
+            -webkit-transition: all 0.25s linear;
+        }
+        .selectionOptions ul li {
+            color: black;
+            display: inline-block;
+            padding: .5%!important;
+        }
     }
 
-    #bacTitle{
+    .filterOptions label {
+        float: left;
+        padding-left: 20px!important;
+        background-color: green;
+    }
+
+    #bacTitle {
         color: #800000;
-        display:inline-block;
+        display: inline-block;
         /*background-color: rgba(255, 255, 255, 0.4);*/
     }
 
-  #bacdiv  {
-     display:inline-block;
-     background-color: rgba(255, 255, 255, 0.5);
-  }
+    #bacdiv {
+        display: inline-block;
+        background-color: rgba(255, 255, 255, 0.5);
+    }
 
-  #bar-chart{
- display:inline-block;
- background-color: rgba(255, 255, 255, 0.5);
-  }
+    #bar-chart {
+        display: inline-block;
+        background-color: rgba(255, 255, 255, 0.5);
+    }
 
-  #hideBAC{
-    background-color: #800000;
-    color:white;
-  }
+    #hideBAC {
+        background-color: #800000;
+        color: white;
+    }
     /*STYLING FOR MENU OPTIONS*/
-  /*  #bar-chart {
+    /*  #bar-chart {
     -ms-transform: rotate(90deg);
     -webkit-transform: rotate(90deg);
     transform: rotate(90deg);
     }*/
+
+    .selectedDrink {
+        background: rgba(66, 70, 74, 0.63);
+        border: 1px solid rgba(0, 0, 0, 0.28);
+    }
 
     .selectionOptions {
         text-align: center;
@@ -91,16 +101,14 @@
     }
 
     .selectionOptions ul {
-        white-space: nowrap;
-        padding: 0px;
-        text-align: center;
-        ::-webkit-padding-start: 0px;
+        margin-top: 10%;
+        white-space: normal!important;
     }
 
     .selectionOptions ul li {
         color: black;
         display: inline-block;
-        padding: 5%;
+        padding: 3%;
     }
 
     .selectionOptions ul li input[type=radio] {
@@ -112,7 +120,7 @@
         cursor: pointer;
         position: relative;
         font-weight: 300;
-        font-size: 2em;
+        font-size: 150%!important;
         -webkit-transition: all 0.25s linear;
     }
 
@@ -135,26 +143,27 @@
         background-color: rgba(255, 255, 255, 0.4);
         border-radius: 25px;
         overflow-y: auto;
-        max-height:80em;
+        max-height: 80em;
         max-width: 80%;
         margin-left: auto;
         margin-right: auto;
     }
-
     /*.drinkDisplay::-webkit-scrollbar {
       width:30px;
     }*/
+
     .drinkDisplay::-webkit-scrollbar {
-      background:transparent;
-      width:10px;
-      margin-top: 20px;
+        background: transparent;
+        width: 10px;
+        margin-top: 20px;
     }
+
     .drinkDisplay::-webkit-scrollbar-thumb {
-      background:#999 !important;
-      width: 5px;
-      border-radius: 10px;
-      margin-top: 5%;
-      margin-bottom: 5%;
+        background: #999 !important;
+        width: 5px;
+        border-radius: 10px;
+        margin-top: 5%;
+        margin-bottom: 5%;
     }
 
     .drinkDisplay ul {
@@ -166,7 +175,7 @@
         list-style-type: none;
     }
 
-    .sideDrink{
+    .sideDrink {
         height: 15%;
         display: block;
         margin-left: auto;
@@ -201,7 +210,6 @@
 
     .order {
         color: black;
-
         font-size: 2em;
     }
 
@@ -209,7 +217,6 @@
     #results {
         color: black;
         font-size: 1.5em;
-
     }
 
     .title-heading {

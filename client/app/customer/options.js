@@ -22,9 +22,11 @@ angular.module('asyncdrink.options', [])
 
     $scope.options = ['name', 'price', 'calories', 'carbs', 'sugar'];
 
-    $scope.clickImage = function() {
-        $scope.order.drinkType = drink.name;
-        $scope.order.drinkid = drink.id;
+    //color selected drink
+    $scope.selectedDrink = null;
+    $scope.selectDrink = function(selected) {
+        console.log("clicked", selected);
+        $scope.selectedDrink = selected;
     }
 
     //get all drinks from db
