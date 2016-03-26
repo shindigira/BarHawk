@@ -250,6 +250,7 @@ angular.module('asyncdrink.options', [])
         optionsFactory.orderAndCloseTab($scope.order)
             .then(function(response) {
                 //display stats and success msgs
+                $scope.orderCloseSuccess = true;
                 $scope.savedDrinkType = $scope.order.drinkType;
                 $scope.currentUser.drinkCount = response.data.drinkcount;
                 $scope.tabSuccessIncludingOrder = true;
