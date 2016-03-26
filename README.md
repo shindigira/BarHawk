@@ -25,7 +25,7 @@ $ npm test
 
 Technology Stack
 ==========
-![](http://res.cloudinary.com/hidgkk5lm/image/upload/v1458860341/Screen_Shot_2016-03-24_at_3.57.01_PM_hkmnxa.png)
+![](http://res.cloudinary.com/hidgkk5lm/image/upload/v1459015575/Screen_Shot_2016-03-26_at_11.04.04_AM_mcttdi.png)
 
 File Structure
 ==========
