@@ -1,0 +1,91 @@
+body {
+    /*background: url("jcBar.jpg");*/
+    background-size: cover;
+    background-color: white;
+}
+
+.navbar-brand {
+    float: left;
+    padding: 13px 15px;
+    font-size: 18px;
+    line-height: 20px;
+    height: 85px;
+    background-color: black
+}
+
+.navbar-brandimg {
+    max-height: 60px;
+    background-color: black
+}
+
+#navbar {
+    background-color: black;
+}
+
+.picture {
+    background-size: cover;
+    background-position: 50% 50%;
+    width: 50%;
+    border-radius: 50%;
+    padding-bottom: 50%;
+    margin: 0 auto;
+}
+
+.container {
+    padding-top: 40px;
+    text-align: center;
+}
+
+.header {
+    font-family: "Lucida Sans Unicode", Helvetica, Arial, sans-serif;
+    text-align: center;
+    font-size: 5em;
+}
+
+.member-name {
+    text-align: center;
+    font-size: 18px;
+    font-weight: bold;
+    color:black;
+}
+
+.member {
+    margin-bottom: 40px;
+    text-align: center;
+}
+
+.member-git {
+    color: black;
+    font-size: .9em;
+}
+
+button {
+    border-radius: 5px;
+    box-shadow: 2px 2px 2px black;
+    background: #800000;
+    opacity: 0.8;
+    margin: 1px;
+    padding: 1%;
+}
+
+.input {
+    background-color: #99FFCC;
+    border: 1px solid #800000;
+    width: 230px;
+    padding-top: 50px;
+    padding-right: 100px;
+    padding-left: 50px;
+}
+
+.btn-primary {
+    background-color: #800000;
+    position: relative;
+    display: inline-block;
+    margin: 0 .5em 0 .5em;
+}
+
+.topButtons {
+    position: relative;
+    display: inline-block;
+    float: right;
+}

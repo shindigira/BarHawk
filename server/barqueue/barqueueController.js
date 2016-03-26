@@ -34,7 +34,7 @@ module.exports = {
              client.messages.create({
           to: '+1' + users[0][i].phone,
           from: '+15754485544',
-          body: "the bar is closing soon. hurry up and finish your business"
+          body: "Last call- the bar will be closing in 15 minutes, please close out your bar tab and call a cab if you are over the legal driving limit."
         }, function(err, message) {
           if (err) {
             console.log(err);
@@ -58,7 +58,7 @@ module.exports = {
             })
     },
 
-   
+
   getTaxi:function(){
     //Below is the texting function to text a taxi
     // client.messages.create({
