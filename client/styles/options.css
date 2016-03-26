@@ -1,13 +1,4 @@
-/*    html {
-        background: url(http://res.cloudinary.com/df1u5o3g6/image/upload/v1458603380/background_g3ksno.jpg) no-repeat center center fixed;
-        -webkit-background-size: cover;
-        -moz-background-size: cover;
-        -o-background-size: cover;
-        background-size: cover;
-    }*/
-
 body {
-    /*        background-color: rgba(255, 255, 255, .01);*/
     padding: 0px;
 }
 
@@ -32,7 +23,7 @@ body {
         display: block;
         margin-left: auto;
         margin-right: auto;
-        height: 80px!important;
+/*        height: 80px!important;*/
         /*display: -webkit-flex;
         display: -ms-flexbox;
         display: flex;*/
@@ -82,30 +73,19 @@ body {
     color: white;
 }
 
-
-/*STYLING FOR MENU OPTIONS*/
-
-
-/*  #bar-chart {
-    -ms-transform: rotate(90deg);
-    -webkit-transform: rotate(90deg);
-    transform: rotate(90deg);
-    }*/
-
 .selectedDrink {
     background: rgba(66, 70, 74, 0.63);
-    border: 1px solid rgba(0, 0, 0, 0.28);
 }
 
 .selectionOptions {
-    text-align: center;
-    max-width: 80%;
+    text-align: left max-width: 80%;
     display: block;
     margin-right: auto;
     margin-left: auto;
 }
 
 .selectionOptions ul {
+    margin-top: 5%;
     margin-bottom: 2%;
     white-space: nowrap;
     padding: 0px;
@@ -141,22 +121,37 @@ body {
     color: #800000;
 }
 
-ul li .drinkCell img {
+.drinkCell img {
     display: block;
     margin-left: auto;
     margin-right: auto;
     height: 15em;
 }
 
-.drinkDisplay {
+/*round off top corners of top div*/
+.orderInfo {
     background-color: rgba(192, 192, 192, 0.4);
-    border-radius: 25px;
     overflow-y: auto;
-    max-height: 80em;
-    overflow-x: hidden;
+    max-height: 400px;
     max-width: 80%;
     margin-left: auto;
     margin-right: auto;
+
+    border-top-left-radius: 25px;
+    border-top-right-radius: 25px;
+}
+/*round off bottom corners of bottom div*/
+.drinks {
+    background-color: rgba(192, 192, 192, 0.4);
+    overflow-y: auto;
+    max-height: 400px;
+    max-width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+
+    border-bottom-right-radius: 25px;
+    border-bottom-left-radius: 25px;
+
 }
 
 
@@ -179,25 +174,15 @@ ul li .drinkCell img {
 }
 
 .drinkDisplay ul {
+    padding-bottom: 5%;
     padding-top: 5%;
     padding-right: 4%;
     -webkit-columns: 3;
     -moz-columns: 3;
     list-style-type: none;
-    /*max-width: 60%;*/
-    margin-left: auto;
-    margin-right: auto;
 }
 
-.sideDrink {
-    height: 15%;
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-    height: 10em;
-}
-
-ul li .drinkCell {
+.drinkCell {
     height: 5%;
     -webkit-column-break-inside: avoid;
     text-align: center;
@@ -214,14 +199,9 @@ ul li .drinkCell {
     font-weight: bold;
 }
 
-
-/*submit order + submit order + close buttons*/
-
-img {
-    display: inline-block;
-    margin-left: auto;
-    margin-right: auto;
-    height: 1.5em;
+.drinkInfo {
+    font-size: .75em;
+    line-height: 30%;
 }
 
 .order {
@@ -275,17 +255,41 @@ img {
     text-align: center;
 }
 
-#top {
-    background-color: #800000;
-    position: absolute;
-    display: inline-block;
-    margin: 0em 0em 0em 0em;
-    bottom: 25%;
-    right: 10%;
-    color: white;
-    font-size: 11px;
-    line-height: 22px;
-    font-weight: 500;
-    text-transform: uppercase;
-    border-radius: 4px;
+.orderDisplay {
+    padding-left: 1em;
+    padding-right:1em;
+    padding-bottom: 3em;
+    float: right;
+    height: 15em;
+    border-left: .35em solid white;
+    border-bottom: .35em solid white;
 }
+
+.sideDrink {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    height: 7em;
+}
+
+.orderDisplay button {
+    border: none;
+   border-radius: 5px;
+   background: #800000 ;
+   margin: 1px;
+   color: white;
+   height: 1.4em;
+   font-size: .85em;
+}
+
+.selection {
+    font-size: 1em;
+    height: 3em;
+}
+
+.results {
+    text-align: center;
+    height: 2em;
+    font-size: 2em;
+}
+
