@@ -1,27 +1,9 @@
 <link rel="stylesheet" type="text/css" href="styles/sign-up.css">
-<nav class="navbar navbar-default navbar-static-top">
-    <div class="container">
-        <div class="navbar-header">
-            <a class="navbar-brand" href="#"><img src="http://res.cloudinary.com/hidgkk5lm/image/upload/v1458948846/BarHawk-navbrand_den81h.png"></a>
-        </div>
-        <div id="navbar" class="navbar-collapse collapse">
-            <ul class="nav navbar-nav navbar-right">
-                <li>
-                    <button class="btn btn-primary" ui-sref="barSignin">Bartender Sign In</button>
-                </li>
-                <li>
-                    <button class="btn btn-primary" ui-sref="customerLogin">Sign In</button>
-                </li>
-        </div>
-    </div>
-    </ul>
-    </div>
-    </div>
-</nav>
+<div class="container-fluid">
 
 <form name="userForm" novalidate ng-submit='signUp(userForm.$valid)'>
     <div class='row'>
-    <div class='form-group col-md-2'></div>
+        <div class='form-group col-md-2'></div>
         <div class='form-group col-md-4' ng-class="{ 'has-error' : userForm.firstname.$invalid && !userForm.firstname.$pristine &&  userForm.firstname.$touched}">
             <label> First Name </label>
             <input name='firstname' type="text" class="form-control" ng-model="newUser.firstname" ng-class="{'error': userForm.$invalid && userForm.$dirty}" class="col-md-4" required/>
@@ -36,7 +18,7 @@
         </div>
     </div>
     <div class='row'>
-    <div class='form-group col-md-2'></div>
+        <div class='form-group col-md-2'></div>
         <div class='form-group col-md-4' ng-class="{ 'has-error' : userForm.username.$invalid && !userForm.username.$pristine &&  userForm.username.$touched}">
             <label> Username </label>
             <input name='username' type="text" class="form-control" ng-model="newUser.username" ng-minlength="4" ng-maxlength="16" ng-class="{'error': userForm.$invalid && userForm.$dirty}" required/>
@@ -51,7 +33,7 @@
         </div>
     </div>
     <div class='row'>
-    <div class='form-group col-md-2'></div>
+        <div class='form-group col-md-2'></div>
         <div class='form-group col-md-4' ng-class="{ 'has-error' : userForm.password.$invalid && !userForm.password.$pristine && userForm.password.$touched}">
             <label>Password</label>
             <input type="password" name="password" class="form-control" ng-model="newUser.password" ng-minlength="8" ng-maxlength="20" ng-class="{'error': userForm.$invalid && userForm.$dirty}" required/>
@@ -64,7 +46,7 @@
         </div>
     </div>
     <div class='row'>
-    <div class='form-group col-md-2'></div>
+        <div class='form-group col-md-2'></div>
         <div class='form-group col-md-2' ng-class="{ 'has-error' : userForm.age.$invalid && !userForm.age.$pristine && userForm.age.$touched}">
             <label>Age</label>
             <input name='age' type="number" class="form-control" ng-model="newUser.age" min="21" ng-class="{'error': userForm.$invalid && userForm.$dirty}" required/>
@@ -93,3 +75,4 @@
     </div>
 </form>
 <p ng-show='invalidSignup'>This user is already registered!</p>
+</div>

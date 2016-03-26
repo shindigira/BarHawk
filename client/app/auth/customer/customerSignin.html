@@ -18,18 +18,18 @@
     </div>
     <form name="signinForm" novalidate ng-submit='logIn(signinForm.$valid)'>
         <div class="row">
-            <div class="col-xs-2 col-md-4"></div>
-            <div class="form-group col-xs-8 col-md-4">
+            <div class="col-xs-2 col-md-5"></div>
+            <div class="form-group col-xs-8 col-md-2">
                 <label>Username</label>
                 <input name='username' type="text" class='form-control' ng-model="loginAttempt.username" placeholder="BrassMonkey" ng-change="clear()" required/>
                 <!-- </div> -->
                 <!--    <div class='form-group' ng-class="{ 'has-error' : invalidLogIn && !signinForm.password.$pristine &&  signinForm.password.$touched}"> -->
             </div>
-            <div class="col-xs-2 col-md-4"></div>
+            <div class="col-xs-2 col-md-5"></div>
         </div>
         <div class="row">
-            <div class="col-xs-2 col-md-4"></div>
-            <div class="form-group col-xs-8 col-md-4">
+            <div class="col-xs-2 col-md-5"></div>
+            <div class="form-group col-xs-8 col-md-2">
                 <label>Password</label>
                 <input name='password' type="password" class='form-control' ng-model="loginAttempt.password" ng-change="clear()" required/>
                 <div class='form-group' ng-class="{ 'has-error' : invalidLogIn && !signinForm.password.$pristine &&  signinForm.password.$touched}">
@@ -42,7 +42,7 @@
                     <p> New here? <a ui-sref="customerSignup">Click here to register</a></p>
                 </div>
             </div>
-            <div class="form-group col-xs-2 col-md-4">
+            <div class="form-group col-xs-2 col-md-5">
 
             </div>
         </div>

@@ -2,20 +2,21 @@
 body {
     /*background: url("jcBar.jpg");*/
     background-size: cover;
-    background-color:#74AFAD;
+    background-color:black;
+    color:white;
 
 }
 
-h3 {
-    font-size: 60px;
+h1{
+    font-size: 40px;
     font-family: Monaco;
     margin-bottom: 10px;
     color: #800000;
     text-shadow: 2px 2px 3px #ff0000;
 }
 
-h1{
-    font-size: 40px;
+h3 {
+    font-size: 60px;
     font-family: Monaco;
     margin-bottom: 10px;
     color: #800000;
