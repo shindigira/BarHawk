@@ -180,14 +180,19 @@
         -webkit-columns: 3;
         -moz-columns: 3;
         list-style-type: none;
+
+        max-width: 60%;
+        margin-left: auto;
+        margin-right: auto;
     }
 
     .sideDrink {
+
         height: 15%;
         display: block;
         margin-left: auto;
         margin-right: auto;
-        height: 15em;
+        height: 10em;
     }
 
     ul li .drinkCell {
@@ -265,3 +270,11 @@
         color: #800000;
         text-align: center;
     }
+
+#top{
+  background-color: #800000;
+        position: relative;
+        display: inline-block;
+        margin-right: auto;
+        margin-left: auto;
+}

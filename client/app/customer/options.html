@@ -6,8 +6,9 @@
         </div>
         <div id="navbar" class="navbar-collapse collapse">
             <ul class="nav navbar-nav navbar-right">
-                <li>
-                    <button ng-click='logOut()'>Logout</li>
+                <!-- <li id='top'> this doesnt do anything-->
+
+                    <button id='top' ng-click='logOut()'>Logout</li>
             </ul>
         </div>
     </div>
@@ -45,6 +46,7 @@
             <div ng-click='showme=false' id='hideBAC'> Hide BAC Info</div>
         </div>
         <button class="btn btn-primary" ng-click='closeTabOnly()' ng-disabled="orderCloseSuccess || tabSuccess">Close Bar Tab</button>
+
         <br>
         <br>
         <p ng-show='tabFail'>You've already closed your tab or have yet to order a drink!</p>

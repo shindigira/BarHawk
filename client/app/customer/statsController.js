@@ -21,7 +21,6 @@ angular.module('asyncdrink.statistics', ['chart.js'])
     $scope.getData();
 
     $scope.onClick = function(points, evt) {
-        console.log(points, evt);
     };
 })
 

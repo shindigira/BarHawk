@@ -33,7 +33,6 @@ angular.module('asyncdrink.options', [])
         optionsFactory.getDrinksList()
             .then(function(drinks) {
                 $scope.drinks.list = drinks;
-                //console.log('$scope.drinks.list[0]: ', $scope.drinks.list[0]);
             });
     };
     $scope.getDrinks();
@@ -80,22 +79,18 @@ angular.module('asyncdrink.options', [])
                     .attr("fill", function(d) {
 
                         if (d < .08) {
-                            console.log('this is d', d)
                             colorFill = 'green';
                             return 'green'
                         } else if (d >= .08 && d < .2) {
                             colorFill = "orange";
-                            console.log('this is d', d)
                             return 'orange'
                         } else {
                             colorFill = "red";
-                            console.log('this is d', d)
                             return 'red'
                         }
                     })
                     .attr('width', barWidth)
                     .attr('height', function(data) {
-                        console.log('height',data*heightScale)
                         return data * heightScale;
                     })
                     .attr('x', function(data, i) {
@@ -107,7 +102,6 @@ angular.module('asyncdrink.options', [])
                     .duration(1500)
                     .ease('bounce')
                     .attr('y', function(data) {
-                        console.log('y', height - data * heightScale)
 
                         return height - (data * heightScale);
                     })
@@ -176,8 +170,7 @@ angular.module('asyncdrink.options', [])
 
     //Order only process
     $scope.orderOnly = function() {
-        // console.log("ORDER ONLY $scope.order.drinkType: ", $scope.order.drinkType);
-        // console.log("ORDER ONLY $scope.order.drinkid: ", $scope.order.drinkid);
+       
         $scope.savedDrinkType = $scope.order.drinkType;
         $scope.savedDrinkid = $scope.order.drinkid;
 
@@ -200,6 +193,7 @@ angular.module('asyncdrink.options', [])
                  if(response.drinkcount === 0){
                     dateAsString = $filter('date')(response.createdAt, "shortTime");
                     $scope.timeOfFirstDrink = dateAsString;
+
 
                  }
 
