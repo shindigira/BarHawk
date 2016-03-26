@@ -151,3 +151,13 @@ input[type="range"]::-webkit-slider-thumb{
         color: #009900;
 }
 
+.disclaimer {
+    text-align: center;
+    background-color: #3e3f3a;
+    color: white;
+    font-size: .75em;
+}
+
+
+
+
