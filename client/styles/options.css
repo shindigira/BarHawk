@@ -29,6 +29,7 @@ body {
         display: -ms-flexbox;
         display: flex;*/
     }
+
     .selectionOptions ul {
         margin-top: 10%;
         white-space: normal!important;
