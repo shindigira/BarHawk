@@ -38,7 +38,7 @@ a:hover {
         }
 
         .landing {
-            margin: relative;
+            /*margin: relative;*/
             position: absolute;
             top: 25%;
             left: 0;
