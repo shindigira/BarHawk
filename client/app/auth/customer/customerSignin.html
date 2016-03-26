@@ -32,6 +32,9 @@
             <div class="form-group col-xs-8 col-md-4">
                 <label>Password</label>
                 <input name='password' type="password" class='form-control' ng-model="loginAttempt.password" ng-change="clear()" required/>
+                <div class='form-group' ng-class="{ 'has-error' : invalidLogIn && !signinForm.password.$pristine &&  signinForm.password.$touched}">
+                    <p ng-show="invalidLogIn" class='help-block'>Invalid username and/or password combination</p>
+                </div>
                 <!-- </div -->
                 <br>
                 <div class='form-group'>
@@ -40,20 +43,14 @@
                 </div>
             </div>
             <div class="form-group col-xs-2 col-md-4">
-                <div class='form-group' ng-class="{ 'has-error' : invalidLogIn && !signinForm.password.$pristine &&  signinForm.password.$touched}">
-                    <p ng-show="invalidLogIn" class='help-block'>Invalid username and/or password combination</p>
-                </div>
+
             </div>
-        </div>
-        <div class="row">
-            <div class="col-xs-2 col-md-4"></div>
-            <div class="form-group col-xs-8 col-md-4">
-                <div class='form-group' ng-class="{ 'has-error' : invalidLogIn && !signinForm.password.$pristine &&  signinForm.password.$touched}">
-                    <p ng-show="invalidLogIn" class='help-block'>Invalid username and/or password combination</p>
-                </div>
-            </div>
-            <div class="form-group col-xs-2 col-md-4"></div>
         </div>
     </form>
 </div>
 </div>
+<footer class="disclaimer">
+            <br>This information is for entertainment purposes only. Your BAC depends on many factors not taken into account here, such as food consumed, health, and genetics.
+            <br>The results provided are estimates. Do not rely on these estimates to drive after drinking. Do not drink and drive.
+            <br>611 Mission Street, San Francisco CA 94105
+        </footer>

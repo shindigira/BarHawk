@@ -2,7 +2,7 @@
 <nav class="navbar navbar-default navbar-static-top">
     <div class="container">
         <div class="navbar-header">
-            <a class="navbar-brand" href="#"></a>
+            <a class="navbar-brand" href="#"><img src="http://res.cloudinary.com/hidgkk5lm/image/upload/v1458948846/BarHawk-navbrand_den81h.png"></a>
         </div>
         <div id="navbar" class="navbar-collapse collapse">
             <ul class="nav navbar-nav navbar-right">
@@ -77,9 +77,57 @@
         </div>
     </div>
     <div class="col-xs-12 col-sm-8 col-sm-8-pull-4">
-        
-        <!-- DRINK IMAGE DISPLAY -->
-
+            <!-- CURRENT ORDER -->
+            <div class="drinkDisplay">
+                <div class='orderButtons'>
+                        <p class="order">
+                            <div class="selection"> Order:<br>{{ order.drinkType }} </div>
+                            <img class="sideDrink" ng-src="{{order.imageurl}}" />
+                        </p>
+                        <button ng-click='orderOnly()'>Submit Order</button>
+                        <div id='results'>
+                            <p ng-show='orderSuccess'>Order placed.</p>
+                            <p ng-show='orderFail'>Sorry! There was an error. </p>
+                        </div>
+                        <button ng-click='orderAndCloseTab()'>Submit and Close Tab</button>
+                </div>
+                <div class="col-md-1"></div>
+                <!-- SELECTION OPTIONS -->
+                <div class="selectionOptions">
+                    <ul>
+                        <div class="col-md-6">
+                            <li>
+                                <input type="radio" id="all-option" ng-model="selectedType" name="selector" value="">
+                                <label for="all-option">All</label>
+                            </li>
+                            <li>
+                                <input type="radio" id="b-option" ng-model="selectedType" name="selector" value="beer">
+                                <label for="b-option">Beer</label>
+                            </li>
+                            <li>
+                                <input type="radio" id="w-option" ng-model="selectedType" name="selector" value="wine">
+                                <label for="w-option">Wine</label>
+                            </li>
+                            <li>
+                                <input type="radio" id="m-option" ng-model="selectedType" name="selector" value="mixed">
+                                <label for="m-option">Mixed Drinks</label>
+                            </li>
+                            <li>
+                                <input type="radio" id="l-option" ng-model="selectedType" name="selector" value="liquor">
+                                <label for="l-option">Liquor</label>
+                            </li>
+                        </div>
+                    </ul>
+                </div>
+                <div class="col-md-3">
+                    <!-- OPTIONS FOR ORDERING MENU- by name, price, calories, carbs, sugar -->
+                    <label class="selectionOptions">Order by...</label>
+                    <select class="selectionOptions" ng-model="selectedOrder" ng-options="option for option in options" ng-change="sortDrinks()">
+                        <option value="" disabled selected>Options</option>
+                    </select>
+                </div>
+            </div>
+            <br>
         <div class="drinkDisplay">
 
 <div class="selectionOptions">
@@ -106,7 +154,7 @@
                 </li>
             </ul>
         </div>
-            
+
         <label class="selectionOptions">Order by...</label>
         <select class="selectionOptions" ng-model="selectedOrder" ng-options="option for option in options">
         <option value="" disabled selected>Options</option>
@@ -118,8 +166,10 @@
                         <br>
                         <p class="drinkName"> {{ drink.name }} </p>
                         <p class="drinkPrice"> ${{ drink.price }} </p>
-                        <br>
-                        <br>
+                        <p class="drinkInfo"> Sugar:{{ drink.sugar }}g</p>
+                        <p class="drinkInfo"> Carbs:{{ drink.carbs }}g</p>
+                        <p class="drinkInfo"> Alcohol: {{ drink.alcohol }}g </p>
+                        <p class="drinkInfo"> Calories: {{ drink.calories }} </p>
                     </div>
                 </li>
             </ul>

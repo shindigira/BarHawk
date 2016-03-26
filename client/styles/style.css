@@ -126,6 +126,9 @@
 }
 
 .disclaimer {
+    width: 100%;
+    position:absolute;
+    bottom: 0;
     text-align: center;
     background-color: #3e3f3a;
     color: white;
