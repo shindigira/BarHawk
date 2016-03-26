@@ -1,34 +1,92 @@
-/*    html {
-        background: url(http://res.cloudinary.com/df1u5o3g6/image/upload/v1458603380/background_g3ksno.jpg) no-repeat center center fixed;
-        -webkit-background-size: cover;
-        -moz-background-size: cover;
-        -o-background-size: cover;
-        background-size: cover;
-    }*/
-
 body {
-    /*        background-color: rgba(255, 255, 255, .01);*/
-    padding: 0px;
-}
+        padding: 0px;
+    }
 
-@media(min-width:780px) {
-    .sidebar {
-        /*position: fixed;*/
-        /*top: 10%;*/
-        float: right;
-        right: 0;
-        margin-top: 20px;
+    @media(min-width:780px) {
+        .sidebar {
+            /*position: fixed;*/
+            /*top: 10%;*/
+            float: right;
+            right: 0;
+            margin-top: 20px;
+        }
+        .sidebar h1 {
+            font-size: 5em;
+        }
+        ul li .drinkCell img {
+            height: 15em;
+        }
+    }
+
+    @media(max-width:700px) {
+        ul li .drinkCell img {
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+            height: 80px!important;
+            /*display: -webkit-flex;
+        display: -ms-flexbox;
+        display: flex;*/
+        }
+        .selectionOptions ul {
+            margin-top: 10%;
+            white-space: normal!important;
+        }
+        .selectionOptions ul li label {
+            cursor: pointer;
+            position: relative;
+            font-weight: 300;
+            font-size: 150%!important;
+            -webkit-transition: all 0.25s linear;
+        }
+        .selectionOptions ul li {
+            color: black;
+            display: inline-block;
+            padding: .5%!important;
+        }
+    }
+
+    .filterOptions label {
+        float: left;
+        padding-left: 20px!important;
+        background-color: green;
+    }
+
+    #bacTitle {
+        color: #800000;
+        display: inline-block;
+        /*background-color: rgba(255, 255, 255, 0.4);*/
+    }
+
+    #bacdiv {
+        display: inline-block;
+        background-color: rgba(255, 255, 255, 0.5);
+
     }
     .sidebar h1 {
         font-size: 5em;
     }
+
     ul li .drinkCell img {
         height: 15em;
+
+
+    #hideBAC {
+        background-color: #800000;
+        color: white;
+    }
+
+    .selectedDrink {
+        background: rgba(66, 70, 74, 0.63);
     }
 }
 
 @media(max-width:700px) {
     ul li .drinkCell img {
+
+    .selectionOptions {
+        text-align: left
+        max-width: 80%;
         display: block;
         margin-left: auto;
         margin-right: auto;
@@ -48,7 +106,71 @@ body {
         font-size: 150%!important;
         -webkit-transition: all 0.25s linear;
     }
+
     .selectionOptions ul li {
+
+
+    .selectionOptions ul li label:hover {
+        color: #800000;
+    }
+
+    .selectionOptions input[type=radio]:checked ~ label {
+        color: #800000;
+    }
+
+    .drinkCell img {
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        height: 15em;
+    }
+
+    .drinkDisplay {
+        background-color: rgba(192,192,192, 0.4);
+        border-radius: 25px;
+        overflow-y: auto;
+        max-height: 80em;
+        max-width: 80%;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    /*.drinkDisplay::-webkit-scrollbar {
+      width:30px;
+    }*/
+
+    .drinkDisplay::-webkit-scrollbar {
+        background: transparent;
+        width: 10px;
+        margin-top: 20px;
+    }
+
+    .drinkDisplay::-webkit-scrollbar-thumb {
+        background: #999 !important;
+        width: 5px;
+        border-radius: 10px;
+        margin-top: 5%;
+        margin-bottom: 5%;
+    }
+
+    .drinkDisplay ul {
+        padding-bottom: 5%;
+        padding-top: 5%;
+        padding-right: 4%;
+        -webkit-columns: 3;
+        -moz-columns: 3;
+        list-style-type: none;
+    }
+
+    .drinkCell {
+        height: 5%;
+        -webkit-column-break-inside: avoid;
+        text-align: center;
+    }
+
+    .drinkPrice,
+    .drinkName {
+        display: inline;
+        font-size: 1em;
         color: black;
         display: inline-block;
         padding: .5%!important;
@@ -71,6 +193,20 @@ body {
     display: inline-block;
     background-color: rgba(255, 255, 255, 0.5);
 }
+    img {
+        display: inline-block;
+        margin-left: auto;
+        margin-right: auto;
+        height: 1.5em;
+    }
+.drinkInfo {
+    font-size: .75em;
+    line-height: 30%;
+}
+    .order {
+        color: black;
+        font-size: 2em;
+    }
 
 #bar-chart {
     display: inline-block;
@@ -289,4 +425,29 @@ img {
     font-weight: 500;
     text-transform: uppercase;
     border-radius: 4px;
+    .BAC {
+        color: #800000;
+        text-align: center;
+    }
+
+.orderDisplay {
+    float: right;
+}
+
+.sideDrink {
+
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        height: 8em;
+    }
+
+.orderButtons {
+    margin-right: 3%;
+    /*width: 10%;*/
+    float: right;
+}
+
+.selection {
+    font-size: 1em;
 }
