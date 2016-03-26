@@ -15,19 +15,7 @@
         </div>
     </div>
 </nav>
-<div class="results">
-    <p ng-show='tabFail'>You've already closed your tab or have yet to order a drink!</p>
-    <!-- success message when bar tab is closed-->
-    <p ng-show='tabSuccess'>You've successfully closed your tab. Total: ${{userTab.totalprice}}</p>
-    <!-- success message when tab is closed and order is placed-->
-    <p ng-show='orderCloseSuccess'> You've successfully placed an order for {{savedDrinkType}} and closed your tab. Tab Total: ${{userTab.totalprice}}</p>
-    <!-- success message when order is added to bar queue -->
-    <p ng-show='orderSuccess'>Order for {{savedDrinkType}} placed.</p>
-    <!-- error message -->
-    <p ng-show='orderFail'>Sorry! There was an error. </p>
-    <!-- ng show for closing tab with high BAC -->
-    <!-- <p>You're above the legal driving limit, please call a cab. Yellow Cab: 415-333-3333</p> -->
-</div>
+
 <!-- BAC INFO -->
 <div class="row">
     <div class="sidebar col-xs-12 col-sm-4 col-sm-4-push-4" style="text-align:center">
@@ -62,6 +50,19 @@
         </div>
     </div>
     <div class="col-xs-12 col-sm-8 col-sm-8-pull-4">
+        <div class="results">
+    <p ng-show='tabFail'>You've already closed your tab or have yet to order a drink!</p>
+    <!-- success message when bar tab is closed-->
+    <p ng-show='tabSuccess'>You've successfully closed your tab. Total: ${{userTab.totalprice}}</p>
+    <!-- success message when tab is closed and order is placed-->
+    <p ng-show='orderCloseSuccess'> {{savedDrinkType}} order placed and tab closed. Tab Total: ${{userTab.totalprice}}</p>
+    <!-- success message when order is added to bar queue -->
+    <p ng-show='orderSuccess'>Order for {{savedDrinkType}} placed.</p>
+    <!-- error message -->
+    <p ng-show='orderFail'>Sorry! There was an error. </p>
+    <!-- ng show for closing tab with high BAC -->
+    <!-- <p>You're above the legal driving limit, please call a cab. Yellow Cab: 415-333-3333</p> -->
+</div>
         <!-- CURRENT ORDER -->
         <div class="orderInfo" "drinkDisplay">
             <div class='orderDisplay'>
