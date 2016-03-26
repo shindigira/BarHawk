@@ -1,4 +1,5 @@
 body {
+    background-color: #cccccc;
     padding: 0px;
 }
 
@@ -23,7 +24,7 @@ body {
         display: block;
         margin-left: auto;
         margin-right: auto;
-/*        height: 80px!important;*/
+        /*        height: 80px!important;*/
         /*display: -webkit-flex;
         display: -ms-flexbox;
         display: flex;*/
@@ -45,10 +46,10 @@ body {
         padding: .5%!important;
     }
     .results {
-    text-align: center;
-    height: 2em;
-    font-size: 1em;
-    margin-bottom: 7%;
+        text-align: center;
+        height: 2em;
+        font-size: 1em;
+        margin-bottom: 7%;
     }
 }
 
@@ -61,22 +62,27 @@ body {
 #bacTitle {
     color: #800000;
     display: inline-block;
-    /*background-color: rgba(255, 255, 255, 0.4);*/
 }
 
 #bacdiv {
     display: inline-block;
-    background-color: rgba(255, 255, 255, 0.5);
+    background-color: #f2f2f2;
 }
 
 #bar-chart {
     display: inline-block;
-    background-color: rgba(255, 255, 255, 0.5);
+    background-color: #f2f2f2;
+    border-radius: 25px;
 }
 
 #hideBAC {
-    background-color: #800000;
+    border: none;
+    border-radius: 5px;
+    background: #800000;
+    margin: 1px;
     color: white;
+    height: 1.8em;
+    font-size: 1em;
 }
 
 .selectedDrink {
@@ -134,30 +140,32 @@ body {
     height: 15em;
 }
 
+
 /*round off top corners of top div*/
+
 .orderInfo {
-    background-color: rgba(192, 192, 192, 0.4);
+    background-color: #f2f2f2;
     overflow-y: auto;
     max-height: 400px;
     max-width: 80%;
     margin-left: auto;
     margin-right: auto;
-
     border-top-left-radius: 25px;
     border-top-right-radius: 25px;
 }
+
+
 /*round off bottom corners of bottom div*/
+
 .drinks {
-    background-color: rgba(192, 192, 192, 0.4);
+    background-color: #f2f2f2;
     overflow-y: auto;
     max-height: 400px;
     max-width: 80%;
     margin-left: auto;
     margin-right: auto;
-
     border-bottom-right-radius: 25px;
     border-bottom-left-radius: 25px;
-
 }
 
 
@@ -263,12 +271,12 @@ body {
 
 .orderDisplay {
     padding-left: 1em;
-    padding-right:1em;
+    padding-right: 1em;
     padding-bottom: 3em;
     float: right;
     height: 15em;
-    border-left: .35em solid white;
-    border-bottom: .35em solid white;
+    border-left: .35em solid #cccccc;
+    border-bottom: .35em solid #cccccc;
 }
 
 .sideDrink {
@@ -280,12 +288,12 @@ body {
 
 .orderDisplay button {
     border: none;
-   border-radius: 5px;
-   background: #800000 ;
-   margin: 1px;
-   color: white;
-   height: 1.4em;
-   font-size: .85em;
+    border-radius: 5px;
+    background: #800000;
+    margin: 1px;
+    color: white;
+    height: 1.4em;
+    font-size: .85em;
 }
 
 .selection {
@@ -297,5 +305,33 @@ body {
     text-align: center;
     height: 2em;
     font-size: 2em;
+}
+
+.BACbutton {
+    border: none;
+    border-radius: 5px;
+    background: #800000;
+    margin: 1px;
+    color: white;
+    height: 1.8em;
+    font-size: 1em;
+    /*padding-left: 3%;*/
+}
+
+#bacdiv {
+    border-radius: 25px;
+    padding: 5%;
+    margin: 2%;
+}
+
+#navbar button {
+    border: none;
+    border-radius: 5px;
+    background: #800000;
+    margin-left: .3em;
+    margin-top: .7em;
+    color: white;
+    height: 2.3em;
+    font-size: 1.1em;
 }
 
