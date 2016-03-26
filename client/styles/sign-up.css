@@ -2,20 +2,23 @@
 body {
     /*background: url("jcBar.jpg");*/
     background-size: cover;
-    background-color:#74AFAD;
+    background-color:black;
+    color:white;
 
 }
-
-h3 {
-    font-size: 60px;
+form {
+    margin-top:10%;
+}
+h1{
+    font-size: 40px;
     font-family: Monaco;
     margin-bottom: 10px;
     color: #800000;
     text-shadow: 2px 2px 3px #ff0000;
 }
 
-h1{
-    font-size: 40px;
+h3 {
+    font-size: 60px;
     font-family: Monaco;
     margin-bottom: 10px;
     color: #800000;
@@ -32,9 +35,6 @@ h1{
     /*color:white;*/
     /*font:inherit;}*/
 
-
-
-
 button {
     border-radius: 5px;
     box-shadow: 2px 2px 2px black;
@@ -43,7 +43,6 @@ button {
     margin: 1px;
     padding: 1%;
 }
-
 
 .input {
 background-color : #99FFCC;

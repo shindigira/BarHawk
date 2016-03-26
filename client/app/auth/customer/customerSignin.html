@@ -1,34 +1,54 @@
 <link rel="stylesheet" type="text/css" href="styles/sign-in.css">
-<nav class="navbar navbar-default navbar-static-top">
-    <div class="container">
-        <div class="navbar-header">
-            <a class="navbar-brand" href="#">BarHawk</a>
-        </div>
-        <div id="navbar" class="navbar-collapse collapse">
-            <ul class="nav navbar-nav navbar-right">
-                <li>
-            <button class="btn btn-primary" ui-sref="barSignin">Bartender Sign In</button></li>
-            <li><button class="btn btn-primary" ui-sref="customerSignup">Sign Up</button></li>
-        </div>
+<div class="container-fluid">
+<div class="row navButtons">
+    <div class="col-xs-8 col-md-6"></div>
+    <div class="col-xs-4 col-md-6">
+        <ul class="nav navbar-nav navbar-right">
+            <li>
+                <button class="btn btn-primary" ui-sref="barSignin">Bartender Sign In</button>
+            </li>
+        </ul>
     </div>
-            </ul>
-        </div>
+</div>
+<div class="landing">
+    <div class="row">
+        <div class="col-xs-0 col-md-3"></div>
+        <div class="col-xs-12 col-md-6"><img src="http://res.cloudinary.com/hidgkk5lm/image/upload/v1458948846/BarHawk-navbrand_den81h.png"></div>
+        <div class="col-xs-0 col-md-3"></div>
     </div>
-</nav>
-    <form name="signinForm" class='form-inline' novalidate ng-submit='logIn(signinForm.$valid)'>
-        <div class='form-group' ng-class="{ 'has-error' : invalidLogIn && !signinForm.username.$pristine && signinForm.username.$touched }">
-            <label>Username</label>
-            <input name='username' type="text" class='form-control' ng-model="loginAttempt.username" ng-change="clear()" required/>
-        <!-- </div> -->
-     <!--    <div class='form-group' ng-class="{ 'has-error' : invalidLogIn && !signinForm.password.$pristine &&  signinForm.password.$touched}"> -->
-            <label>Password</label>
-
-            <input name='password' type="password" class='form-control' ng-model="loginAttempt.password" ng-change="clear()" required/>
-        <!-- </div -->
-        <div class='form-group'>
-            <button type="submit" class="btn btn-primary" ng-disabled="signinForm.$invalid">Sign In!</button>
+    <form name="signinForm" novalidate ng-submit='logIn(signinForm.$valid)'>
+        <div class="row">
+            <div class="col-xs-2 col-md-5"></div>
+            <div class="form-group col-xs-8 col-md-2">
+                <label>Username</label>
+                <input name='username' type="text" class='form-control' ng-model="loginAttempt.username" placeholder="BrassMonkey" ng-change="clear()" required/>
+                <!-- </div> -->
+                <!--    <div class='form-group' ng-class="{ 'has-error' : invalidLogIn && !signinForm.password.$pristine &&  signinForm.password.$touched}"> -->
+            </div>
+            <div class="col-xs-2 col-md-5"></div>
+        </div>
+        <div class="row">
+            <div class="col-xs-2 col-md-5"></div>
+            <div class="form-group col-xs-8 col-md-2">
+                <label>Password</label>
+                <input name='password' type="password" class='form-control' ng-model="loginAttempt.password" ng-change="clear()" required/>
+                <div class='form-group' ng-class="{ 'has-error' : invalidLogIn && !signinForm.password.$pristine &&  signinForm.password.$touched}">
+                    <p ng-show="invalidLogIn" class='help-block'>Invalid username and/or password combination</p>
+                </div>
+                <!-- </div -->
+            </div>
+            <div class="form-group col-xs-2 col-md-5"></div>
+        </div>
+        <div class="row">
+            <div class="col-xs-2 col-md-3"></div>
+            <div class="form-group col-xs-8 col-md-6">
+                <div class='form-group'>
+                    <button type="submit" class="btn btn-primary" ng-disabled="signinForm.$invalid">Sign In!</button>
+                    <p> New here? <a ui-sref="customerSignup">Click here to register</a></p>
+                </div>
+            </div>
+            <div class="form-group col-xs-2 col-md-3"></div>
         </div>
     </form>
-    <div class='form-group' ng-class="{ 'has-error' : invalidLogIn && !signinForm.password.$pristine &&  signinForm.password.$touched}">
-        <p ng-show="invalidLogIn" class='help-block'>Invalid username and/or password combination</p>
-    </div>
+</div>
+</div>

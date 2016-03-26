@@ -1,16 +1,24 @@
 <link rel="stylesheet" type="text/css" href="styles/barqueue.css">
+<nav class="navbar navbar-default navbar-static-top">
+    <div class="container">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="#"><img src="http://res.cloudinary.com/hidgkk5lm/image/upload/v1458948846/BarHawk-navbrand_den81h.png"></a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+            <ul class="nav navbar-nav navbar-right">
+                <li>
+                    <button class="btn btn-primary" type='button' ng-click="bartenderLogout()">Bar logout</button>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
 <h1 class="title-heading">BarHawk Queue</h1>
-<button class="btn btn-primary" type='button' ng-click="bartenderLogout()">Bar logout</button>
-<button class="btn btn-primary" type='button' ng-click='barClosingWarning()'> Send Bar Closing Warning to all Customer</button>
-
-
-<!-- <p class='btn btn-primary'>Get a Taxi:</p><input type="checkbox" ng-model="checked" aria-label="Toggle ngHide" ng-click='getTaxi()'><br/> -->
-
-<button class="btn btn-primary" type='button' ng-click='getTaxi()'> Get a Taxi </button>
+<!-- <button class="btn btn-primary" type='button' ng-click='barClosingWarning()'> Send Bar Closing Warning to all Customer</button>
+<button class="btn btn-primary" type='button' ng-click='getTaxi()'> Call Taxi </button>
   <div class="check-element animate-show taxiMessage" ng-if="taxi === true">
-    <span class='taxiMessage' class="glyphicon glyphicon-thumbs-up"></span> Sending a text to get taxi to come to the bar.
-  </div>
-
+    <span class='taxiMessage' class="glyphicon glyphicon-thumbs-up"></span> A taxi is on its way!
+  </div> -->
 <br></br>
 <table id="queue">
     <tr class="tableHeaders">
@@ -44,7 +52,5 @@
             Cancel Order
         </td>
     </tr>
-
-
 </table>
 <br>
