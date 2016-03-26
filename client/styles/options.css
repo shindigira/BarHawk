@@ -1,4 +1,13 @@
+/*    html {
+        background: url(http://res.cloudinary.com/df1u5o3g6/image/upload/v1458603380/background_g3ksno.jpg) no-repeat center center fixed;
+        -webkit-background-size: cover;
+        -moz-background-size: cover;
+        -o-background-size: cover;
+        background-size: cover;
+    }*/
+
 body {
+    /*        background-color: rgba(255, 255, 255, .01);*/
     padding: 0px;
 }
 
@@ -73,12 +82,24 @@ body {
     color: white;
 }
 
+
+/*STYLING FOR MENU OPTIONS*/
+
+
+/*  #bar-chart {
+    -ms-transform: rotate(90deg);
+    -webkit-transform: rotate(90deg);
+    transform: rotate(90deg);
+    }*/
+
 .selectedDrink {
     background: rgba(66, 70, 74, 0.63);
+    border: 1px solid rgba(0, 0, 0, 0.28);
 }
 
 .selectionOptions {
-    text-align: left max-width: 80%;
+    text-align: center;
+    max-width: 80%;
     display: block;
     margin-right: auto;
     margin-left: auto;
@@ -121,7 +142,7 @@ body {
     color: #800000;
 }
 
-.drinkCell img {
+ul li .drinkCell img {
     display: block;
     margin-left: auto;
     margin-right: auto;
@@ -132,7 +153,7 @@ body {
     background-color: rgba(192, 192, 192, 0.4);
     border-radius: 25px;
     overflow-y: auto;
-    max-height: 400px;
+    max-height: 80em;
     max-width: 80%;
     margin-left: auto;
     margin-right: auto;
@@ -164,9 +185,20 @@ body {
     -webkit-columns: 3;
     -moz-columns: 3;
     list-style-type: none;
+    max-width: 60%;
+    margin-left: auto;
+    margin-right: auto;
 }
 
-.drinkCell {
+.sideDrink {
+    height: 15%;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    height: 10em;
+}
+
+ul li .drinkCell {
     height: 5%;
     -webkit-column-break-inside: avoid;
     text-align: center;
@@ -191,11 +223,6 @@ img {
     margin-left: auto;
     margin-right: auto;
     height: 1.5em;
-}
-
-.drinkInfo {
-    font-size: .75em;
-    line-height: 30%;
 }
 
 .order {
@@ -249,23 +276,17 @@ img {
     text-align: center;
 }
 
-.orderDisplay {
-    float: right;
-}
-
-.sideDrink {
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-    height: 8em;
-}
-
-.orderButtons {
-    margin-right: 3%;
-    /*width: 10%;*/
-    float: right;
-}
-
-.selection {
-    font-size: 1em;
+#top {
+    background-color: #800000;
+    position: absolute;
+    display: inline-block;
+    margin: 0em 0em 0em 0em;
+    bottom: 25%;
+    right: 10%;
+    color: white;
+    font-size: 11px;
+    line-height: 22px;
+    font-weight: 500;
+    text-transform: uppercase;
+    border-radius: 4px;
 }

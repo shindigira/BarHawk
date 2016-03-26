@@ -4,7 +4,7 @@ var db = require('../models/index.js');
 module.exports = {
 
   getDrinks: function (req, res) {
-    db.sequelize.query('Select name, type, price, volume, calories, carbs, sugar, alcohol, imageurl from drinks;')
+    db.sequelize.query('Select name, type, price, volume, calories, carbs, sugar, imageurl from drinks;')
       .then(function (drinks) {
         //return
         res.send(drinks[0]);
@@ -130,9 +130,6 @@ module.exports = {
     var ord = req.body;
     var drinkPrice;
     var currentTab;
-    console.log("---------order and close tab ord: ", ord);
-    console.log('------- ord.drinkType ', ord.drinkType);
-    console.log("------!ord.drinkType ", !ord.drinkType);
 
     if (!ord.drinkType) {
       res.sendStatus(400);

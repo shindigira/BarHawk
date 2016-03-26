@@ -4,36 +4,12 @@ angular.module('asyncdrink.options', [])
     //set up drinks
     $scope.drinks = {};
 
-    $scope.filterType = function(item){
-        if($scope.selectedType === ''){
-            return true;
-        }
-        // console.log(item.type, $scope.selectedType);
-        return item.type == $scope.selectedType;
-    };
-
-    $scope.sortDrinks = function(){
-               console.log($scope.drinks.list);
-       if($scope.drinks.list.length !== 0){
-            $scope.drinks.list.sort(function(a,b){
-                if(a[$scope.selectedOrder] < b[$scope.selectedOrder]){
-                    return -1;
-                }else{
-                    return 1;
-                }
-            })
-       }
-               console.log($scope.drinks.list);
-
-    }
-
     //set current user (object with all user info)
     $scope.currentUser = optionsFactory.currentUser;
 
     //prepare order object before submit to server
     $scope.order = {
-        username: $scope.currentUser.username,
-        drinkType: $scope.selectedOrder
+        username: $scope.currentUser.username
     };
 
     //success/fail messages
@@ -44,10 +20,7 @@ angular.module('asyncdrink.options', [])
     $scope.orderCloseSuccess = false;
     $scope.canDrive = true;
 
-    $scope.selectedType = '';
-    $scope.selectedOrder = 'name';
-
-    $scope.options = ['name', 'price', 'calories', 'carbs', 'sugar', 'alcohol'];
+    $scope.options = ['name', 'price', 'calories', 'carbs', 'sugar'];
 
     //color selected drink
     $scope.selectedDrink = null;
@@ -272,6 +245,8 @@ angular.module('asyncdrink.options', [])
 
     //Order and close process
     $scope.orderAndCloseTab = function() {
+
+
         optionsFactory.orderAndCloseTab($scope.order)
             .then(function(response) {
                 //display stats and success msgs
