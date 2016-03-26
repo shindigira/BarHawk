@@ -4,7 +4,7 @@ BarHawk
 
 Overview 
 ======
-BarHawk is a mobile-friendly web application designed to track bar orders and Blood Alcohol Concentrations (BACs). Upon submitting a drink order, BarHawk's personalized algorithm calculates the current BAC based on a customer's weight, gender, grams of alcohol consumed, and time elapsed since starting to drink. Drink orders from all customers are neatly organized to minimize order surges. Bartenders will be less likely to overserve with the help of BarHawk's color-coded list of customer BACs. Customers receive text messages when their drink or closed tab is ready to be picked up at the bar. BarHawk ensures a smooth customer experience while also unburdening bartenders of stress and liability.
+BarHawk is a mobile-friendly web application designed to track bar orders and Blood Alcohol Content (BACs). Upon submitting a drink order, BarHawk's personalized algorithm calculates the current BAC based on a customer's weight, gender, grams of alcohol consumed, and time elapsed since starting to drink. Drink orders from all customers are neatly organized to minimize order surges. Bartenders will be less likely to overserve with the help of BarHawk's color-coded list of customer BACs. Customers receive text messages when their drink or closed tab is ready to be picked up at the bar. BarHawk ensures a smooth customer experience while also unburdening bartenders of stress and liability.
 
 Installation
 =============
@@ -25,7 +25,7 @@ $ npm test
 
 Technology Stack
 ==========
-![](http://res.cloudinary.com/hidgkk5lm/image/upload/v1458860341/Screen_Shot_2016-03-24_at_3.57.01_PM_hkmnxa.png)
+![](http://res.cloudinary.com/hidgkk5lm/image/upload/v1459015575/Screen_Shot_2016-03-26_at_11.04.04_AM_mcttdi.png)
 
 File Structure
 ==========
@@ -92,3 +92,4 @@ Engineers
 - [Daniel Novograd](https://github.com/danielnovograd)
 - [Nadine Ott](https://github.com/nadineott)
 - [Michael Serna](https://github.com/michaelserna)
+
