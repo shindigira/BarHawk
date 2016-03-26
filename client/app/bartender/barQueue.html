@@ -1,4 +1,18 @@
 <link rel="stylesheet" type="text/css" href="styles/barqueue.css">
+<nav class="navbar navbar-default navbar-static-top">
+    <div class="container">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="#"><img src="http://res.cloudinary.com/hidgkk5lm/image/upload/v1458948846/BarHawk-navbrand_den81h.png"></a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+            <ul class="nav navbar-nav navbar-right">
+                <li>
+            <button class="btn btn-primary" type='button' ng-click="bartenderLogout()">Bar logout</button>
+            <li><button class="btn btn-primary" ui-sref="customerSignup">Sign Up</button></li>
+            </ul>
+        </div>
+    </div>
+</nav>
 <h1 class="title-heading">BarHawk Queue</h1>
 <button class="btn btn-primary" type='button' ng-click="bartenderLogout()">Bar logout</button>
 <button class="btn btn-primary" type='button' ng-click='barClosingWarning()'> Send Bar Closing Warning to all Customer</button>
