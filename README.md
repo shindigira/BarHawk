@@ -4,7 +4,7 @@ BarHawk
 
 Overview 
 ======
-BarHawk is a mobile-friendly web application designed to track bar orders and Blood Alcohol Content (BACs). BarHawk allows customers to place orders with the smart phones and organizes all drink orders to minimize surges at the bar. Customers are notified via text message when their drink is ready to be picked up. BAC’s are calculated for each customer every 5 minutes using a customer’s weight, gender, grams of alcohol consumed, and time elapsed since starting to drink. Customers can track their BAC over the course of a night while bartenders have access to a list of BAC’s for all customers. BarHawk reduces the chance of overserving and alleviates the stress of a crowded bar, making the experience easier and safer for customers and bartenders alike.
+BarHawk is a mobile-friendly web application designed to track bar orders and Blood Alcohol Content (BACs). BarHawk allows customers to place orders with smart phones and displays all drink orders to bartenders in an organized manner. Customers are notified via text message when their drink is ready to be picked up. BAC’s are calculated for each customer every 5 minutes using a customer’s weight, gender, grams of alcohol consumed, and time elapsed since starting to drink. Customers can track their BAC over the course of a night while bartenders have access to a list of BAC’s for all customers. BarHawk reduces the chance of overserving and alleviates the stress of a crowded bar, making the experience easier and safer for customers and bartenders alike.
 
 Installation
 =============
