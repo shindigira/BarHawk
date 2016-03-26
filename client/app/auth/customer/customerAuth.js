@@ -69,6 +69,10 @@ angular.module('asyncdrink.customerAuth', [])
                 $scope.invalidLogIn = true;
             });
     };
+
+    $scope.ourTeam = function (){
+        $state.go('ourteam')
+    };
 })
 
 .factory('customerFactory', function($http, $window) {
@@ -109,7 +113,8 @@ angular.module('asyncdrink.customerAuth', [])
         // .catch(function(resp){
         //   return resp.status;
         // })
-    }
+    };
+
 
     return {
         signUp: signUp,
