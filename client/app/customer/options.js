@@ -178,6 +178,7 @@ angular.module('asyncdrink.options', [])
         optionsFactory.orderOnly($scope.order)
             .then(function(response) {
                 //reset response messages
+                $scope.orderCloseSuccess = false;
                 $scope.orderSuccess = true;
                 $scope.orderFail = false;
                 $scope.tabFail = false;
@@ -250,11 +251,11 @@ angular.module('asyncdrink.options', [])
         optionsFactory.orderAndCloseTab($scope.order)
             .then(function(response) {
                 //display stats and success msgs
-                $scope.orderCloseSuccess = true;
                 $scope.savedDrinkType = $scope.order.drinkType;
                 $scope.currentUser.drinkCount = response.data.drinkcount;
                 $scope.tabSuccessIncludingOrder = true;
                 $scope.userTab = response.data;
+                $scope.orderCloseSuccess = true;
                 $scope.orderSuccess = false;
                 $scope.order.drinkType = "";
                 $scope.selectedDrink = null;
