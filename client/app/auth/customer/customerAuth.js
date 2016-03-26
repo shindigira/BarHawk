@@ -72,7 +72,38 @@ angular.module('asyncdrink.customerAuth', [])
 
     $scope.ourTeam = function (){
         $state.go('ourteam')
+
     };
+
+  $scope.team = [
+    {
+      name: 'Michael Serna',
+      picture: 'https://avatars3.githubusercontent.com/u/12300179?v=3&s=400',
+      github: 'https://github.com/michaelserna'
+    },
+    {
+      name: 'Nadine Ott',
+      picture: 'https://avatars2.githubusercontent.com/u/11221187?v=3&s=400',
+      github: 'https://github.com/nadineott'
+    },
+    {
+      name: 'Daniel Novograd',
+      picture: 'https://avatars1.githubusercontent.com/u/12724556?v=3&s=400',
+      github: 'https://github.com/danielnovograd'
+    },
+    {
+      name: 'Collin Adams',
+      picture: 'https://avatars0.githubusercontent.com/u/13724361?v=3&s=400',
+      github: 'https://github.com/collinadams'
+    },
+    {
+      name: 'John Chau',
+      picture: 'https://avatars1.githubusercontent.com/u/11654592?v=3&s=400',
+      github: 'https://github.com/ydjjabt'
+    }
+  ];
+
+
 })
 
 .factory('customerFactory', function($http, $window) {

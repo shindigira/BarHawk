@@ -41,7 +41,7 @@ angular.module('asyncdrink', ['ui.router', 'asyncdrink.customerAuth',
         })
         .state('ourteam',{
         url: "/ourteam",
-        templateUrl: "/app/customer/ourTeam.html",
+        templateUrl: "/app/auth/customer/ourTeam.html",
         controller: 'customerController'
         });
 

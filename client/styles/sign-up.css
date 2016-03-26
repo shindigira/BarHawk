@@ -1,15 +1,15 @@
-
-
 body {
     /*background: url("jcBar.jpg");*/
     background-size: cover;
-    background-color:black;
-    color:white;
+    background-color: black;
+    color: white;
 }
+
 form {
-    margin-top:10%;
+    margin-top: 10%;
 }
-h1{
+
+h1 {
     font-size: 40px;
     font-family: Monaco;
     margin-bottom: 10px;
@@ -25,19 +25,19 @@ h3 {
     text-shadow: 2px 2px 3px #ff0000;
 }
 
-.about{
+.about {
     padding-top: 200px;
-    height:335px;
-    background-color: white;
-        padding:35px;
+    height: 375px;
+    padding: 35px;
     /*background-image:linear-gradient(to bottom,rgba(192, 192, 192, 0.4),  0%, rgba(192, 192, 192, 0.4), 100%), linear-gradient(to bottom, black 0%, black 100%);*/
-    background-color: white;
+    /*background-color: white;*/
     opacity: .9;
     background-clip: content-box, padding-box;
-    color: black;
-    text-align:center;
-    font-family: Lato,'Helvetica Neue',Arial,Helvetica,sans-serif;
+    color: white;
+    text-align: center;
+    font-family: Lato, 'Helvetica Neue', Arial, Helvetica, sans-serif;
 }
+
 
 /*label {
     border-radius: 5px;
@@ -47,7 +47,9 @@ h3 {
     margin: .5em;
     padding: 1%;
     /*color:white;*/
-    /*font:inherit;}*/
+
+
+/*font:inherit;}*/
 
 button {
     border-radius: 5px;
@@ -59,33 +61,39 @@ button {
 }
 
 .input {
-background-color : #99FFCC;
+    background-color: #99FFCC;
     border: 1px solid #800000;
     width: 230px;
-              padding-top: 50px;
-        padding-right: 100px;
-        padding-left: 50px;
+    padding-top: 50px;
+    padding-right: 100px;
+    padding-left: 50px;
 }
+
 .btn-primary {
-  background-color: #800000;
+    background-color: #800000;
     position: relative;
     display: inline-block;
     margin: 0 .5em 0 .5em;
 }
- .topButtons {
-        position: relative;
-        display: inline-block;
-        float: right;
-    }
 
-    #title-heading, h1 {
-        font-size: 130px;
-    }
-    h1{
+.topButtons {
+    position: relative;
+    display: inline-block;
+    float: right;
+}
+
+#title-heading,
+h1 {
+    font-size: 130px;
+}
+
+h1 {
     font-size: 40px;
     font-family: Monaco;
     margin-bottom: 10px;
     color: #800000;
 }
+a{
+    color:white;
 
-
+}
