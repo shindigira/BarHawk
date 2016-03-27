@@ -104,8 +104,7 @@
                 <br>
                 <!-- OPTIONS FOR ORDERING MENU- by name, price, calories, carbs, sugar -->
                 <label class="selectionOptions">Order by...</label>
-                <select class="selectionOptions" ng-model="selectedOrder" ng-options="option for option in options" ng-change="sortDrinks()">
-                    <option value="" disabled selected>Options</option>
+                <select class="selectionOptions btn-primary" ng-model="selectedOrder" ng-options="option for option in options" ng-change="sortDrinks()">
                 </select>
             </div>
         </div>
