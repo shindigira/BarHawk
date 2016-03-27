@@ -133,6 +133,10 @@ body {
     color: #800000;
 }
 
+select.selectionOptions.btn-primary {
+    margin: 0;
+}
+
 .drinkCell img {
     display: block;
     margin-left: auto;
@@ -160,6 +164,7 @@ body {
 .drinks {
     background-color: #f2f2f2;
     overflow-y: auto;
+    overflow-x: hidden;
     max-height: 400px;
     max-width: 80%;
     margin-left: auto;
@@ -168,12 +173,11 @@ body {
     border-bottom-left-radius: 25px;
 }
 
-
-/*.drinkDisplay::-webkit-scrollbar {
-      width:30px;
-    }*/
-
 .drinkDisplay::-webkit-scrollbar {
+    width: 30px;
+}
+
+.drinkDisplay::-webkit-scrollbar * {
     background: transparent;
     width: 10px;
     margin-top: 20px;
@@ -229,7 +233,7 @@ body {
     font-size: 1.5em;
 }
 
-.title-heading {
+sel .title-heading {
     color: black;
     font-size: 6em;
     text-align: center;
@@ -324,6 +328,16 @@ body {
     margin: 2%;
 }
 
+.navbar-brand {
+    padding: 0;
+}
+
+.navbar-brand > img {
+    height: 50px;
+    max-height: 80px;
+    margin-top: 1%;
+}
+
 #navbar button {
     border: none;
     border-radius: 5px;
@@ -334,4 +348,3 @@ body {
     height: 2.3em;
     font-size: 1.1em;
 }
-
