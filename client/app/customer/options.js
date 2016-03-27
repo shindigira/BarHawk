@@ -4,12 +4,35 @@ angular.module('asyncdrink.options', [])
     //set up drinks
     $scope.drinks = {};
 
+    $scope.filterType = function(item) {
+        if ($scope.selectedType === '') {
+            return true;
+        }
+        // console.log(item.type, $scope.selectedType);
+        return item.type == $scope.selectedType;
+    };
+
+    $scope.sortDrinks = function() {
+        console.log($scope.drinks.list);
+        if ($scope.drinks.list.length !== 0) {
+            $scope.drinks.list.sort(function(a, b) {
+                if (a[$scope.selectedOrder] < b[$scope.selectedOrder]) {
+                    return -1;
+                } else {
+                    return 1;
+                }
+            })
+        }
+
+    }
+
     //set current user (object with all user info)
     $scope.currentUser = optionsFactory.currentUser;
 
     //prepare order object before submit to server
     $scope.order = {
-        username: $scope.currentUser.username
+        username: $scope.currentUser.username,
+        drinkType: $scope.selectedOrder
     };
 
     //success/fail messages
@@ -20,7 +43,10 @@ angular.module('asyncdrink.options', [])
     $scope.orderCloseSuccess = false;
     $scope.canDrive = true;
 
-    $scope.options = ['name', 'price', 'calories', 'carbs', 'sugar'];
+    $scope.selectedType = '';
+    $scope.selectedOrder = 'name';
+
+    $scope.options = ['name', 'price', 'calories', 'carbs', 'sugar', 'alcohol'];
 
     //color selected drink
     $scope.selectedDrink = null;
@@ -33,7 +59,6 @@ angular.module('asyncdrink.options', [])
         optionsFactory.getDrinksList()
             .then(function(drinks) {
                 $scope.drinks.list = drinks;
-                //console.log('$scope.drinks.list[0]: ', $scope.drinks.list[0]);
             });
     };
     $scope.getDrinks();
@@ -50,14 +75,14 @@ angular.module('asyncdrink.options', [])
 
                 $scope.order.BAC = response.BAC
 
-                if(chartdata>=.08){
-                    $scope.canDrive  = false;
+                if (chartdata >= .08) {
+                    $scope.canDrive = false;
                 }
 
                 var chartdata = [$scope.currentUser.BAC];
 
-                if(chartdata>=.08){
-                    $scope.canDrive  = false;
+                if (chartdata >= .08) {
+                    $scope.canDrive = false;
                 }
 
                 var margin = { top: -5, right: 10, bottom: 10, left: 170 }
@@ -72,7 +97,7 @@ angular.module('asyncdrink.options', [])
                 // Add
                 d3.select('#bar-chart').append('svg')
                     .attr('width', width)
-                    .attr('height',  height + margin.top + margin.bottom)
+                    .attr('height', height + margin.top + margin.bottom)
                     .style('background', 'transparent')
                     .selectAll('rect').data(chartdata)
                     .enter().append('rect')
@@ -80,22 +105,18 @@ angular.module('asyncdrink.options', [])
                     .attr("fill", function(d) {
 
                         if (d < .08) {
-                            console.log('this is d', d)
                             colorFill = 'green';
                             return 'green'
                         } else if (d >= .08 && d < .2) {
                             colorFill = "orange";
-                            console.log('this is d', d)
                             return 'orange'
                         } else {
                             colorFill = "red";
-                            console.log('this is d', d)
                             return 'red'
                         }
                     })
                     .attr('width', barWidth)
                     .attr('height', function(data) {
-                        console.log('height',data*heightScale)
                         return data * heightScale;
                     })
                     .attr('x', function(data, i) {
@@ -107,7 +128,6 @@ angular.module('asyncdrink.options', [])
                     .duration(1500)
                     .ease('bounce')
                     .attr('y', function(data) {
-                        console.log('y', height - data * heightScale)
 
                         return height - (data * heightScale);
                     })
@@ -127,33 +147,33 @@ angular.module('asyncdrink.options', [])
                     .orient("left")
                     //.innerTickSize([size])
                     .tickFormat(function(d) {
-                        if(d === 0.0){
+                        if (d === 0.0) {
                             return 'sober ' + d;
-                       // }
-                        //if (d === 0.03) {
+                            // }
+                            //if (d === 0.03) {
                             //return 'mild euphoria ' + d;
-                        //} else if (d === 0.06) {
+                            //} else if (d === 0.06) {
                             //return 'blunted feelings ' + d;
                         } else if (d === 0.08) {
-                            return "legal driving limit " +d;
-                       // } else if (d === 0.12) {
-                        //     return 'boisterousness ' + d;
-                        // } else if (d === 0.15) {
-                        //     return 'slurred speech ' + d;
-                        // } else if (d === 0.18) {
-                        //     return 'motor impairment' + d;
+                            return "legal driving limit " + d;
+                            // } else if (d === 0.12) {
+                            //     return 'boisterousness ' + d;
+                            // } else if (d === 0.15) {
+                            //     return 'slurred speech ' + d;
+                            // } else if (d === 0.18) {
+                            //     return 'motor impairment' + d;
                         } else if (d === 0.21) {
                             return 'decreased libido ' + d;
                         } else if (d === 0.24) {
-                        //     return 'possible vomiting ' + d;
-                        // } else if (d === 0.27) {
-                        //     return 'bladder dysfunction ' + d;
-                        }else if (d === 0.3) {
-                            return 'memory blackout '+d;
-                        //} //else if (d === 0.33) {
-                        //     return 'dysequilibrium ' + d;
-                        // } else if (d === 0.36) {
-                        //     return 'coma ' + d;
+                            //     return 'possible vomiting ' + d;
+                            // } else if (d === 0.27) {
+                            //     return 'bladder dysfunction ' + d;
+                        } else if (d === 0.3) {
+                            return 'memory blackout ' + d;
+                            //} //else if (d === 0.33) {
+                            //     return 'dysequilibrium ' + d;
+                            // } else if (d === 0.36) {
+                            //     return 'coma ' + d;
                         } else if (d === 0.39) {
                             return 'possible death ' + d;
                         }
@@ -168,16 +188,15 @@ angular.module('asyncdrink.options', [])
                     .style({ fill: 'none', stroke: "black" })
                 verticalGuide.selectAll('line')
                     .style({ stroke: "black" });
-        })
-};
+            })
+    };
 
 
     $scope.getDK();
 
     //Order only process
     $scope.orderOnly = function() {
-        // console.log("ORDER ONLY $scope.order.drinkType: ", $scope.order.drinkType);
-        // console.log("ORDER ONLY $scope.order.drinkid: ", $scope.order.drinkid);
+
         $scope.savedDrinkType = $scope.order.drinkType;
         $scope.savedDrinkid = $scope.order.drinkid;
 
@@ -185,6 +204,7 @@ angular.module('asyncdrink.options', [])
         optionsFactory.orderOnly($scope.order)
             .then(function(response) {
                 //reset response messages
+                $scope.orderCloseSuccess = false;
                 $scope.orderSuccess = true;
                 $scope.orderFail = false;
                 $scope.tabFail = false;
@@ -197,13 +217,14 @@ angular.module('asyncdrink.options', [])
                 // $scope.currentUser.drinkCount = response.data.drinkcount;
                 var dateAsString;
 
-                 if(response.drinkcount === 0){
+                if (response.drinkcount === 0) {
                     dateAsString = $filter('date')(response.createdAt, "shortTime");
                     $scope.timeOfFirstDrink = dateAsString;
 
-                 }
 
-                 //$scope.first = $scope.timeOfFirstDrink
+                }
+
+                //$scope.first = $scope.timeOfFirstDrink
 
                 // Remove
                 d3.selectAll('svg').remove();
@@ -251,8 +272,6 @@ angular.module('asyncdrink.options', [])
 
     //Order and close process
     $scope.orderAndCloseTab = function() {
-
-
         optionsFactory.orderAndCloseTab($scope.order)
             .then(function(response) {
                 //display stats and success msgs
@@ -260,6 +279,7 @@ angular.module('asyncdrink.options', [])
                 $scope.currentUser.drinkCount = response.data.drinkcount;
                 $scope.tabSuccessIncludingOrder = true;
                 $scope.userTab = response.data;
+                $scope.orderCloseSuccess = true;
                 $scope.orderSuccess = false;
                 $scope.order.drinkType = "";
                 $scope.selectedDrink = null;

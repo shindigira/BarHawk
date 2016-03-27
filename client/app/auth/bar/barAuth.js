@@ -5,6 +5,11 @@ angular.module('asyncdrink.barAuth', [])
         $scope.barUser.barUsername = 'baradmin';
         $scope.barUser.barPassword = 'barpassword';
         $scope.invalidLogIn = false;
+
+        $scope.clear = function() {
+            $scope.invalidLogIn = false;
+        };
+
         $scope.barLogin = function() {
             BarAuthFactory.signin($scope.barUser)
                 .then(function(response) {

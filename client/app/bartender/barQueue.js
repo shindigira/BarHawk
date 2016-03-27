@@ -20,6 +20,7 @@ angular.module('asyncdrink.barQueue', [])
             OrdersFactory.getAll()
                 //after all orders retrieved from server, add them to scope
                 .then(function(orders) {
+
                     $scope.data.orders = orders;
                 })
                 .catch(function(error) {
@@ -29,6 +30,15 @@ angular.module('asyncdrink.barQueue', [])
 
         //show pending orders immediately upon rendering this state
         showPendingOrders();
+
+        $scope.barClosingWarning = function(){
+            OrdersFactory.showAllLoggedInUser();
+        }
+
+        $scope.getTaxi = function(){
+            OrdersFactory.getTaxi();
+            $scope.taxi = true;
+        }
 
         //poll all pending orders from the server every fifteen seconds
         var poll = $interval(showPendingOrders, 15000);
@@ -41,7 +51,6 @@ angular.module('asyncdrink.barQueue', [])
                 customerCloseout: cancelledOrder.closeout,
                 cancelled: true
             };
-            console.log("CANCELLED ORDER", cancelledOrder);
             OrdersFactory.cancelOrder(cancelledOrder)
                 //on success of removeOrder, showPendingOrders is called to submit get request for updated queue
                 .then(function() {
@@ -86,6 +95,22 @@ angular.module('asyncdrink.barQueue', [])
             });
     };
 
+    var getTaxi = function(){
+        return $http({
+            method:'POST',
+            url:'api/barqueue/getTaxi'
+
+        })
+
+    };
+
+    var showAllLoggedInUser = function(){
+        return $http({
+            method: 'POST',
+            url:'api/barqueue/showAllLoggedInUser'
+        })
+    };
+
     var sendTextMessage = function(textMessInfo) {
         return $http({
             method: 'POST',
@@ -108,7 +133,6 @@ angular.module('asyncdrink.barQueue', [])
 
     var cancelOrder = function(cancelledOrder) {
 
-        console.log(cancelledOrder);
         return $http({
             method: 'POST',
             url: '/api/barqueue/cancelOrder',
@@ -120,6 +144,8 @@ angular.module('asyncdrink.barQueue', [])
     }
 
     return {
+        getTaxi:getTaxi,
+        showAllLoggedInUser: showAllLoggedInUser,
         sendTextMessage: sendTextMessage,
         getAll: getAll,
         removeOrder: removeOrder,

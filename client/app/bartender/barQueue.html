@@ -1,13 +1,31 @@
 <link rel="stylesheet" type="text/css" href="styles/barqueue.css">
-<h1 class="title-heading">BarHawk Queue</h1>
-<button class="btn btn-primary" type='button' ng-click="bartenderLogout()">Bar logout</button>
+<nav class="navbar navbar-default navbar-static-top">
+    <div class="container">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="#"><img src="http://res.cloudinary.com/hidgkk5lm/image/upload/v1458948846/BarHawk-navbrand_den81h.png"></a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+            <ul class="nav navbar-nav navbar-right">
+                <li>
+                    <button class="btn btn-primary" type='button' ng-click="bartenderLogout()">Bar logout</button>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+<h1 class="title-heading">Pending Drink Orders</h1>
+<!-- <button class="btn btn-primary" type='button' ng-click='barClosingWarning()'> Send Bar Closing Warning to all Customer</button>
+<button class="btn btn-primary" type='button' ng-click='getTaxi()'> Call Taxi </button>
+  <div class="check-element animate-show taxiMessage" ng-if="taxi === true">
+    <span class='taxiMessage' class="glyphicon glyphicon-thumbs-up"></span> A taxi is on its way!
+  </div> -->
 <br></br>
 <table id="queue">
     <tr class="tableHeaders">
         <th>Username </th>
         <th>Drink Type </th>
         <th>Time </th>
-        <th>Close out </th>
+        <th>Close Out </th>
         <th>Order Price </th>
         <th>Total Price </th>
         <th>Drink Count </th>
@@ -34,7 +52,8 @@
             Cancel Order
         </td>
     </tr>
-
-
 </table>
 <br>
+<div class="disclaimer">
+<br>*Your BAC depends on many factors not taken into account here, such as food consumed, metabolism, and genetics. <br>The results are estimates. Do not rely on these estimates to drive after drinking. Do not drink and drive. <br>611 Mission Street, San Francisco CA 94105<br><br>
+ </div>

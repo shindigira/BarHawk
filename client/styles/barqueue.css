@@ -4,14 +4,16 @@
         -moz-background-size: cover;
         ^^ -o-background-size: cover;
         background-size: cover;
-        padding: 5%;
     }
 
     body {
         background-color: rgba(255, 255, 255, .01);
     }
 
-    table,
+    h1{
+        font-family:corbel;
+    }
+
     th,
     td {
         text-align: center!important;
@@ -25,21 +27,19 @@
         font-size: 130px;
     }
 
-    #queue {
-        width: 100%;
-    }
+  #queue {
+    width: 80%;
+    margin: auto;
+}
 
     td {
         border-right: 1px dotted gray;
         background: rgba(220, 220, 220, 0.4);
     }
 
-    td .complete {
-        background: none!important;
-    }
-
     .title-heading {
         text-shadow: 2px 2px 3px black;
+
         color: #800000;
         font-size: 5em;
         text-align: center;
@@ -47,6 +47,7 @@
         display: block;
         margin-right: auto;
         margin-left: auto;
+        margin-top: 4%;
     }
 
     .complete {
@@ -110,6 +111,12 @@
         background-color: #ff3f00;
     }
 
+
+    .taxiMessage{
+        color: black;
+        font-size: 1.5em;
+    }
+
     .btn-primary {
         background-color: #800000;
         position: relative;
@@ -140,7 +147,7 @@
         font-size: 24px;
         color: #fff;
         background-color: #000;
-        text-shadow: 2px 2px 3px #d4af37;
+        /*text-shadow: 2px 2px 3px #d4af37;*/
         font-size: 2em;
     }
 

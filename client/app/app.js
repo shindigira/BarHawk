@@ -37,6 +37,12 @@ angular.module('asyncdrink', ['ui.router', 'asyncdrink.customerAuth',
             templateUrl: "/app/customer/statistics.html",
             controller: 'statsController',
             authenticate: true
+
+        })
+        .state('ourteam',{
+        url: "/ourteam",
+        templateUrl: "/app/auth/customer/ourTeam.html",
+        controller: 'customerController'
         });
 
     //Inject the AttachTokens factory into $http's interceceptors array so
