@@ -13,7 +13,6 @@ angular.module('asyncdrink.options', [])
     };
 
     $scope.sortDrinks = function() {
-        console.log($scope.drinks.list);
         if ($scope.drinks.list.length !== 0) {
             $scope.drinks.list.sort(function(a, b) {
                 if (a[$scope.selectedOrder] < b[$scope.selectedOrder]) {
