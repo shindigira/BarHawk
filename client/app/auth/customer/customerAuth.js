@@ -84,7 +84,7 @@ angular.module('asyncdrink.customerAuth', [])
     },
     {
       name: 'Daniel Novograd',
-      picture: './../assets/dan-novograd-barhawk-headshot.png',
+      picture: './../assets/dan-headshot.png',
       github: 'https://github.com/danielnovograd'
     },
     {
