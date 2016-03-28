@@ -16,10 +16,10 @@
   },
   "production": {
     "use_env_variable": "DATABASE_URL",
-    "username": "DATABASE_USER",
-    "password": "DATABASE_PASSWORD",
-    "database": "DATABASE_NAME",
-    "host": "DATABASE_HOST",
+    "username": "nplloobkfzqeuz",
+    "password": "dZkyv2l09_-xkMNIEcZQyX3h3L",
+    "database": "dcm2sjte1ghvtn",
+    "host": "ec2-54-235-153-179.compute-1.amazonaws.com",
     "dialect": "postgres",
     "dialectOptions": {
       "ssl": true
