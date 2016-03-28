@@ -131,7 +131,9 @@ module.exports = {
 
               //round it
               var BAC = Math.round(unroundedBAC * 1000) / 1000;
-
+              if (BAC < 0) {
+                BAC = ".000";
+              }
               res.json({
                 drinkcount: drinkCount,
                 BAC: BAC
