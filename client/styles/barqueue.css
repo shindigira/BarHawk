@@ -31,6 +31,15 @@
     width: 80%;
     margin: auto;
 }
+.navbar-brand > img {
+        height: 50px;
+    max-height: 80px;
+    margin-top: 1%;
+}
+
+.navbar-brand {
+    padding: 0;
+}
 
     td {
         border-right: 1px dotted gray;

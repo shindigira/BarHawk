@@ -7,13 +7,9 @@ angular.module('asyncdrink.customerAuth', [])
         drinkCount: 0,
         totalPrice: 0
     };
+    $scope.loginAttempt = {};
 
     $scope.passwordCheck = '';
-
-    $scope.loginAttempt = {
-        username: 'JaneDoe85',
-        password: 'janedoepassword'
-    };
 
     $scope.invalidLogIn = false;
 
