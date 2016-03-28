@@ -32,6 +32,7 @@
             <!--  <p ng-show="userForm.name.$invalid && !userForm.name.$pristine" class="help-block">You name is required.</p> -->
             <p ng-show="userForm.username.$error.minlength" class="help-block">Sorry, that username is too short.</p>
             <p ng-show="userForm.username.$error.maxlength" class="help-block">Sorry, that username is too long.</p>
+            <p ng-show='invalidSignup' style="color:red">This user is already registered!</p>
         </div>
         <div class='form-group col-md-4' ng-class="{ 'has-error' : userForm.phonenumber.$invalid && !userForm.phonenumber.$pristine && userForm.phonenumber.$touched }">
             <label>Phone Number</label>
@@ -81,7 +82,6 @@
         </div>
     </div>
 </form>
-<p ng-show='invalidSignup'>This user is already registered!</p>
 </div>
 <div class = 'about'>
 <!-- <h2>BarHawk is an app that calculates a customer's Blood Alcohol Content (BAC) throughout the night while improving the overall bar experience by streamlining ordering and fufillment .

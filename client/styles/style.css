@@ -1,5 +1,9 @@
     @import url(http://fonts.googleapis.com/css?family=Lato:400,700);
 
+.row {
+    max-width: 100%;
+}
+
 .selectionOptions {
     display: block;
     margin-left: 30%;
@@ -12,7 +16,19 @@
 
 }
 
+.navbar-brand {
+    padding: 0;
+}
 
+.navbar-brand > img {
+    height: 50px;
+    max-height: 80px;
+    margin-top: 1%;
+}
+
+.btn-primary {
+    background-color: #800000;
+}
 /*li {
 =======
     .complete {
