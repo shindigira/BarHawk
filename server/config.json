@@ -17,7 +17,7 @@
   "production": {
     "use_env_variable": "DATABASE_URL",
     "username": "DATABASE_USER",
-    "password": "dZkyv2l09_-xkMNIEcZQyX3h3L",
+    "password": "DATABASE_PASSWORD",
     "database": "DATABASE_NAME",
     "host": "DATABASE_HOST",
     "dialect": "postgres",
