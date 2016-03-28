@@ -73,21 +73,6 @@ angular.module('asyncdrink.customerAuth', [])
 
   $scope.team = [
     {
-      name: 'Michael Serna',
-      picture: 'https://avatars3.githubusercontent.com/u/12300179?v=3&s=400',
-      github: 'https://github.com/michaelserna'
-    },
-    {
-      name: 'Nadine Ott',
-      picture: 'https://avatars2.githubusercontent.com/u/11221187?v=3&s=400',
-      github: 'https://github.com/nadineott'
-    },
-    {
-      name: 'Daniel Novograd',
-      picture: './../assets/dan-headshot.png',
-      github: 'https://github.com/danielnovograd'
-    },
-    {
       name: 'Collin Adams',
       picture: 'https://avatars0.githubusercontent.com/u/13724361?v=3&s=400',
       github: 'https://github.com/collinadams'
@@ -96,6 +81,21 @@ angular.module('asyncdrink.customerAuth', [])
       name: 'John Chau',
       picture: 'https://avatars1.githubusercontent.com/u/11654592?v=3&s=400',
       github: 'https://github.com/ydjjabt'
+    },
+    {
+      name: 'Daniel Novograd',
+      picture: './../assets/dan-headshot.png',
+      github: 'https://github.com/danielnovograd'
+    },
+    {
+      name: 'Nadine Ott',
+      picture: 'https://avatars2.githubusercontent.com/u/11221187?v=3&s=400',
+      github: 'https://github.com/nadineott'
+    },
+    {
+      name: 'Michael Serna',
+      picture: 'https://avatars3.githubusercontent.com/u/12300179?v=3&s=400',
+      github: 'https://github.com/michaelserna'
     }
   ];
 
