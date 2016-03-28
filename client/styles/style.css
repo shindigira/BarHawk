@@ -13,6 +13,16 @@
 }
 
 
+.navbar-brand {
+    padding: 0;
+}
+
+.navbar-brand > img {
+    height: 50px;
+    max-height: 80px;
+    margin-top: 1%;
+}
+
 /*li {
 =======
     .complete {
