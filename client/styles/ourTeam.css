@@ -4,22 +4,14 @@ body {
     background-color: white;
 }
 
+.navbar-brand > img {
+        height: 50px;
+    max-height: 80px;
+    margin-top: 1%;
+}
+
 .navbar-brand {
-    float: left;
-    padding: 13px 15px;
-    font-size: 18px;
-    line-height: 20px;
-    height: 85px;
-    background-color: black
-}
-
-.navbar-brandimg {
-    max-height: 60px;
-    background-color: black
-}
-
-#navbar {
-    background-color: black;
+    padding: 0;
 }
 
 .picture {
@@ -32,9 +24,9 @@ body {
 }
 
 .container {
-    padding-top: 40px;
     text-align: center;
 }
+
 
 .header {
     font-family: "Lucida Sans Unicode", Helvetica, Arial, sans-serif;

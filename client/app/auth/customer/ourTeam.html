@@ -1,33 +1,35 @@
 <!-- <link rel="stylesheet" type="text/css" href="styles/styles.css"> -->
 <link rel="stylesheet" type="text/css" href="styles/ourTeam.css">
-<div class="container-fluid">
-    <a class="navbar-brand" href="#"><img src="http://res.cloudinary.com/hidgkk5lm/image/upload/v1458948846/BarHawk-navbrand_den81h.png"></a>
-    <div id="navbar" class="navbar-collapse collapse">
-        <ul class="nav navbar-nav navbar-right">
-            <li>
-                <button class="btn btn-primary" ui-sref="barSignin">Bartender Sign In</button>
-            </li>
-            <li>
-                <button class="btn btn-primary" ui-sref="customerLogin">Sign In</button>
-            </li>
-    </div>
-</div>
-</ul>
-<div class='header'>Our Team</div>
-<div class="row">
-   <!--  <div class="col-xs-12 top-info"> -->
-        <!-- <span class="col-xs-4 col-xs-offset-4 split"></span> -->
-        <div class="col-xs-12 container">
-            <ul class="row">
-                <li class="member col-xs-12 col-sm-4" ng-repeat="member in team">
-                    <div class="picture" style="background-image:url({{member.picture}})"></div>
-                    <p class="member-name">{{member.name}}</p>
-                    <a class="member-git" href="{{member.github}}"><img src="./assets/GitHub-Mark-32px.png" alt="GitHub"></a>
+<nav class="navbar navbar-default navbar-static-top">
+    <div class="container">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="#"><img src="http://res.cloudinary.com/hidgkk5lm/image/upload/v1458948846/BarHawk-navbrand_den81h.png"></a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+            <ul class="nav navbar-nav navbar-right">
+                <li>
+                    <button class="btn btn-primary" ui-sref="barSignin">Bartender Sign In</button>
+                </li>
+                <li>
+                    <button class="btn btn-primary" ui-sref="customerLogin">Sign In</button>
                 </li>
             </ul>
         </div>
+    </div>
+</nav>
+<div class='header'>Our Team</div>
+<div class="row">
+    <!--  <div class="col-xs-12 top-info"> -->
+    <!-- <span class="col-xs-4 col-xs-offset-4 split"></span> -->
+    <div class="col-xs-12 container">
+        <ul class="row">
+            <li class="member col-xs-12 col-sm-4" ng-repeat="member in team">
+                <div class="picture" style="background-image:url({{member.picture}})"></div>
+                <p class="member-name">{{member.name}}</p>
+                <a class="member-git" href="{{member.github}}"><img src="./assets/GitHub-Mark-32px.png" alt="GitHub"></a>
+            </li>
+        </ul>
+    </div>
     <!-- </div> -->
 </div>
 </div>
-
-
