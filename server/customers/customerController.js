@@ -5,16 +5,16 @@ var bcrypt = require('bcrypt');
 var moment = require("moment");
 
 module.exports = {
-  login: function (req, res) {
+  login: function(req, res) {
     //set username/password request to attempt variable
     var attempt = req.body;
 
     models.users.findOne({
       where: { username: attempt.username },
-    }).then(function (result) {
+    }).then(function(result) {
       var hashedPassword = result.dataValues.password;
       //check attempted password with password saved in db
-      bcrypt.compare(attempt.password, hashedPassword, function (err, success) {
+      bcrypt.compare(attempt.password, hashedPassword, function(err, success) {
         if (success) {
           var token = jwt.encode(attempt.username, 'barHawksecret444');
           res.json({
@@ -25,17 +25,18 @@ module.exports = {
           res.sendStatus(401);
         }
       })
-    }).catch(function (err) {
+    }).catch(function(err) {
       res.sendStatus(401);
     })
   },
 
-  signup: function (req, res) {
+
+  signup: function(req, res) {
     //assigning drink order to variable
     var attempt = req.body;
     var hashedPW;
     //hash passwords
-    bcrypt.hash(attempt.password, 10, function (err, hash) {
+    bcrypt.hash(attempt.password, 10, function(err, hash) {
       hashedPW = hash;
 
       //find existing user (err) or create new (success)
@@ -51,7 +52,7 @@ module.exports = {
           photo: attempt.photo,
           phone: attempt.phonenumber
         }
-      }).spread(function (user, created) {
+      }).spread(function(user, created) {
         // //returns preexisting user
         var userObj = user.get({
           plain: false
@@ -71,7 +72,7 @@ module.exports = {
     });
   },
 
-  drinkcount: function (req, res) {
+  drinkcount: function(req, res) {
     var user = req.body.username;
     var drinkCount;
     var lastOrder;
@@ -98,7 +99,7 @@ module.exports = {
           [db.sequelize.fn('MAX', db.sequelize.col('id')), 'latestOrder']
         ]
       })
-      .then(function (userdrinks) {
+      .then(function(userdrinks) {
         //set drink count
         drinkCount = userdrinks[0].dataValues.drinkCount;
         lastOrder = userdrinks[0].dataValues.latestOrder;
@@ -111,7 +112,7 @@ module.exports = {
         } else {
           //find BAC
           db.sequelize.query("select orders.username, users.weight, users.gender, sum(drinks.alcohol) AS totalAlcohol, min(orders." + timeFulfilled + ") AS starttime from orders, users, drinks WHERE orders." + timeFulfilled + " > '" + tableTime + "' AND orders.username = '" + user + "' AND orders.username = users.username AND orders.drinktype = drinks.name group by orders.username, users.weight, users.gender;")
-            .then(function (BACQuery) {
+            .then(function(BACQuery) {
               //result will be single-row table of arguments for BAC formula (username, weight, gender, totalalcohol, starttime)
               var argumentsObj = BACQuery[0][0];
 
@@ -123,7 +124,7 @@ module.exports = {
                   female: .55
                 }
                 //convert weight to grams
-              var weightInGrams = function (weight) {
+              var weightInGrams = function(weight) {
                 return (argumentsObj.weight * 453.592);
               };
               //calculate BAC
@@ -146,41 +147,40 @@ module.exports = {
   getStats: function(req, res) {
     var timeFulfilled = '"updatedAt"'
 
-    db.sequelize.query("select orders.username, orders.drinktype, orders." + timeFulfilled + ", orders.bac, drinks.sugar, drinks.calories, drinks.carbs, drinks.volume from orders, drinks where orders.drinktype = drinks.name AND orders.username = '" + req.body.username+"' order by orders." + timeFulfilled + ";")
-    .then(function(drinkHistory) {
-      var drinkData = {
-        labels: [],
-        series: ['Calories (kCal)', 'Sugar (g)', 'Carbs (g)'],
-        data: [
-        //cals
-        [],
-        //sugar
-        [],
-        //carbs
-        [],
-        ],
-        bac: [
-        []
-        //userData
-        ]
-      };
+    db.sequelize.query("select orders.username, orders.drinktype, orders." + timeFulfilled + ", orders.bac, drinks.sugar, drinks.calories, drinks.carbs, drinks.volume from orders, drinks where orders.drinktype = drinks.name AND orders.username = '" + req.body.username + "' order by orders." + timeFulfilled + ";")
+      .then(function(drinkHistory) {
+        var drinkData = {
+          labels: [],
+          series: ['Calories (kCal)', 'Sugar (g)', 'Carbs (g)'],
+          data: [
+            //cals
+            [],
+            //sugar
+            [],
+            //carbs
+            [],
+          ],
+          bac: [
+            []
+            //userData
+          ]
+        };
 
-      for (var i = 0; i < drinkHistory[0].length; i++) {
-        //set tick marks
-        drinkData.labels.push(drinkHistory[0][i].drinktype + " (" + moment(drinkHistory[0][i].updatedAt).format('ddd[,] M[.]d[.]YY') + ")");
-        //pluck drink calories
-        drinkData.data[0].push(drinkHistory[0][i].calories);
-        //pluck drink sugar
-        drinkData.data[1].push(drinkHistory[0][i].sugar);
-        //pluck drink carbs
-        drinkData.data[2].push(drinkHistory[0][i].carbs);
-        //pluck user BAC
-        drinkData.bac[0].push(Number(drinkHistory[0][i].bac));
-      };
+        for (var i = 0; i < drinkHistory[0].length; i++) {
+          //set tick marks
+          drinkData.labels.push(drinkHistory[0][i].drinktype + " (" + moment(drinkHistory[0][i].updatedAt).format('ddd[,] M[.]d[.]YY') + ")");
+          //pluck drink calories
+          drinkData.data[0].push(drinkHistory[0][i].calories);
+          //pluck drink sugar
+          drinkData.data[1].push(drinkHistory[0][i].sugar);
+          //pluck drink carbs
+          drinkData.data[2].push(drinkHistory[0][i].carbs);
+          //pluck user BAC
+          drinkData.bac[0].push(Number(drinkHistory[0][i].bac));
+        };
 
-      res.json(drinkData);
-    })
+        res.json(drinkData);
+      })
   }
 
 }
-
