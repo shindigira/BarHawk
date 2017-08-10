@@ -84,12 +84,3 @@ All code adheres to the [style guide](https://github.com/MKSBest/BarHawk/blob/ma
 Contributing
 =========
 Thank you for taking interest in contributing! Please read our [CONTRIBUTING.md](https://github.com/MKSBest/BarHawk/blob/master/CONTRIBUTING.md) and check out our current [issues](https://github.com/MKSBest/BarHawk/issues).
-
-Engineers
-==========
-- [Collin Adams](https://github.com/collinadams)
-- [John Chau](https://github.com/ydjjabt)
-- [Daniel Novograd](https://github.com/danielnovograd)
-- [Nadine Ott](https://github.com/nadineott)
-- [Michael Serna](https://github.com/michaelserna)
-
